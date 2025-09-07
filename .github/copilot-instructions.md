@@ -17,6 +17,7 @@ Este repositorio será una guía paso a paso para la creación de un proyecto, s
 ## Back-end
 
 - Framework: Laravel
+- Importante usar arquitectura por capas y clean architecture.
 
 ## Mobile
 
