@@ -283,6 +283,8 @@ tiempo real con capacidades de reportería y alertas automáticas.
 - ✅
   [Requerimientos Funcionales y No Funcionales](./requerimientos-funcionales-no-funcionales.md)
 - ✅ [Análisis de Stakeholders](./analisis-stakeholders.md)
+- ✅ [Roadmap del Proyecto](./roadmap-proyecto.md)
+- ✅ [Metodología de Trabajo](./metodologia-trabajo.md)
 - ✅ **Definición del Alcance del Proyecto** ← Estás aquí
 - ⏭️ [Estimación de Tiempos y Recursos](./estimacion-tiempos-recursos.md)
 - ⏭️ [Análisis de Riesgos](./analisis-riesgos.md)
@@ -295,6 +297,6 @@ Continúa con la
 [**Estimación de Tiempos y Recursos**](./estimacion-tiempos-recursos.md) para
 planificar realistamente el esfuerzo requerido para tu proyecto.
 
-[⬅️ Análisis de Stakeholders](./analisis-stakeholders.md) |
+[⬅️ Metodología de Trabajo](./metodologia-trabajo.md) |
 [🏠 README Principal](../../README.md) |
 [➡️ Estimación de Tiempos](./estimacion-tiempos-recursos.md)

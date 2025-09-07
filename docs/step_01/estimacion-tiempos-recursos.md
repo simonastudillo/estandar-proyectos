@@ -253,6 +253,8 @@ relativa de cada tarea, considerando esfuerzo, complejidad técnica y riesgo:
 - ✅
   [Requerimientos Funcionales y No Funcionales](./requerimientos-funcionales-no-funcionales.md)
 - ✅ [Análisis de Stakeholders](./analisis-stakeholders.md)
+- ✅ [Roadmap del Proyecto](./roadmap-proyecto.md)
+- ✅ [Metodología de Trabajo](./metodologia-trabajo.md)
 - ✅ [Definición del Alcance del Proyecto](./definicion-alcance.md)
 - ✅ **Estimación de Tiempos y Recursos** ← Estás aquí
 - ⏭️ [Análisis de Riesgos](./analisis-riesgos.md)

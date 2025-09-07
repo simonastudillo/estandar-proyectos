@@ -98,6 +98,8 @@ servirán como base para todo el proyecto:
 
 - [Definición de requerimientos funcionales y no funcionales](./requerimientos-funcionales-no-funcionales.md)
 - [Análisis de stakeholders](./analisis-stakeholders.md)
+- [Roadmap del proyecto](./roadmap-proyecto.md)
+- [Metodología de trabajo](./metodologia-trabajo.md)
 - [Definición del alcance del proyecto](./definicion-alcance.md)
 - [Estimación de tiempos y recursos](./estimacion-tiempos-recursos.md)
 - [Análisis de riesgos](./analisis-riesgos.md)

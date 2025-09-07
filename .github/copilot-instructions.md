@@ -16,3 +16,11 @@ Cada sub paso debe tener las siguientes secciones:
 - Tips
 - Ejemplos
 - Navegación a siguiente documento y home (README.md)
+
+# Estimación de tiempo
+
+Para la estimación de tiempo se hará uso de Story Points.
+
+# Metodología de trabajo
+
+Para la metodología de trabajo se propone utilizar Scrumban, una combinación de Scrum y Kanban que permite flexibilidad y estructura en el desarrollo de proyectos.
