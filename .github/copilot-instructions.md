@@ -47,3 +47,17 @@ Para la estimación de tiempo se hará uso de Story Points.
 # Metodología de trabajo
 
 Para la metodología de trabajo se propone utilizar Scrumban, una combinación de Scrum y Kanban que permite flexibilidad y estructura en el desarrollo de proyectos.
+
+# Convenciones
+
+## Mysql
+
+- Tablas: Nombres en ingles, plural y snake_case
+- Los id se deben definir usando el nombre de la tabla en singular seguido de `_id`, ejemplo `user_id`
+- Columnas: Nombres en ingles, singular y snake_case
+- Triggers: Nombres en ingles, snake_case
+- Indices: Nombres en ingles, snake_case, prefijados con "idx_", usando la siguiente estructura: `idx_tabla_columna`.
+- UUID como identificador público pero deben ser generados desde PHP con `bin2hex(random_bytes(16))` para mayor seguridad.
+- Todas las tablas deben tener soft deletes implementados.
+- Todas las tablas deben tener timestamps (`created_at`, `updated_at`, `deleted_at`).
+- Se deben de crear claves foráneas para todas las relaciones entre tablas.
