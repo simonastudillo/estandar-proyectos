@@ -18,13 +18,13 @@ los proyectos desde su concepción hasta su despliegue y mantenimiento.
 
 ## Etapas del Desarrollo
 
-### [1. Planificación y Análisis](./docs/01-planificacion-analisis.md)
+### [1. Planificación y Análisis](./docs/step_01/planificacion-analisis.md)
 
-- Definición de requerimientos funcionales y no funcionales
-- Análisis de stakeholders
-- Definición del alcance del proyecto
-- Estimación de tiempos y recursos
-- Análisis de riesgos
+- [Definición de requerimientos funcionales y no funcionales](./docs/step_01/requerimientos-funcionales-no-funcionales.md)
+- [Análisis de stakeholders](./docs/step_01/analisis-stakeholders.md)
+- [Definición del alcance del proyecto](./docs/step_01/definicion-alcance.md)
+- [Estimación de tiempos y recursos](./docs/step_01/estimacion-tiempos-recursos.md)
+- [Análisis de riesgos](./docs/step_01/analisis-riesgos.md)
 
 ### [2. Diseño y Arquitectura](./docs/02-diseno-arquitectura.md)
 
