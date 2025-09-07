@@ -16,3 +16,7 @@ Cada sub paso debe tener las siguientes secciones:
 - Tips
 - Ejemplos
 - Navegación a siguiente documento y home (README.md)
+
+# Estimación de tiempo
+
+Para la estimación de tiempo se hará uso de Story Points.

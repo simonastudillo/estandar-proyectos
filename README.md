@@ -22,17 +22,24 @@ los proyectos desde su concepción hasta su despliegue y mantenimiento.
 
 - [Definición de requerimientos funcionales y no funcionales](./docs/step_01/requerimientos-funcionales-no-funcionales.md)
 - [Análisis de stakeholders](./docs/step_01/analisis-stakeholders.md)
+- [Roadmap del proyecto](./docs/step_01/roadmap-proyecto.md)
+- [Metodología de trabajo](./docs/step_01/metodologia-trabajo.md)
 - [Definición del alcance del proyecto](./docs/step_01/definicion-alcance.md)
 - [Estimación de tiempos y recursos](./docs/step_01/estimacion-tiempos-recursos.md)
 - [Análisis de riesgos](./docs/step_01/analisis-riesgos.md)
 
-### [2. Diseño y Arquitectura](./docs/02-diseno-arquitectura.md)
+### [2. Diseño y Arquitectura](./docs/step_02/diseno-arquitectura.md)
 
-- Diseño de la arquitectura del sistema
-- Diseño de base de datos (ERD)
-- Diseño de APIs (documentación OpenAPI/Swagger)
-- Wireframes y mockups de UI/UX
-- Definición de patrones de diseño
+- [Stack tecnológico inicial](./docs/step_02/stack-tecnologico.md)
+- [Patrones de diseño del proyecto](./docs/step_02/patrones-diseno.md)
+- [Arquitectura del sistema](./docs/step_02/arquitectura-sistema.md)
+- [Estructura de carpetas base](./docs/step_02/estructura-carpetas.md)
+- [Diseño de base de datos (ERD)](./docs/step_02/diseno-base-datos.md)
+- [Diseño de APIs (OpenAPI/Swagger)](./docs/step_02/diseno-apis.md)
+- [Diagramas de flujo](./docs/step_02/diagramas-flujo.md)
+- [Casos de uso y User Stories](./docs/step_02/casos-uso-user-stories.md)
+- [Prototipos y wireframes](./docs/step_02/prototipos-wireframes.md)
+- [Especificaciones técnicas](./docs/step_02/especificaciones-tecnicas.md)
 
 ### [3. Configuración del Entorno de Desarrollo](./docs/03-configuracion-entorno.md)
 

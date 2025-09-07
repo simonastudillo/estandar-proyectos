@@ -295,6 +295,8 @@ objetivos del proyecto.
 - ✅
   [Requerimientos Funcionales y No Funcionales](./requerimientos-funcionales-no-funcionales.md)
 - ✅ [Análisis de Stakeholders](./analisis-stakeholders.md)
+- ✅ [Roadmap del Proyecto](./roadmap-proyecto.md)
+- ✅ [Metodología de Trabajo](./metodologia-trabajo.md)
 - ✅ [Definición del Alcance del Proyecto](./definicion-alcance.md)
 - ✅ [Estimación de Tiempos y Recursos](./estimacion-tiempos-recursos.md)
 - ✅ **Análisis de Riesgos** ← Estás aquí
