@@ -2,9 +2,15 @@
 
 ## Descripción
 
-Esta guía proporciona un estándar paso a paso para la creación de proyectos siguiendo las mejores prácticas de la industria y arquitectura limpia. El objetivo es tener una referencia completa que garantice la calidad, mantenibilidad y escalabilidad de los proyectos desde su concepción hasta su despliegue y mantenimiento.
+Esta guía proporciona un estándar paso a paso para la creación de proyectos
+siguiendo las mejores prácticas de la industria y arquitectura limpia. El
+objetivo es tener una referencia completa que garantice la calidad,
+mantenibilidad y escalabilidad de los proyectos desde su concepción hasta su
+despliegue y mantenimiento.
 
-**Toda la documentación sigue principios de Clean Architecture + DDD (Domain-Driven Design) y está diseñada para ser utilizada con GitHub Copilot siguiendo las instrucciones específicas del repositorio.**
+**Toda la documentación sigue principios de Clean Architecture + DDD
+(Domain-Driven Design) y está diseñada para ser utilizada con GitHub Copilot
+siguiendo las instrucciones específicas del repositorio.**
 
 ## Stack Tecnológico Estándar
 
@@ -47,7 +53,8 @@ Esta guía proporciona un estándar paso a paso para la creación de proyectos s
 
 ### Principios Fundamentales
 
-- **SOLID**: Single Responsibility, Open/Closed, Liskov Substitution, Interface Segregation, Dependency Inversion
+- **SOLID**: Single Responsibility, Open/Closed, Liskov Substitution, Interface
+  Segregation, Dependency Inversion
 - **Clean Architecture**: Separación de capas, independencia del framework
 - **DRY**: Don't Repeat Yourself
 - **Clean Code**: Código legible, mantenible y testeable
@@ -58,17 +65,20 @@ Esta guía proporciona un estándar paso a paso para la creación de proyectos s
 
 Esta etapa está **completamente documentada** y lista para usar:
 
-- ✅ [Definición de requerimientos funcionales y no funcionales](./docs/step_01/requerimientos-funcionales-no-funcionales.md)
+- ✅
+  [Definición de requerimientos funcionales y no funcionales](./docs/step_01/requerimientos-funcionales-no-funcionales.md)
 - ✅ [Análisis de stakeholders](./docs/step_01/analisis-stakeholders.md)
 - ✅ [Roadmap del proyecto](./docs/step_01/roadmap-proyecto.md)
 - ✅ [Metodología de trabajo](./docs/step_01/metodologia-trabajo.md)
 - ✅ [Definición del alcance del proyecto](./docs/step_01/definicion-alcance.md)
-- ✅ [Estimación de tiempos y recursos](./docs/step_01/estimacion-tiempos-recursos.md)
+- ✅
+  [Estimación de tiempos y recursos](./docs/step_01/estimacion-tiempos-recursos.md)
 - ✅ [Análisis de riesgos](./docs/step_01/analisis-riesgos.md)
 
 ### [2. Diseño y Arquitectura](./docs/step_02/diseno-arquitectura.md) ✅
 
-Esta etapa está **completamente documentada** con enfoque en Clean Architecture + DDD:
+Esta etapa está **completamente documentada** con enfoque en Clean
+Architecture + DDD:
 
 - ✅ [Stack tecnológico inicial](./docs/step_02/stack-tecnologico.md)
 - ✅ [Patrones de diseño del proyecto](./docs/step_02/patrones-diseno.md)
@@ -81,9 +91,9 @@ Esta etapa está **completamente documentada** con enfoque en Clean Architecture
 - ✅ [Prototipos y wireframes](./docs/step_02/prototipos-wireframes.md)
 - ✅ [Especificaciones técnicas](./docs/step_02/especificaciones-tecnicas.md)
 
-### 3. Configuración del Entorno de Desarrollo 🚧
+### [3. Configuración del Entorno de Desarrollo](./docs/step_03/configuracion-entorno-desarrollo.md) 🚧
 
-**Estado**: Documentación pendiente
+**Estado**: Archivo principal creado, sub-documentos pendientes
 
 Incluirá:
 
@@ -101,7 +111,8 @@ Incluirá:
 
 Incluirá:
 
-- Implementación de Domain Layer (Entities, Value Objects, Repositories, Services)
+- Implementación de Domain Layer (Entities, Value Objects, Repositories,
+  Services)
 - Desarrollo de Application Layer (Use Cases, DTOs, Commands, Queries)
 - Configuración de Infrastructure Layer (Eloquent, Controllers, Middleware)
 - Implementación de APIs RESTful versionadas
@@ -201,7 +212,8 @@ estandar-proyectos/
 │   │   ├── casos-uso-user-stories.md
 │   │   ├── prototipos-wireframes.md
 │   │   └── especificaciones-tecnicas.md
-│   ├── step_03/                   # 🚧 Configuración del Entorno (Pendiente)
+│   ├── step_03/                   # 🚧 Configuración del Entorno (En progreso)
+│   │   └── configuracion-entorno-desarrollo.md
 │   ├── step_04/                   # 🚧 Desarrollo Backend (Pendiente)
 │   ├── step_05/                   # 🚧 Desarrollo Frontend (Pendiente)
 │   ├── step_06/                   # 🚧 Desarrollo Móvil (Pendiente)
@@ -221,7 +233,8 @@ Esta guía está en constante evolución. Si tienes sugerencias o mejoras:
 1. **Crea un Issue**: Para reportar problemas o sugerir mejoras
 2. **Fork y Pull Request**: Para contribuir con documentación o correcciones
 3. **Sigue los estándares**: Mantén el formato establecido en cada documento
-4. **Actualiza la navegación**: Si agregas nuevos documentos, actualiza los enlaces
+4. **Actualiza la navegación**: Si agregas nuevos documentos, actualiza los
+   enlaces
 
 ### Reglas para Contribuciones
 
