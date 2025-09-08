@@ -2,7 +2,7 @@
 
 ## ¿Qué es?
 
-Las especificaciones técnicas son documentos detallados que definen los requerimientos técnicos exactos, criterios de rendimiento, estándares de calidad, y restricciones técnicas que debe cumplir el sistema. Estas especificaciones traducen los requerimientos funcionales y no funcionales en términos técnicos específicos y medibles.
+Las especificaciones técnicas son documentos detallados que definen los requerimientos técnicos exactos, criterios de rendimiento, estándares de calidad, y restricciones técnicas que debe cumplir el sistema. Estas especificaciones traducen los requerimientos funcionales y no funcionales en términos técnicos.
 
 ## ¿Por qué es importante?
 
