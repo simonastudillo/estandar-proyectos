@@ -172,13 +172,13 @@ donde establecerás la base del control de versiones y colaboración del proyect
 
 **Progreso en Configuración del Entorno de Desarrollo:**
 
-- ✅ **Configuración del Entorno - Introducción** ← Estás aquí
+- ⏭️ **Configuración del Entorno de Desarrollo - Introducción** ← Estás aquí
 - ⏭️
   [Configuración de repositorios Git y GitHub](./configuracion-repositorios-git.md)
 - ⏭️
-  [Setup de entornos de desarrollo local con Docker](./setup-entorno-local-docker.md)
+  [Setup de entornos de desarrollo local (Docker)](./setup-entorno-local-docker.md)
 - ⏭️
-  [Configuración de herramientas de CI/CD con GitHub Actions](./configuracion-cicd-github-actions.md)
+  [Configuración de herramientas de CI/CD](./configuracion-cicd-github-actions.md)
 - ⏭️ [Setup de ambientes múltiples](./setup-ambientes-multiples.md)
 - ⏭️
   [Configuración de herramientas de calidad de código](./configuracion-herramientas-calidad.md)
@@ -191,7 +191,7 @@ donde establecerás la base del control de versiones y colaboración del proyect
 
 ### Siguiente Paso
 
-Continúa con la
+Continúa con
 [**Configuración de repositorios Git y GitHub**](./configuracion-repositorios-git.md).
 
 [⬅️ Etapa 2: Especificaciones Técnicas](../step_02/especificaciones-tecnicas.md)
