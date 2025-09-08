@@ -95,15 +95,23 @@ Architecture + DDD:
 
 **Estado**: Documentación completa
 
-Esta etapa está **completamente documentada** con todas las configuraciones necesarias:
+Esta etapa está **completamente documentada** con todas las configuraciones
+necesarias:
 
-- ✅ [Configuración de repositorios Git y GitHub](./docs/step_03/configuracion-repositorios-git.md)
-- ✅ [Setup de entornos de desarrollo local con Docker](./docs/step_03/setup-entorno-local-docker.md)
-- ✅ [Configuración de herramientas de CI/CD con GitHub Actions](./docs/step_03/configuracion-cicd-github-actions.md)
-- ✅ [Setup de ambientes (desarrollo, testing, staging, producción)](./docs/step_03/setup-ambientes-multiples.md)
-- ✅ [Configuración de herramientas de calidad de código](./docs/step_03/configuracion-herramientas-calidad.md)
-- ✅ [Setup de Laravel con Clean Architecture](./docs/step_03/setup-laravel-clean-architecture.md)
-- ✅ [Configuración de React + TypeScript + Vite](./docs/step_03/configuracion-react-typescript-vite.md)
+- ✅
+  [Configuración de repositorios Git y GitHub](./docs/step_03/configuracion-repositorios-git.md)
+- ✅
+  [Setup de entornos de desarrollo local con Docker](./docs/step_03/setup-entorno-local-docker.md)
+- ✅
+  [Configuración de herramientas de CI/CD con GitHub Actions](./docs/step_03/configuracion-cicd-github-actions.md)
+- ✅
+  [Setup de ambientes (desarrollo, testing, staging, producción)](./docs/step_03/setup-ambientes-multiples.md)
+- ✅
+  [Configuración de herramientas de calidad de código](./docs/step_03/configuracion-herramientas-calidad.md)
+- ✅
+  [Setup de Laravel con Clean Architecture](./docs/step_03/setup-laravel-clean-architecture.md)
+- ✅
+  [Configuración de React + TypeScript + Vite](./docs/step_03/configuracion-react-typescript-vite.md)
 
 ### 4. Desarrollo del Backend (Laravel + Clean Architecture) 🚧
 
