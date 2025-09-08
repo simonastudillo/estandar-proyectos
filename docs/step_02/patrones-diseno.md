@@ -131,25 +131,25 @@ La implementación de patrones de diseño debe incluir:
 
 ```typescript
 class ConfigManager {
-   private static instance: ConfigManager;
-   private config: Record<string, any> = {};
+  private static instance: ConfigManager;
+  private config: Record<string, any> = {};
 
-   private constructor() {}
+  private constructor() {}
 
-   public static getInstance(): ConfigManager {
-      if (!ConfigManager.instance) {
-         ConfigManager.instance = new ConfigManager();
-      }
-      return ConfigManager.instance;
-   }
+  public static getInstance(): ConfigManager {
+    if (!ConfigManager.instance) {
+      ConfigManager.instance = new ConfigManager();
+    }
+    return ConfigManager.instance;
+  }
 
-   public setConfig(key: string, value: any): void {
-      this.config[key] = value;
-   }
+  public setConfig(key: string, value: any): void {
+    this.config[key] = value;
+  }
 
-   public getConfig(key: string): any {
-      return this.config[key];
-   }
+  public getConfig(key: string): any {
+    return this.config[key];
+  }
 }
 
 // Uso
@@ -161,38 +161,32 @@ config.setConfig("apiUrl", "https://api.example.com");
 
 ```typescript
 interface ButtonProps {
-   onClick: () => void;
-   children: React.ReactNode;
+  onClick: () => void;
+  children: React.ReactNode;
 }
 
 abstract class ButtonFactory {
-   abstract createButton(props: ButtonProps): JSX.Element;
+  abstract createButton(props: ButtonProps): JSX.Element;
 }
 
 class PrimaryButtonFactory extends ButtonFactory {
-   createButton(props: ButtonProps): JSX.Element {
-      return (
-         <button
-            className="btn btn-primary"
-            onClick={props.onClick}
-         >
-            {props.children}
-         </button>
-      );
-   }
+  createButton(props: ButtonProps): JSX.Element {
+    return (
+      <button className="btn btn-primary" onClick={props.onClick}>
+        {props.children}
+      </button>
+    );
+  }
 }
 
 class SecondaryButtonFactory extends ButtonFactory {
-   createButton(props: ButtonProps): JSX.Element {
-      return (
-         <button
-            className="btn btn-secondary"
-            onClick={props.onClick}
-         >
-            {props.children}
-         </button>
-      );
-   }
+  createButton(props: ButtonProps): JSX.Element {
+    return (
+      <button className="btn btn-secondary" onClick={props.onClick}>
+        {props.children}
+      </button>
+    );
+  }
 }
 ```
 
@@ -226,9 +220,9 @@ protected $listen = [
 public function register(Request $request)
 {
     $user = User::create($request->validated());
-    
+
     event(new UserRegistered($user));
-    
+
     return response()->json(['message' => 'User registered successfully']);
 }
 ```
@@ -237,44 +231,42 @@ public function register(Request $request)
 
 ```typescript
 interface PaymentStrategy {
-   pay(amount: number): void;
+  pay(amount: number): void;
 }
 
 class CreditCardPayment implements PaymentStrategy {
-   constructor(private cardNumber: string) {}
+  constructor(private cardNumber: string) {}
 
-   pay(amount: number): void {
-      console.log(
-         `Paid $${amount} using Credit Card ending in ${
-            this.cardNumber.slice(-4)
-         }`,
-      );
-   }
+  pay(amount: number): void {
+    console.log(
+      `Paid $${amount} using Credit Card ending in ${this.cardNumber.slice(-4)}`
+    );
+  }
 }
 
 class PayPalPayment implements PaymentStrategy {
-   constructor(private email: string) {}
+  constructor(private email: string) {}
 
-   pay(amount: number): void {
-      console.log(`Paid $${amount} using PayPal account ${this.email}`);
-   }
+  pay(amount: number): void {
+    console.log(`Paid $${amount} using PayPal account ${this.email}`);
+  }
 }
 
 class PaymentProcessor {
-   constructor(private strategy: PaymentStrategy) {}
+  constructor(private strategy: PaymentStrategy) {}
 
-   setStrategy(strategy: PaymentStrategy): void {
-      this.strategy = strategy;
-   }
+  setStrategy(strategy: PaymentStrategy): void {
+    this.strategy = strategy;
+  }
 
-   processPayment(amount: number): void {
-      this.strategy.pay(amount);
-   }
+  processPayment(amount: number): void {
+    this.strategy.pay(amount);
+  }
 }
 
 // Uso
 const processor = new PaymentProcessor(
-   new CreditCardPayment("1234-5678-9012-3456"),
+  new CreditCardPayment("1234-5678-9012-3456")
 );
 processor.processPayment(100);
 
@@ -282,10 +274,28 @@ processor.setStrategy(new PayPalPayment("user@example.com"));
 processor.processPayment(50);
 ```
 
----
-
 ## Navegación
 
-- [⬅️ Anterior: Principios SOLID](./principios-solid.md)
-- [➡️ Siguiente: Arquitectura Limpia](./arquitectura-limpia.md)
-- [🏠 Inicio](../../README.md)
+**Progreso en Diseño y Arquitectura:**
+
+- ✅ [Diseño y Arquitectura - Introducción](./diseno-arquitectura.md)
+- ✅ [Stack Tecnológico](./stack-tecnologico.md)
+- ✅ **Patrones de Diseño** ← Estás aquí
+- ⏭️ [Arquitectura del Sistema](./arquitectura-sistema.md)
+- ⏭️ [Estructura de Carpetas](./estructura-carpetas.md)
+- ⏭️ [Diseño de Base de Datos](./diseno-base-datos.md)
+- ⏭️ [Diseño de APIs](./diseno-apis.md)
+- ⏭️ [Diagramas de Flujo](./diagramas-flujo.md)
+- ⏭️ [Casos de Uso y User Stories](./casos-uso-user-stories.md)
+- ⏭️ [Prototipos y Wireframes](./prototipos-wireframes.md)
+- ⏭️ [Especificaciones Técnicas](./especificaciones-tecnicas.md)
+
+---
+
+### Siguiente Paso
+
+Continúa con la [**Arquitectura del Sistema**](./arquitectura-sistema.md).
+
+[⬅️ Stack Tecnológico](./stack-tecnologico.md) |
+[🏠 README Principal](../../README.md) |
+[➡️ Arquitectura del Sistema](./arquitectura-sistema.md)

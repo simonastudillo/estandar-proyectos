@@ -160,13 +160,13 @@ import { defineConfig } from "vite";
 import path from "path";
 
 export default defineConfig({
-   resolve: {
-      alias: {
-         "@": path.resolve(__dirname, "./src"),
-         "@components": path.resolve(__dirname, "./src/components"),
-         "@services": path.resolve(__dirname, "./src/services"),
-      },
-   },
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "./src"),
+      "@components": path.resolve(__dirname, "./src/components"),
+      "@services": path.resolve(__dirname, "./src/services"),
+    },
+  },
 });
 ```
 
@@ -212,11 +212,28 @@ src/features/auth/
 └── index.ts              # Exportaciones públicas
 ```
 
----
-
 ## Navegación
 
-**Anterior**:
-[Inicialización del Proyecto](../step_01/inicializacion-proyecto.md)\
-**Siguiente**: [Configuración de Git](../step_03/configuracion-git.md)\
-**Inicio**: [README.md](../../README.md)
+**Progreso en Diseño y Arquitectura:**
+
+- ✅ [Diseño y Arquitectura - Introducción](./diseno-arquitectura.md)
+- ✅ [Stack Tecnológico](./stack-tecnologico.md)
+- ✅ [Patrones de Diseño](./patrones-diseno.md)
+- ✅ [Arquitectura del Sistema](./arquitectura-sistema.md)
+- ✅ **Estructura de Carpetas** ← Estás aquí
+- ⏭️ [Diseño de Base de Datos](./diseno-base-datos.md)
+- ⏭️ [Diseño de APIs](./diseno-apis.md)
+- ⏭️ [Diagramas de Flujo](./diagramas-flujo.md)
+- ⏭️ [Casos de Uso y User Stories](./casos-uso-user-stories.md)
+- ⏭️ [Prototipos y Wireframes](./prototipos-wireframes.md)
+- ⏭️ [Especificaciones Técnicas](./especificaciones-tecnicas.md)
+
+---
+
+### Siguiente Paso
+
+Continúa con el [**Diseño de Base de Datos**](./diseno-base-datos.md).
+
+[⬅️ Arquitectura del Sistema](./arquitectura-sistema.md) |
+[🏠 README Principal](../../README.md) |
+[➡️ Diseño de Base de Datos](./diseno-base-datos.md)

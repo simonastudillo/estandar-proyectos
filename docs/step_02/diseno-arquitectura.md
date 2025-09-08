@@ -68,6 +68,28 @@ Una vez que comprendas la importancia de esta etapa, continúa con la
 establecerás las tecnologías, frameworks y herramientas base que utilizarás en
 tu proyecto.
 
-[⬅️ Etapa 1: Planificación y Análisis](../step_01/analisis-riesgos.md) |
+## Navegación
+
+**Progreso en Diseño y Arquitectura:**
+
+- ✅ **Diseño y Arquitectura - Introducción** ← Estás aquí
+- ⏭️ [Stack Tecnológico](./stack-tecnologico.md)
+- ⏭️ [Patrones de Diseño](./patrones-diseno.md)
+- ⏭️ [Arquitectura del Sistema](./arquitectura-sistema.md)
+- ⏭️ [Estructura de Carpetas](./estructura-carpetas.md)
+- ⏭️ [Diseño de Base de Datos](./diseno-base-datos.md)
+- ⏭️ [Diseño de APIs](./diseno-apis.md)
+- ⏭️ [Diagramas de Flujo](./diagramas-flujo.md)
+- ⏭️ [Casos de Uso y User Stories](./casos-uso-user-stories.md)
+- ⏭️ [Prototipos y Wireframes](./prototipos-wireframes.md)
+- ⏭️ [Especificaciones Técnicas](./especificaciones-tecnicas.md)
+
+---
+
+### Siguiente Paso
+
+Continúa con la [**Definición del Stack Tecnológico**](./stack-tecnologico.md).
+
+[⬅️ Etapa 1: Análisis de Riesgos](../step_01/analisis-riesgos.md) |
 [🏠 README Principal](../../README.md) |
 [➡️ Stack Tecnológico](./stack-tecnologico.md)

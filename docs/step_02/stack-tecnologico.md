@@ -73,22 +73,26 @@ de desarrollo.
 ## ¿Qué debo hacer?
 
 1. **Evaluar requisitos del proyecto**
+
    - Identificar las necesidades específicas
    - Considerar la escalabilidad requerida
    - Evaluar el tiempo de desarrollo disponible
 
 2. **Seleccionar tecnologías base**
+
    - Frontend: React + TypeScript
    - Backend: Laravel
    - Base de datos: MySQL
    - Mobile: React Native (si aplica)
 
 3. **Configurar herramientas de desarrollo**
+
    - Instalar y configurar el entorno de desarrollo
    - Configurar linting y formatting
    - Establecer estructura de carpetas estándar
 
 4. **Documentar decisiones**
+
    - Justificar la elección de cada tecnología
    - Documentar configuraciones específicas
    - Mantener un registro de versiones utilizadas
@@ -142,12 +146,12 @@ proyecto/
 
 ```json
 {
-   "dependencies": {
-      "react": "^18.0.0",
-      "typescript": "^5.0.0",
-      "@mui/material": "^5.0.0",
-      "react-router-dom": "^6.0.0"
-   }
+  "dependencies": {
+    "react": "^18.0.0",
+    "typescript": "^5.0.0",
+    "@mui/material": "^5.0.0",
+    "react-router-dom": "^6.0.0"
+  }
 }
 ```
 
@@ -155,17 +159,35 @@ proyecto/
 
 ```json
 {
-   "require": {
-      "laravel/framework": "^10.0",
-      "laravel/sanctum": "^3.0"
-   }
+  "require": {
+    "laravel/framework": "^10.0",
+    "laravel/sanctum": "^3.0"
+  }
 }
 ```
 
+## Navegación
+
+**Progreso en Diseño y Arquitectura:**
+
+- ✅ [Diseño y Arquitectura - Introducción](./diseno-arquitectura.md)
+- ✅ **Stack Tecnológico** ← Estás aquí
+- ⏭️ [Patrones de Diseño](./patrones-diseno.md)
+- ⏭️ [Arquitectura del Sistema](./arquitectura-sistema.md)
+- ⏭️ [Estructura de Carpetas](./estructura-carpetas.md)
+- ⏭️ [Diseño de Base de Datos](./diseno-base-datos.md)
+- ⏭️ [Diseño de APIs](./diseno-apis.md)
+- ⏭️ [Diagramas de Flujo](./diagramas-flujo.md)
+- ⏭️ [Casos de Uso y User Stories](./casos-uso-user-stories.md)
+- ⏭️ [Prototipos y Wireframes](./prototipos-wireframes.md)
+- ⏭️ [Especificaciones Técnicas](./especificaciones-tecnicas.md)
+
 ---
 
-**Navegación:**
+### Siguiente Paso
 
-- [← Anterior: Definición de Requerimientos](../step_01/definicion-requerimientos.md)
-- [Siguiente: Arquitectura del Sistema →](arquitectura-sistema.md)
-- [🏠 Inicio](../../README.md)
+Continúa con los [**Patrones de Diseño**](./patrones-diseno.md).
+
+[⬅️ Diseño y Arquitectura](./diseno-arquitectura.md) |
+[🏠 README Principal](../../README.md) |
+[➡️ Patrones de Diseño](./patrones-diseno.md)

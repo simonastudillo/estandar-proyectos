@@ -74,19 +74,19 @@ POST   /api/v1/auth/refresh       # Renovar token
 
 ```json
 {
-   "success": true,
-   "data": {
-      "user": {
-         "uuid": "550e8400-e29b-41d4-a716-446655440000",
-         "name": "Juan Pérez",
-         "email": "juan@example.com"
-      }
-   },
-   "message": "Usuario creado exitosamente",
-   "meta": {
-      "timestamp": "2024-01-15T10:30:00Z",
-      "version": "v1"
-   }
+  "success": true,
+  "data": {
+    "user": {
+      "uuid": "550e8400-e29b-41d4-a716-446655440000",
+      "name": "Juan Pérez",
+      "email": "juan@example.com"
+    }
+  },
+  "message": "Usuario creado exitosamente",
+  "meta": {
+    "timestamp": "2024-01-15T10:30:00Z",
+    "version": "v1"
+  }
 }
 ```
 
@@ -94,21 +94,21 @@ POST   /api/v1/auth/refresh       # Renovar token
 
 ```json
 {
-   "success": false,
-   "error": {
-      "code": "VALIDATION_ERROR",
-      "message": "Los datos proporcionados no son válidos",
-      "details": [
-         {
-            "field": "email",
-            "message": "El email ya está registrado"
-         }
-      ]
-   },
-   "meta": {
-      "timestamp": "2024-01-15T10:30:00Z",
-      "version": "v1"
-   }
+  "success": false,
+  "error": {
+    "code": "VALIDATION_ERROR",
+    "message": "Los datos proporcionados no son válidos",
+    "details": [
+      {
+        "field": "email",
+        "message": "El email ya está registrado"
+      }
+    ]
+  },
+  "meta": {
+    "timestamp": "2024-01-15T10:30:00Z",
+    "version": "v1"
+  }
 }
 ```
 
@@ -125,20 +125,20 @@ Route::middleware(['auth:api'])->group(function () {
 
 ```json
 {
-   "success": true,
-   "data": {
-      "users": [
-         // ... array de usuarios
-      ]
-   },
-   "pagination": {
-      "current_page": 1,
-      "last_page": 10,
-      "per_page": 15,
-      "total": 150,
-      "from": 1,
-      "to": 15
-   }
+  "success": true,
+  "data": {
+    "users": [
+      // ... array de usuarios
+    ]
+  },
+  "pagination": {
+    "current_page": 1,
+    "last_page": 10,
+    "per_page": 15,
+    "total": 150,
+    "from": 1,
+    "to": 15
+  }
 }
 ```
 
@@ -191,8 +191,8 @@ use Illuminate\Http\JsonResponse;
 abstract class BaseApiController extends Controller
 {
     protected function successResponse(
-        $data = null, 
-        string $message = 'Operación exitosa', 
+        $data = null,
+        string $message = 'Operación exitosa',
         int $statusCode = 200
     ): JsonResponse {
         return response()->json([
@@ -249,7 +249,7 @@ class UserController extends BaseApiController
     public function index(Request $request): JsonResponse
     {
         $users = $this->userService->getAllUsers($request->all());
-        
+
         return $this->successResponse(
             UserResource::collection($users),
             'Usuarios obtenidos exitosamente'
@@ -259,7 +259,7 @@ class UserController extends BaseApiController
     public function store(CreateUserRequest $request): JsonResponse
     {
         $user = $this->userService->createUser($request->validated());
-        
+
         return $this->successResponse(
             new UserResource($user),
             'Usuario creado exitosamente',
@@ -270,11 +270,11 @@ class UserController extends BaseApiController
     public function show(string $uuid): JsonResponse
     {
         $user = $this->userService->getUserByUuid($uuid);
-        
+
         if (!$user) {
             return $this->errorResponse('Usuario no encontrado', 404);
         }
-        
+
         return $this->successResponse(
             new UserResource($user),
             'Usuario obtenido exitosamente'
@@ -327,7 +327,7 @@ class AuthenticateApi
     {
         try {
             $user = JWTAuth::parseToken()->authenticate();
-            
+
             if (!$user) {
                 return response()->json([
                     'success' => false,
@@ -336,7 +336,7 @@ class AuthenticateApi
                     ]
                 ], 401);
             }
-            
+
         } catch (JWTException $e) {
             return response()->json([
                 'success' => false,
@@ -408,7 +408,26 @@ class CreateUserRequest extends FormRequest
 
 ## Navegación
 
-- **Anterior**:
-  [Definición de Requerimientos](../step_01/definicion-requerimientos.md)
-- **Siguiente**: [Modelado de Base de Datos](modelado-base-datos.md)
-- **Inicio**: [README.md](../../README.md)
+**Progreso en Diseño y Arquitectura:**
+
+- ✅ [Diseño y Arquitectura - Introducción](./diseno-arquitectura.md)
+- ✅ [Stack Tecnológico](./stack-tecnologico.md)
+- ✅ [Patrones de Diseño](./patrones-diseno.md)
+- ✅ [Arquitectura del Sistema](./arquitectura-sistema.md)
+- ✅ [Estructura de Carpetas](./estructura-carpetas.md)
+- ✅ [Diseño de Base de Datos](./diseno-base-datos.md)
+- ✅ **Diseño de APIs** ← Estás aquí
+- ⏭️ [Diagramas de Flujo](./diagramas-flujo.md)
+- ⏭️ [Casos de Uso y User Stories](./casos-uso-user-stories.md)
+- ⏭️ [Prototipos y Wireframes](./prototipos-wireframes.md)
+- ⏭️ [Especificaciones Técnicas](./especificaciones-tecnicas.md)
+
+---
+
+### Siguiente Paso
+
+Continúa con los [**Diagramas de Flujo**](./diagramas-flujo.md).
+
+[⬅️ Diseño de Base de Datos](./diseno-base-datos.md) |
+[🏠 README Principal](../../README.md) |
+[➡️ Diagramas de Flujo](./diagramas-flujo.md)

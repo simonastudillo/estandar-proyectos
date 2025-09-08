@@ -119,7 +119,7 @@ CREATE TABLE users (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     deleted_at TIMESTAMP NULL,
-    
+
     -- Índices para optimización
     INDEX idx_users_email (email),
     INDEX idx_users_is_active (is_active),
@@ -151,11 +151,11 @@ CREATE TABLE user_roles (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     deleted_at TIMESTAMP NULL,
-    
+
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
     FOREIGN KEY (role_id) REFERENCES roles(id) ON DELETE CASCADE,
     FOREIGN KEY (assigned_by) REFERENCES users(id) ON DELETE SET NULL,
-    
+
     UNIQUE KEY unique_user_role (user_id, role_id),
     INDEX idx_user_roles_user_id (user_id),
     INDEX idx_user_roles_role_id (role_id),
@@ -190,16 +190,16 @@ BEGIN
         ROLLBACK;
         RESIGNAL;
     END;
-    
+
     START TRANSACTION;
-    
+
     INSERT INTO user_roles (user_id, role_id, assigned_by)
     VALUES (p_user_id, p_role_id, p_assigned_by)
-    ON DUPLICATE KEY UPDATE 
+    ON DUPLICATE KEY UPDATE
         assigned_by = p_assigned_by,
         updated_at = CURRENT_TIMESTAMP,
         deleted_at = NULL;
-    
+
     COMMIT;
 END //
 DELIMITER ;
@@ -221,9 +221,9 @@ CREATE TRIGGER audit_users_update
     FOR EACH ROW
 BEGIN
     INSERT INTO user_audits (
-        user_id, 
-        action, 
-        old_data, 
+        user_id,
+        action,
+        old_data,
         new_data,
         modified_by
     ) VALUES (
@@ -250,15 +250,17 @@ DELIMITER ;
 ### Mejores Prácticas de Diseño
 
 1. **Convenciones de nomenclatura**:
+
    - Tablas: Nombres en inglés, plural y snake_case: `users`, `order_products`
    - Columnas: Nombres en inglés, singular y snake_case: `name`, `created_at`
    - Claves foráneas: Nombre de tabla en singular + `_id`: `user_id`,
      `category_id`
-   - Índices: Inglés, snake_case, prefijo `idx_`: `idx_users_email`,
-     `idx_products_category`
+   - Índices: Inglés, snake*case, prefijo `idx*`: `idx_users_email`,
+`idx_products_category`
    - Triggers: Inglés, snake_case: `audit_users_update`, `validate_order_total`
 
 2. **Tipos de datos optimizados**:
+
    - Usar `BIGINT UNSIGNED` para IDs con alto volumen
    - `VARCHAR` en lugar de `CHAR` para texto variable
    - `TIMESTAMP` para fechas con zona horaria
@@ -311,7 +313,7 @@ CREATE TABLE categories (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     deleted_at TIMESTAMP NULL,
-    
+
     FOREIGN KEY (parent_category_id) REFERENCES categories(id),
     INDEX idx_categories_slug (slug),
     INDEX idx_categories_is_active (is_active),
@@ -335,7 +337,7 @@ CREATE TABLE products (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     deleted_at TIMESTAMP NULL,
-    
+
     FOREIGN KEY (category_id) REFERENCES categories(id),
     INDEX idx_products_sku (sku),
     INDEX idx_products_category_id (category_id),
@@ -362,7 +364,7 @@ CREATE TABLE orders (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     deleted_at TIMESTAMP NULL,
-    
+
     FOREIGN KEY (user_id) REFERENCES users(id),
     INDEX idx_orders_user_id (user_id),
     INDEX idx_orders_status (status),
@@ -382,7 +384,7 @@ CREATE TABLE order_products (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     deleted_at TIMESTAMP NULL,
-    
+
     FOREIGN KEY (order_id) REFERENCES orders(id) ON DELETE CASCADE,
     FOREIGN KEY (product_id) REFERENCES products(id),
     INDEX idx_order_products_order_id (order_id),
@@ -419,7 +421,7 @@ CREATE TABLE contents (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     deleted_at TIMESTAMP NULL,
-    
+
     FOREIGN KEY (author_id) REFERENCES users(id),
     UNIQUE KEY unique_slug_type (slug, type),
     INDEX idx_contents_type_status (type, status),
@@ -439,7 +441,7 @@ CREATE TABLE tags (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     deleted_at TIMESTAMP NULL,
-    
+
     INDEX idx_tags_slug (slug),
     INDEX idx_tags_deleted_at (deleted_at)
 ) ENGINE=InnoDB;
@@ -449,7 +451,7 @@ CREATE TABLE content_tags (
     content_id BIGINT UNSIGNED NOT NULL,
     tag_id INT UNSIGNED NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    
+
     PRIMARY KEY (content_id, tag_id),
     FOREIGN KEY (content_id) REFERENCES contents(id) ON DELETE CASCADE,
     FOREIGN KEY (tag_id) REFERENCES tags(id) ON DELETE CASCADE
@@ -457,7 +459,7 @@ CREATE TABLE content_tags (
 
 -- Vista para contenido publicado
 CREATE VIEW published_contents AS
-SELECT 
+SELECT
     c.*,
     u.name as author_name,
     u.email as author_email,
@@ -466,7 +468,7 @@ FROM contents c
 INNER JOIN users u ON c.author_id = u.id
 LEFT JOIN content_tags ct ON c.id = ct.content_id
 LEFT JOIN tags t ON ct.tag_id = t.id
-WHERE c.status = 'published' 
+WHERE c.status = 'published'
     AND c.published_at <= NOW()
     AND c.deleted_at IS NULL
 GROUP BY c.id;
@@ -496,13 +498,29 @@ FLUSH PRIVILEGES;
 
 ## Navegación
 
-### ⬅️ Anterior
+**Progreso en Diseño y Arquitectura:**
 
-[Análisis de Requerimientos](../step_01/analisis-requerimientos.md)
+- ✅ [Diseño y Arquitectura - Introducción](./diseno-arquitectura.md)
+- ✅ [Stack Tecnológico](./stack-tecnologico.md)
+- ✅ [Patrones de Diseño](./patrones-diseno.md)
+- ✅ [Arquitectura del Sistema](./arquitectura-sistema.md)
+- ✅ [Estructura de Carpetas](./estructura-carpetas.md)
+- ✅ **Diseño de Base de Datos** ← Estás aquí
+- ⏭️ [Diseño de APIs](./diseno-apis.md)
+- ⏭️ [Diagramas de Flujo](./diagramas-flujo.md)
+- ⏭️ [Casos de Uso y User Stories](./casos-uso-user-stories.md)
+- ⏭️ [Prototipos y Wireframes](./prototipos-wireframes.md)
+- ⏭️ [Especificaciones Técnicas](./especificaciones-tecnicas.md)
 
-### ➡️ Siguiente
+---
 
-[Arquitectura del Proyecto](../step_03/arquitectura-proyecto.md)
+### Siguiente Paso
+
+Continúa con el [**Diseño de APIs**](./diseno-apis.md).
+
+[⬅️ Estructura de Carpetas](./estructura-carpetas.md) |
+[🏠 README Principal](../../README.md) |
+[➡️ Diseño de APIs](./diseno-apis.md)
 
 ### 🏠 Inicio
 
