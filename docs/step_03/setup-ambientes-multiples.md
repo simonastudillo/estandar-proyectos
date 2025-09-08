@@ -672,22 +672,34 @@ if (config.debug) {
 
 ---
 
-### Progreso del Step 3
+## Navegación
 
-- [x] [Configuración del entorno de desarrollo local](./configuracion-entorno-desarrollo.md)
-- [x] [Setup del entorno local con Docker](./setup-entorno-local-docker.md)
-- [x] [Configuración de React + TypeScript + Vite](./configuracion-react-typescript-vite.md)
-- [x] [Setup de Laravel con Clean Architecture](./setup-laravel-clean-architecture.md)
-- [x] [Configuración de repositorios Git](./configuracion-repositorios-git.md)
-- [x] [Configuración de CI/CD con GitHub Actions](./configuracion-cicd-github-actions.md)
-- [x] **Setup de ambientes múltiples** ← Estás aquí
-- [ ] [Configuración de herramientas de calidad de código](./configuracion-herramientas-calidad.md)
+**Progreso en Configuración del Entorno de Desarrollo:**
+
+- ✅
+  [Configuración del Entorno - Introducción](./configuracion-entorno-desarrollo.md)
+- ✅
+  [Configuración de repositorios Git y GitHub](./configuracion-repositorios-git.md)
+- ✅
+  [Setup de entornos de desarrollo local con Docker](./setup-entorno-local-docker.md)
+- ✅
+  [Configuración de herramientas de CI/CD con GitHub Actions](./configuracion-cicd-github-actions.md)
+- ⏭️ **Setup de ambientes (desarrollo, testing, staging, producción)** ← Estás
+  aquí
+- ⏭️
+  [Configuración de herramientas de calidad de código](./configuracion-herramientas-calidad.md)
+- ⏭️
+  [Setup de Laravel con Clean Architecture](./setup-laravel-clean-architecture.md)
+- ⏭️
+  [Configuración de React + TypeScript + Vite](./configuracion-react-typescript-vite.md)
+
+---
 
 ### Siguiente Paso
 
-Continúa con la
-[**Configuración de herramientas de calidad de código**](./configuracion-herramientas-calidad.md).
+Continúa con
+[**Configuración de herramientas de calidad de código**](./configuracion-herramientas-calidad.md)
 
-[⬅️ Configuración de herramientas de CI/CD](./configuracion-cicd-github-actions.md)
+[⬅️ Configuración de herramientas de CI/CD con GitHub Actions](./configuracion-cicd-github-actions.md)
 | [🏠 README Principal](../../README.md) |
-[➡️ Configuración de herramientas de calidad](./configuracion-herramientas-calidad.md)
+[➡️ Configuración de herramientas de calidad de código](./configuracion-herramientas-calidad.md)

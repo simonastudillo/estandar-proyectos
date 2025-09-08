@@ -899,16 +899,19 @@ xdebug.log=/var/log/xdebug.log
 
 ---
 
+## Navegación
+
 **Progreso en Configuración del Entorno de Desarrollo:**
 
 - ✅
   [Configuración del Entorno - Introducción](./configuracion-entorno-desarrollo.md)
 - ✅
   [Configuración de repositorios Git y GitHub](./configuracion-repositorios-git.md)
-- ✅ **Setup de entornos de desarrollo local con Docker** ← Estás aquí
+- ⏭️ **Setup de entornos de desarrollo local con Docker** ← Estás aquí
 - ⏭️
   [Configuración de herramientas de CI/CD con GitHub Actions](./configuracion-cicd-github-actions.md)
-- ⏭️ [Setup de ambientes múltiples](./setup-ambientes-multiples.md)
+- ⏭️
+  [Setup de ambientes (desarrollo, testing, staging, producción)](./setup-ambientes-multiples.md)
 - ⏭️
   [Configuración de herramientas de calidad de código](./configuracion-herramientas-calidad.md)
 - ⏭️
@@ -920,8 +923,8 @@ xdebug.log=/var/log/xdebug.log
 
 ### Siguiente Paso
 
-Continúa con la
-[**Configuración de herramientas de CI/CD con GitHub Actions**](./configuracion-cicd-github-actions.md).
+Continúa con
+[**Configuración de herramientas de CI/CD con GitHub Actions**](./configuracion-cicd-github-actions.md)
 
 [⬅️ Configuración de repositorios Git y GitHub](./configuracion-repositorios-git.md)
 | [🏠 README Principal](../../README.md) |

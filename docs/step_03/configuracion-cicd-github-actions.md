@@ -776,31 +776,33 @@ jobs:
 
 ---
 
-### Progreso del Proyecto
+## Navegación
 
-**Etapa 3: Configuración del Entorno** ⏳
+**Progreso en Configuración del Entorno de Desarrollo:**
 
 - ✅
-  [Configuración del entorno de desarrollo](./configuracion-entorno-desarrollo.md)
+  [Configuración del Entorno - Introducción](./configuracion-entorno-desarrollo.md)
 - ✅
-  [Configuración de React + TypeScript + Vite](./configuracion-react-typescript-vite.md)
-- ✅
-  [Setup de Laravel con Clean Architecture](./setup-laravel-clean-architecture.md)
-- ✅
-  [Configuración de herramientas de calidad](./configuracion-herramientas-calidad.md)
+  [Configuración de repositorios Git y GitHub](./configuracion-repositorios-git.md)
 - ✅
   [Setup de entornos de desarrollo local con Docker](./setup-entorno-local-docker.md)
-- ✅ [Configuración de repositorios Git](./configuracion-repositorios-git.md)
-- ✅ **Configuración de CI/CD con GitHub Actions** ← _Estás aquí_
-- ⏳ [Setup de ambientes múltiples](./setup-ambientes-multiples.md)
+- ⏭️ **Configuración de herramientas de CI/CD con GitHub Actions** ← Estás aquí
+- ⏭️
+  [Setup de ambientes (desarrollo, testing, staging, producción)](./setup-ambientes-multiples.md)
+- ⏭️
+  [Configuración de herramientas de calidad de código](./configuracion-herramientas-calidad.md)
+- ⏭️
+  [Setup de Laravel con Clean Architecture](./setup-laravel-clean-architecture.md)
+- ⏭️
+  [Configuración de React + TypeScript + Vite](./configuracion-react-typescript-vite.md)
 
 ---
 
 ### Siguiente Paso
 
-Continúa con el
-[**Setup de ambientes múltiples**](./setup-ambientes-multiples.md).
+Continúa con
+[**Setup de ambientes (desarrollo, testing, staging, producción)**](./setup-ambientes-multiples.md)
 
 [⬅️ Setup de entornos de desarrollo local con Docker](./setup-entorno-local-docker.md)
 | [🏠 README Principal](../../README.md) |
-[➡️ Setup de ambientes múltiples](./setup-ambientes-multiples.md)
+[➡️ Setup de ambientes (desarrollo, testing, staging, producción)](./setup-ambientes-multiples.md)
