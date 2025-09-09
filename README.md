@@ -128,18 +128,19 @@ Architecture + DDD:
 - ✅ [Autenticación Laravel Sanctum](./docs/step_04/autenticacion-laravel-sanctum.md)
 - ✅ [Testing TDD Backend](./docs/step_04/testing-tdd-backend.md)
 
-### 5. Desarrollo del Frontend Web (React + TypeScript) 🚧
+### [5. Desarrollo del Frontend Web (React + TypeScript)](./docs/step_05/desarrollo-frontend-web.md) ✅
 
-**Estado**: Documentación pendiente
+**Estado**: Documentación completa
 
-Incluirá:
+Esta etapa está **completamente documentada** con enfoque en tipado fuerte y arquitectura escalable:
 
-- Configuración inicial de React con TypeScript y Vite
-- Implementación de componentes reutilizables con tipado fuerte
-- Configuración de Redux Toolkit para estado global
-- Integración con APIs del backend usando Axios
-- Implementación de React Router para navegación
-- Testing de componentes con Jest y React Testing Library
+- ✅ [Desarrollo del Frontend Web](./docs/step_05/desarrollo-frontend-web.md)
+- ✅ [Configuración React + TypeScript + Vite](./docs/step_05/configuracion-react-typescript-vite.md)
+- ✅ [Componentes Reutilizables con Tipado](./docs/step_05/componentes-reutilizables-tipado.md)
+- ✅ [Redux Toolkit - Estado Global](./docs/step_05/redux-toolkit-estado-global.md)
+- ✅ [Integración APIs con Axios](./docs/step_05/integracion-apis-axios.md)
+- ✅ [React Router - Navegación](./docs/step_05/react-router-navegacion.md)
+- ✅ [Testing Componentes con Jest](./docs/step_05/testing-componentes-jest.md)
 
 ### 6. Desarrollo de Aplicación Móvil (React Native) 🚧
 
@@ -238,7 +239,14 @@ estandar-proyectos/
 │   │   ├── apis-restful-versionadas.md
 │   │   ├── autenticacion-laravel-sanctum.md
 │   │   └── testing-tdd-backend.md
-│   ├── step_05/                   # 🚧 Desarrollo Frontend (Pendiente)
+│   ├── step_05/                   # ✅ Desarrollo Frontend (Completado)
+│   │   ├── desarrollo-frontend-web.md
+│   │   ├── configuracion-react-typescript-vite.md
+│   │   ├── componentes-reutilizables-tipado.md
+│   │   ├── redux-toolkit-estado-global.md
+│   │   ├── integracion-apis-axios.md
+│   │   ├── react-router-navegacion.md
+│   │   └── testing-componentes-jest.md
 │   ├── step_06/                   # 🚧 Desarrollo Móvil (Pendiente)
 │   ├── step_07/                   # 🚧 Testing y QA (Pendiente)
 │   ├── step_08/                   # 🚧 Despliegue y DevOps (Pendiente)

@@ -2,7 +2,11 @@
 
 ## ¿Qué es?
 
-La configuración de React + TypeScript + Vite es el proceso de establecer un entorno de desarrollo moderno y eficiente para el frontend de la aplicación. Vite actúa como bundler y servidor de desarrollo, React 18+ como framework de interfaz de usuario, y TypeScript 5+ para proporcionar tipado estático y mejor experiencia de desarrollo.
+La configuración de React + TypeScript + Vite es el proceso de establecer un
+entorno de desarrollo moderno y eficiente para el frontend de la aplicación.
+Vite actúa como bundler y servidor de desarrollo, React 18+ como framework de
+interfaz de usuario, y TypeScript 5+ para proporcionar tipado estático y mejor
+experiencia de desarrollo.
 
 ## ¿Por qué es importante?
 
@@ -57,29 +61,29 @@ npm install
 
 ```json
 {
-  "compilerOptions": {
-    "target": "ES2020",
-    "useDefineForClassFields": true,
-    "lib": ["ES2020", "DOM", "DOM.Iterable"],
-    "module": "ESNext",
-    "skipLibCheck": true,
-    "moduleResolution": "bundler",
-    "allowImportingTsExtensions": true,
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "noEmit": true,
-    "jsx": "react-jsx",
-    "strict": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true,
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["./src/*"]
-    }
-  },
-  "include": ["src"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+   "compilerOptions": {
+      "target": "ES2020",
+      "useDefineForClassFields": true,
+      "lib": ["ES2020", "DOM", "DOM.Iterable"],
+      "module": "ESNext",
+      "skipLibCheck": true,
+      "moduleResolution": "bundler",
+      "allowImportingTsExtensions": true,
+      "resolveJsonModule": true,
+      "isolatedModules": true,
+      "noEmit": true,
+      "jsx": "react-jsx",
+      "strict": true,
+      "noUnusedLocals": true,
+      "noUnusedParameters": true,
+      "noFallthroughCasesInSwitch": true,
+      "baseUrl": ".",
+      "paths": {
+         "@/*": ["./src/*"]
+      }
+   },
+   "include": ["src"],
+   "references": [{ "path": "./tsconfig.node.json" }]
 }
 ```
 
@@ -93,20 +97,20 @@ import react from "@vitejs/plugin-react";
 import path from "path";
 
 export default defineConfig({
-  plugins: [react()],
-  resolve: {
-    alias: {
-      "@": path.resolve(__dirname, "./src"),
-    },
-  },
-  server: {
-    port: 3000,
-    open: true,
-  },
-  build: {
-    outDir: "dist",
-    sourcemap: true,
-  },
+   plugins: [react()],
+   resolve: {
+      alias: {
+         "@": path.resolve(__dirname, "./src"),
+      },
+   },
+   server: {
+      port: 3000,
+      open: true,
+   },
+   build: {
+      outDir: "dist",
+      sourcemap: true,
+   },
 });
 ```
 
@@ -139,33 +143,33 @@ npm install -D husky lint-staged
 
 ```javascript
 module.exports = {
-  root: true,
-  env: { browser: true, es2020: true },
-  extends: [
-    "eslint:recommended",
-    "@typescript-eslint/recommended",
-    "plugin:react-hooks/recommended",
-    "plugin:react/recommended",
-    "plugin:react/jsx-runtime",
-    "prettier",
-  ],
-  ignorePatterns: ["dist", ".eslintrc.cjs"],
-  parser: "@typescript-eslint/parser",
-  plugins: ["react-refresh", "@typescript-eslint"],
-  rules: {
-    "react-refresh/only-export-components": [
-      "warn",
-      { allowConstantExport: true },
-    ],
-    "@typescript-eslint/no-unused-vars": "error",
-    "@typescript-eslint/explicit-function-return-type": "warn",
-    "react/prop-types": "off",
-  },
-  settings: {
-    react: {
-      version: "detect",
-    },
-  },
+   root: true,
+   env: { browser: true, es2020: true },
+   extends: [
+      "eslint:recommended",
+      "@typescript-eslint/recommended",
+      "plugin:react-hooks/recommended",
+      "plugin:react/recommended",
+      "plugin:react/jsx-runtime",
+      "prettier",
+   ],
+   ignorePatterns: ["dist", ".eslintrc.cjs"],
+   parser: "@typescript-eslint/parser",
+   plugins: ["react-refresh", "@typescript-eslint"],
+   rules: {
+      "react-refresh/only-export-components": [
+         "warn",
+         { allowConstantExport: true },
+      ],
+      "@typescript-eslint/no-unused-vars": "error",
+      "@typescript-eslint/explicit-function-return-type": "warn",
+      "react/prop-types": "off",
+   },
+   settings: {
+      react: {
+         version: "detect",
+      },
+   },
 };
 ```
 
@@ -175,12 +179,12 @@ module.exports = {
 
 ```json
 {
-  "semi": false,
-  "trailingComma": "es5",
-  "singleQuote": true,
-  "printWidth": 80,
-  "tabWidth": 2,
-  "useTabs": false
+   "semi": false,
+   "trailingComma": "es5",
+   "singleQuote": true,
+   "printWidth": 80,
+   "tabWidth": 2,
+   "useTabs": false
 }
 ```
 
@@ -190,22 +194,22 @@ module.exports = {
 
 ```javascript
 export default {
-  preset: "ts-jest",
-  testEnvironment: "jsdom",
-  setupFilesAfterEnv: ["<rootDir>/src/setupTests.ts"],
-  moduleNameMapping: {
-    "^@/(.*)$": "<rootDir>/src/$1",
-  },
-  transform: {
-    "^.+\\.tsx?$": "ts-jest",
-  },
-  moduleFileExtensions: ["ts", "tsx", "js", "jsx"],
-  collectCoverageFrom: [
-    "src/**/*.{ts,tsx}",
-    "!src/**/*.d.ts",
-    "!src/main.tsx",
-    "!src/vite-env.d.ts",
-  ],
+   preset: "ts-jest",
+   testEnvironment: "jsdom",
+   setupFilesAfterEnv: ["<rootDir>/src/setupTests.ts"],
+   moduleNameMapping: {
+      "^@/(.*)$": "<rootDir>/src/$1",
+   },
+   transform: {
+      "^.+\\.tsx?$": "ts-jest",
+   },
+   moduleFileExtensions: ["ts", "tsx", "js", "jsx"],
+   collectCoverageFrom: [
+      "src/**/*.{ts,tsx}",
+      "!src/**/*.d.ts",
+      "!src/main.tsx",
+      "!src/vite-env.d.ts",
+   ],
 };
 ```
 
@@ -234,18 +238,18 @@ src/
 
 ```typescript
 import { configureStore } from "@reduxjs/toolkit";
-import { useDispatch, TypedUseSelectorHook, useSelector } from "react-redux";
+import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 
 export const store = configureStore({
-  reducer: {
-    // Aquí irán los slices
-  },
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware({
-      serializableCheck: {
-        ignoredActions: ["persist/PERSIST"],
-      },
-    }),
+   reducer: {
+      // Aquí irán los slices
+   },
+   middleware: (getDefaultMiddleware) =>
+      getDefaultMiddleware({
+         serializableCheck: {
+            ignoredActions: ["persist/PERSIST"],
+         },
+      }),
 });
 
 export type RootState = ReturnType<typeof store.getState>;
@@ -260,7 +264,7 @@ export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
 **`src/App.tsx`**:
 
 ```typescript
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { Provider } from "react-redux";
 import { store } from "@/store";
 
@@ -269,18 +273,18 @@ import HomePage from "@/pages/HomePage";
 import NotFoundPage from "@/pages/NotFoundPage";
 
 const App = (): JSX.Element => {
-  return (
-    <Provider store={store}>
-      <Router>
-        <div className="App">
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="*" element={<NotFoundPage />} />
-          </Routes>
-        </div>
-      </Router>
-    </Provider>
-  );
+   return (
+      <Provider store={store}>
+         <Router>
+            <div className="App">
+               <Routes>
+                  <Route path="/" element={<HomePage />} />
+                  <Route path="*" element={<NotFoundPage />} />
+               </Routes>
+            </div>
+         </Router>
+      </Provider>
+   );
 };
 
 export default App;
@@ -290,18 +294,18 @@ export default App;
 
 ```json
 {
-  "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "lint:fix": "eslint . --ext ts,tsx --fix",
-    "preview": "vite preview",
-    "test": "jest",
-    "test:watch": "jest --watch",
-    "test:coverage": "jest --coverage",
-    "format": "prettier --write \"src/**/*.{ts,tsx,js,jsx,json,css,md}\"",
-    "type-check": "tsc --noEmit"
-  }
+   "scripts": {
+      "dev": "vite",
+      "build": "tsc && vite build",
+      "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+      "lint:fix": "eslint . --ext ts,tsx --fix",
+      "preview": "vite preview",
+      "test": "jest",
+      "test:watch": "jest --watch",
+      "test:coverage": "jest --coverage",
+      "format": "prettier --write \"src/**/*.{ts,tsx,js,jsx,json,css,md}\"",
+      "type-check": "tsc --noEmit"
+   }
 }
 ```
 
@@ -318,7 +322,8 @@ export default App;
 ### Performance
 
 - **Lazy loading**: Usa `React.lazy()` para rutas y componentes grandes
-- **Memorización**: Aplica `React.memo`, `useMemo` y `useCallback` cuando sea necesario
+- **Memorización**: Aplica `React.memo`, `useMemo` y `useCallback` cuando sea
+  necesario
 - **Bundle splitting**: Configura chunks específicos en Vite
 - **Tree shaking**: Importa solo las funciones necesarias de librerías
 
@@ -332,7 +337,8 @@ export default App;
 ### Calidad de código
 
 - **Pre-commit hooks**: Configura Husky para lint y format automático
-- **Convenciones de nombres**: PascalCase para componentes, camelCase para variables
+- **Convenciones de nombres**: PascalCase para componentes, camelCase para
+  variables
 - **Documentación**: Usa JSDoc para funciones complejas
 - **Error boundaries**: Implementa manejo de errores global
 
@@ -345,42 +351,44 @@ export default App;
 import { ButtonHTMLAttributes, ReactNode } from "react";
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: "primary" | "secondary" | "danger";
-  size?: "sm" | "md" | "lg";
-  isLoading?: boolean;
-  children: ReactNode;
+   variant?: "primary" | "secondary" | "danger";
+   size?: "sm" | "md" | "lg";
+   isLoading?: boolean;
+   children: ReactNode;
 }
 
 const Button = ({
-  variant = "primary",
-  size = "md",
-  isLoading = false,
-  children,
-  className = "",
-  disabled,
-  ...props
+   variant = "primary",
+   size = "md",
+   isLoading = false,
+   children,
+   className = "",
+   disabled,
+   ...props
 }: ButtonProps): JSX.Element => {
-  const baseClasses = "font-medium rounded focus:outline-none focus:ring-2";
-  const variantClasses = {
-    primary: "bg-blue-600 text-white hover:bg-blue-700",
-    secondary: "bg-gray-200 text-gray-900 hover:bg-gray-300",
-    danger: "bg-red-600 text-white hover:bg-red-700",
-  };
-  const sizeClasses = {
-    sm: "px-3 py-1.5 text-sm",
-    md: "px-4 py-2",
-    lg: "px-6 py-3 text-lg",
-  };
+   const baseClasses = "font-medium rounded focus:outline-none focus:ring-2";
+   const variantClasses = {
+      primary: "bg-blue-600 text-white hover:bg-blue-700",
+      secondary: "bg-gray-200 text-gray-900 hover:bg-gray-300",
+      danger: "bg-red-600 text-white hover:bg-red-700",
+   };
+   const sizeClasses = {
+      sm: "px-3 py-1.5 text-sm",
+      md: "px-4 py-2",
+      lg: "px-6 py-3 text-lg",
+   };
 
-  return (
-    <button
-      className={`${baseClasses} ${variantClasses[variant]} ${sizeClasses[size]} ${className}`}
-      disabled={disabled || isLoading}
-      {...props}
-    >
-      {isLoading ? "Cargando..." : children}
-    </button>
-  );
+   return (
+      <button
+         className={`${baseClasses} ${variantClasses[variant]} ${
+            sizeClasses[size]
+         } ${className}`}
+         disabled={disabled || isLoading}
+         {...props}
+      >
+         {isLoading ? "Cargando..." : children}
+      </button>
+   );
 };
 
 export default Button;
@@ -391,55 +399,55 @@ export default Button;
 ```typescript
 // src/services/userService.ts
 import axios, { AxiosResponse } from "axios";
-import { User, CreateUserRequest, UpdateUserRequest } from "@/types/user";
+import { CreateUserRequest, UpdateUserRequest, User } from "@/types/user";
 
-const API_BASE_URL =
-  import.meta.env.VITE_API_BASE_URL || "http://localhost:8000/api";
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL ||
+   "http://localhost:8000/api";
 
 const api = axios.create({
-  baseURL: API_BASE_URL,
-  timeout: 10000,
-  headers: {
-    "Content-Type": "application/json",
-  },
+   baseURL: API_BASE_URL,
+   timeout: 10000,
+   headers: {
+      "Content-Type": "application/json",
+   },
 });
 
 // Interceptor para agregar token
 api.interceptors.request.use((config) => {
-  const token = localStorage.getItem("authToken");
-  if (token) {
-    config.headers.Authorization = `Bearer ${token}`;
-  }
-  return config;
+   const token = localStorage.getItem("authToken");
+   if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+   }
+   return config;
 });
 
 export const userService = {
-  async getUsers(): Promise<User[]> {
-    const response: AxiosResponse<User[]> = await api.get("/users");
-    return response.data;
-  },
+   async getUsers(): Promise<User[]> {
+      const response: AxiosResponse<User[]> = await api.get("/users");
+      return response.data;
+   },
 
-  async getUserById(id: string): Promise<User> {
-    const response: AxiosResponse<User> = await api.get(`/users/${id}`);
-    return response.data;
-  },
+   async getUserById(id: string): Promise<User> {
+      const response: AxiosResponse<User> = await api.get(`/users/${id}`);
+      return response.data;
+   },
 
-  async createUser(userData: CreateUserRequest): Promise<User> {
-    const response: AxiosResponse<User> = await api.post("/users", userData);
-    return response.data;
-  },
+   async createUser(userData: CreateUserRequest): Promise<User> {
+      const response: AxiosResponse<User> = await api.post("/users", userData);
+      return response.data;
+   },
 
-  async updateUser(id: string, userData: UpdateUserRequest): Promise<User> {
-    const response: AxiosResponse<User> = await api.put(
-      `/users/${id}`,
-      userData
-    );
-    return response.data;
-  },
+   async updateUser(id: string, userData: UpdateUserRequest): Promise<User> {
+      const response: AxiosResponse<User> = await api.put(
+         `/users/${id}`,
+         userData,
+      );
+      return response.data;
+   },
 
-  async deleteUser(id: string): Promise<void> {
-    await api.delete(`/users/${id}`);
-  },
+   async deleteUser(id: string): Promise<void> {
+      await api.delete(`/users/${id}`);
+   },
 };
 ```
 
@@ -447,67 +455,67 @@ export const userService = {
 
 ```typescript
 // src/store/slices/userSlice.ts
-import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { User } from "@/types/user";
 import { userService } from "@/services/userService";
 
 interface UserState {
-  users: User[];
-  currentUser: User | null;
-  loading: boolean;
-  error: string | null;
+   users: User[];
+   currentUser: User | null;
+   loading: boolean;
+   error: string | null;
 }
 
 const initialState: UserState = {
-  users: [],
-  currentUser: null,
-  loading: false,
-  error: null,
+   users: [],
+   currentUser: null,
+   loading: false,
+   error: null,
 };
 
 // Async thunks
 export const fetchUsers = createAsyncThunk("user/fetchUsers", async () => {
-  return await userService.getUsers();
+   return await userService.getUsers();
 });
 
 export const fetchUserById = createAsyncThunk(
-  "user/fetchUserById",
-  async (userId: string) => {
-    return await userService.getUserById(userId);
-  }
+   "user/fetchUserById",
+   async (userId: string) => {
+      return await userService.getUserById(userId);
+   },
 );
 
 const userSlice = createSlice({
-  name: "user",
-  initialState,
-  reducers: {
-    clearError: (state) => {
-      state.error = null;
-    },
-    setCurrentUser: (state, action: PayloadAction<User | null>) => {
-      state.currentUser = action.payload;
-    },
-  },
-  extraReducers: (builder) => {
-    builder
-      // Fetch users
-      .addCase(fetchUsers.pending, (state) => {
-        state.loading = true;
-        state.error = null;
-      })
-      .addCase(fetchUsers.fulfilled, (state, action) => {
-        state.loading = false;
-        state.users = action.payload;
-      })
-      .addCase(fetchUsers.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.error.message || "Error al cargar usuarios";
-      })
-      // Fetch user by ID
-      .addCase(fetchUserById.fulfilled, (state, action) => {
-        state.currentUser = action.payload;
-      });
-  },
+   name: "user",
+   initialState,
+   reducers: {
+      clearError: (state) => {
+         state.error = null;
+      },
+      setCurrentUser: (state, action: PayloadAction<User | null>) => {
+         state.currentUser = action.payload;
+      },
+   },
+   extraReducers: (builder) => {
+      builder
+         // Fetch users
+         .addCase(fetchUsers.pending, (state) => {
+            state.loading = true;
+            state.error = null;
+         })
+         .addCase(fetchUsers.fulfilled, (state, action) => {
+            state.loading = false;
+            state.users = action.payload;
+         })
+         .addCase(fetchUsers.rejected, (state, action) => {
+            state.loading = false;
+            state.error = action.error.message || "Error al cargar usuarios";
+         })
+         // Fetch user by ID
+         .addCase(fetchUserById.fulfilled, (state, action) => {
+            state.currentUser = action.payload;
+         });
+   },
 });
 
 export const { clearError, setCurrentUser } = userSlice.actions;
@@ -518,36 +526,36 @@ export default userSlice.reducer;
 
 ```typescript
 // src/components/ui/__tests__/Button.test.tsx
-import { render, screen, fireEvent } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import Button from "../Button";
 
 describe("Button Component", () => {
-  it("renders with correct text", () => {
-    render(<Button>Click me</Button>);
-    expect(
-      screen.getByRole("button", { name: /click me/i })
-    ).toBeInTheDocument();
-  });
+   it("renders with correct text", () => {
+      render(<Button>Click me</Button>);
+      expect(
+         screen.getByRole("button", { name: /click me/i }),
+      ).toBeInTheDocument();
+   });
 
-  it("handles click events", () => {
-    const handleClick = jest.fn();
-    render(<Button onClick={handleClick}>Click me</Button>);
+   it("handles click events", () => {
+      const handleClick = jest.fn();
+      render(<Button onClick={handleClick}>Click me</Button>);
 
-    fireEvent.click(screen.getByRole("button"));
-    expect(handleClick).toHaveBeenCalledTimes(1);
-  });
+      fireEvent.click(screen.getByRole("button"));
+      expect(handleClick).toHaveBeenCalledTimes(1);
+   });
 
-  it("shows loading state", () => {
-    render(<Button isLoading>Submit</Button>);
-    expect(screen.getByText("Cargando...")).toBeInTheDocument();
-    expect(screen.getByRole("button")).toBeDisabled();
-  });
+   it("shows loading state", () => {
+      render(<Button isLoading>Submit</Button>);
+      expect(screen.getByText("Cargando...")).toBeInTheDocument();
+      expect(screen.getByRole("button")).toBeDisabled();
+   });
 
-  it("applies correct variant classes", () => {
-    render(<Button variant="danger">Delete</Button>);
-    expect(screen.getByRole("button")).toHaveClass("bg-red-600");
-  });
+   it("applies correct variant classes", () => {
+      render(<Button variant="danger">Delete</Button>);
+      expect(screen.getByRole("button")).toHaveClass("bg-red-600");
+   });
 });
 ```
 
@@ -565,19 +573,25 @@ describe("Button Component", () => {
   [Setup de entornos de desarrollo local con Docker](./setup-entorno-local-docker.md)
 - ✅
   [Configuración de herramientas de CI/CD con GitHub Actions](./configuracion-cicd-github-actions.md)
-- ✅ [Setup de ambientes (desarrollo, testing, staging, producción)](./setup-ambientes-multiples.md)
-- ✅ [Configuración de herramientas de calidad](./configuracion-herramientas-calidad.md)
-- ✅ [Setup de Laravel con Clean Architecture](./setup-laravel-clean-architecture.md)
+- ✅
+  [Setup de ambientes (desarrollo, testing, staging, producción)](./setup-ambientes-multiples.md)
+- ✅
+  [Configuración de herramientas de calidad](./configuracion-herramientas-calidad.md)
+- ✅
+  [Setup de Laravel con Clean Architecture](./setup-laravel-clean-architecture.md)
 - ⏭️ **Configuración de React + TypeScript + Vite** ← Estás aquí
 
 ---
 
-### � Etapa Completada
+### 🎉 Etapa Completada
 
-¡Felicitaciones! Has completado la **Etapa 3: Configuración del Entorno de Desarrollo**.
+¡Felicitaciones! Has completado la **Etapa 3: Configuración del Entorno de
+Desarrollo**.
 
-**Próximo paso**: Continúa con la [**Etapa 4: Desarrollo del Backend (Laravel + Clean Architecture)**](../step_04/desarrollo-backend.md) donde veremos la implementación de las distintas capas.
+**Próximo paso**: Continúa con la
+[**Etapa 4: Desarrollo del Backend (Laravel + Clean Architecture)**](../step_04/desarrollo-backend.md)
+donde veremos la implementación de las distintas capas.
 
-[⬅️ Setup de Laravel con Clean Architecture](./setup-laravel-clean-architecture.md) |
-[🏠 README Principal](../../README.md) |
+[⬅️ Setup de Laravel con Clean Architecture](./setup-laravel-clean-architecture.md)
+| [🏠 README Principal](../../README.md) |
 [➡️ Desarrollo del backend](../step_04/desarrollo-backend.md)
