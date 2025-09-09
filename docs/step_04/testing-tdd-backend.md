@@ -2,14 +2,22 @@
 
 ## ¿Qué es?
 
-Test-Driven Development (TDD) para backend es una metodología de desarrollo donde se escriben las pruebas antes que el código de implementación. En el contexto de Laravel con Clean Architecture, esto significa crear tests para cada capa (Domain, Application, Infrastructure) antes de implementar la funcionalidad, asegurando que el código cumple con los requisitos y mantiene la calidad a lo largo del tiempo.
+Test-Driven Development (TDD) para backend es una metodología de desarrollo
+donde se escriben las pruebas antes que el código de implementación. En el
+contexto de Laravel con Clean Architecture, esto significa crear tests para cada
+capa (Domain, Application, Infrastructure) antes de implementar la
+funcionalidad, asegurando que el código cumple con los requisitos y mantiene la
+calidad a lo largo del tiempo.
 
 ## ¿Por qué es importante?
 
-- **Calidad del código**: Garantiza que cada funcionalidad está correctamente implementada
+- **Calidad del código**: Garantiza que cada funcionalidad está correctamente
+  implementada
 - **Refactoring seguro**: Permite cambios en el código con confianza
-- **Documentación viva**: Los tests sirven como documentación del comportamiento esperado
-- **Detección temprana de errores**: Identifica problemas antes de que lleguen a producción
+- **Documentación viva**: Los tests sirven como documentación del comportamiento
+  esperado
+- **Detección temprana de errores**: Identifica problemas antes de que lleguen a
+  producción
 - **Diseño mejorado**: Fuerza a pensar en el diseño de APIs y interfaces
 - **Cobertura completa**: Asegura que todas las capas están probadas
 
@@ -804,30 +812,30 @@ name: Tests
 on: [push, pull_request]
 
 jobs:
-  test:
-    runs-on: ubuntu-latest
+   test:
+      runs-on: ubuntu-latest
 
-    steps:
-      - uses: actions/checkout@v2
+      steps:
+         - uses: actions/checkout@v2
 
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: "8.2"
-          extensions: mbstring, xml, ctype, iconv, intl, pdo_sqlite
-          coverage: xdebug
+         - name: Setup PHP
+           uses: shivammathur/setup-php@v2
+           with:
+              php-version: "8.2"
+              extensions: mbstring, xml, ctype, iconv, intl, pdo_sqlite
+              coverage: xdebug
 
-      - name: Install dependencies
-        run: composer install --prefer-dist --no-progress
+         - name: Install dependencies
+           run: composer install --prefer-dist --no-progress
 
-      - name: Run unit tests
-        run: php artisan test --testsuite=Unit --coverage
+         - name: Run unit tests
+           run: php artisan test --testsuite=Unit --coverage
 
-      - name: Run feature tests
-        run: php artisan test --testsuite=Feature
+         - name: Run feature tests
+           run: php artisan test --testsuite=Feature
 
-      - name: Run integration tests
-        run: php artisan test --testsuite=Integration
+         - name: Run integration tests
+           run: php artisan test --testsuite=Integration
 ```
 
 ### Evitar Estos Errores
@@ -847,19 +855,22 @@ jobs:
 - ✅ [Desarrollo del Backend](./desarrollo-backend.md)
 - ✅ [Implementación Domain Layer](./implementacion-domain-layer.md)
 - ✅ [Implementación Application Layer](./implementacion-application-layer.md)
-- ✅ [Implementación Infrastructure Layer](./implementacion-infrastructure-layer.md)
+- ✅
+  [Implementación Infrastructure Layer](./implementacion-infrastructure-layer.md)
 - ✅ [APIs RESTful Versionadas](./apis-restful-versionadas.md)
 - ✅ [Autenticación Laravel Sanctum](./autenticacion-laravel-sanctum.md)
 - ✅ **Testing TDD Backend** ← Estás aquí
 
 ---
 
-### � Etapa Completada
+### 🎉 Etapa Completada
 
-¡Felicitaciones! Has completado la **Etapa 4: Desarrollo del Backend (Laravel + Clean Architecture)**.
+¡Felicitaciones! Has completado la **Etapa 4: Desarrollo del Backend (Laravel +
+Clean Architecture)**.
 
-**Próximo paso**: Continúa con la [**Etapa 5: Desarrollo del Frontend Web (React + TypeScript)**](../step_05/desarrollo-frontend-web.md).
+**Próximo paso**: Continúa con la
+[**Etapa 5: Desarrollo del Frontend Web (React + TypeScript)**](../step_05/desarrollo-frontend-web.md).
 
-[⬅️ Autenticación Laravel Sanctum](./autenticacion-laravel-sanctum.md)
-| [🏠 README Principal](../../README.md) |
+[⬅️ Autenticación Laravel Sanctum](./autenticacion-laravel-sanctum.md) |
+[🏠 README Principal](../../README.md) |
 [➡️ Desarrollo del frontend-web](../step_05/desarrollo-frontend-web.md)
