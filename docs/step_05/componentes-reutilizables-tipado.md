@@ -788,8 +788,6 @@ export const WithIcon: Story = {
 - ✅
   [Configuración React + TypeScript + Vite](./configuracion-react-typescript-vite.md)
 - ✅ **Componentes Reutilizables con Tipado** ← Estás aquí
-- ⏭️
-  [Implementación Infrastructure Layer](./implementacion-infrastructure-layer.md)
 - ⏭️ [Redux Toolkit - Estado Global](./redux-toolkit-estado-global.md)
 - ⏭️ [Integración APIs con Axios](./integracion-apis-axios.md)
 - ⏭️ [React Router - Navegación](./react-router-navegacion.md)
@@ -800,8 +798,8 @@ export const WithIcon: Story = {
 ### Siguiente Paso
 
 Continúa con
-[**Implementación Infrastructure Layer**](./implementacion-infrastructure-layer.md)
+[**Redux Toolkit - Estado Global**](./redux-toolkit-estado-global.md)
 
 [⬅️ Configuración React + TypeScript + Vite](./configuracion-react-typescript-vite.md)
 | [🏠 README Principal](../../README.md) |
-[➡️ Implementación Infrastructure Layer](./implementacion-infrastructure-layer.md)
+[➡️ Redux Toolkit - Estado Global](./redux-toolkit-estado-global.md)

@@ -511,8 +511,6 @@ describe("Button Component", () => {
 - ✅ **Configuración React + TypeScript + Vite** ← Estás aquí
 - ⏭️
   [Componentes Reutilizables con Tipado](./componentes-reutilizables-tipado.md)
-- ⏭️
-  [Implementación Infrastructure Layer](./implementacion-infrastructure-layer.md)
 - ⏭️ [Redux Toolkit - Estado Global](./redux-toolkit-estado-global.md)
 - ⏭️ [Integración APIs con Axios](./integracion-apis-axios.md)
 - ⏭️ [React Router - Navegación](./react-router-navegacion.md)

@@ -393,8 +393,6 @@ export const userService = {
   [Configuración React + TypeScript + Vite](./configuracion-react-typescript-vite.md)
 - ⏭️
   [Componentes Reutilizables con Tipado](./componentes-reutilizables-tipado.md)
-- ⏭️
-  [Implementación Infrastructure Layer](./implementacion-infrastructure-layer.md)
 - ⏭️ [Redux Toolkit - Estado Global](./redux-toolkit-estado-global.md)
 - ⏭️ [Integración APIs con Axios](./integracion-apis-axios.md)
 - ⏭️ [React Router - Navegación](./react-router-navegacion.md)
