@@ -113,19 +113,20 @@ necesarias:
 - ✅
   [Configuración de React + TypeScript + Vite](./docs/step_03/configuracion-react-typescript-vite.md)
 
-### 4. Desarrollo del Backend (Laravel + Clean Architecture) 🚧
+### [4. Desarrollo del Backend (Laravel + Clean Architecture)](./docs/step_04/desarrollo-backend.md) ✅
 
-**Estado**: Documentación pendiente
+**Estado**: Documentación completa
 
-Incluirá:
+Esta etapa está **completamente documentada** con enfoque en Clean
+Architecture + DDD:
 
-- Implementación de Domain Layer (Entities, Value Objects, Repositories,
-  Services)
-- Desarrollo de Application Layer (Use Cases, DTOs, Commands, Queries)
-- Configuración de Infrastructure Layer (Eloquent, Controllers, Middleware)
-- Implementación de APIs RESTful versionadas
-- Configuración de autenticación con Laravel Sanctum
-- Testing unitario e integración siguiendo TDD
+- ✅ [Desarrollo del Backend](./docs/step_04/desarrollo-backend.md)
+- ✅ [Implementación Domain Layer](./docs/step_04/implementacion-domain-layer.md)
+- ✅ [Implementación Application Layer](./docs/step_04/implementacion-application-layer.md)
+- ✅ [Implementación Infrastructure Layer](./docs/step_04/implementacion-infrastructure-layer.md)
+- ✅ [APIs RESTful Versionadas](./docs/step_04/apis-restful-versionadas.md)
+- ✅ [Autenticación Laravel Sanctum](./docs/step_04/autenticacion-laravel-sanctum.md)
+- ✅ [Testing TDD Backend](./docs/step_04/testing-tdd-backend.md)
 
 ### 5. Desarrollo del Frontend Web (React + TypeScript) 🚧
 
@@ -229,7 +230,14 @@ estandar-proyectos/
 │   │   ├── configuracion-herramientas-calidad.md
 │   │   ├── setup-laravel-clean-architecture.md
 │   │   └── configuracion-react-typescript-vite.md
-│   ├── step_04/                   # 🚧 Desarrollo Backend (Pendiente)
+│   ├── step_04/                   # ✅ Desarrollo Backend
+│   │   ├── desarrollo-backend.md
+│   │   ├── implementacion-domain-layer.md
+│   │   ├── implementacion-application-layer.md
+│   │   ├── implementacion-infrastructure-layer.md
+│   │   ├── apis-restful-versionadas.md
+│   │   ├── autenticacion-laravel-sanctum.md
+│   │   └── testing-tdd-backend.md
 │   ├── step_05/                   # 🚧 Desarrollo Frontend (Pendiente)
 │   ├── step_06/                   # 🚧 Desarrollo Móvil (Pendiente)
 │   ├── step_07/                   # 🚧 Testing y QA (Pendiente)

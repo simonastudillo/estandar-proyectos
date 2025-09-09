@@ -580,4 +580,4 @@ describe("Button Component", () => {
 
 [⬅️ Setup de Laravel con Clean Architecture](./setup-laravel-clean-architecture.md) |
 [🏠 README Principal](../../README.md) |
-[➡️ Configuración del Entorno](../step_04/desarrollo-backend.md)
+[➡️ Desarrollo del backend](../step_04/desarrollo-backend.md)
