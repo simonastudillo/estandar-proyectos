@@ -394,7 +394,7 @@ class SyncUsersCommand extends Command
 - ✅
   [Configuración de herramientas de CI/CD con GitHub Actions](./configuracion-cicd-github-actions.md)
 - ✅ [Setup de ambientes (desarrollo, testing, staging, producción)](./setup-ambientes-multiples.md)
-- ✅ [Configuración de herramientas de calidad](./configuracion-herramientas-calidad.md) ← Estás aquí
+- ✅ [Configuración de herramientas de calidad](./configuracion-herramientas-calidad.md)
 - ⏭️ **Setup de Laravel con Clean Architecture** ← Estás aquí
 - ⏭️
   [Configuración de React + TypeScript + Vite](./configuracion-react-typescript-vite.md)
