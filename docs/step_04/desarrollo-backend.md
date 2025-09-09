@@ -238,20 +238,20 @@ class CreateUserUseCase
 **Progreso en Desarrollo del Backend:**
 
 - ✅ **Desarrollo del Backend** ← Estás aquí
-- ⏭️ [Implementación Domain Layer](implementacion-domain-layer.md)
-- ⏭️ [Implementación Application Layer](implementacion-application-layer.md)
-- ⏭️ [Implementación Infrastructure Layer](implementacion-infrastructure-layer.md)
-- ⏭️ [APIs RESTful Versionadas](apis-restful-versionadas.md)
-- ⏭️ [Autenticación Laravel Sanctum](autenticacion-laravel-sanctum.md)
-- ⏭️ [Testing TDD Backend](testing-tdd-backend.md)
+- ⏭️ [Implementación Domain Layer](./implementacion-domain-layer.md)
+- ⏭️ [Implementación Application Layer](./implementacion-application-layer.md)
+- ⏭️ [Implementación Infrastructure Layer](./implementacion-infrastructure-layer.md)
+- ⏭️ [APIs RESTful Versionadas](./apis-restful-versionadas.md)
+- ⏭️ [Autenticación Laravel Sanctum](./autenticacion-laravel-sanctum.md)
+- ⏭️ [Testing TDD Backend](./testing-tdd-backend.md)
 
 ---
 
 ### Siguiente Paso
 
 Continúa con
-[**Configuración de repositorios Git y GitHub**](./configuracion-repositorios-git.md).
+[**Implementación Domain Layer**](./implementacion-domain-layer.md)
 
 [⬅️ Etapa 3: Configuración de React + TypeScript + Vite](../step_03/configuracion-react-typescript-vite.md)
 | [🏠 README Principal](../../README.md) |
-[➡️ Implementación Domain Layer](implementacion-domain-layer.md)
+[➡️ Implementación Domain Layer](./implementacion-domain-layer.md)
