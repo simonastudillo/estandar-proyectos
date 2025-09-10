@@ -23,13 +23,13 @@ siguiendo las instrucciones específicas del repositorio.**
 - **Step 5**: Desarrollo del Frontend Web (7 documentos completados)
 - **Step 6**: Desarrollo de Aplicación Móvil (7 documentos completados)
 - **Step 7**: Testing y Quality Assurance (7 documentos completados)
+- **Step 8**: Despliegue y DevOps (7 documentos completados)
 
 ### 🚧 Etapas Pendientes
 
-- **Step 8**: Despliegue y DevOps
 - **Step 9**: Mantenimiento y Evolución
 
-**Documentación completada: 7/9 etapas (78% completado)**
+**Documentación completada: 8/9 etapas (89% completado)**
 
 ## Stack Tecnológico Estándar
 
@@ -206,18 +206,23 @@ integral:
 - ✅
   [Auditoría de Calidad de Código](./docs/step_07/auditoria-calidad-codigo.md)
 
-### 8. Despliegue y DevOps 🚧
+### [8. Despliegue y DevOps](./docs/step_08/despliegue-devops.md) ✅
 
-**Estado**: Documentación pendiente
+**Estado**: Documentación completa
 
-Incluirá:
+Esta etapa está **completamente documentada** con enfoque en infraestructura,
+automatización y seguridad:
 
-- Configuración de servidores de producción (DigitalOcean/AWS)
-- Implementación de CI/CD pipelines con GitHub Actions
-- Configuración de Docker para contenedores
-- Monitoreo y logging con herramientas especializadas
-- Estrategias de backup y recovery
-- SSL y configuraciones de seguridad
+- ✅ [Despliegue y DevOps](./docs/step_08/despliegue-devops.md)
+- ✅
+  [Configuración de Servidores de Producción](./docs/step_08/configuracion-servidores-produccion.md)
+- ✅
+  [CI/CD Pipelines con GitHub Actions](./docs/step_08/ci-cd-pipelines-github-actions.md)
+- ✅ [Docker y Contenedores](./docs/step_08/docker-contenedores.md)
+- ✅ [Monitoreo y Logging](./docs/step_08/monitoreo-logging.md)
+- ✅ [Backup y Recovery](./docs/step_08/backup-recovery-strategies.md)
+- ✅
+  [SSL y Configuraciones de Seguridad](./docs/step_08/ssl-configuraciones-seguridad.md)
 
 ### 9. Mantenimiento y Evolución 🚧
 
@@ -301,7 +306,14 @@ estandar-proyectos/
 │   │   ├── testing-usabilidad.md
 │   │   ├── code-review-refactoring.md
 │   │   └── auditoria-calidad-codigo.md
-│   ├── step_08/                   # 🚧 Despliegue y DevOps (Pendiente)
+│   ├── step_08/                   # ✅ Despliegue y DevOps (Completado)
+│   │   ├── despliegue-devops.md
+│   │   ├── configuracion-servidores-produccion.md
+│   │   ├── ci-cd-pipelines-github-actions.md
+│   │   ├── docker-contenedores.md
+│   │   ├── monitoreo-logging.md
+│   │   ├── backup-recovery-strategies.md
+│   │   └── ssl-configuraciones-seguridad.md
 │   └── step_09/                   # 🚧 Mantenimiento (Pendiente)
 ├── ignore/                        # Archivos de prueba y borradores
 ├── README.md                      # Este archivo
