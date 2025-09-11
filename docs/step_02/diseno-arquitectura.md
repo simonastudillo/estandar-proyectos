@@ -74,6 +74,7 @@ tu proyecto.
 
 - ✅ **Diseño y Arquitectura - Introducción** ← Estás aquí
 - ⏭️ [Stack Tecnológico](./stack-tecnologico.md)
+- ⏭️ [Elección de Herramientas](./eleccion-herramientas.md)
 - ⏭️ [Patrones de Diseño](./patrones-diseno.md)
 - ⏭️ [Arquitectura del Sistema](./arquitectura-sistema.md)
 - ⏭️ [Estructura de Carpetas](./estructura-carpetas.md)

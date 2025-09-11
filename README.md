@@ -17,7 +17,7 @@ siguiendo las instrucciones específicas del repositorio.**
 ### ✅ Etapas Completadas
 
 - **Step 1**: Planificación y Análisis (8 documentos completados)
-- **Step 2**: Diseño y Arquitectura (11 documentos completados)
+- **Step 2**: Diseño y Arquitectura (12 documentos completados)
 - **Step 3**: Configuración del Entorno de Desarrollo (8 documentos completados)
 - **Step 4**: Desarrollo del Backend (7 documentos completados)
 - **Step 5**: Desarrollo del Frontend Web (7 documentos completados)
@@ -97,6 +97,7 @@ Esta etapa está **completamente documentada** con enfoque en Clean
 Architecture + DDD:
 
 - ✅ [Stack tecnológico inicial](./docs/step_02/stack-tecnologico.md)
+- ✅ [Elección de herramientas](./docs/step_02/eleccion-herramientas.md)
 - ✅ [Patrones de diseño del proyecto](./docs/step_02/patrones-diseno.md)
 - ✅ [Arquitectura del sistema](./docs/step_02/arquitectura-sistema.md)
 - ✅ [Estructura de carpetas base](./docs/step_02/estructura-carpetas.md)
@@ -258,6 +259,7 @@ estandar-proyectos/
 │   ├── step_02/                   # ✅ Diseño y Arquitectura
 │   │   ├── diseno-arquitectura.md
 │   │   ├── stack-tecnologico.md
+│   │   ├── eleccion-herramientas.md
 │   │   ├── patrones-diseno.md
 │   │   ├── arquitectura-sistema.md
 │   │   ├── estructura-carpetas.md

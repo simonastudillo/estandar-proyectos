@@ -256,7 +256,7 @@ DELIMITER ;
    - Claves foráneas: Nombre de tabla en singular + `_id`: `user_id`,
      `category_id`
    - Índices: Inglés, snake*case, prefijo `idx*`: `idx_users_email`,
-`idx_products_category`
+     `idx_products_category`
    - Triggers: Inglés, snake_case: `audit_users_update`, `validate_order_total`
 
 2. **Tipos de datos optimizados**:
@@ -502,6 +502,7 @@ FLUSH PRIVILEGES;
 
 - ✅ [Diseño y Arquitectura - Introducción](./diseno-arquitectura.md)
 - ✅ [Stack Tecnológico](./stack-tecnologico.md)
+- ✅ [Elección de Herramientas](./eleccion-herramientas.md)
 - ✅ [Patrones de Diseño](./patrones-diseno.md)
 - ✅ [Arquitectura del Sistema](./arquitectura-sistema.md)
 - ✅ [Estructura de Carpetas](./estructura-carpetas.md)
@@ -519,8 +520,7 @@ FLUSH PRIVILEGES;
 Continúa con el [**Diseño de APIs**](./diseno-apis.md).
 
 [⬅️ Estructura de Carpetas](./estructura-carpetas.md) |
-[🏠 README Principal](../../README.md) |
-[➡️ Diseño de APIs](./diseno-apis.md)
+[🏠 README Principal](../../README.md) | [➡️ Diseño de APIs](./diseno-apis.md)
 
 ### 🏠 Inicio
 

@@ -2,14 +2,21 @@
 
 ## ¿Qué es?
 
-Los prototipos y wireframes son representaciones visuales tempranas del sistema que permiten conceptualizar, validar y comunicar ideas de diseño antes de la implementación. Los wireframes son esquemas básicos de bajo nivel que muestran la estructura y layout, mientras que los prototipos son versiones más interactivas que simulan la funcionalidad del sistema.
+Los prototipos y wireframes son representaciones visuales tempranas del sistema
+que permiten conceptualizar, validar y comunicar ideas de diseño antes de la
+implementación. Los wireframes son esquemas básicos de bajo nivel que muestran
+la estructura y layout, mientras que los prototipos son versiones más
+interactivas que simulan la funcionalidad del sistema.
 
 ## ¿Por qué es importante?
 
-- **Validación temprana**: Permite identificar problemas de usabilidad y diseño antes del desarrollo
-- **Comunicación efectiva**: Facilita la comunicación entre stakeholders, diseñadores y desarrolladores
+- **Validación temprana**: Permite identificar problemas de usabilidad y diseño
+  antes del desarrollo
+- **Comunicación efectiva**: Facilita la comunicación entre stakeholders,
+  diseñadores y desarrolladores
 - **Reducción de costos**: Evita cambios costosos durante la fase de desarrollo
-- **Alineación de expectativas**: Asegura que todos los involucrados tengan la misma visión del producto
+- **Alineación de expectativas**: Asegura que todos los involucrados tengan la
+  misma visión del producto
 - **Iteración rápida**: Permite realizar cambios y mejoras de forma ágil
 - **Pruebas de concepto**: Valida ideas y conceptos con usuarios reales
 
@@ -277,6 +284,7 @@ Validaciones:
 
 - ✅ [Diseño y Arquitectura - Introducción](./diseno-arquitectura.md)
 - ✅ [Stack Tecnológico](./stack-tecnologico.md)
+- ✅ [Elección de Herramientas](./eleccion-herramientas.md)
 - ✅ [Patrones de Diseño](./patrones-diseno.md)
 - ✅ [Arquitectura del Sistema](./arquitectura-sistema.md)
 - ✅ [Estructura de Carpetas](./estructura-carpetas.md)
@@ -291,7 +299,8 @@ Validaciones:
 
 ### Siguiente Paso
 
-Continúa con las [**Especificaciones Técnicas**](./especificaciones-tecnicas.md).
+Continúa con las
+[**Especificaciones Técnicas**](./especificaciones-tecnicas.md).
 
 [⬅️ Casos de Uso y User Stories](./casos-uso-user-stories.md) |
 [🏠 README Principal](../../README.md) |

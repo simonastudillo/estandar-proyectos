@@ -160,13 +160,13 @@ import { defineConfig } from "vite";
 import path from "path";
 
 export default defineConfig({
-  resolve: {
-    alias: {
-      "@": path.resolve(__dirname, "./src"),
-      "@components": path.resolve(__dirname, "./src/components"),
-      "@services": path.resolve(__dirname, "./src/services"),
-    },
-  },
+   resolve: {
+      alias: {
+         "@": path.resolve(__dirname, "./src"),
+         "@components": path.resolve(__dirname, "./src/components"),
+         "@services": path.resolve(__dirname, "./src/services"),
+      },
+   },
 });
 ```
 
@@ -218,6 +218,7 @@ src/features/auth/
 
 - ✅ [Diseño y Arquitectura - Introducción](./diseno-arquitectura.md)
 - ✅ [Stack Tecnológico](./stack-tecnologico.md)
+- ✅ [Elección de Herramientas](./eleccion-herramientas.md)
 - ✅ [Patrones de Diseño](./patrones-diseno.md)
 - ✅ [Arquitectura del Sistema](./arquitectura-sistema.md)
 - ✅ **Estructura de Carpetas** ← Estás aquí

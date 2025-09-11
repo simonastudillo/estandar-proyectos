@@ -74,19 +74,19 @@ POST   /api/v1/auth/refresh       # Renovar token
 
 ```json
 {
-  "success": true,
-  "data": {
-    "user": {
-      "uuid": "550e8400-e29b-41d4-a716-446655440000",
-      "name": "Juan Pérez",
-      "email": "juan@example.com"
-    }
-  },
-  "message": "Usuario creado exitosamente",
-  "meta": {
-    "timestamp": "2024-01-15T10:30:00Z",
-    "version": "v1"
-  }
+   "success": true,
+   "data": {
+      "user": {
+         "uuid": "550e8400-e29b-41d4-a716-446655440000",
+         "name": "Juan Pérez",
+         "email": "juan@example.com"
+      }
+   },
+   "message": "Usuario creado exitosamente",
+   "meta": {
+      "timestamp": "2024-01-15T10:30:00Z",
+      "version": "v1"
+   }
 }
 ```
 
@@ -94,21 +94,21 @@ POST   /api/v1/auth/refresh       # Renovar token
 
 ```json
 {
-  "success": false,
-  "error": {
-    "code": "VALIDATION_ERROR",
-    "message": "Los datos proporcionados no son válidos",
-    "details": [
-      {
-        "field": "email",
-        "message": "El email ya está registrado"
-      }
-    ]
-  },
-  "meta": {
-    "timestamp": "2024-01-15T10:30:00Z",
-    "version": "v1"
-  }
+   "success": false,
+   "error": {
+      "code": "VALIDATION_ERROR",
+      "message": "Los datos proporcionados no son válidos",
+      "details": [
+         {
+            "field": "email",
+            "message": "El email ya está registrado"
+         }
+      ]
+   },
+   "meta": {
+      "timestamp": "2024-01-15T10:30:00Z",
+      "version": "v1"
+   }
 }
 ```
 
@@ -125,20 +125,20 @@ Route::middleware(['auth:api'])->group(function () {
 
 ```json
 {
-  "success": true,
-  "data": {
-    "users": [
-      // ... array de usuarios
-    ]
-  },
-  "pagination": {
-    "current_page": 1,
-    "last_page": 10,
-    "per_page": 15,
-    "total": 150,
-    "from": 1,
-    "to": 15
-  }
+   "success": true,
+   "data": {
+      "users": [
+         // ... array de usuarios
+      ]
+   },
+   "pagination": {
+      "current_page": 1,
+      "last_page": 10,
+      "per_page": 15,
+      "total": 150,
+      "from": 1,
+      "to": 15
+   }
 }
 ```
 
@@ -412,6 +412,7 @@ class CreateUserRequest extends FormRequest
 
 - ✅ [Diseño y Arquitectura - Introducción](./diseno-arquitectura.md)
 - ✅ [Stack Tecnológico](./stack-tecnologico.md)
+- ✅ [Elección de Herramientas](./eleccion-herramientas.md)
 - ✅ [Patrones de Diseño](./patrones-diseno.md)
 - ✅ [Arquitectura del Sistema](./arquitectura-sistema.md)
 - ✅ [Estructura de Carpetas](./estructura-carpetas.md)
