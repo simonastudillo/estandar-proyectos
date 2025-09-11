@@ -545,7 +545,8 @@ export const userService = {
 
 ### Siguiente Paso
 
-Continúa con el [**Diagrama de Arquitectura General**](./diagrama-arquitectura-general.md).
+Continúa con el
+[**Diagrama de Arquitectura General**](./diagrama-arquitectura-general.md).
 
 [⬅️ Patrones de Diseño](./patrones-diseno.md) |
 [🏠 README Principal](../../README.md) |

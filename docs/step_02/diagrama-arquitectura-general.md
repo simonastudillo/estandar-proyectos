@@ -13,12 +13,16 @@ comprender rápidamente la estructura y funcionamiento del sistema.
 
 ## ¿Por qué es importante?
 
-- **Visión de conjunto**: Proporciona una vista completa del sistema en una sola imagen
-- **Comunicación efectiva**: Facilita la explicación de la arquitectura a diferentes audiencias
+- **Visión de conjunto**: Proporciona una vista completa del sistema en una sola
+  imagen
+- **Comunicación efectiva**: Facilita la explicación de la arquitectura a
+  diferentes audiencias
 - **Toma de decisiones**: Ayuda a identificar puntos críticos y áreas de mejora
-- **Documentación viva**: Sirve como referencia durante todo el ciclo de vida del proyecto
+- **Documentación viva**: Sirve como referencia durante todo el ciclo de vida
+  del proyecto
 - **Onboarding**: Acelera la comprensión del sistema para nuevos desarrolladores
-- **Identificación de dependencias**: Muestra claramente las relaciones entre componentes
+- **Identificación de dependencias**: Muestra claramente las relaciones entre
+  componentes
 
 ## ¿Qué debe incluir?
 
