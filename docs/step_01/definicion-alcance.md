@@ -48,6 +48,48 @@ descontrolados y malentendidos sobre lo que se entregará al final del proyecto.
 
 ## ¿Qué Debe Incluir?
 
+### 🎯 **MVP (Producto Mínimo Viable)**
+
+#### **Definición del MVP**
+
+El **MVP (Minimum Viable Product)** es la versión más simple del producto que
+puede ser lanzada con el mínimo conjunto de funcionalidades que proporciona
+valor a los usuarios y permite aprender de su uso real. Es la primera versión
+funcional que se entrega antes de desarrollar funcionalidades adicionales.
+
+#### **Funcionalidades Core del MVP**
+
+- **Funcionalidades Esenciales**: Características mínimas indispensables para
+  que el producto sea útil
+- **User Journey Básico**: Flujo completo del usuario principal desde inicio a
+  fin
+- **Casos de Uso Críticos**: Escenarios que cubren el 80% de las necesidades más
+  importantes
+- **Validaciones Fundamentales**: Reglas de negocio esenciales para la operación
+
+#### **Criterios de Aceptación MVP**
+
+- **Funcionalidad Mínima Viable**: Cada funcionalidad incluida debe ser
+  completamente funcional
+- **Experiencia de Usuario Básica**: Interfaces simples pero usables y claras
+- **Estabilidad Fundamental**: Sistema debe ser estable para funcionalidades
+  incluidas
+- **Seguridad Básica**: Implementación de seguridad mínima pero efectiva
+
+#### **Métricas de Éxito MVP**
+
+- **Adopción**: Número mínimo de usuarios activos en las primeras semanas
+- **Retención**: Porcentaje de usuarios que regresan después del primer uso
+- **Satisfacción**: Score mínimo en encuestas de satisfacción de usuarios
+- **Performance**: Métricas técnicas básicas (tiempo de respuesta,
+  disponibilidad)
+
+#### **Roadmap Post-MVP**
+
+- **Versión 1.1**: Mejoras basadas en feedback del MVP
+- **Versión 2.0**: Funcionalidades adicionales identificadas como importantes
+- **Versiones Futuras**: Expansión del alcance basada en aprendizajes
+
 ### ✅ **Alcance Incluido (In-Scope)**
 
 #### **Funcionalidades Principales**
@@ -198,6 +240,39 @@ descontrolados y malentendidos sobre lo que se entregará al final del proyecto.
   abiertas
 
 ## Ejemplos
+
+### 🎯 **Ejemplo de MVP (Producto Mínimo Viable)**
+
+**Proyecto: Sistema de Gestión de Inventarios - MVP**
+
+**Objetivo MVP**: Versión inicial que permita gestión básica de inventarios con
+funcionalidades esenciales para validar la propuesta de valor.
+
+**Funcionalidades MVP (Versión 1.0)**:
+
+- ✅ **Registro básico de productos** (nombre, código, cantidad, precio)
+- ✅ **Entrada y salida manual de inventario**
+- ✅ **Consulta de existencias actuales**
+- ✅ **Reporte básico de movimientos** (última semana)
+- ✅ **Login de usuarios con roles básicos** (admin, operador)
+- ✅ **Interfaz web simple y funcional**
+
+**Excluido del MVP (para versiones futuras)**:
+
+- ❌ Alertas automáticas por stock mínimo → v1.1
+- ❌ Reportes avanzados y dashboards → v1.2
+- ❌ API REST para integraciones → v2.0
+- ❌ Interfaz responsive completa → v1.1
+- ❌ Gestión avanzada de permisos → v2.0
+
+**Criterios de Éxito MVP**:
+
+- 5 usuarios teste utilizando el sistema durante 2 semanas
+- Reducción del 30% en tiempo de consulta de inventarios vs método actual
+- 90% de satisfacción en encuesta post-uso
+- 0 errores críticos que impidan operación básica
+
+**Timeline MVP**: 6 semanas de desarrollo
 
 ### 📋 **Ejemplo de Declaración de Alcance**
 
