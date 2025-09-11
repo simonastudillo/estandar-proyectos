@@ -502,6 +502,8 @@ docker system info
   [Configuración del Entorno - Introducción](./configuracion-entorno-desarrollo.md)
 - ⏭️ **Requisitos mínimos del sistema** ← Estás aquí
 - ⏭️
+  [Instalación de dependencias iniciales](./instalacion-dependencias-iniciales.md)
+- ⏭️
   [Configuración de repositorios Git y GitHub](./configuracion-repositorios-git.md)
 - ⏭️
   [Setup de entornos de desarrollo local con Docker](./setup-entorno-local-docker.md)
@@ -521,8 +523,8 @@ docker system info
 ### Siguiente Paso
 
 Continúa con
-[**Configuración de repositorios Git y GitHub**](./configuracion-repositorios-git.md)
+[**Instalación de dependencias iniciales**](./instalacion-dependencias-iniciales.md)
 
 [⬅️ Configuración del Entorno - Introducción](./configuracion-entorno-desarrollo.md)
 | [🏠 README Principal](../../README.md) |
-[➡️ Configuración de repositorios Git y GitHub](./configuracion-repositorios-git.md)
+[➡️ Instalación de dependencias iniciales](./instalacion-dependencias-iniciales.md)

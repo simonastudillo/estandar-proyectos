@@ -119,6 +119,8 @@ necesarias:
 
 - ✅ [Requisitos mínimos del sistema](./docs/step_03/requisitos-sistema.md)
 - ✅
+  [Instalación de dependencias iniciales](./docs/step_03/instalacion-dependencias-iniciales.md)
+- ✅
   [Configuración de repositorios Git y GitHub](./docs/step_03/configuracion-repositorios-git.md)
 - ✅
   [Setup de entornos de desarrollo local con Docker](./docs/step_03/setup-entorno-local-docker.md)

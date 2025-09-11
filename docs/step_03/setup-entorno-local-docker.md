@@ -907,6 +907,8 @@ xdebug.log=/var/log/xdebug.log
   [Configuración del Entorno - Introducción](./configuracion-entorno-desarrollo.md)
 - ✅ [Requisitos mínimos del sistema](./requisitos-sistema.md)
 - ✅
+  [Instalación de dependencias iniciales](./instalacion-dependencias-iniciales.md)
+- ✅
   [Configuración de repositorios Git y GitHub](./configuracion-repositorios-git.md)
 - ⏭️ **Setup de entornos de desarrollo local con Docker** ← Estás aquí
 - ⏭️

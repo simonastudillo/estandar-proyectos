@@ -175,6 +175,8 @@ que tu entorno cumple con todas las especificaciones necesarias.
 - ⏭️ **Configuración del Entorno de Desarrollo - Introducción** ← Estás aquí
 - ⏭️ [Requisitos mínimos del sistema](./requisitos-sistema.md)
 - ⏭️
+  [Instalación de dependencias iniciales](./instalacion-dependencias-iniciales.md)
+- ⏭️
   [Configuración de repositorios Git y GitHub](./configuracion-repositorios-git.md)
 - ⏭️
   [Setup de entornos de desarrollo local con Docker](./setup-entorno-local-docker.md)
