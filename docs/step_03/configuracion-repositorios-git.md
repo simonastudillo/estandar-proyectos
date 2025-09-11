@@ -985,6 +985,7 @@ jobs:
 
 - ✅
   [Configuración del Entorno - Introducción](./configuracion-entorno-desarrollo.md)
+- ✅ [Requisitos mínimos del sistema](./requisitos-sistema.md)
 - ⏭️ **Configuración de repositorios Git y GitHub** ← Estás aquí
 - ⏭️
   [Setup de entornos de desarrollo local con Docker](./setup-entorno-local-docker.md)
@@ -1006,6 +1007,6 @@ jobs:
 Continúa con
 [**Setup de entornos de desarrollo local con Docker**](./setup-entorno-local-docker.md).
 
-[⬅️ Configuración del Entorno - Introducción](./configuracion-entorno-desarrollo.md)
-| [🏠 README Principal](../../README.md) |
+[⬅️ Requisitos mínimos del sistema](./requisitos-sistema.md) |
+[🏠 README Principal](../../README.md) |
 [➡️ Setup de entornos de desarrollo local con Docker](./setup-entorno-local-docker.md)

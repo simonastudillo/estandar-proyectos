@@ -164,15 +164,16 @@ soportará todo el proceso de construcción del software, garantizando
 
 ## Siguiente Paso
 
-Una vez que comprendas la importancia de esta etapa, continúa con la
-[**Configuración de repositorios Git y GitHub**](./configuracion-repositorios-git.md)
-donde establecerás la base del control de versiones y colaboración del proyecto.
+Una vez que comprendas la importancia de esta etapa, continúa con los
+[**Requisitos mínimos del sistema**](./requisitos-sistema.md) donde verificarás
+que tu entorno cumple con todas las especificaciones necesarias.
 
 ## Navegación
 
 **Progreso en Configuración del Entorno de Desarrollo:**
 
 - ⏭️ **Configuración del Entorno de Desarrollo - Introducción** ← Estás aquí
+- ⏭️ [Requisitos mínimos del sistema](./requisitos-sistema.md)
 - ⏭️
   [Configuración de repositorios Git y GitHub](./configuracion-repositorios-git.md)
 - ⏭️
@@ -197,4 +198,4 @@ Continúa con
 
 [⬅️ Etapa 2: Especificaciones Técnicas](../step_02/especificaciones-tecnicas.md)
 | [🏠 README Principal](../../README.md) |
-[➡️ Configuración de repositorios Git y GitHub](./configuracion-repositorios-git.md)
+[➡️ Requisitos mínimos del sistema](./requisitos-sistema.md)

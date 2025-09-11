@@ -567,6 +567,7 @@ describe("Button Component", () => {
 
 - ✅
   [Configuración del Entorno - Introducción](./configuracion-entorno-desarrollo.md)
+- ✅ [Requisitos mínimos del sistema](./requisitos-sistema.md)
 - ✅
   [Configuración de repositorios Git y GitHub](./configuracion-repositorios-git.md)
 - ✅

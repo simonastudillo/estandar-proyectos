@@ -117,6 +117,7 @@ Architecture + DDD:
 Esta etapa está **completamente documentada** con todas las configuraciones
 necesarias:
 
+- ✅ [Requisitos mínimos del sistema](./docs/step_03/requisitos-sistema.md)
 - ✅
   [Configuración de repositorios Git y GitHub](./docs/step_03/configuracion-repositorios-git.md)
 - ✅
