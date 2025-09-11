@@ -77,6 +77,7 @@ tu proyecto.
 - ⏭️ [Elección de Herramientas](./eleccion-herramientas.md)
 - ⏭️ [Patrones de Diseño](./patrones-diseno.md)
 - ⏭️ [Arquitectura del Sistema](./arquitectura-sistema.md)
+- ⏭️ [Diagrama de Arquitectura General](./diagrama-arquitectura-general.md)
 - ⏭️ [Estructura de Carpetas](./estructura-carpetas.md)
 - ⏭️ [Diseño de Base de Datos](./diseno-base-datos.md)
 - ⏭️ [Diseño de APIs](./diseno-apis.md)

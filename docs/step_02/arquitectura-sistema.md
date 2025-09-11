@@ -532,6 +532,7 @@ export const userService = {
 - ✅ [Elección de Herramientas](./eleccion-herramientas.md)
 - ✅ [Patrones de Diseño](./patrones-diseno.md)
 - ✅ **Arquitectura del Sistema** ← Estás aquí
+- ⏭️ [Diagrama de Arquitectura General](./diagrama-arquitectura-general.md)
 - ⏭️ [Estructura de Carpetas](./estructura-carpetas.md)
 - ⏭️ [Diseño de Base de Datos](./diseno-base-datos.md)
 - ⏭️ [Diseño de APIs](./diseno-apis.md)
@@ -544,8 +545,8 @@ export const userService = {
 
 ### Siguiente Paso
 
-Continúa con la [**Estructura de Carpetas**](./estructura-carpetas.md).
+Continúa con el [**Diagrama de Arquitectura General**](./diagrama-arquitectura-general.md).
 
 [⬅️ Patrones de Diseño](./patrones-diseno.md) |
 [🏠 README Principal](../../README.md) |
-[➡️ Estructura de Carpetas](./estructura-carpetas.md)
+[➡️ Diagrama de Arquitectura General](./diagrama-arquitectura-general.md)

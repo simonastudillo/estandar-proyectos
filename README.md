@@ -100,6 +100,7 @@ Architecture + DDD:
 - ✅ [Elección de herramientas](./docs/step_02/eleccion-herramientas.md)
 - ✅ [Patrones de diseño del proyecto](./docs/step_02/patrones-diseno.md)
 - ✅ [Arquitectura del sistema](./docs/step_02/arquitectura-sistema.md)
+- ✅ [Diagrama de arquitectura general](./docs/step_02/diagrama-arquitectura-general.md)
 - ✅ [Estructura de carpetas base](./docs/step_02/estructura-carpetas.md)
 - ✅ [Diseño de base de datos (ERD)](./docs/step_02/diseno-base-datos.md)
 - ✅ [Diseño de APIs (OpenAPI/Swagger)](./docs/step_02/diseno-apis.md)

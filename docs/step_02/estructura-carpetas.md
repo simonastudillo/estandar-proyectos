@@ -221,6 +221,7 @@ src/features/auth/
 - ✅ [Elección de Herramientas](./eleccion-herramientas.md)
 - ✅ [Patrones de Diseño](./patrones-diseno.md)
 - ✅ [Arquitectura del Sistema](./arquitectura-sistema.md)
+- ✅ [Diagrama de Arquitectura General](./diagrama-arquitectura-general.md)
 - ✅ **Estructura de Carpetas** ← Estás aquí
 - ⏭️ [Diseño de Base de Datos](./diseno-base-datos.md)
 - ⏭️ [Diseño de APIs](./diseno-apis.md)
@@ -235,6 +236,6 @@ src/features/auth/
 
 Continúa con el [**Diseño de Base de Datos**](./diseno-base-datos.md).
 
-[⬅️ Arquitectura del Sistema](./arquitectura-sistema.md) |
+[⬅️ Diagrama de Arquitectura General](./diagrama-arquitectura-general.md) |
 [🏠 README Principal](../../README.md) |
 [➡️ Diseño de Base de Datos](./diseno-base-datos.md)
