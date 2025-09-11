@@ -674,9 +674,6 @@ fi
 
 ¡Felicitaciones! Has completado la **Etapa 8: Despliegue y DevOps**.
 
-**Próximo paso**: Continúa con la
-[**Etapa 9: Mantenimiento y Evolución**](../step_09/mantenimiento-evolucion.md).
+**Próximo paso**: Continúa con la [**Etapa 9: Mantenimiento y Evolución**](../step_09/mantenimiento-evolucion.md).
 
-[⬅️ Backup y Recovery](./backup-recovery-strategies.md) |
-[🏠 README Principal](../../README.md) |
-[➡️ Mantenimiento y Evolución](../step_09/mantenimiento-evolucion.md)
+[⬅️ Backup y Recovery](./backup-recovery-strategies.md) | [🏠 README Principal](../../README.md) | [➡️ Mantenimiento y Evolución](../step_09/mantenimiento-evolucion.md)
