@@ -212,6 +212,8 @@ Esta etapa tiene un enfoque en calidad y testing integral:
 - ✅
   [Auditoría de Calidad de Código](./docs/step_07/auditoria-calidad-codigo.md)
 - ✅ [Checklist de Performance](./docs/step_07/checklist-performance.md)
+- ✅ [Revisión General del Código](./docs/step_07/revision-general-codigo.md)
+- ✅ [Optimización de Recursos](./docs/step_07/optimizacion-recursos.md)
 
 ### [8. Despliegue y DevOps](./docs/step_08/despliegue-devops.md) ✅
 
@@ -325,7 +327,9 @@ estandar-proyectos/
 │   │   ├── testing-usabilidad.md
 │   │   ├── code-review-refactoring.md
 │   │   ├── auditoria-calidad-codigo.md
-│   │   └── checklist-performance.md
+│   │   ├── checklist-performance.md
+│   │   ├── revision-general-codigo.md
+│   │   └── optimizacion-recursos.md
 │   ├── step_08/                   # Despliegue y DevOps (Completado)
 │   │   ├── despliegue-devops.md
 │   │   ├── configuracion-servidores-produccion.md

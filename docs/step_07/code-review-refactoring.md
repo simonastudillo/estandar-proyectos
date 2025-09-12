@@ -1165,6 +1165,8 @@ echo "📋 Ver reporte en: refactoring-report.html"
 - ✅ **Code Review y Refactoring** ← Estás aquí
 - ⏭️ [Auditoría de Calidad de Código](./auditoria-calidad-codigo.md)
 - ⏭️ [Checklist Específico de Performance](./checklist-performance.md)
+- ⏭️ [Revisión General del Código](./revision-general-codigo.md)
+- ⏭️ [Optimización de Recursos](./optimizacion-recursos.md)
 
 ---
 

@@ -2,20 +2,23 @@
 
 ## ¿Qué es?
 
-El checklist específico de performance es una guía estructurada y sistemática que
-permite evaluar, validar y optimizar el rendimiento de la aplicación en todas
-sus capas. Incluye métricas específicas, thresholds recomendados y procedimientos
-de verificación para garantizar que la aplicación cumpla con los estándares de
-rendimiento establecidos.
+El checklist específico de performance es una guía estructurada y sistemática
+que permite evaluar, validar y optimizar el rendimiento de la aplicación en
+todas sus capas. Incluye métricas específicas, thresholds recomendados y
+procedimientos de verificación para garantizar que la aplicación cumpla con los
+estándares de rendimiento establecidos.
 
 ## ¿Por qué es importante?
 
-- **Evaluación sistemática**: Garantiza que no se omitan aspectos críticos de performance
+- **Evaluación sistemática**: Garantiza que no se omitan aspectos críticos de
+  performance
 - **Estándares consistentes**: Establece criterios uniformes para todo el equipo
-- **Detección temprana**: Identifica problemas de rendimiento antes de producción
+- **Detección temprana**: Identifica problemas de rendimiento antes de
+  producción
 - **Optimización dirigida**: Prioriza las mejoras con mayor impacto
 - **Validación continua**: Permite verificar mejoras de forma objetiva
-- **Cumplimiento de SLA**: Asegura que se cumplan los acuerdos de nivel de servicio
+- **Cumplimiento de SLA**: Asegura que se cumplan los acuerdos de nivel de
+  servicio
 - **Experiencia de usuario**: Garantiza una experiencia fluida y responsive
 
 ## ¿Qué debe incluir?
@@ -953,10 +956,13 @@ exit $FAILED_TESTS
 ## Tips
 
 - **Automatización**: Ejecuta checklists de forma automática en CI/CD
-- **Thresholds personalizados**: Ajusta los umbrales según tu aplicación específica
+- **Thresholds personalizados**: Ajusta los umbrales según tu aplicación
+  específica
 - **Baseline**: Establece una línea base antes de optimizaciones
-- **Monitoreo continuo**: Ejecuta verificaciones regularmente, no solo antes del deploy
-- **Priorización**: Enfócate en las métricas que más impactan la experiencia del usuario
+- **Monitoreo continuo**: Ejecuta verificaciones regularmente, no solo antes del
+  deploy
+- **Priorización**: Enfócate en las métricas que más impactan la experiencia del
+  usuario
 - **Contexto**: Considera el contexto del negocio al interpretar resultados
 - **Documentación**: Registra cambios y su impacto en las métricas
 - **Evolución**: Actualiza los checklists conforme evoluciona la aplicación
@@ -967,50 +973,50 @@ exit $FAILED_TESTS
 
 ```json
 {
-  "budgets": {
-    "frontend": {
-      "lighthouse": {
-        "performance": 90,
-        "accessibility": 90,
-        "best-practices": 90,
-        "seo": 90
+   "budgets": {
+      "frontend": {
+         "lighthouse": {
+            "performance": 90,
+            "accessibility": 90,
+            "best-practices": 90,
+            "seo": 90
+         },
+         "webVitals": {
+            "lcp": 2500,
+            "fid": 100,
+            "cls": 0.1
+         },
+         "bundles": {
+            "main": "150KB",
+            "vendor": "200KB",
+            "total": "500KB"
+         }
       },
-      "webVitals": {
-        "lcp": 2500,
-        "fid": 100,
-        "cls": 0.1
+      "backend": {
+         "api": {
+            "responseTime": 200,
+            "p95ResponseTime": 500,
+            "errorRate": 0.1,
+            "throughput": 1000
+         },
+         "database": {
+            "queryTime": 50,
+            "connectionUtilization": 80,
+            "cacheHitRate": 90
+         }
       },
-      "bundles": {
-        "main": "150KB",
-        "vendor": "200KB",
-        "total": "500KB"
+      "infrastructure": {
+         "server": {
+            "cpuUsage": 70,
+            "memoryUsage": 80,
+            "diskUsage": 80
+         },
+         "network": {
+            "latency": 100,
+            "packetLoss": 0.1
+         }
       }
-    },
-    "backend": {
-      "api": {
-        "responseTime": 200,
-        "p95ResponseTime": 500,
-        "errorRate": 0.1,
-        "throughput": 1000
-      },
-      "database": {
-        "queryTime": 50,
-        "connectionUtilization": 80,
-        "cacheHitRate": 90
-      }
-    },
-    "infrastructure": {
-      "server": {
-        "cpuUsage": 70,
-        "memoryUsage": 80,
-        "diskUsage": 80
-      },
-      "network": {
-        "latency": 100,
-        "packetLoss": 0.1
-      }
-    }
-  }
+   }
 }
 ```
 
@@ -1021,69 +1027,69 @@ exit $FAILED_TESTS
 name: Performance Check
 
 on:
-  pull_request:
-    branches: [main]
-  schedule:
-    - cron: "0 2 * * *" # Daily at 2 AM
+   pull_request:
+      branches: [main]
+   schedule:
+      - cron: "0 2 * * *" # Daily at 2 AM
 
 jobs:
-  performance-check:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
+   performance-check:
+      runs-on: ubuntu-latest
+      steps:
+         - uses: actions/checkout@v3
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: "18"
+         - name: Setup Node.js
+           uses: actions/setup-node@v3
+           with:
+              node-version: "18"
 
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: "8.2"
+         - name: Setup PHP
+           uses: shivammathur/setup-php@v2
+           with:
+              php-version: "8.2"
 
-      - name: Install dependencies
-        run: |
-          npm ci
-          composer install
+         - name: Install dependencies
+           run: |
+              npm ci
+              composer install
 
-      - name: Start services
-        run: |
-          npm run build
-          npm run preview &
-          php artisan serve &
-          sleep 10
+         - name: Start services
+           run: |
+              npm run build
+              npm run preview &
+              php artisan serve &
+              sleep 10
 
-      - name: Run performance checklist
-        run: |
-          chmod +x scripts/automated-performance-test.sh
-          ./scripts/automated-performance-test.sh
+         - name: Run performance checklist
+           run: |
+              chmod +x scripts/automated-performance-test.sh
+              ./scripts/automated-performance-test.sh
 
-      - name: Upload performance results
-        uses: actions/upload-artifact@v3
-        with:
-          name: performance-results
-          path: performance-results-*
+         - name: Upload performance results
+           uses: actions/upload-artifact@v3
+           with:
+              name: performance-results
+              path: performance-results-*
 
-      - name: Comment PR with results
-        if: github.event_name == 'pull_request'
-        uses: actions/github-script@v6
-        with:
-          script: |
-            const fs = require('fs');
-            const glob = require('glob');
+         - name: Comment PR with results
+           if: github.event_name == 'pull_request'
+           uses: actions/github-script@v6
+           with:
+              script: |
+                 const fs = require('fs');
+                 const glob = require('glob');
 
-            const resultFiles = glob.sync('performance-results-*/performance-summary.md');
-            if (resultFiles.length > 0) {
-              const report = fs.readFileSync(resultFiles[0], 'utf8');
-              
-              github.rest.issues.createComment({
-                issue_number: context.issue.number,
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                body: `## 🚀 Performance Check Results\n\n${report}`
-              });
-            }
+                 const resultFiles = glob.sync('performance-results-*/performance-summary.md');
+                 if (resultFiles.length > 0) {
+                   const report = fs.readFileSync(resultFiles[0], 'utf8');
+
+                   github.rest.issues.createComment({
+                     issue_number: context.issue.number,
+                     owner: context.repo.owner,
+                     repo: context.repo.repo,
+                     body: `## 🚀 Performance Check Results\n\n${report}`
+                   });
+                 }
 ```
 
 ---
@@ -1105,13 +1111,15 @@ jobs:
 - ✅ [Code Review y Refactoring](./code-review-refactoring.md)
 - ✅ [Auditoría de Calidad de Código](./auditoria-calidad-codigo.md)
 - ✅ **Checklist Específico de Performance** ← Estás aquí
+- ⏭️ [Revisión General del Código](./revision-general-codigo.md)
+- ⏭️ [Optimización de Recursos](./optimizacion-recursos.md)
 
 ---
 
 ### Siguiente Paso
 
-Continúa con [**Etapa 8: Despliegue y Monitoreo**](../step_08/despliegue-devops.md)
+Continúa con [**Revisión General del Código**](./revision-general-codigo.md)
 
 [⬅️ Auditoría de Calidad de Código](./auditoria-calidad-codigo.md) |
 [🏠 README Principal](../../README.md) |
-[➡️ Despliegue y Monitoreo](../step_08/despliegue-devops.md)
+[➡️ Revisión General del Código](./revision-general-codigo.md)

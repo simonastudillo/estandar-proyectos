@@ -1363,6 +1363,8 @@ export class HistoricalAnalysis {
 - ✅ [Code Review y Refactoring](./code-review-refactoring.md)
 - ✅ **Auditoría de Calidad de Código** ← Estás aquí
 - ⏭️ [Checklist Específico de Performance](./checklist-performance.md)
+- ⏭️ [Revisión General del Código](./revision-general-codigo.md)
+- ⏭️ [Optimización de Recursos](./optimizacion-recursos.md)
 
 ---
 

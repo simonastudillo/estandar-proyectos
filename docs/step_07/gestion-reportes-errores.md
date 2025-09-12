@@ -948,12 +948,14 @@ Developer)
 - ✅ [Checklists QA](./checklists-qa.md)
 - ✅ [Pruebas de Aceptación del Usuario](./pruebas-aceptacion-usuario.md)
 - ✅ **Gestión de Reportes de Errores** ← Estás aquí
-- ✅ [Testing de Performance y Carga](./testing-performance-carga.md)
-- ✅ [Testing de Seguridad OWASP](./testing-seguridad-owasp.md)
-- ✅ [Testing de Usabilidad](./testing-usabilidad.md)
-- ✅ [Code Review y Refactoring](./code-review-refactoring.md)
-- ✅ [Auditoría de Calidad de Código](./auditoria-calidad-codigo.md)
+- ⏭️ [Testing de Performance y Carga](./testing-performance-carga.md)
+- ⏭️ [Testing de Seguridad OWASP](./testing-seguridad-owasp.md)
+- ⏭️ [Testing de Usabilidad](./testing-usabilidad.md)
+- ⏭️ [Code Review y Refactoring](./code-review-refactoring.md)
+- ⏭️ [Auditoría y Calidad del Código](./auditoria-calidad-codigo.md)
 - ⏭️ [Checklist Específico de Performance](./checklist-performance.md)
+- ⏭️ [Revisión General del Código](./revision-general-codigo.md)
+- ⏭️ [Optimización de Recursos](./optimizacion-recursos.md)
 
 ---
 

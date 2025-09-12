@@ -439,8 +439,10 @@ describe("User Registration Flow", () => {
 - ⏭️ [Testing de Seguridad OWASP](./testing-seguridad-owasp.md)
 - ⏭️ [Testing de Usabilidad](./testing-usabilidad.md)
 - ⏭️ [Code Review y Refactoring](./code-review-refactoring.md)
-- ⏭️ [Auditoría de Calidad de Código](./auditoria-calidad-codigo.md)
+- ⏭️ [Auditoría y Calidad del Código](./auditoria-calidad-codigo.md)
 - ⏭️ [Checklist Específico de Performance](./checklist-performance.md)
+- ⏭️ [Revisión General del Código](./revision-general-codigo.md)
+- ⏭️ [Optimización de Recursos](./optimizacion-recursos.md)
 
 ---
 
