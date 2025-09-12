@@ -250,6 +250,12 @@ Esta etapa tiene un enfoque en sostenibilidad y evolución continua:
   [Mejoras Continuas Programadas](./docs/step_09/mejoras-continuas-programadas.md)
 - ✅
   [Documentación y Knowledge Transfer](./docs/step_09/documentacion-knowledge-transfer.md)
+- ✅ [Retroalimentación del Equipo](./docs/step_09/retroalimentacion-equipo.md)
+- ✅
+  [Evaluación del Cumplimiento del Estándar](./docs/step_09/evaluacion-cumplimiento-estandar.md)
+- ✅ [Lecciones Aprendidas](./docs/step_09/lecciones-aprendidas.md)
+- ✅ [Evaluación de Herramientas](./docs/step_09/evaluacion-herramientas.md)
+- ✅ [Cierre de Proyecto](./docs/step_09/cierre-proyecto.md)
 - ✅ [Métricas y Analytics de Uso](./docs/step_09/metricas-analytics-uso.md)
 
 ## Estructura del Repositorio
@@ -349,6 +355,11 @@ estandar-proyectos/
 │       ├── gestion-nuevas-funcionalidades.md
 │       ├── mejoras-continuas-programadas.md
 │       ├── documentacion-knowledge-transfer.md
+│       ├── retroalimentacion-equipo.md
+│       ├── evaluacion-cumplimiento-estandar.md
+│       ├── lecciones-aprendidas.md
+│       ├── evaluacion-herramientas.md
+│       ├── cierre-proyecto.md
 │       └── metricas-analytics-uso.md
 ├── ignore/                        # Archivos de prueba y borradores
 ├── README.md                      # Este archivo

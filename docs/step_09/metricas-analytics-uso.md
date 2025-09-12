@@ -2,52 +2,60 @@
 
 ## ¿Qué es?
 
-Las métricas y analytics de uso constituyen el sistema de medición y análisis
-del comportamiento de usuarios y rendimiento del sistema en producción. En el
-contexto de Clean Architecture + DDD, esto incluye métricas tanto técnicas
-(performance, errores, disponibilidad) como de negocio (conversiones,
-engagement, valor generado), manteniendo la independencia entre la recolección
-de datos y las reglas de negocio del dominio.
-
-Este sistema permite tomar decisiones informadas sobre la evolución del
-producto, identificar oportunidades de mejora y validar el impacto de nuevas
-funcionalidades en objetivos de negocio.
+Las métricas y analytics de uso son sistemas de medición y análisis que
+proporcionan insights sobre cómo los usuarios interactúan con la aplicación, qué
+funcionalidades utilizan más, dónde encuentran dificultades y cómo evoluciona el
+comportamiento de uso a lo largo del tiempo. Estas métricas son fundamentales
+para la toma de decisiones informadas sobre el producto.
 
 ## ¿Por qué es importante?
 
-- **Decisiones basadas en datos**: Fundamenta decisiones de producto en datos
-  reales
-- **Optimización continua**: Identifica áreas de mejora en experiencia de
-  usuario
-- **Validación de hipótesis**: Valida el impacto de nuevas funcionalidades
-- **ROI measurement**: Mide el retorno de inversión en desarrollo
-- **Performance insights**: Identifica cuellos de botella y problemas de
-  rendimiento
-- **User behavior understanding**: Comprende cómo los usuarios utilizan el
-  sistema
-- **Business intelligence**: Genera insights para estrategia de negocio
+- **Toma de decisiones basada en datos**: Proporciona evidencia objetiva para
+  decisiones de producto
+- **Optimización de UX**: Identifica puntos de fricción y oportunidades de
+  mejora
+- **Validación de hipótesis**: Confirma o refuta suposiciones sobre
+  comportamiento de usuarios
+- **ROI del producto**: Mide el retorno de inversión de nuevas funcionalidades
+- **Detección temprana de problemas**: Identifica issues antes de que se vuelvan
+  críticos
+- **Planificación de roadmap**: Informa la priorización de futuras
+  funcionalidades
+- **Comprensión del valor**: Entiende qué aspectos del producto aportan más
+  valor
+- **Optimización de performance**: Identifica cuellos de botella y áreas de
+  mejora técnica
 
 ## ¿Qué debe incluir?
 
-### Métricas Técnicas
+### Métricas de Adopción
 
-- Response time y latencia por endpoint
-- Error rates y tipos de errores
-- Throughput y utilización de recursos
-- Availability y uptime del sistema
-- Database performance y query analytics
+- **Usuarios activos**: DAU, WAU, MAU (Daily, Weekly, Monthly Active Users)
+- **Tasa de retención**: Usuarios que regresan después del primer uso
+- **Onboarding success**: Porcentaje de usuarios que completan el proceso de
+  incorporación
+- **Feature adoption**: Adopción de funcionalidades específicas
+
+### Métricas de Engagement
+
+- **Tiempo en aplicación**: Duración promedio de sesiones
+- **Frecuencia de uso**: Cuántas veces por día/semana usan la aplicación
+- **Profundidad de uso**: Cuántas funcionalidades diferentes utilizan
+- **Patrones de navegación**: Rutas más comunes dentro de la aplicación
+
+### Métricas de Performance
+
+- **Velocidad de carga**: Tiempo de respuesta de páginas y APIs
+- **Errores**: Tasa de errores 4xx, 5xx, JavaScript errors
+- **Uptime**: Disponibilidad del sistema
+- **Core Web Vitals**: LCP, FID, CLS
 
 ### Métricas de Negocio
 
-- Conversión por funnels principales
-- User engagement y retention
-- Feature adoption rates
-- Revenue metrics y KPIs
-- Customer satisfaction scores
-
-### Analytics de Comportamiento
-
-- User journeys y navigation paths
+- **Conversión**: Tasas de conversión en diferentes funnels
+- **Revenue per user**: Ingresos generados por usuario
+- **Costo de adquisición**: CAC (Customer Acquisition Cost)
+- **Lifetime value**: CLV (Customer Lifetime Value)
 - Feature usage patterns
 - Session duration y page views
 - Drop-off points y friction areas
