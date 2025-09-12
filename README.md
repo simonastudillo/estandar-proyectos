@@ -148,6 +148,7 @@ real, sin embargo el objetivo es utilizar en proyectos futuros.
 ### [7. Testing y Quality Assurance](./docs/step_07/testing-qa.md)
 
 - [Tipos de Pruebas](./docs/step_07/tipos-pruebas.md)
+- [Configuración de Herramientas de Testing](./docs/step_07/configuracion-herramientas-testing.md)
 - [Testing Funcional Automatizado](./docs/step_07/testing-funcional-automatizado.md)
 - [Testing de Regresión](./docs/step_07/testing-regresion.md)
 - [Checklists QA](./docs/step_07/checklists-qa.md)

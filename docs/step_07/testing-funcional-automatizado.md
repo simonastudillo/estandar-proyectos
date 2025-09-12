@@ -760,6 +760,6 @@ describe("UserService", () => {
 
 ## Navegación
 
-[⬅️ Tipos de Pruebas](./tipos-pruebas.md) |
-[🏠 README Principal](../../README.md) |
+[⬅️ Configuración de Herramientas de Testing](./docs/step_07/configuracion-herramientas-testing.md)
+| [🏠 README Principal](../../README.md) |
 [Testing de Regresión ➡️](./testing-regresion.md)
