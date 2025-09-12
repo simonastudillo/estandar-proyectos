@@ -419,24 +419,6 @@ long_query_time = 2
 
 ## Navegación
 
-**Progreso en Despliegue y DevOps:**
-
-- ✅ [Despliegue y DevOps](./despliegue-devops.md)
-- ✅ **Configuración de Servidores de Producción** ← Estás aquí
-- ⏭️ [CI/CD Pipelines con GitHub Actions](./ci-cd-pipelines-github-actions.md)
-- ⏭️ [Docker y Contenedores](./docker-contenedores.md)
-- ⏭️ [Monitoreo y Logging](./monitoreo-logging.md)
-- ⏭️ [Optimización base de datos](./optimizacion-base-datos.md)
-- ⏭️ [Backup y Recovery](./backup-recovery-strategies.md)
-- ⏭️ [SSL y Configuraciones de Seguridad](./ssl-configuraciones-seguridad.md)
-
----
-
-### Siguiente Paso
-
-Continúa con
-[**CI/CD Pipelines con GitHub Actions**](./ci-cd-pipelines-github-actions.md)
-
 [⬅️ Despliegue y DevOps](./despliegue-devops.md) |
 [🏠 README Principal](../../README.md) |
-[➡️ CI/CD Pipelines con GitHub Actions](./ci-cd-pipelines-github-actions.md)
+[CI/CD Pipelines con GitHub Actions ➡️](./ci-cd-pipelines-github-actions.md)

@@ -794,24 +794,6 @@ export class DependencyMonitorService {
 
 ## Navegación
 
-**Progreso en Mantenimiento y Evolución:**
-
-- ✅ [Mantenimiento y Evolución](./mantenimiento-evolucion.md)
-- ✅ [Monitoreo Post-Deployment](./monitoreo-post-deployment.md)
-- ✅ [Bug Fixes y Hotfixes](./bug-fixes-hotfixes.md)
-- ✅ **Actualización de Dependencias** ← Estás aquí
-- ⏭️ [Gestión de Nuevas Funcionalidades](./gestion-nuevas-funcionalidades.md)
-- ⏭️ [Mejoras continuas programadas](./mejoras-continuas-programadas.md)
-- ⏭️ [Documentación y Knowledge Transfer](./documentacion-knowledge-transfer.md)
-- ⏭️ [Métricas y Analytics de Uso](./metricas-analytics-uso.md)
-
----
-
-### Siguiente Paso
-
-Continúa con
-[**Gestión de Nuevas Funcionalidades**](./gestion-nuevas-funcionalidades.md)
-
 [⬅️ Bug Fixes y Hotfixes](./bug-fixes-hotfixes.md) |
 [🏠 README Principal](../../README.md) |
-[➡️ Gestión de Nuevas Funcionalidades](./gestion-nuevas-funcionalidades.md)
+[Gestión de Nuevas Funcionalidades ➡️](./gestion-nuevas-funcionalidades.md)

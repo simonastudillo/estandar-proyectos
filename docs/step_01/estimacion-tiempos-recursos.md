@@ -247,26 +247,6 @@ relativa de cada tarea, considerando esfuerzo, complejidad técnica y riesgo:
 
 ## Navegación
 
-**Progreso en Planificación y Análisis:**
-
-- ✅ [Planificación y Análisis - Introducción](./planificacion-analisis.md)
-- ✅
-  [Requerimientos Funcionales y No Funcionales](./requerimientos-funcionales-no-funcionales.md)
-- ✅ [Análisis de Stakeholders](./analisis-stakeholders.md)
-- ✅ [Roadmap del Proyecto](./roadmap-proyecto.md)
-- ✅ [Metodología de Trabajo](./metodologia-trabajo.md)
-- ✅ [Definición del Alcance del Proyecto](./definicion-alcance.md)
-- ✅ **Estimación de Tiempos y Recursos** ← Estás aquí
-- ⏭️ [Análisis de Riesgos](./analisis-riesgos.md)
-
----
-
-### Siguiente Paso
-
-Continúa con el [**Análisis de Riesgos**](./analisis-riesgos.md) para
-identificar y mitigar los posibles obstáculos que podrían afectar el éxito de tu
-proyecto.
-
 [⬅️ Definición del Alcance](./definicion-alcance.md) |
 [🏠 README Principal](../../README.md) |
-[➡️ Análisis de Riesgos](./analisis-riesgos.md)
+[Análisis de Riesgos ➡️](./analisis-riesgos.md)

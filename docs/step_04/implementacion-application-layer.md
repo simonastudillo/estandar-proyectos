@@ -2,16 +2,23 @@
 
 ## ¿Qué es?
 
-La capa de aplicación es responsable de orquestar los casos de uso del sistema, coordinando las interacciones entre la capa de dominio y el mundo exterior. Esta capa contiene los casos de uso, DTOs (Data Transfer Objects), commands, queries y contratos de servicios externos. No contiene lógica de negocio, sino que delega en la capa de dominio.
+La capa de aplicación es responsable de orquestar los casos de uso del sistema,
+coordinando las interacciones entre la capa de dominio y el mundo exterior. Esta
+capa contiene los casos de uso, DTOs (Data Transfer Objects), commands, queries
+y contratos de servicios externos. No contiene lógica de negocio, sino que
+delega en la capa de dominio.
 
 ## ¿Por qué es importante?
 
-- **Orquestación**: Coordina las operaciones entre múltiples entidades y servicios
-- **Aislamiento**: Mantiene la capa de dominio pura y libre de detalles de aplicación
+- **Orquestación**: Coordina las operaciones entre múltiples entidades y
+  servicios
+- **Aislamiento**: Mantiene la capa de dominio pura y libre de detalles de
+  aplicación
 - **Casos de uso explícitos**: Cada funcionalidad está claramente definida
 - **Transaccionalidad**: Maneja las transacciones y la persistencia
 - **Transformación de datos**: Convierte entre formatos externos e internos
-- **Punto de entrada**: Define los puntos de acceso para las operaciones del sistema
+- **Punto de entrada**: Define los puntos de acceso para las operaciones del
+  sistema
 
 ## ¿Qué debe incluir?
 
@@ -587,27 +594,8 @@ class HandleCreateUserCommand
 }
 ```
 
----
-
 ## Navegación
 
-**Progreso en Desarrollo del Backend:**
-
-- ✅ [Desarrollo del Backend](desarrollo-backend.md)
-- ✅ [Implementación Domain Layer](./implementacion-domain-layer.md)
-- ✅ **Implementación Application Layer** ← Estás aquí
-- ⏭️ [Implementación Infrastructure Layer](implementacion-infrastructure-layer.md)
-- ⏭️ [APIs RESTful Versionadas](apis-restful-versionadas.md)
-- ⏭️ [Autenticación Laravel Sanctum](autenticacion-laravel-sanctum.md)
-- ⏭️ [Testing TDD Backend](testing-tdd-backend.md)
-
----
-
-### Siguiente Paso
-
-Continúa con
-[**Implementación Infrastructure Layer**](./implementacion-infrastructure-layer.md).
-
-[⬅️ Implementación Domain Layer](./implementacion-domain-layer.md)
-| [🏠 README Principal](../../README.md) |
-[➡️ Implementación Infrastructure Layer](implementacion-infrastructure-layer.md)
+[⬅️ Implementación Domain Layer](./implementacion-domain-layer.md) |
+[🏠 README Principal](../../README.md) |
+[Implementación Infrastructure Layer ➡️](implementacion-infrastructure-layer.md)

@@ -2,15 +2,21 @@
 
 ## ¿Qué es?
 
-Las lecciones aprendidas son un registro estructurado de conocimientos, experiencias, insights y aprendizajes obtenidos durante el desarrollo del proyecto. Incluye tanto los éxitos como los fracasos, las decisiones acertadas y los errores cometidos, con el objetivo de mejorar futuros proyectos y procesos.
+Las lecciones aprendidas son un registro estructurado de conocimientos,
+experiencias, insights y aprendizajes obtenidos durante el desarrollo del
+proyecto. Incluye tanto los éxitos como los fracasos, las decisiones acertadas y
+los errores cometidos, con el objetivo de mejorar futuros proyectos y procesos.
 
 ## ¿Por qué es importante?
 
 - **Mejora continua**: Evita repetir errores y optimiza procesos exitosos
-- **Transferencia de conocimiento**: Comparte experiencias valiosas con futuros equipos
+- **Transferencia de conocimiento**: Comparte experiencias valiosas con futuros
+  equipos
 - **Toma de decisiones**: Informa mejores decisiones basadas en experiencia real
-- **Reducción de riesgos**: Identifica y mitiga riesgos conocidos en futuros proyectos
-- **Optimización de recursos**: Maximiza la eficiencia basada en experiencias pasadas
+- **Reducción de riesgos**: Identifica y mitiga riesgos conocidos en futuros
+  proyectos
+- **Optimización de recursos**: Maximiza la eficiencia basada en experiencias
+  pasadas
 - **Desarrollo profesional**: Fomenta el crecimiento y aprendizaje del equipo
 - **Cultura organizacional**: Crea una cultura de aprendizaje y transparencia
 - **ROI del conocimiento**: Capitaliza la inversión en experiencia adquirida
@@ -19,9 +25,11 @@ Las lecciones aprendidas son un registro estructurado de conocimientos, experien
 
 ### Lecciones Técnicas
 
-- **Arquitectura y Diseño**: Decisiones de arquitectura que funcionaron o fallaron
+- **Arquitectura y Diseño**: Decisiones de arquitectura que funcionaron o
+  fallaron
 - **Stack Tecnológico**: Efectividad de las tecnologías seleccionadas
-- **Patrones y Prácticas**: Patrones de código que resultaron útiles o problemáticos
+- **Patrones y Prácticas**: Patrones de código que resultaron útiles o
+  problemáticos
 - **Performance**: Optimizaciones que generaron mayor impacto
 
 ### Lecciones de Proceso
@@ -161,251 +169,260 @@ EOF
 // lessons-learned/LessonsLearnedManager.ts
 
 interface Lesson {
-  id: string;
-  contributor: string;
-  date: Date;
-  category: 'technical' | 'process' | 'team' | 'business' | 'tools';
-  priority: 'high' | 'medium' | 'low';
-  title: string;
-  context: {
-    situation: string;
-    decision: string;
-  };
-  outcome: {
-    result: string;
-    impact: string;
-  };
-  lesson: {
-    learning: string;
-    importance: string;
-  };
-  futureApplication: {
-    whatToDoDifferent: string;
-    recommendation: string;
-  };
-  evidence?: {
-    metrics?: string;
-    references?: string[];
-  };
-  tags: string[];
-  validated: boolean;
-  appliedInProjects?: string[];
+   id: string;
+   contributor: string;
+   date: Date;
+   category: "technical" | "process" | "team" | "business" | "tools";
+   priority: "high" | "medium" | "low";
+   title: string;
+   context: {
+      situation: string;
+      decision: string;
+   };
+   outcome: {
+      result: string;
+      impact: string;
+   };
+   lesson: {
+      learning: string;
+      importance: string;
+   };
+   futureApplication: {
+      whatToDoDifferent: string;
+      recommendation: string;
+   };
+   evidence?: {
+      metrics?: string;
+      references?: string[];
+   };
+   tags: string[];
+   validated: boolean;
+   appliedInProjects?: string[];
 }
 
 interface LessonsSession {
-  id: string;
-  date: Date;
-  facilitator: string;
-  participants: string[];
-  focus: string;
-  lessonsIdentified: {
-    whatWorked: string[];
-    whatDidntWork: string[];
-    insights: string[];
-    changes: Array<{
-      change: string;
+   id: string;
+   date: Date;
+   facilitator: string;
+   participants: string[];
+   focus: string;
+   lessonsIdentified: {
+      whatWorked: string[];
+      whatDidntWork: string[];
+      insights: string[];
+      changes: Array<{
+         change: string;
+         responsible: string;
+         deadline: Date;
+      }>;
+   };
+   prioritizedLessons: Array<{
+      lesson: string;
+      impact: "high" | "medium" | "low";
+      effort: "high" | "medium" | "low";
+      score: number;
+   }>;
+   actionItems: Array<{
+      action: string;
       responsible: string;
       deadline: Date;
-    }>;
-  };
-  prioritizedLessons: Array<{
-    lesson: string;
-    impact: 'high' | 'medium' | 'low';
-    effort: 'high' | 'medium' | 'low';
-    score: number;
-  }>;
-  actionItems: Array<{
-    action: string;
-    responsible: string;
-    deadline: Date;
-    status: 'pending' | 'in_progress' | 'completed';
-  }>;
+      status: "pending" | "in_progress" | "completed";
+   }>;
 }
 
 export class LessonsLearnedManager {
-  private lessons: Lesson[] = [];
-  private sessions: LessonsSession[] = [];
+   private lessons: Lesson[] = [];
+   private sessions: LessonsSession[] = [];
 
-  public captureLesson(lessonData: Omit<Lesson, 'id' | 'validated' | 'appliedInProjects'>): string {
-    const lesson: Lesson = {
-      ...lessonData,
-      id: this.generateId(),
-      validated: false,
-      appliedInProjects: []
-    };
+   public captureLesson(
+      lessonData: Omit<Lesson, "id" | "validated" | "appliedInProjects">,
+   ): string {
+      const lesson: Lesson = {
+         ...lessonData,
+         id: this.generateId(),
+         validated: false,
+         appliedInProjects: [],
+      };
 
-    this.lessons.push(lesson);
-    this.persistLesson(lesson);
-    
-    return lesson.id;
-  }
+      this.lessons.push(lesson);
+      this.persistLesson(lesson);
 
-  public conductSession(sessionData: Omit<LessonsSession, 'id'>): string {
-    const session: LessonsSession = {
-      ...sessionData,
-      id: this.generateId()
-    };
+      return lesson.id;
+   }
 
-    this.sessions.push(session);
-    this.persistSession(session);
-    
-    // Convertir insights de la sesión en lecciones individuales
-    this.convertSessionToLessons(session);
-    
-    return session.id;
-  }
+   public conductSession(sessionData: Omit<LessonsSession, "id">): string {
+      const session: LessonsSession = {
+         ...sessionData,
+         id: this.generateId(),
+      };
 
-  public analyzePatterns(): LessonsAnalysis {
-    return {
-      frequentCategories: this.getMostFrequentCategories(),
-      commonTags: this.getMostCommonTags(),
-      highImpactLessons: this.getHighImpactLessons(),
-      unvalidatedLessons: this.getUnvalidatedLessons(),
-      trendAnalysis: this.analyzeTrends(),
-      recommendations: this.generateRecommendations()
-    };
-  }
+      this.sessions.push(session);
+      this.persistSession(session);
 
-  public generateKnowledgeBase(): KnowledgeBase {
-    const categorizedLessons = this.categorizeLessons();
-    
-    return {
-      technicalLessons: {
-        architecture: categorizedLessons.technical.filter(l => 
-          l.tags.includes('architecture') || l.tags.includes('design')
-        ),
-        performance: categorizedLessons.technical.filter(l => 
-          l.tags.includes('performance') || l.tags.includes('optimization')
-        ),
-        security: categorizedLessons.technical.filter(l => 
-          l.tags.includes('security')
-        ),
-        testing: categorizedLessons.technical.filter(l => 
-          l.tags.includes('testing') || l.tags.includes('qa')
-        )
-      },
-      processLessons: {
-        methodology: categorizedLessons.process.filter(l => 
-          l.tags.includes('scrumban') || l.tags.includes('agile')
-        ),
-        communication: categorizedLessons.process.filter(l => 
-          l.tags.includes('communication')
-        ),
-        planning: categorizedLessons.process.filter(l => 
-          l.tags.includes('planning') || l.tags.includes('estimation')
-        )
-      },
-      teamLessons: categorizedLessons.team,
-      businessLessons: categorizedLessons.business,
-      toolsLessons: categorizedLessons.tools,
-      bestPractices: this.extractBestPractices(),
-      antiPatterns: this.extractAntiPatterns()
-    };
-  }
+      // Convertir insights de la sesión en lecciones individuales
+      this.convertSessionToLessons(session);
 
-  private convertSessionToLessons(session: LessonsSession): void {
-    // Convertir lo que funcionó bien en lecciones
-    session.lessonsIdentified.whatWorked.forEach(item => {
-      this.captureLesson({
-        contributor: session.facilitator,
-        date: session.date,
-        category: this.inferCategory(item),
-        priority: 'medium',
-        title: `Práctica exitosa: ${item}`,
-        context: {
-          situation: `Durante ${session.focus}`,
-          decision: item
-        },
-        outcome: {
-          result: 'Resultado positivo en el proyecto',
-          impact: 'Contribuyó al éxito del proyecto'
-        },
-        lesson: {
-          learning: `Esta práctica es efectiva: ${item}`,
-          importance: 'Debe replicarse en futuros proyectos'
-        },
-        futureApplication: {
-          whatToDoDifferent: 'Continuar aplicando esta práctica',
-          recommendation: `Implementar ${item} desde el inicio del proyecto`
-        },
-        tags: this.inferTags(item)
+      return session.id;
+   }
+
+   public analyzePatterns(): LessonsAnalysis {
+      return {
+         frequentCategories: this.getMostFrequentCategories(),
+         commonTags: this.getMostCommonTags(),
+         highImpactLessons: this.getHighImpactLessons(),
+         unvalidatedLessons: this.getUnvalidatedLessons(),
+         trendAnalysis: this.analyzeTrends(),
+         recommendations: this.generateRecommendations(),
+      };
+   }
+
+   public generateKnowledgeBase(): KnowledgeBase {
+      const categorizedLessons = this.categorizeLessons();
+
+      return {
+         technicalLessons: {
+            architecture: categorizedLessons.technical.filter((l) =>
+               l.tags.includes("architecture") || l.tags.includes("design")
+            ),
+            performance: categorizedLessons.technical.filter((l) =>
+               l.tags.includes("performance") || l.tags.includes("optimization")
+            ),
+            security: categorizedLessons.technical.filter((l) =>
+               l.tags.includes("security")
+            ),
+            testing: categorizedLessons.technical.filter((l) =>
+               l.tags.includes("testing") || l.tags.includes("qa")
+            ),
+         },
+         processLessons: {
+            methodology: categorizedLessons.process.filter((l) =>
+               l.tags.includes("scrumban") || l.tags.includes("agile")
+            ),
+            communication: categorizedLessons.process.filter((l) =>
+               l.tags.includes("communication")
+            ),
+            planning: categorizedLessons.process.filter((l) =>
+               l.tags.includes("planning") || l.tags.includes("estimation")
+            ),
+         },
+         teamLessons: categorizedLessons.team,
+         businessLessons: categorizedLessons.business,
+         toolsLessons: categorizedLessons.tools,
+         bestPractices: this.extractBestPractices(),
+         antiPatterns: this.extractAntiPatterns(),
+      };
+   }
+
+   private convertSessionToLessons(session: LessonsSession): void {
+      // Convertir lo que funcionó bien en lecciones
+      session.lessonsIdentified.whatWorked.forEach((item) => {
+         this.captureLesson({
+            contributor: session.facilitator,
+            date: session.date,
+            category: this.inferCategory(item),
+            priority: "medium",
+            title: `Práctica exitosa: ${item}`,
+            context: {
+               situation: `Durante ${session.focus}`,
+               decision: item,
+            },
+            outcome: {
+               result: "Resultado positivo en el proyecto",
+               impact: "Contribuyó al éxito del proyecto",
+            },
+            lesson: {
+               learning: `Esta práctica es efectiva: ${item}`,
+               importance: "Debe replicarse en futuros proyectos",
+            },
+            futureApplication: {
+               whatToDoDifferent: "Continuar aplicando esta práctica",
+               recommendation:
+                  `Implementar ${item} desde el inicio del proyecto`,
+            },
+            tags: this.inferTags(item),
+         });
       });
-    });
 
-    // Convertir lo que no funcionó en lecciones
-    session.lessonsIdentified.whatDidntWork.forEach(item => {
-      this.captureLesson({
-        contributor: session.facilitator,
-        date: session.date,
-        category: this.inferCategory(item),
-        priority: 'high',
-        title: `Problema identificado: ${item}`,
-        context: {
-          situation: `Durante ${session.focus}`,
-          decision: 'Se implementó una práctica que no funcionó'
-        },
-        outcome: {
-          result: 'Resultado negativo o subóptimo',
-          impact: item
-        },
-        lesson: {
-          learning: `Esta práctica no es efectiva: ${item}`,
-          importance: 'Debe evitarse en futuros proyectos'
-        },
-        futureApplication: {
-          whatToDoDifferent: 'Evitar esta práctica o encontrar alternativas',
-          recommendation: `No implementar ${item} o buscar mejores alternativas`
-        },
-        tags: this.inferTags(item)
+      // Convertir lo que no funcionó en lecciones
+      session.lessonsIdentified.whatDidntWork.forEach((item) => {
+         this.captureLesson({
+            contributor: session.facilitator,
+            date: session.date,
+            category: this.inferCategory(item),
+            priority: "high",
+            title: `Problema identificado: ${item}`,
+            context: {
+               situation: `Durante ${session.focus}`,
+               decision: "Se implementó una práctica que no funcionó",
+            },
+            outcome: {
+               result: "Resultado negativo o subóptimo",
+               impact: item,
+            },
+            lesson: {
+               learning: `Esta práctica no es efectiva: ${item}`,
+               importance: "Debe evitarse en futuros proyectos",
+            },
+            futureApplication: {
+               whatToDoDifferent:
+                  "Evitar esta práctica o encontrar alternativas",
+               recommendation:
+                  `No implementar ${item} o buscar mejores alternativas`,
+            },
+            tags: this.inferTags(item),
+         });
       });
-    });
-  }
+   }
 
-  public exportLessonsToDocumentation(): string {
-    const knowledgeBase = this.generateKnowledgeBase();
-    
-    let documentation = "# Base de Conocimiento - Lecciones Aprendidas\n\n";
-    
-    documentation += "## Resumen Ejecutivo\n\n";
-    documentation += `- **Total de lecciones capturadas**: ${this.lessons.length}\n`;
-    documentation += `- **Sesiones realizadas**: ${this.sessions.length}\n`;
-    documentation += `- **Categorías principales**: ${this.getMostFrequentCategories().join(', ')}\n\n`;
-    
-    documentation += "## Lecciones Técnicas\n\n";
-    documentation += "### Arquitectura y Diseño\n\n";
-    knowledgeBase.technicalLessons.architecture.forEach(lesson => {
-      documentation += `#### ${lesson.title}\n`;
-      documentation += `**Contexto**: ${lesson.context.situation}\n\n`;
-      documentation += `**Lección**: ${lesson.lesson.learning}\n\n`;
-      documentation += `**Recomendación**: ${lesson.futureApplication.recommendation}\n\n`;
-      documentation += `**Tags**: ${lesson.tags.join(', ')}\n\n`;
-      documentation += "---\n\n";
-    });
-    
-    // ... continuar con otras categorías
-    
-    return documentation;
-  }
+   public exportLessonsToDocumentation(): string {
+      const knowledgeBase = this.generateKnowledgeBase();
 
-  private generateRecommendations(): string[] {
-    const recommendations: string[] = [];
-    const analysis = this.analyzePatterns();
-    
-    // Recomendaciones basadas en patrones frecuentes
-    if (analysis.frequentCategories.includes('technical')) {
-      recommendations.push(
-        "Crear sesiones técnicas específicas para capturar más lecciones de arquitectura"
-      );
-    }
-    
-    if (analysis.unvalidatedLessons.length > 5) {
-      recommendations.push(
-        "Implementar proceso de validación para lecciones no verificadas"
-      );
-    }
-    
-    return recommendations;
-  }
+      let documentation = "# Base de Conocimiento - Lecciones Aprendidas\n\n";
+
+      documentation += "## Resumen Ejecutivo\n\n";
+      documentation +=
+         `- **Total de lecciones capturadas**: ${this.lessons.length}\n`;
+      documentation += `- **Sesiones realizadas**: ${this.sessions.length}\n`;
+      documentation += `- **Categorías principales**: ${
+         this.getMostFrequentCategories().join(", ")
+      }\n\n`;
+
+      documentation += "## Lecciones Técnicas\n\n";
+      documentation += "### Arquitectura y Diseño\n\n";
+      knowledgeBase.technicalLessons.architecture.forEach((lesson) => {
+         documentation += `#### ${lesson.title}\n`;
+         documentation += `**Contexto**: ${lesson.context.situation}\n\n`;
+         documentation += `**Lección**: ${lesson.lesson.learning}\n\n`;
+         documentation +=
+            `**Recomendación**: ${lesson.futureApplication.recommendation}\n\n`;
+         documentation += `**Tags**: ${lesson.tags.join(", ")}\n\n`;
+         documentation += "---\n\n";
+      });
+
+      // ... continuar con otras categorías
+
+      return documentation;
+   }
+
+   private generateRecommendations(): string[] {
+      const recommendations: string[] = [];
+      const analysis = this.analyzePatterns();
+
+      // Recomendaciones basadas en patrones frecuentes
+      if (analysis.frequentCategories.includes("technical")) {
+         recommendations.push(
+            "Crear sesiones técnicas específicas para capturar más lecciones de arquitectura",
+         );
+      }
+
+      if (analysis.unvalidatedLessons.length > 5) {
+         recommendations.push(
+            "Implementar proceso de validación para lecciones no verificadas",
+         );
+      }
+
+      return recommendations;
+   }
 }
 ```
 
@@ -643,371 +660,411 @@ echo "📊 Reporte de análisis de lecciones generado\n";
 
 ```typescript
 // lessons-learned/dashboard/LessonsDashboard.tsx
-import React, { useState, useEffect } from 'react';
-import { 
-  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
-  LineChart, Line, PieChart, Pie, Cell, Treemap
-} from 'recharts';
+import React, { useEffect, useState } from "react";
+import {
+   Bar,
+   BarChart,
+   CartesianGrid,
+   Cell,
+   Line,
+   LineChart,
+   Pie,
+   PieChart,
+   ResponsiveContainer,
+   Tooltip,
+   Treemap,
+   XAxis,
+   YAxis,
+} from "recharts";
 
 interface LessonsDashboardProps {
-  lessons: Lesson[];
-  sessions: LessonsSession[];
-  analysis: LessonsAnalysis;
+   lessons: Lesson[];
+   sessions: LessonsSession[];
+   analysis: LessonsAnalysis;
 }
 
-export const LessonsDashboard: React.FC<LessonsDashboardProps> = ({ 
-  lessons, sessions, analysis 
+export const LessonsDashboard: React.FC<LessonsDashboardProps> = ({
+   lessons,
+   sessions,
+   analysis,
 }) => {
-  const [activeTab, setActiveTab] = useState('overview');
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+   const [activeTab, setActiveTab] = useState("overview");
+   const [selectedCategory, setSelectedCategory] = useState<string | null>(
+      null,
+   );
 
-  const categoryData = Object.entries(analysis.frequentCategories).map(([category, count]) => ({
-    category: category.charAt(0).toUpperCase() + category.slice(1),
-    count,
-    percentage: Math.round((count / lessons.length) * 100)
-  }));
+   const categoryData = Object.entries(analysis.frequentCategories).map((
+      [category, count],
+   ) => ({
+      category: category.charAt(0).toUpperCase() + category.slice(1),
+      count,
+      percentage: Math.round((count / lessons.length) * 100),
+   }));
 
-  const priorityData = lessons.reduce((acc, lesson) => {
-    acc[lesson.priority] = (acc[lesson.priority] || 0) + 1;
-    return acc;
-  }, {} as Record<string, number>);
+   const priorityData = lessons.reduce((acc, lesson) => {
+      acc[lesson.priority] = (acc[lesson.priority] || 0) + 1;
+      return acc;
+   }, {} as Record<string, number>);
 
-  const validationData = [
-    { 
-      name: 'Validadas', 
-      value: lessons.filter(l => l.validated).length,
-      color: '#10B981'
-    },
-    { 
-      name: 'No Validadas', 
-      value: lessons.filter(l => !l.validated).length,
-      color: '#F59E0B'
-    }
-  ];
+   const validationData = [
+      {
+         name: "Validadas",
+         value: lessons.filter((l) => l.validated).length,
+         color: "#10B981",
+      },
+      {
+         name: "No Validadas",
+         value: lessons.filter((l) => !l.validated).length,
+         color: "#F59E0B",
+      },
+   ];
 
-  return (
-    <div className="lessons-dashboard">
-      <header className="dashboard-header">
-        <h1>Dashboard de Lecciones Aprendidas</h1>
-        <div className="stats-summary">
-          <div className="stat-card">
-            <h3>Total Lecciones</h3>
-            <div className="stat-value">{lessons.length}</div>
-          </div>
-          <div className="stat-card">
-            <h3>Sesiones Realizadas</h3>
-            <div className="stat-value">{sessions.length}</div>
-          </div>
-          <div className="stat-card">
-            <h3>Lecciones Aplicadas</h3>
-            <div className="stat-value">
-              {lessons.filter(l => l.appliedInProjects && l.appliedInProjects.length > 0).length}
+   return (
+      <div className="lessons-dashboard">
+         <header className="dashboard-header">
+            <h1>Dashboard de Lecciones Aprendidas</h1>
+            <div className="stats-summary">
+               <div className="stat-card">
+                  <h3>Total Lecciones</h3>
+                  <div className="stat-value">{lessons.length}</div>
+               </div>
+               <div className="stat-card">
+                  <h3>Sesiones Realizadas</h3>
+                  <div className="stat-value">{sessions.length}</div>
+               </div>
+               <div className="stat-card">
+                  <h3>Lecciones Aplicadas</h3>
+                  <div className="stat-value">
+                     {lessons.filter((l) =>
+                        l.appliedInProjects && l.appliedInProjects.length > 0
+                     ).length}
+                  </div>
+               </div>
+               <div className="stat-card">
+                  <h3>Tasa de Validación</h3>
+                  <div className="stat-value">
+                     {Math.round(
+                        (lessons.filter((l) => l.validated).length /
+                           lessons.length) * 100,
+                     )}%
+                  </div>
+               </div>
             </div>
-          </div>
-          <div className="stat-card">
-            <h3>Tasa de Validación</h3>
-            <div className="stat-value">
-              {Math.round((lessons.filter(l => l.validated).length / lessons.length) * 100)}%
-            </div>
-          </div>
-        </div>
-      </header>
+         </header>
 
-      <nav className="dashboard-tabs">
-        <button 
-          className={activeTab === 'overview' ? 'active' : ''}
-          onClick={() => setActiveTab('overview')}
-        >
-          Resumen
-        </button>
-        <button 
-          className={activeTab === 'categories' ? 'active' : ''}
-          onClick={() => setActiveTab('categories')}
-        >
-          Por Categoría
-        </button>
-        <button 
-          className={activeTab === 'trends' ? 'active' : ''}
-          onClick={() => setActiveTab('trends')}
-        >
-          Tendencias
-        </button>
-        <button 
-          className={activeTab === 'knowledge' ? 'active' : ''}
-          onClick={() => setActiveTab('knowledge')}
-        >
-          Base de Conocimiento
-        </button>
-        <button 
-          className={activeTab === 'recommendations' ? 'active' : ''}
-          onClick={() => setActiveTab('recommendations')}
-        >
-          Recomendaciones
-        </button>
-      </nav>
+         <nav className="dashboard-tabs">
+            <button
+               className={activeTab === "overview" ? "active" : ""}
+               onClick={() => setActiveTab("overview")}
+            >
+               Resumen
+            </button>
+            <button
+               className={activeTab === "categories" ? "active" : ""}
+               onClick={() => setActiveTab("categories")}
+            >
+               Por Categoría
+            </button>
+            <button
+               className={activeTab === "trends" ? "active" : ""}
+               onClick={() => setActiveTab("trends")}
+            >
+               Tendencias
+            </button>
+            <button
+               className={activeTab === "knowledge" ? "active" : ""}
+               onClick={() => setActiveTab("knowledge")}
+            >
+               Base de Conocimiento
+            </button>
+            <button
+               className={activeTab === "recommendations" ? "active" : ""}
+               onClick={() => setActiveTab("recommendations")}
+            >
+               Recomendaciones
+            </button>
+         </nav>
 
-      <main className="dashboard-content">
-        {activeTab === 'overview' && (
-          <OverviewSection 
-            categoryData={categoryData}
-            priorityData={priorityData}
-            validationData={validationData}
-            lessons={lessons}
-          />
-        )}
-        {activeTab === 'categories' && (
-          <CategoriesSection 
-            lessons={lessons}
-            selectedCategory={selectedCategory}
-            onCategorySelect={setSelectedCategory}
-          />
-        )}
-        {activeTab === 'trends' && (
-          <TrendsSection 
-            lessons={lessons}
-            sessions={sessions}
-            analysis={analysis}
-          />
-        )}
-        {activeTab === 'knowledge' && (
-          <KnowledgeBaseSection lessons={lessons} />
-        )}
-        {activeTab === 'recommendations' && (
-          <RecommendationsSection analysis={analysis} />
-        )}
-      </main>
-    </div>
-  );
+         <main className="dashboard-content">
+            {activeTab === "overview" && (
+               <OverviewSection
+                  categoryData={categoryData}
+                  priorityData={priorityData}
+                  validationData={validationData}
+                  lessons={lessons}
+               />
+            )}
+            {activeTab === "categories" && (
+               <CategoriesSection
+                  lessons={lessons}
+                  selectedCategory={selectedCategory}
+                  onCategorySelect={setSelectedCategory}
+               />
+            )}
+            {activeTab === "trends" && (
+               <TrendsSection
+                  lessons={lessons}
+                  sessions={sessions}
+                  analysis={analysis}
+               />
+            )}
+            {activeTab === "knowledge" && (
+               <KnowledgeBaseSection lessons={lessons} />
+            )}
+            {activeTab === "recommendations" && (
+               <RecommendationsSection analysis={analysis} />
+            )}
+         </main>
+      </div>
+   );
 };
 
 const OverviewSection: React.FC<{
-  categoryData: any[];
-  priorityData: Record<string, number>;
-  validationData: any[];
-  lessons: Lesson[];
+   categoryData: any[];
+   priorityData: Record<string, number>;
+   validationData: any[];
+   lessons: Lesson[];
 }> = ({ categoryData, priorityData, validationData, lessons }) => {
-  
-  const recentLessons = lessons
-    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-    .slice(0, 5);
+   const recentLessons = lessons
+      .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+      .slice(0, 5);
 
-  const highImpactLessons = lessons
-    .filter(l => l.priority === 'high')
-    .slice(0, 3);
+   const highImpactLessons = lessons
+      .filter((l) => l.priority === "high")
+      .slice(0, 3);
 
-  return (
-    <div className="overview-section">
-      <div className="charts-grid">
-        <div className="chart-container">
-          <h3>Distribución por Categoría</h3>
-          <ResponsiveContainer width="100%" height={300}>
-            <BarChart data={categoryData}>
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="category" />
-              <YAxis />
-              <Tooltip />
-              <Bar dataKey="count" fill="#8884d8" />
-            </BarChart>
-          </ResponsiveContainer>
-        </div>
+   return (
+      <div className="overview-section">
+         <div className="charts-grid">
+            <div className="chart-container">
+               <h3>Distribución por Categoría</h3>
+               <ResponsiveContainer width="100%" height={300}>
+                  <BarChart data={categoryData}>
+                     <CartesianGrid strokeDasharray="3 3" />
+                     <XAxis dataKey="category" />
+                     <YAxis />
+                     <Tooltip />
+                     <Bar dataKey="count" fill="#8884d8" />
+                  </BarChart>
+               </ResponsiveContainer>
+            </div>
 
-        <div className="chart-container">
-          <h3>Estado de Validación</h3>
-          <ResponsiveContainer width="100%" height={300}>
-            <PieChart>
-              <Pie
-                data={validationData}
-                cx="50%"
-                cy="50%"
-                labelLine={false}
-                label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
-                outerRadius={80}
-                fill="#8884d8"
-                dataKey="value"
-              >
-                {validationData.map((entry, index) => (
-                  <Cell key={`cell-${index}`} fill={entry.color} />
-                ))}
-              </Pie>
-              <Tooltip />
-            </PieChart>
-          </ResponsiveContainer>
-        </div>
+            <div className="chart-container">
+               <h3>Estado de Validación</h3>
+               <ResponsiveContainer width="100%" height={300}>
+                  <PieChart>
+                     <Pie
+                        data={validationData}
+                        cx="50%"
+                        cy="50%"
+                        labelLine={false}
+                        label={({ name, percent }) =>
+                           `${name} ${(percent * 100).toFixed(0)}%`}
+                        outerRadius={80}
+                        fill="#8884d8"
+                        dataKey="value"
+                     >
+                        {validationData.map((entry, index) => (
+                           <Cell key={`cell-${index}`} fill={entry.color} />
+                        ))}
+                     </Pie>
+                     <Tooltip />
+                  </PieChart>
+               </ResponsiveContainer>
+            </div>
+         </div>
+
+         <div className="lessons-lists">
+            <div className="recent-lessons">
+               <h3>Lecciones Recientes</h3>
+               <div className="lessons-list">
+                  {recentLessons.map((lesson) => (
+                     <div key={lesson.id} className="lesson-item">
+                        <div className="lesson-title">{lesson.title}</div>
+                        <div className="lesson-meta">
+                           <span className={`category ${lesson.category}`}>
+                              {lesson.category}
+                           </span>
+                           <span className={`priority ${lesson.priority}`}>
+                              {lesson.priority}
+                           </span>
+                           <span className="date">
+                              {new Date(lesson.date).toLocaleDateString()}
+                           </span>
+                        </div>
+                        <div className="lesson-summary">
+                           {lesson.lesson.learning.substring(0, 120)}...
+                        </div>
+                     </div>
+                  ))}
+               </div>
+            </div>
+
+            <div className="high-impact-lessons">
+               <h3>Lecciones de Alto Impacto</h3>
+               <div className="lessons-list">
+                  {highImpactLessons.map((lesson) => (
+                     <div key={lesson.id} className="lesson-item high-impact">
+                        <div className="lesson-title">{lesson.title}</div>
+                        <div className="lesson-application">
+                           Aplicada en: {lesson.appliedInProjects?.length || 0}
+                           {" "}
+                           proyectos
+                        </div>
+                        <div className="lesson-summary">
+                           {lesson.futureApplication.recommendation}
+                        </div>
+                     </div>
+                  ))}
+               </div>
+            </div>
+         </div>
       </div>
-
-      <div className="lessons-lists">
-        <div className="recent-lessons">
-          <h3>Lecciones Recientes</h3>
-          <div className="lessons-list">
-            {recentLessons.map(lesson => (
-              <div key={lesson.id} className="lesson-item">
-                <div className="lesson-title">{lesson.title}</div>
-                <div className="lesson-meta">
-                  <span className={`category ${lesson.category}`}>
-                    {lesson.category}
-                  </span>
-                  <span className={`priority ${lesson.priority}`}>
-                    {lesson.priority}
-                  </span>
-                  <span className="date">
-                    {new Date(lesson.date).toLocaleDateString()}
-                  </span>
-                </div>
-                <div className="lesson-summary">
-                  {lesson.lesson.learning.substring(0, 120)}...
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="high-impact-lessons">
-          <h3>Lecciones de Alto Impacto</h3>
-          <div className="lessons-list">
-            {highImpactLessons.map(lesson => (
-              <div key={lesson.id} className="lesson-item high-impact">
-                <div className="lesson-title">{lesson.title}</div>
-                <div className="lesson-application">
-                  Aplicada en: {lesson.appliedInProjects?.length || 0} proyectos
-                </div>
-                <div className="lesson-summary">
-                  {lesson.futureApplication.recommendation}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+   );
 };
 
 const KnowledgeBaseSection: React.FC<{ lessons: Lesson[] }> = ({ lessons }) => {
-  const [searchTerm, setSearchTerm] = useState('');
-  const [selectedTag, setSelectedTag] = useState<string | null>(null);
+   const [searchTerm, setSearchTerm] = useState("");
+   const [selectedTag, setSelectedTag] = useState<string | null>(null);
 
-  const allTags = Array.from(
-    new Set(lessons.flatMap(lesson => lesson.tags))
-  ).sort();
+   const allTags = Array.from(
+      new Set(lessons.flatMap((lesson) => lesson.tags)),
+   ).sort();
 
-  const filteredLessons = lessons.filter(lesson => {
-    const matchesSearch = searchTerm === '' || 
-      lesson.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      lesson.lesson.learning.toLowerCase().includes(searchTerm.toLowerCase());
-    
-    const matchesTag = selectedTag === null || lesson.tags.includes(selectedTag);
-    
-    return matchesSearch && matchesTag;
-  });
+   const filteredLessons = lessons.filter((lesson) => {
+      const matchesSearch = searchTerm === "" ||
+         lesson.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+         lesson.lesson.learning.toLowerCase().includes(
+            searchTerm.toLowerCase(),
+         );
 
-  const bestPractices = lessons.filter(l => 
-    l.tags.includes('best-practice') || 
-    l.outcome.impact.includes('positiv')
-  );
+      const matchesTag = selectedTag === null ||
+         lesson.tags.includes(selectedTag);
 
-  const antiPatterns = lessons.filter(l => 
-    l.tags.includes('anti-pattern') || 
-    l.outcome.impact.includes('negativ')
-  );
+      return matchesSearch && matchesTag;
+   });
 
-  return (
-    <div className="knowledge-base-section">
-      <div className="search-controls">
-        <input
-          type="text"
-          placeholder="Buscar lecciones..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          className="search-input"
-        />
-        
-        <select
-          value={selectedTag || ''}
-          onChange={(e) => setSelectedTag(e.target.value || null)}
-          className="tag-filter"
-        >
-          <option value="">Todos los tags</option>
-          {allTags.map(tag => (
-            <option key={tag} value={tag}>{tag}</option>
-          ))}
-        </select>
-      </div>
+   const bestPractices = lessons.filter((l) =>
+      l.tags.includes("best-practice") ||
+      l.outcome.impact.includes("positiv")
+   );
 
-      <div className="knowledge-sections">
-        <div className="best-practices">
-          <h3>🌟 Mejores Prácticas</h3>
-          <div className="practices-grid">
-            {bestPractices.slice(0, 6).map(lesson => (
-              <div key={lesson.id} className="practice-card">
-                <h4>{lesson.title}</h4>
-                <p>{lesson.lesson.learning}</p>
-                <div className="recommendation">
-                  <strong>Recomendación:</strong> {lesson.futureApplication.recommendation}
-                </div>
-                <div className="tags">
-                  {lesson.tags.map(tag => (
-                    <span key={tag} className="tag">{tag}</span>
+   const antiPatterns = lessons.filter((l) =>
+      l.tags.includes("anti-pattern") ||
+      l.outcome.impact.includes("negativ")
+   );
+
+   return (
+      <div className="knowledge-base-section">
+         <div className="search-controls">
+            <input
+               type="text"
+               placeholder="Buscar lecciones..."
+               value={searchTerm}
+               onChange={(e) => setSearchTerm(e.target.value)}
+               className="search-input"
+            />
+
+            <select
+               value={selectedTag || ""}
+               onChange={(e) => setSelectedTag(e.target.value || null)}
+               className="tag-filter"
+            >
+               <option value="">Todos los tags</option>
+               {allTags.map((tag) => (
+                  <option key={tag} value={tag}>{tag}</option>
+               ))}
+            </select>
+         </div>
+
+         <div className="knowledge-sections">
+            <div className="best-practices">
+               <h3>🌟 Mejores Prácticas</h3>
+               <div className="practices-grid">
+                  {bestPractices.slice(0, 6).map((lesson) => (
+                     <div key={lesson.id} className="practice-card">
+                        <h4>{lesson.title}</h4>
+                        <p>{lesson.lesson.learning}</p>
+                        <div className="recommendation">
+                           <strong>Recomendación:</strong>{" "}
+                           {lesson.futureApplication.recommendation}
+                        </div>
+                        <div className="tags">
+                           {lesson.tags.map((tag) => (
+                              <span key={tag} className="tag">{tag}</span>
+                           ))}
+                        </div>
+                     </div>
                   ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
+               </div>
+            </div>
 
-        <div className="anti-patterns">
-          <h3>⚠️ Anti-Patrones</h3>
-          <div className="anti-patterns-grid">
-            {antiPatterns.slice(0, 6).map(lesson => (
-              <div key={lesson.id} className="anti-pattern-card">
-                <h4>{lesson.title}</h4>
-                <p>{lesson.lesson.learning}</p>
-                <div className="what-to-avoid">
-                  <strong>Qué evitar:</strong> {lesson.context.decision}
-                </div>
-                <div className="alternative">
-                  <strong>Alternativa:</strong> {lesson.futureApplication.whatToDoDifferent}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
+            <div className="anti-patterns">
+               <h3>⚠️ Anti-Patrones</h3>
+               <div className="anti-patterns-grid">
+                  {antiPatterns.slice(0, 6).map((lesson) => (
+                     <div key={lesson.id} className="anti-pattern-card">
+                        <h4>{lesson.title}</h4>
+                        <p>{lesson.lesson.learning}</p>
+                        <div className="what-to-avoid">
+                           <strong>Qué evitar:</strong>{" "}
+                           {lesson.context.decision}
+                        </div>
+                        <div className="alternative">
+                           <strong>Alternativa:</strong>{" "}
+                           {lesson.futureApplication.whatToDoDifferent}
+                        </div>
+                     </div>
+                  ))}
+               </div>
+            </div>
 
-        <div className="filtered-lessons">
-          <h3>Todas las Lecciones ({filteredLessons.length})</h3>
-          <div className="lessons-grid">
-            {filteredLessons.map(lesson => (
-              <div key={lesson.id} className="lesson-card">
-                <div className="lesson-header">
-                  <h4>{lesson.title}</h4>
-                  <span className={`priority ${lesson.priority}`}>
-                    {lesson.priority}
-                  </span>
-                </div>
-                <div className="lesson-content">
-                  <p><strong>Contexto:</strong> {lesson.context.situation}</p>
-                  <p><strong>Lección:</strong> {lesson.lesson.learning}</p>
-                  <p><strong>Aplicación:</strong> {lesson.futureApplication.recommendation}</p>
-                </div>
-                <div className="lesson-footer">
-                  <div className="tags">
-                    {lesson.tags.map(tag => (
-                      <span key={tag} className="tag">{tag}</span>
-                    ))}
-                  </div>
-                  <div className="meta">
-                    <span className="contributor">{lesson.contributor}</span>
-                    <span className="date">
-                      {new Date(lesson.date).toLocaleDateString()}
-                    </span>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
+            <div className="filtered-lessons">
+               <h3>Todas las Lecciones ({filteredLessons.length})</h3>
+               <div className="lessons-grid">
+                  {filteredLessons.map((lesson) => (
+                     <div key={lesson.id} className="lesson-card">
+                        <div className="lesson-header">
+                           <h4>{lesson.title}</h4>
+                           <span className={`priority ${lesson.priority}`}>
+                              {lesson.priority}
+                           </span>
+                        </div>
+                        <div className="lesson-content">
+                           <p>
+                              <strong>Contexto:</strong>{" "}
+                              {lesson.context.situation}
+                           </p>
+                           <p>
+                              <strong>Lección:</strong> {lesson.lesson.learning}
+                           </p>
+                           <p>
+                              <strong>Aplicación:</strong>{" "}
+                              {lesson.futureApplication.recommendation}
+                           </p>
+                        </div>
+                        <div className="lesson-footer">
+                           <div className="tags">
+                              {lesson.tags.map((tag) => (
+                                 <span key={tag} className="tag">{tag}</span>
+                              ))}
+                           </div>
+                           <div className="meta">
+                              <span className="contributor">
+                                 {lesson.contributor}
+                              </span>
+                              <span className="date">
+                                 {new Date(lesson.date).toLocaleDateString()}
+                              </span>
+                           </div>
+                        </div>
+                     </div>
+                  ))}
+               </div>
+            </div>
+         </div>
       </div>
-    </div>
-  );
+   );
 };
 ```
 
@@ -1125,8 +1182,10 @@ echo "📄 Revisar PROJECT_CHECKLIST.md para seguir mejores prácticas identific
 
 ### Captura Efectiva
 
-- **Regularidad**: Captura lecciones de forma regular, no solo al final del proyecto
-- **Diversidad**: Busca lecciones en todas las áreas: técnica, proceso, equipo, negocio
+- **Regularidad**: Captura lecciones de forma regular, no solo al final del
+  proyecto
+- **Diversidad**: Busca lecciones en todas las áreas: técnica, proceso, equipo,
+  negocio
 - **Especificidad**: Sé específico sobre contexto, decisiones y resultados
 - **Evidencia**: Incluye datos y evidencia que respalde las lecciones
 
@@ -1159,47 +1218,66 @@ echo "📄 Revisar PROJECT_CHECKLIST.md para seguir mejores prácticas identific
 # Lección: Implementación de Clean Architecture en Backend
 
 ## Información Básica
+
 - **Contribuidor**: Juan Pérez (Tech Lead)
 - **Fecha**: 2024-03-10
 - **Área**: Técnica
 - **Prioridad**: Alta
 
 ## Contexto
-**Situación**: Al inicio del proyecto decidimos implementar Clean Architecture para separar las reglas de negocio del framework Laravel.
 
-**Decisión tomada**: Creamos las capas Domain, Application e Infrastructure como se especifica en el estándar.
+**Situación**: Al inicio del proyecto decidimos implementar Clean Architecture
+para separar las reglas de negocio del framework Laravel.
+
+**Decisión tomada**: Creamos las capas Domain, Application e Infrastructure como
+se especifica en el estándar.
 
 ## Resultado
-**Qué pasó**: La separación de capas funcionó extremadamente bien. El código de negocio quedó completamente independiente de Laravel, lo que facilitó testing y mantenimiento.
 
-**Impacto**: 
+**Qué pasó**: La separación de capas funcionó extremadamente bien. El código de
+negocio quedó completamente independiente de Laravel, lo que facilitó testing y
+mantenimiento.
+
+**Impacto**:
+
 - Testing: Pudimos testear lógica de negocio sin depender de base de datos
 - Mantenimiento: Cambios en requirements no afectaron infraestructura
 - Flexibilidad: Pudimos cambiar de MySQL a PostgreSQL sin tocar Domain layer
 
 ## Lección
-**Qué aprendiste**: Clean Architecture realmente funciona cuando se implementa correctamente. La inversión inicial en setup se paga rápidamente.
 
-**Por qué es importante**: Permite evolucionar el sistema de manera más segura y rápida.
+**Qué aprendiste**: Clean Architecture realmente funciona cuando se implementa
+correctamente. La inversión inicial en setup se paga rápidamente.
+
+**Por qué es importante**: Permite evolucionar el sistema de manera más segura y
+rápida.
 
 ## Aplicación Futura
-**Qué harías diferente**: Invertiría aún más tiempo inicial en definir bien las interfaces entre capas.
 
-**Recomendación**: Usar Clean Architecture desde el día 1 en todos los proyectos backend. Crear generators/templates para acelerar setup inicial.
+**Qué harías diferente**: Invertiría aún más tiempo inicial en definir bien las
+interfaces entre capas.
+
+**Recomendación**: Usar Clean Architecture desde el día 1 en todos los proyectos
+backend. Crear generators/templates para acelerar setup inicial.
 
 ## Evidencia
-**Métricas/datos**: 
+
+**Métricas/datos**:
+
 - Tiempo de testing: 50% reducción vs proyecto anterior
 - Bugs en producción: 30% menos que promedio histórico
 - Velocidad de desarrollo: Después del mes 2, 40% más rápido
 
-**Referencias**: 
+**Referencias**:
+
 - Código: backend/app/Domain/
 - Tests: tests/Unit/Domain/
 - Documentación: docs/architecture.md
 
 ## Tags
-#arquitectura #clean-architecture #backend #testing #mantenibilidad #best-practice
+
+#arquitectura #clean-architecture #backend #testing #mantenibilidad
+#best-practice
 ```
 
 ### Ejemplo de Lección de Proceso
@@ -1208,55 +1286,75 @@ echo "📄 Revisar PROJECT_CHECKLIST.md para seguir mejores prácticas identific
 # Lección: Code Review con Template Estructurado
 
 ## Información Básica
+
 - **Contribuidor**: María González (Senior Developer)
 - **Fecha**: 2024-03-05
 - **Área**: Proceso
 - **Prioridad**: Media
 
 ## Contexto
-**Situación**: Los code reviews eran inconsistentes y a veces se omitían aspectos importantes de calidad y arquitectura.
 
-**Decisión tomada**: Implementamos un template de PR con checklist obligatorio para el reviewer.
+**Situación**: Los code reviews eran inconsistentes y a veces se omitían
+aspectos importantes de calidad y arquitectura.
+
+**Decisión tomada**: Implementamos un template de PR con checklist obligatorio
+para el reviewer.
 
 ## Resultado
-**Qué pasó**: La calidad de los code reviews mejoró significativamente. Los reviews se volvieron más sistemáticos y completos.
+
+**Qué pasó**: La calidad de los code reviews mejoró significativamente. Los
+reviews se volvieron más sistemáticos y completos.
 
 **Impacto**:
+
 - Calidad: Detección 60% más bugs antes de merge
 - Consistencia: Todos los reviews siguen el mismo estándar
 - Aprendizaje: Developers junior aprendieron más rápido
 
 ## Lección
-**Qué aprendiste**: La estructura y checklists mejoran drásticamente la calidad de los procesos. Sin estructura, la calidad depende del humor y disponibilidad de tiempo de las personas.
 
-**Por qué es importante**: Code review es una de las mejores prácticas para mantener calidad, pero solo si se hace bien.
+**Qué aprendiste**: La estructura y checklists mejoran drásticamente la calidad
+de los procesos. Sin estructura, la calidad depende del humor y disponibilidad
+de tiempo de las personas.
+
+**Por qué es importante**: Code review es una de las mejores prácticas para
+mantener calidad, pero solo si se hace bien.
 
 ## Aplicación Futura
-**Qué harías diferente**: Implementaría el template desde el primer día, no después de 2 meses.
 
-**Recomendación**: Crear templates de PR específicos por tipo de cambio (feature, bugfix, refactor). Hacer el checklist parte del Definition of Done.
+**Qué harías diferente**: Implementaría el template desde el primer día, no
+después de 2 meses.
+
+**Recomendación**: Crear templates de PR específicos por tipo de cambio
+(feature, bugfix, refactor). Hacer el checklist parte del Definition of Done.
 
 ## Evidencia
+
 **Métricas/datos**:
+
 - Bugs encontrados en review: +60% vs período anterior
 - Tiempo promedio de review: Mismo (el template no añadió overhead)
 - Satisfacción del equipo con code review: 8.5/10 vs 6/10 anterior
 
 **Referencias**:
+
 - Template: .github/pull_request_template.md
 - Métricas: GitHub insights de PRs marzo vs enero
 
 ## Tags
+
 #code-review #proceso #calidad #template #best-practice #team-process
 ```
 
 ### Ejemplo de Base de Conocimiento
 
-```markdown
+````markdown
 # Base de Conocimiento - Mejores Prácticas de Testing
 
 ## Resumen
-Recopilación de lecciones aprendidas sobre testing basadas en 3 proyectos y 15 lecciones capturadas.
+
+Recopilación de lecciones aprendidas sobre testing basadas en 3 proyectos y 15
+lecciones capturadas.
 
 ## Lecciones Clave
 
@@ -1265,33 +1363,35 @@ Recopilación de lecciones aprendidas sobre testing basadas en 3 proyectos y 15 
 1. **Test Coverage como Quality Gate**
    - Implementar coverage mínimo de 80% en CI/CD
    - Bloquear merge si coverage baja
-   - *Evidencia*: Proyectos con coverage gates tuvieron 40% menos bugs en producción
+   - _Evidencia_: Proyectos con coverage gates tuvieron 40% menos bugs en
+     producción
 
 2. **Testing Pyramid Bien Implementado**
    - 70% unit tests, 20% integration tests, 10% E2E tests
-   - *Evidencia*: Balance óptimo entre velocidad y confianza
+   - _Evidencia_: Balance óptimo entre velocidad y confianza
 
 3. **Mocks para Dependencias Externas**
    - Siempre mockear APIs externas en unit tests
-   - *Evidencia*: Tests 10x más rápidos y confiables
+   - _Evidencia_: Tests 10x más rápidos y confiables
 
 ### ❌ Anti-Patrones Identificados
 
 1. **Testing Implementation Details**
    - No testear cómo funciona internamente, sino qué resultado produce
-   - *Problema*: Tests frágiles que se rompen con refactoring
+   - _Problema_: Tests frágiles que se rompen con refactoring
 
 2. **E2E Tests para Todo**
    - E2E tests solo para happy path críticos
-   - *Problema*: Tests lentos e inestables
+   - _Problema_: Tests lentos e inestables
 
 3. **No Testear Edge Cases**
    - Siempre incluir tests para null, empty, boundary values
-   - *Problema*: Bugs frecuentes en casos extremos
+   - _Problema_: Bugs frecuentes en casos extremos
 
 ## Aplicación en Nuevos Proyectos
 
 ### Setup Inicial
+
 ```bash
 # Configurar Jest con coverage threshold
 npm install --save-dev jest @testing-library/react
@@ -1299,6 +1399,7 @@ npm install --save-dev jest @testing-library/react
 ```
 
 ### Checklist de Testing
+
 - [ ] Coverage configurado con threshold 80%
 - [ ] Tests divididos según testing pyramid
 - [ ] Mocks configurados para APIs externas
@@ -1306,37 +1407,20 @@ npm install --save-dev jest @testing-library/react
 - [ ] E2E tests solo para flows críticos
 
 ## Herramientas Recomendadas
+
 - **Unit**: Jest + Testing Library (exitoso en 3/3 proyectos)
 - **E2E**: Playwright (mejor que Cypress según experiencia)
 - **Coverage**: Built-in Jest coverage (suficiente y simple)
 
 ## Métricas de Referencia
+
 - **Coverage target**: 80% mínimo
 - **Test execution time**: <30 segundos para suite completa unit tests
 - **E2E suite time**: <10 minutos máximo
-```
+````
 
 ## Navegación
 
-**Progreso en Mantenimiento y Evolución:**
-
-- ✅ [Mantenimiento y Evolución](./mantenimiento-evolucion.md)
-- ✅ [Monitoreo Post-Deployment](./monitoreo-post-deployment.md)
-- ✅ [Bug Fixes y Hotfixes](./bug-fixes-hotfixes.md)
-- ✅ [Actualización de Dependencias](./actualizacion-dependencias.md)
-- ✅ [Gestión de Nuevas Funcionalidades](./gestion-nuevas-funcionalidades.md)
-- ✅ [Mejoras Continuas Programadas](./mejoras-continuas-programadas.md)
-- ✅ [Documentación y Knowledge Transfer](./documentacion-knowledge-transfer.md)
-- ✅ [Retroalimentación del Equipo](./retroalimentacion-equipo.md)
-- ✅ [Evaluación del Cumplimiento del Estándar](./evaluacion-cumplimiento-estandar.md)
-- ✅ **Lecciones Aprendidas** ← Estás aquí
-- ⏭️ [Evaluación de Herramientas](./evaluacion-herramientas.md)
-- ⏭️ [Métricas y Analytics de Uso](./metricas-analytics-uso.md)
-
----
-
-### Siguiente Paso
-
-Continúa con [**Evaluación de Herramientas**](./evaluacion-herramientas.md)
-
-[⬅️ Evaluación del Cumplimiento del Estándar](./evaluacion-cumplimiento-estandar.md) | [🏠 README Principal](../../README.md) | [➡️ Evaluación de Herramientas](./evaluacion-herramientas.md)
+[⬅️ Evaluación del Cumplimiento del Estándar](./evaluacion-cumplimiento-estandar.md)
+| [🏠 README Principal](../../README.md) |
+[Evaluación de Herramientas ➡️](./evaluacion-herramientas.md)

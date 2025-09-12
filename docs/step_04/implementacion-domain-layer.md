@@ -2,14 +2,21 @@
 
 ## ¿Qué es?
 
-La capa de dominio es el núcleo de la aplicación que contiene las reglas de negocio puras, independientes de cualquier framework o tecnología externa. Esta capa incluye entidades, value objects, repositorios (interfaces), servicios de dominio y eventos. Es la capa más estable y no debe tener dependencias hacia otras capas.
+La capa de dominio es el núcleo de la aplicación que contiene las reglas de
+negocio puras, independientes de cualquier framework o tecnología externa. Esta
+capa incluye entidades, value objects, repositorios (interfaces), servicios de
+dominio y eventos. Es la capa más estable y no debe tener dependencias hacia
+otras capas.
 
 ## ¿Por qué es importante?
 
-- **Independencia tecnológica**: Las reglas de negocio no dependen de Laravel ni de ninguna tecnología específica
+- **Independencia tecnológica**: Las reglas de negocio no dependen de Laravel ni
+  de ninguna tecnología específica
 - **Testabilidad**: Permite testing unitario puro sin dependencias externas
-- **Mantenibilidad**: Las reglas de negocio están centralizadas y son fáciles de entender
-- **Reutilización**: Puede ser reutilizada en diferentes contextos (web, API, CLI)
+- **Mantenibilidad**: Las reglas de negocio están centralizadas y son fáciles de
+  entender
+- **Reutilización**: Puede ser reutilizada en diferentes contextos (web, API,
+  CLI)
 - **Evolución**: Permite cambiar tecnologías sin afectar la lógica de negocio
 - **Claridad**: Expresa el lenguaje del negocio de forma explícita
 
@@ -501,27 +508,8 @@ final class Money
 }
 ```
 
----
-
 ## Navegación
 
-**Progreso en Desarrollo del Backend:**
-
-- ✅ [Desarrollo del Backend](desarrollo-backend.md)
-- ✅ **Implementación Domain Layer** ← Estás aquí
-- ⏭️ [Implementación Application Layer](implementacion-application-layer.md)
-- ⏭️ [Implementación Infrastructure Layer](implementacion-infrastructure-layer.md)
-- ⏭️ [APIs RESTful Versionadas](apis-restful-versionadas.md)
-- ⏭️ [Autenticación Laravel Sanctum](autenticacion-laravel-sanctum.md)
-- ⏭️ [Testing TDD Backend](testing-tdd-backend.md)
-
----
-
-### Siguiente Paso
-
-Continúa con
-[**Implementación Application Layer**](./implementacion-application-layer.md).
-
-[⬅️ Desarrollo del Backend](desarrollo-backend.md)
-| [🏠 README Principal](../../README.md) |
-[➡️ Implementación Application Layer](implementacion-application-layer.md)
+[⬅️ Desarrollo del Backend](desarrollo-backend.md) |
+[🏠 README Principal](../../README.md) |
+[Implementación Application Layer ➡️](implementacion-application-layer.md)

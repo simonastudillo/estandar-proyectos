@@ -365,7 +365,7 @@ test.describe("Page Load Performance", () => {
       expect(performanceMetrics.firstContentfulPaint).toBeLessThan(1500);
    });
 
-   test("dashboard should handle large datasets efficiently", async ({page,}) => {
+   test("dashboard should handle large datasets efficiently", async ({ page }) => {
       // Navegar al dashboard con muchos datos
       await page.goto("/dashboard?limit=1000");
 
@@ -1166,34 +1166,8 @@ export function teardown(data) {
 }
 ```
 
----
-
 ## Navegación
-
-**Progreso en Testing y Quality Assurance:**
-
-- ✅ [Testing y QA](./testing-qa.md)
-- ✅ [Tipos de Pruebas](./tipos-pruebas.md)
-- ✅ [Testing Funcional Automatizado](./testing-funcional-automatizado.md)
-- ✅ [Testing de Regresión](./testing-regresion.md)
-- ✅ [Checklists QA](./checklists-qa.md)
-- ✅ [Pruebas de Aceptación del Usuario](./pruebas-aceptacion-usuario.md)
-- ✅ [Gestión de Reportes de Errores](./gestion-reportes-errores.md)
-- ✅ **Testing de Performance y Carga** ← Estás aquí
-- ⏭️ [Testing de Seguridad OWASP](./testing-seguridad-owasp.md)
-- ⏭️ [Testing de Usabilidad](./testing-usabilidad.md)
-- ⏭️ [Code Review y Refactoring](./code-review-refactoring.md)
-- ⏭️ [Auditoría de Calidad de Código](./auditoria-calidad-codigo.md)
-- ⏭️ [Checklist Específico de Performance](./checklist-performance.md)
-- ⏭️ [Revisión General del Código](./revision-general-codigo.md)
-- ⏭️ [Optimización de Recursos](./optimizacion-recursos.md)
-
----
-
-### Siguiente Paso
-
-Continúa con [**Testing de Seguridad OWASP**](./testing-seguridad-owasp.md)
 
 [⬅️ Gestión de Reportes de Errores](./gestion-reportes-errores.md) |
 [🏠 README Principal](../../README.md) |
-[➡️ Testing de Seguridad OWASP](./testing-seguridad-owasp.md)
+[Testing de Seguridad OWASP ➡️](./testing-seguridad-owasp.md)

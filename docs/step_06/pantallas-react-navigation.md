@@ -537,27 +537,8 @@ const CustomHeader: React.FC<{ title: string }> = ({ title }) => (
 />;
 ```
 
----
-
 ## Navegación
-
-**Progreso en Desarrollo de Aplicación Móvil (React Native):**
-
-- ✅ [Desarrollo de Aplicación Móvil](./desarrollo-movil.md)
-- ✅
-  [Configuración React Native + TypeScript](./configuracion-react-native-typescript.md)
-- ✅ **Pantallas y React Navigation** ← Estás aquí
-- ⏭️ [Sincronización Estado Redux](./sincronizacion-estado-redux.md)
-- ⏭️ [Integración APIs Móvil](./integracion-apis-movil.md)
-- ⏭️ [Testing Dispositivos y Simuladores](./testing-dispositivos-simuladores.md)
-- ⏭️ [Preparación App Stores](./preparacion-app-stores.md)
-
----
-
-### Siguiente Paso
-
-Continúa con [**Sincronización Estado Redux**](./sincronizacion-estado-redux.md)
 
 [⬅️ Configuración React Native + TypeScript](./configuracion-react-native-typescript.md)
 | [🏠 README Principal](../../README.md) |
-[➡️ Sincronización Estado Redux](./sincronizacion-estado-redux.md)
+[Sincronización Estado Redux ➡️](./sincronizacion-estado-redux.md)

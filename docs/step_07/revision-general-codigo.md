@@ -2,11 +2,11 @@
 
 ## ¿Qué es?
 
-La revisión general del código es un proceso sistemático de análisis y evaluación
-del código fuente para identificar oportunidades de optimización de performance,
-mejoras de mantenibilidad, detección de code smells y validación del cumplimiento
-de estándares de calidad. Se enfoca en el análisis holístico del codebase para
-mejorar la eficiencia general del sistema.
+La revisión general del código es un proceso sistemático de análisis y
+evaluación del código fuente para identificar oportunidades de optimización de
+performance, mejoras de mantenibilidad, detección de code smells y validación
+del cumplimiento de estándares de calidad. Se enfoca en el análisis holístico
+del codebase para mejorar la eficiencia general del sistema.
 
 ## ¿Por qué es importante?
 
@@ -23,11 +23,13 @@ mejorar la eficiencia general del sistema.
 ### Análisis de Complejidad
 
 #### Complejidad Ciclomática
+
 - Medición de complejidad de funciones y métodos
 - Identificación de funciones con alta complejidad
 - Refactoring para reducir complejidad
 
 #### Análisis de Dependencias
+
 - Mapeo de dependencias entre módulos
 - Detección de dependencias circulares
 - Evaluación del acoplamiento
@@ -35,12 +37,14 @@ mejorar la eficiencia general del sistema.
 ### Code Smells y Anti-patrones
 
 #### Code Smells Comunes
+
 - Métodos y clases demasiado grandes
 - Duplicación de código
 - Comentarios excesivos o innecesarios
 - Nombres poco descriptivos
 
 #### Anti-patrones de Performance
+
 - Queries N+1
 - Cargas innecesarias de datos
 - Uso ineficiente de memoria
@@ -49,12 +53,14 @@ mejorar la eficiencia general del sistema.
 ### Estándares de Calidad
 
 #### Convenciones de Código
+
 - Naming conventions
 - Estructura de archivos y carpetas
 - Documentación y comentarios
 - Tipado y validaciones
 
 #### Best Practices
+
 - SOLID principles
 - DRY (Don't Repeat Yourself)
 - YAGNI (You Aren't Gonna Need It)
@@ -463,218 +469,238 @@ echo "\n" . json_encode($results, JSON_PRETTY_PRINT);
 
 ```typescript
 // scripts/frontend-metrics-analyzer.ts
-import * as ts from 'typescript';
-import * as fs from 'fs';
-import * as path from 'path';
+import * as ts from "typescript";
+import * as fs from "fs";
+import * as path from "path";
 
 interface ComponentAnalysis {
-  name: string;
-  file: string;
-  linesOfCode: number;
-  complexity: number;
-  propsCount: number;
-  hooksCount: number;
-  issues: string[];
+   name: string;
+   file: string;
+   linesOfCode: number;
+   complexity: number;
+   propsCount: number;
+   hooksCount: number;
+   issues: string[];
 }
 
 interface AnalysisResults {
-  components: ComponentAnalysis[];
-  issues: {
-    complexity: any[];
-    performance: any[];
-    accessibility: any[];
-  };
-  recommendations: string[];
+   components: ComponentAnalysis[];
+   issues: {
+      complexity: any[];
+      performance: any[];
+      accessibility: any[];
+   };
+   recommendations: string[];
 }
 
 class FrontendMetricsAnalyzer {
-  private results: AnalysisResults = {
-    components: [],
-    issues: {
-      complexity: [],
-      performance: [],
-      accessibility: []
-    },
-    recommendations: []
-  };
+   private results: AnalysisResults = {
+      components: [],
+      issues: {
+         complexity: [],
+         performance: [],
+         accessibility: [],
+      },
+      recommendations: [],
+   };
 
-  public analyze(): AnalysisResults {
-    console.log('🎨 Frontend Code Metrics Analysis');
-    console.log('=================================\n');
+   public analyze(): AnalysisResults {
+      console.log("🎨 Frontend Code Metrics Analysis");
+      console.log("=================================\n");
 
-    this.analyzeComponents();
-    this.analyzePerformancePatterns();
-    this.analyzeAccessibilityPatterns();
-    this.generateRecommendations();
+      this.analyzeComponents();
+      this.analyzePerformancePatterns();
+      this.analyzeAccessibilityPatterns();
+      this.generateRecommendations();
 
-    return this.results;
-  }
+      return this.results;
+   }
 
-  private analyzeComponents(): void {
-    console.log('1. 📊 Component Analysis');
+   private analyzeComponents(): void {
+      console.log("1. 📊 Component Analysis");
 
-    const componentFiles = this.getComponentFiles('src/components');
-    
-    for (const file of componentFiles) {
-      const analysis = this.analyzeComponent(file);
-      this.results.components.push(analysis);
+      const componentFiles = this.getComponentFiles("src/components");
 
-      // Check for complexity issues
-      if (analysis.complexity > 10) {
-        this.results.issues.complexity.push({
-          type: 'high_complexity',
-          file: analysis.file,
-          component: analysis.name,
-          complexity: analysis.complexity,
-          recommendation: 'Consider breaking down into smaller components'
-        });
+      for (const file of componentFiles) {
+         const analysis = this.analyzeComponent(file);
+         this.results.components.push(analysis);
+
+         // Check for complexity issues
+         if (analysis.complexity > 10) {
+            this.results.issues.complexity.push({
+               type: "high_complexity",
+               file: analysis.file,
+               component: analysis.name,
+               complexity: analysis.complexity,
+               recommendation: "Consider breaking down into smaller components",
+            });
+         }
+
+         // Check for too many props
+         if (analysis.propsCount > 8) {
+            this.results.issues.complexity.push({
+               type: "too_many_props",
+               file: analysis.file,
+               component: analysis.name,
+               propsCount: analysis.propsCount,
+               recommendation: "Consider using composition or context",
+            });
+         }
       }
 
-      // Check for too many props
-      if (analysis.propsCount > 8) {
-        this.results.issues.complexity.push({
-          type: 'too_many_props',
-          file: analysis.file,
-          component: analysis.name,
-          propsCount: analysis.propsCount,
-          recommendation: 'Consider using composition or context'
-        });
+      const highComplexityCount = this.results.issues.complexity.filter(
+         (issue) => issue.type === "high_complexity",
+      ).length;
+
+      if (highComplexityCount > 0) {
+         console.log(
+            `   ⚠️  Found ${highComplexityCount} high complexity components`,
+         );
+      } else {
+         console.log("   ✅ All components within complexity limits");
       }
-    }
+   }
 
-    const highComplexityCount = this.results.issues.complexity.filter(
-      issue => issue.type === 'high_complexity'
-    ).length;
+   private analyzePerformancePatterns(): void {
+      console.log("\n2. ⚡ Performance Pattern Analysis");
 
-    if (highComplexityCount > 0) {
-      console.log(`   ⚠️  Found ${highComplexityCount} high complexity components`);
-    } else {
-      console.log('   ✅ All components within complexity limits');
-    }
-  }
+      const performanceIssues = [];
 
-  private analyzePerformancePatterns(): void {
-    console.log('\n2. ⚡ Performance Pattern Analysis');
+      // Check for missing React.memo
+      const unnecessaryRerenders = this.detectUnnecessaryRerenders();
+      performanceIssues.push(...unnecessaryRerenders);
 
-    const performanceIssues = [];
+      // Check for inefficient hooks usage
+      const hookIssues = this.detectIneffientHooks();
+      performanceIssues.push(...hookIssues);
 
-    // Check for missing React.memo
-    const unnecessaryRerenders = this.detectUnnecessaryRerenders();
-    performanceIssues.push(...unnecessaryRerenders);
+      // Check for large bundle imports
+      const importIssues = this.detectIneffientImports();
+      performanceIssues.push(...importIssues);
 
-    // Check for inefficient hooks usage
-    const hookIssues = this.detectIneffientHooks();
-    performanceIssues.push(...hookIssues);
+      this.results.issues.performance = performanceIssues;
 
-    // Check for large bundle imports
-    const importIssues = this.detectIneffientImports();
-    performanceIssues.push(...importIssues);
+      if (performanceIssues.length > 0) {
+         console.log(
+            `   ⚠️  Found ${performanceIssues.length} performance issues`,
+         );
+      } else {
+         console.log("   ✅ No obvious performance issues detected");
+      }
+   }
 
-    this.results.issues.performance = performanceIssues;
+   private analyzeAccessibilityPatterns(): void {
+      console.log("\n3. ♿ Accessibility Pattern Analysis");
 
-    if (performanceIssues.length > 0) {
-      console.log(`   ⚠️  Found ${performanceIssues.length} performance issues`);
-    } else {
-      console.log('   ✅ No obvious performance issues detected');
-    }
-  }
+      const accessibilityIssues = [];
 
-  private analyzeAccessibilityPatterns(): void {
-    console.log('\n3. ♿ Accessibility Pattern Analysis');
+      // Check for missing alt texts
+      const altTextIssues = this.detectMissingAltTexts();
+      accessibilityIssues.push(...altTextIssues);
 
-    const accessibilityIssues = [];
+      // Check for missing ARIA labels
+      const ariaIssues = this.detectMissingAriaLabels();
+      accessibilityIssues.push(...ariaIssues);
 
-    // Check for missing alt texts
-    const altTextIssues = this.detectMissingAltTexts();
-    accessibilityIssues.push(...altTextIssues);
+      // Check for keyboard navigation
+      const keyboardIssues = this.detectKeyboardNavigationIssues();
+      accessibilityIssues.push(...keyboardIssues);
 
-    // Check for missing ARIA labels
-    const ariaIssues = this.detectMissingAriaLabels();
-    accessibilityIssues.push(...ariaIssues);
+      this.results.issues.accessibility = accessibilityIssues;
 
-    // Check for keyboard navigation
-    const keyboardIssues = this.detectKeyboardNavigationIssues();
-    accessibilityIssues.push(...keyboardIssues);
+      if (accessibilityIssues.length > 0) {
+         console.log(
+            `   ⚠️  Found ${accessibilityIssues.length} accessibility issues`,
+         );
+      } else {
+         console.log("   ✅ Accessibility patterns look good");
+      }
+   }
 
-    this.results.issues.accessibility = accessibilityIssues;
+   private generateRecommendations(): void {
+      console.log("\n4. 💡 Generating Recommendations");
 
-    if (accessibilityIssues.length > 0) {
-      console.log(`   ⚠️  Found ${accessibilityIssues.length} accessibility issues`);
-    } else {
-      console.log('   ✅ Accessibility patterns look good');
-    }
-  }
+      const recommendations = [];
 
-  private generateRecommendations(): void {
-    console.log('\n4. 💡 Generating Recommendations');
+      // Complexity recommendations
+      const complexityIssues = this.results.issues.complexity.length;
+      if (complexityIssues > 0) {
+         recommendations.push(
+            `Refactor ${complexityIssues} components with high complexity using composition patterns`,
+         );
+      }
 
-    const recommendations = [];
+      // Performance recommendations
+      const performanceIssues = this.results.issues.performance.length;
+      if (performanceIssues > 0) {
+         recommendations.push(
+            `Optimize ${performanceIssues} performance issues using React.memo, useMemo, and useCallback`,
+         );
+      }
 
-    // Complexity recommendations
-    const complexityIssues = this.results.issues.complexity.length;
-    if (complexityIssues > 0) {
-      recommendations.push(
-        `Refactor ${complexityIssues} components with high complexity using composition patterns`
-      );
-    }
+      // Accessibility recommendations
+      const accessibilityIssues = this.results.issues.accessibility.length;
+      if (accessibilityIssues > 0) {
+         recommendations.push(
+            `Improve ${accessibilityIssues} accessibility issues with proper ARIA labels and semantic HTML`,
+         );
+      }
 
-    // Performance recommendations
-    const performanceIssues = this.results.issues.performance.length;
-    if (performanceIssues > 0) {
-      recommendations.push(
-        `Optimize ${performanceIssues} performance issues using React.memo, useMemo, and useCallback`
-      );
-    }
+      this.results.recommendations = recommendations;
 
-    // Accessibility recommendations
-    const accessibilityIssues = this.results.issues.accessibility.length;
-    if (accessibilityIssues > 0) {
-      recommendations.push(
-        `Improve ${accessibilityIssues} accessibility issues with proper ARIA labels and semantic HTML`
-      );
-    }
+      if (recommendations.length > 0) {
+         console.log(
+            `   📋 Generated ${recommendations.length} recommendations`,
+         );
+      } else {
+         console.log("   ✅ Code quality looks excellent!");
+      }
+   }
 
-    this.results.recommendations = recommendations;
+   // Helper methods
+   private getComponentFiles(directory: string): string[] {
+      // Implementation to get all .tsx/.jsx files
+      return [];
+   }
 
-    if (recommendations.length > 0) {
-      console.log(`   📋 Generated ${recommendations.length} recommendations`);
-    } else {
-      console.log('   ✅ Code quality looks excellent!');
-    }
-  }
+   private analyzeComponent(file: string): ComponentAnalysis {
+      // Implementation to analyze individual component
+      return {
+         name: "",
+         file: "",
+         linesOfCode: 0,
+         complexity: 0,
+         propsCount: 0,
+         hooksCount: 0,
+         issues: [],
+      };
+   }
 
-  // Helper methods
-  private getComponentFiles(directory: string): string[] {
-    // Implementation to get all .tsx/.jsx files
-    return [];
-  }
-
-  private analyzeComponent(file: string): ComponentAnalysis {
-    // Implementation to analyze individual component
-    return {
-      name: '',
-      file: '',
-      linesOfCode: 0,
-      complexity: 0,
-      propsCount: 0,
-      hooksCount: 0,
-      issues: []
-    };
-  }
-
-  private detectUnnecessaryRerenders(): any[] { return []; }
-  private detectIneffientHooks(): any[] { return []; }
-  private detectIneffientImports(): any[] { return []; }
-  private detectMissingAltTexts(): any[] { return []; }
-  private detectMissingAriaLabels(): any[] { return []; }
-  private detectKeyboardNavigationIssues(): any[] { return []; }
+   private detectUnnecessaryRerenders(): any[] {
+      return [];
+   }
+   private detectIneffientHooks(): any[] {
+      return [];
+   }
+   private detectIneffientImports(): any[] {
+      return [];
+   }
+   private detectMissingAltTexts(): any[] {
+      return [];
+   }
+   private detectMissingAriaLabels(): any[] {
+      return [];
+   }
+   private detectKeyboardNavigationIssues(): any[] {
+      return [];
+   }
 }
 
 // Execute analysis
 const analyzer = new FrontendMetricsAnalyzer();
 const results = analyzer.analyze();
 
-console.log('\n' + JSON.stringify(results, null, 2));
+console.log("\n" + JSON.stringify(results, null, 2));
 ```
 
 ### 5. GitHub Actions para análisis automatizado
@@ -684,128 +710,132 @@ console.log('\n' + JSON.stringify(results, null, 2));
 name: Automated Code Review
 
 on:
-  pull_request:
-    branches: [ main, develop ]
-  push:
-    branches: [ main, develop ]
+   pull_request:
+      branches: [main, develop]
+   push:
+      branches: [main, develop]
 
 jobs:
-  frontend-analysis:
-    name: Frontend Code Analysis
-    runs-on: ubuntu-latest
+   frontend-analysis:
+      name: Frontend Code Analysis
+      runs-on: ubuntu-latest
 
-    steps:
-    - uses: actions/checkout@v3
+      steps:
+         - uses: actions/checkout@v3
 
-    - name: Setup Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '18'
-        cache: 'npm'
+         - name: Setup Node.js
+           uses: actions/setup-node@v3
+           with:
+              node-version: "18"
+              cache: "npm"
 
-    - name: Install dependencies
-      run: npm ci
+         - name: Install dependencies
+           run: npm ci
 
-    - name: Run ESLint
-      run: npx eslint src/ --ext .ts,.tsx --format json --output-file eslint-report.json
+         - name: Run ESLint
+           run: npx eslint src/ --ext .ts,.tsx --format json --output-file eslint-report.json
 
-    - name: Run TypeScript check
-      run: npx tsc --noEmit --skipLibCheck
+         - name: Run TypeScript check
+           run: npx tsc --noEmit --skipLibCheck
 
-    - name: Bundle size analysis
-      run: npm run build -- --analyze
+         - name: Bundle size analysis
+           run: npm run build -- --analyze
 
-    - name: Upload frontend analysis results
-      uses: actions/upload-artifact@v3
-      with:
-        name: frontend-analysis
-        path: |
-          eslint-report.json
-          dist/stats.json
+         - name: Upload frontend analysis results
+           uses: actions/upload-artifact@v3
+           with:
+              name: frontend-analysis
+              path: |
+                 eslint-report.json
+                 dist/stats.json
 
-  backend-analysis:
-    name: Backend Code Analysis
-    runs-on: ubuntu-latest
+   backend-analysis:
+      name: Backend Code Analysis
+      runs-on: ubuntu-latest
 
-    steps:
-    - uses: actions/checkout@v3
+      steps:
+         - uses: actions/checkout@v3
 
-    - name: Setup PHP
-      uses: shivammathur/setup-php@v2
-      with:
-        php-version: '8.2'
-        extensions: mbstring, xml, ctype, iconv, intl, pdo_sqlite
-        coverage: none
+         - name: Setup PHP
+           uses: shivammathur/setup-php@v2
+           with:
+              php-version: "8.2"
+              extensions: mbstring, xml, ctype, iconv, intl, pdo_sqlite
+              coverage: none
 
-    - name: Install dependencies
-      run: composer install --prefer-dist --no-progress
+         - name: Install dependencies
+           run: composer install --prefer-dist --no-progress
 
-    - name: Run PHP CodeSniffer
-      run: ./vendor/bin/phpcs --report=json --report-file=phpcs-report.json
+         - name: Run PHP CodeSniffer
+           run: ./vendor/bin/phpcs --report=json --report-file=phpcs-report.json
 
-    - name: Run PHPStan
-      run: ./vendor/bin/phpstan analyse --error-format=json > phpstan-report.json
+         - name: Run PHPStan
+           run: ./vendor/bin/phpstan analyse --error-format=json > phpstan-report.json
 
-    - name: Run custom metrics analysis
-      run: php scripts/php-metrics-analyzer.php > php-metrics.json
+         - name: Run custom metrics analysis
+           run: php scripts/php-metrics-analyzer.php > php-metrics.json
 
-    - name: Upload backend analysis results
-      uses: actions/upload-artifact@v3
-      with:
-        name: backend-analysis
-        path: |
-          phpcs-report.json
-          phpstan-report.json
-          php-metrics.json
+         - name: Upload backend analysis results
+           uses: actions/upload-artifact@v3
+           with:
+              name: backend-analysis
+              path: |
+                 phpcs-report.json
+                 phpstan-report.json
+                 php-metrics.json
 
-  generate-report:
-    name: Generate Consolidated Report
-    runs-on: ubuntu-latest
-    needs: [frontend-analysis, backend-analysis]
+   generate-report:
+      name: Generate Consolidated Report
+      runs-on: ubuntu-latest
+      needs: [frontend-analysis, backend-analysis]
 
-    steps:
-    - uses: actions/checkout@v3
+      steps:
+         - uses: actions/checkout@v3
 
-    - name: Download frontend analysis
-      uses: actions/download-artifact@v3
-      with:
-        name: frontend-analysis
-        path: reports/frontend/
+         - name: Download frontend analysis
+           uses: actions/download-artifact@v3
+           with:
+              name: frontend-analysis
+              path: reports/frontend/
 
-    - name: Download backend analysis
-      uses: actions/download-artifact@v3
-      with:
-        name: backend-analysis
-        path: reports/backend/
+         - name: Download backend analysis
+           uses: actions/download-artifact@v3
+           with:
+              name: backend-analysis
+              path: reports/backend/
 
-    - name: Generate consolidated report
-      run: php scripts/generate-code-review-report.php reports/
+         - name: Generate consolidated report
+           run: php scripts/generate-code-review-report.php reports/
 
-    - name: Comment PR with results
-      if: github.event_name == 'pull_request'
-      uses: actions/github-script@v6
-      with:
-        script: |
-          const fs = require('fs');
-          const report = fs.readFileSync('reports/pr-comment.md', 'utf8');
-          
-          github.rest.issues.createComment({
-            issue_number: context.issue.number,
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            body: report
-          });
+         - name: Comment PR with results
+           if: github.event_name == 'pull_request'
+           uses: actions/github-script@v6
+           with:
+              script: |
+                 const fs = require('fs');
+                 const report = fs.readFileSync('reports/pr-comment.md', 'utf8');
+
+                 github.rest.issues.createComment({
+                   issue_number: context.issue.number,
+                   owner: context.repo.owner,
+                   repo: context.repo.repo,
+                   body: report
+                 });
 ```
 
 ## Tips
 
-- **Análisis regular**: Ejecuta análisis de código como parte del proceso de CI/CD
+- **Análisis regular**: Ejecuta análisis de código como parte del proceso de
+  CI/CD
 - **Métricas consistentes**: Establece thresholds claros para todas las métricas
 - **Priorización**: Enfócate primero en issues de alta prioridad y impacto
-- **Automatización**: Automatiza tanto como sea posible para reducir overhead manual
-- **Contexto del negocio**: Considera el impacto en el negocio al priorizar refactoring
+- **Automatización**: Automatiza tanto como sea posible para reducir overhead
+  manual
+- **Contexto del negocio**: Considera el impacto en el negocio al priorizar
+  refactoring
 - **Documentación**: Documenta decisiones de arquitectura y debt técnica
-- **Evolución**: Actualiza herramientas y estándares conforme evoluciona el proyecto
+- **Evolución**: Actualiza herramientas y estándares conforme evoluciona el
+  proyecto
 - **Colaboración**: Involucra al equipo completo en la definición de estándares
 
 ## Ejemplos
@@ -860,58 +890,45 @@ echo "🌐 Open: $REPORT_DIR/index.html"
 
 ```json
 {
-  "qualityGates": {
-    "frontend": {
-      "eslintErrors": 0,
-      "eslintWarnings": 10,
-      "typescriptErrors": 0,
-      "testCoverage": 80,
-      "bundleSize": "500KB",
-      "performanceScore": 90
-    },
-    "backend": {
-      "phpcsErrors": 0,
-      "phpcsWarnings": 5,
-      "phpstanErrors": 0,
-      "testCoverage": 85,
-      "complexityThreshold": 10,
-      "duplicationPercentage": 3
-    },
-    "security": {
-      "highVulnerabilities": 0,
-      "mediumVulnerabilities": 2,
-      "outdatedDependencies": 5
-    }
-  },
-  "actions": {
-    "failBuild": ["eslintErrors", "typescriptErrors", "phpcsErrors", "phpstanErrors", "highVulnerabilities"],
-    "warn": ["eslintWarnings", "phpcsWarnings", "mediumVulnerabilities"],
-    "monitor": ["testCoverage", "bundleSize", "performanceScore"]
-  }
+   "qualityGates": {
+      "frontend": {
+         "eslintErrors": 0,
+         "eslintWarnings": 10,
+         "typescriptErrors": 0,
+         "testCoverage": 80,
+         "bundleSize": "500KB",
+         "performanceScore": 90
+      },
+      "backend": {
+         "phpcsErrors": 0,
+         "phpcsWarnings": 5,
+         "phpstanErrors": 0,
+         "testCoverage": 85,
+         "complexityThreshold": 10,
+         "duplicationPercentage": 3
+      },
+      "security": {
+         "highVulnerabilities": 0,
+         "mediumVulnerabilities": 2,
+         "outdatedDependencies": 5
+      }
+   },
+   "actions": {
+      "failBuild": [
+         "eslintErrors",
+         "typescriptErrors",
+         "phpcsErrors",
+         "phpstanErrors",
+         "highVulnerabilities"
+      ],
+      "warn": ["eslintWarnings", "phpcsWarnings", "mediumVulnerabilities"],
+      "monitor": ["testCoverage", "bundleSize", "performanceScore"]
+   }
 }
 ```
 
 ## Navegación
 
-**Progreso en Testing y Quality Assurance:**
-
-- ✅ [Testing y QA](./testing-qa.md)
-- ✅ [Tipos de Pruebas](./tipos-pruebas.md)
-- ✅ [Testing Funcional Automatizado](./testing-funcional-automatizado.md)
-- ✅ [Testing de Regresión](./testing-regresion.md)
-- ✅ [Checklists QA](./checklists-qa.md)
-- ✅ [Pruebas de Aceptación del Usuario](./pruebas-aceptacion-usuario.md)
-- ✅ [Gestión de Reportes de Errores](./gestion-reportes-errores.md)
-- ✅ [Testing de Performance y Carga](./testing-performance-carga.md)
-- ✅ [Testing de Seguridad OWASP](./testing-seguridad-owasp.md)
-- ✅ [Testing de Usabilidad](./testing-usabilidad.md)
-- ✅ [Code Review y Refactoring](./code-review-refactoring.md)
-- ✅ [Auditoría y Calidad del Código](./auditoria-calidad-codigo.md)
-- ✅ [Checklist Específico de Performance](./checklist-performance.md)
-- ✅ **Revisión General del Código** ← Estás aquí
-- ⏭️ [Optimización de Recursos](./optimizacion-recursos.md)
-
-**Navegación del proyecto:**
-- ⬅️ [Paso anterior: Diseño y Arquitectura](../step_02/diseno-arquitectura.md)
-- ⬆️ [Ir al README principal](../../README.md)
-- ➡️ [Siguiente paso: Despliegue y DevOps](../step_08/despliegue-devops.md)
+[⬅️ Checklist de Performance](./checklist-performance.md) |
+[🏠 README Principal](../../README.md) |
+[Optimización de Recursos ➡️](./optimizacion-recursos.md)

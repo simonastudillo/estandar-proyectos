@@ -56,7 +56,8 @@ Laravel, frontend React, móvil React Native).
 
 #### **Formato de Commits**
 
-Los mensajes de commit deben seguir el estándar **Conventional Commits** para mantener un historial limpio y permitir automatización:
+Los mensajes de commit deben seguir el estándar **Conventional Commits** para
+mantener un historial limpio y permitir automatización:
 
 ```bash
 <tipo>[ámbito opcional]: <descripción>
@@ -1240,34 +1241,6 @@ jobs:
 
 ## Navegación
 
-**Progreso en Configuración del Entorno de Desarrollo:**
-
-- ✅
-  [Configuración del Entorno - Introducción](./configuracion-entorno-desarrollo.md)
-- ✅ [Requisitos mínimos del sistema](./requisitos-sistema.md)
-- ✅
-  [Instalación de dependencias iniciales](./instalacion-dependencias-iniciales.md)
-- ⏭️ **Configuración de repositorios Git y GitHub** ← Estás aquí
-- ⏭️
-  [Setup de entornos de desarrollo local con Docker](./setup-entorno-local-docker.md)
-- ⏭️
-  [Configuración de herramientas de CI/CD con GitHub Actions](./configuracion-cicd-github-actions.md)
-- ⏭️
-  [Setup de ambientes (desarrollo, testing, staging, producción)](./setup-ambientes-multiples.md)
-- ⏭️
-  [Configuración de herramientas de calidad de código](./configuracion-herramientas-calidad.md)
-- ⏭️
-  [Setup de Laravel con Clean Architecture](./setup-laravel-clean-architecture.md)
-- ⏭️
-  [Configuración de React + TypeScript + Vite](./configuracion-react-typescript-vite.md)
-
----
-
-### Siguiente Paso
-
-Continúa con
-[**Setup de entornos de desarrollo local con Docker**](./setup-entorno-local-docker.md).
-
 [⬅️ Instalación de dependencias iniciales](./instalacion-dependencias-iniciales.md)
 | [🏠 README Principal](../../README.md) |
-[➡️ Setup de entornos de desarrollo local con Docker](./setup-entorno-local-docker.md)
+[Setup de entornos de desarrollo local con Docker ➡️](./setup-entorno-local-docker.md)

@@ -253,34 +253,8 @@ jobs:
            uses: codecov/codecov-action@v3
 ```
 
----
-
 ## Navegación
-
-**Progreso en Testing y Quality Assurance:**
-
-- ✅ **Testing y QA** ← Estás aquí
-- ⏭️ [Tipos de Pruebas](./tipos-pruebas.md)
-- ⏭️ [Testing Funcional Automatizado](./testing-funcional-automatizado.md)
-- ⏭️ [Testing de Regresión](./testing-regresion.md)
-- ⏭️ [Checklists QA](./checklists-qa.md)
-- ⏭️ [Pruebas de Aceptación del Usuario](./pruebas-aceptacion-usuario.md)
-- ⏭️ [Gestión de Reportes de Errores](./gestion-reportes-errores.md)
-- ⏭️ [Testing de Performance y Carga](./testing-performance-carga.md)
-- ⏭️ [Testing de Seguridad OWASP](./testing-seguridad-owasp.md)
-- ⏭️ [Testing de Usabilidad](./testing-usabilidad.md)
-- ⏭️ [Code Review y Refactoring](./code-review-refactoring.md)
-- ⏭️ [Auditoría y Calidad del Código](./auditoria-calidad-codigo.md)
-- ⏭️ [Checklist Específico de Performance](./checklist-performance.md)
-- ⏭️ [Revisión General del Código](./revision-general-codigo.md)
-- ⏭️ [Optimización de Recursos](./optimizacion-recursos.md)
-
----
-
-### Siguiente Paso
-
-Continúa con [**Tipos de Pruebas**](./tipos-pruebas.md)
 
 [⬅️ Etapa 6: Preparación App Stores](../step_06/preparacion-app-stores.md) |
 [🏠 README Principal](../../README.md) |
-[➡️ Tipos de Pruebas](./tipos-pruebas.md)
+[Tipos de Pruebas ➡️](./tipos-pruebas.md)

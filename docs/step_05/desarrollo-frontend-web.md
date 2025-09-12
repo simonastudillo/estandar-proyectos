@@ -382,29 +382,8 @@ export const userService = {
 };
 ```
 
----
-
 ## Navegación
-
-**Progreso en Desarrollo del Backend:**
-
-- ✅ **Desarrollo del Frontend-web** ← Estás aquí
-- ⏭️
-  [Configuración React + TypeScript + Vite](./configuracion-react-typescript-vite.md)
-- ⏭️
-  [Componentes Reutilizables con Tipado](./componentes-reutilizables-tipado.md)
-- ⏭️ [Redux Toolkit - Estado Global](./redux-toolkit-estado-global.md)
-- ⏭️ [Integración APIs con Axios](./integracion-apis-axios.md)
-- ⏭️ [React Router - Navegación](./react-router-navegacion.md)
-- ⏭️ [Testing Componentes con Jest](./testing-componentes-jest.md)
-
----
-
-### Siguiente Paso
-
-Continúa con
-[**Configuración React + TypeScript + Vite**](./configuracion-react-typescript-vite.md)
 
 [⬅️ Etapa 4: Testing TDD Backend](../step_04/testing-tdd-backend.md) |
 [🏠 README Principal](../../README.md) |
-[➡️ Configuración React + TypeScript + Vite](./configuracion-react-typescript-vite.md)
+[Configuración React + TypeScript + Vite ➡️](./configuracion-react-typescript-vite.md)

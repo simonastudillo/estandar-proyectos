@@ -94,24 +94,7 @@ servirán como base para todo el proyecto:
 - **Contenido**: Resumen ejecutivo para stakeholders de alto nivel
 - **Propósito**: Comunicar la propuesta de valor y obtener aprobación
 
-## Etapas de Planificación y Análisis
-
-- [Definición de requerimientos funcionales y no funcionales](./requerimientos-funcionales-no-funcionales.md)
-- [Análisis de stakeholders](./analisis-stakeholders.md)
-- [Roadmap del proyecto](./roadmap-proyecto.md)
-- [Metodología de trabajo](./metodologia-trabajo.md)
-- [Definición del alcance del proyecto](./definicion-alcance.md)
-- [Estimación de tiempos y recursos](./estimacion-tiempos-recursos.md)
-- [Análisis de riesgos](./analisis-riesgos.md)
-
----
-
-## Siguiente Paso
-
-Una vez que comprendas la importancia de esta etapa, continúa con la
-[**Definición de requerimientos funcionales y no funcionales**](./requerimientos-funcionales-no-funcionales.md)
-donde encontrarás las actividades específicas, templates y herramientas
-recomendadas.
+## Navegación
 
 [⬅️ Volver al README principal](../../README.md) |
-[➡️ Comenzar con Requerimientos](./requerimientos-funcionales-no-funcionales.md)
+[Requerimientos funcionales y no funcionales ➡️](./requerimientos-funcionales-no-funcionales.md)

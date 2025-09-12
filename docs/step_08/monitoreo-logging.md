@@ -1479,24 +1479,6 @@ protected function schedule(Schedule $schedule)
 
 ## Navegación
 
-**Progreso en Despliegue y DevOps:**
-
-- ✅ [Despliegue y DevOps](./despliegue-devops.md)
-- ✅
-  [Configuración de Servidores de Producción](./configuracion-servidores-produccion.md)
-- ✅ [CI/CD Pipelines con GitHub Actions](./ci-cd-pipelines-github-actions.md)
-- ✅ [Docker y Contenedores](./docker-contenedores.md)
-- ✅ **Monitoreo y Logging** ← Estás aquí
-- ⏭️ [Optimización base de datos](./optimizacion-base-datos.md)
-- ⏭️ [Backup y Recovery](./backup-recovery-strategies.md)
-- ⏭️ [SSL y Configuraciones de Seguridad](./ssl-configuraciones-seguridad.md)
-
----
-
-### Siguiente Paso
-
-Continúa con [**Optimización base de datos**](./optimizacion-base-datos.md)
-
 [⬅️ Docker y Contenedores](./docker-contenedores.md) |
 [🏠 README Principal](../../README.md) |
-[➡️ Optimización base de datos](./optimizacion-base-datos.md)
+[Optimización base de datos ➡️](./optimizacion-base-datos.md)

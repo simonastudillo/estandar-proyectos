@@ -598,27 +598,8 @@ describe("Accessibility Tests", () => {
 });
 ```
 
----
-
 ## Navegación
-
-**Progreso en Desarrollo de Aplicación Móvil (React Native):**
-
-- ✅ [Desarrollo de Aplicación Móvil](./desarrollo-movil.md)
-- ✅
-  [Configuración React Native + TypeScript](./configuracion-react-native-typescript.md)
-- ✅ [Pantallas y React Navigation](./pantallas-react-navigation.md)
-- ✅ [Sincronización Estado Redux](./sincronizacion-estado-redux.md)
-- ✅ [Integración APIs Móvil](./integracion-apis-movil.md)
-- ✅ **Testing Dispositivos y Simuladores** ← Estás aquí
-- ⏭️ [Preparación App Stores](./preparacion-app-stores.md)
-
----
-
-### Siguiente Paso
-
-Continúa con [**Preparación App Stores**](./preparacion-app-stores.md)
 
 [⬅️ Integración APIs Móvil](./integracion-apis-movil.md) |
 [🏠 README Principal](../../README.md) |
-[➡️ Preparación App Stores](./preparacion-app-stores.md)
+[Preparación App Stores ➡️](./preparacion-app-stores.md)

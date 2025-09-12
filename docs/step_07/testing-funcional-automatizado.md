@@ -758,34 +758,8 @@ describe("UserService", () => {
 });
 ```
 
----
-
 ## Navegación
-
-**Progreso en Testing y Quality Assurance:**
-
-- ✅ [Testing y QA](./testing-qa.md)
-- ✅ [Tipos de Pruebas](./tipos-pruebas.md)
-- ✅ **Testing Funcional Automatizado** ← Estás aquí
-- ⏭️ [Testing de Regresión](./testing-regresion.md)
-- ⏭️ [Checklists QA](./checklists-qa.md)
-- ⏭️ [Pruebas de Aceptación del Usuario](./pruebas-aceptacion-usuario.md)
-- ⏭️ [Gestión de Reportes de Errores](./gestion-reportes-errores.md)
-- ⏭️ [Testing de Performance y Carga](./testing-performance-carga.md)
-- ⏭️ [Testing de Seguridad OWASP](./testing-seguridad-owasp.md)
-- ⏭️ [Testing de Usabilidad](./testing-usabilidad.md)
-- ⏭️ [Code Review y Refactoring](./code-review-refactoring.md)
-- ⏭️ [Auditoría y Calidad del Código](./auditoria-calidad-codigo.md)
-- ⏭️ [Checklist Específico de Performance](./checklist-performance.md)
-- ⏭️ [Revisión General del Código](./revision-general-codigo.md)
-- ⏭️ [Optimización de Recursos](./optimizacion-recursos.md)
-
----
-
-### Siguiente Paso
-
-Continúa con [**Testing de Regresión**](./testing-regresion.md)
 
 [⬅️ Tipos de Pruebas](./tipos-pruebas.md) |
 [🏠 README Principal](../../README.md) |
-[➡️ Testing de Regresión](./testing-regresion.md)
+[Testing de Regresión ➡️](./testing-regresion.md)

@@ -429,26 +429,8 @@ const styles = StyleSheet.create({
 });
 ```
 
----
-
 ## Navegación
-
-**Progreso en Desarrollo de Aplicación Móvil (React Native):**
-
-- ✅ [Desarrollo de Aplicación Móvil](./desarrollo-movil.md)
-- ✅ **Configuración React Native + TypeScript** ← Estás aquí
-- ⏭️ [Pantallas y React Navigation](./pantallas-react-navigation.md)
-- ⏭️ [Sincronización Estado Redux](./sincronizacion-estado-redux.md)
-- ⏭️ [Integración APIs Móvil](./integracion-apis-movil.md)
-- ⏭️ [Testing Dispositivos y Simuladores](./testing-dispositivos-simuladores.md)
-- ⏭️ [Preparación App Stores](./preparacion-app-stores.md)
-
----
-
-### Siguiente Paso
-
-Continúa con [**Pantallas y React Navigation**](./pantallas-react-navigation.md)
 
 [⬅️ Desarrollo de Aplicación Móvil](./desarrollo-movil.md) |
 [🏠 README Principal](../../README.md) |
-[➡️ Pantallas y React Navigation](./pantallas-react-navigation.md)
+[Pantallas y React Navigation ➡️](./pantallas-react-navigation.md)

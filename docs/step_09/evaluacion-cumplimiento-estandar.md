@@ -2,24 +2,33 @@
 
 ## ¿Qué es?
 
-La evaluación del cumplimiento del estándar es un proceso sistemático para verificar en qué medida el proyecto desarrollado cumple con las mejores prácticas, convenciones, arquitectura y metodologías definidas en este estándar de desarrollo. Es una auditoría integral que valida la adherencia a las guías establecidas.
+La evaluación del cumplimiento del estándar es un proceso sistemático para
+verificar en qué medida el proyecto desarrollado cumple con las mejores
+prácticas, convenciones, arquitectura y metodologías definidas en este estándar
+de desarrollo. Es una auditoría integral que valida la adherencia a las guías
+establecidas.
 
 ## ¿Por qué es importante?
 
-- **Garantía de calidad**: Asegura que el proyecto cumple con los estándares de calidad establecidos
+- **Garantía de calidad**: Asegura que el proyecto cumple con los estándares de
+  calidad establecidos
 - **Consistencia**: Mantiene coherencia entre proyectos de la organización
 - **Mejora continua**: Identifica áreas donde el estándar puede mejorarse
-- **Aprendizaje organizacional**: Genera conocimiento sobre la efectividad del estándar
-- **Reducción de riesgos**: Identifica desviaciones que podrían causar problemas futuros
+- **Aprendizaje organizacional**: Genera conocimiento sobre la efectividad del
+  estándar
+- **Reducción de riesgos**: Identifica desviaciones que podrían causar problemas
+  futuros
 - **Validación de procesos**: Confirma que los procesos definidos son efectivos
 - **Compliance**: Asegura cumplimiento con políticas organizacionales
-- **ROI del estándar**: Mide el retorno de inversión en la implementación del estándar
+- **ROI del estándar**: Mide el retorno de inversión en la implementación del
+  estándar
 
 ## ¿Qué debe incluir?
 
 ### Evaluación de Arquitectura
 
-- **Clean Architecture**: Verificación de separación de capas y responsabilidades
+- **Clean Architecture**: Verificación de separación de capas y
+  responsabilidades
 - **Domain-Driven Design**: Evaluación de la implementación de DDD
 - **Patrones de Diseño**: Uso correcto de patrones establecidos
 - **Principios SOLID**: Aplicación de principios de diseño sólido
@@ -218,356 +227,390 @@ chmod +x compliance-evaluation/evaluate-compliance.sh
 // compliance-evaluation/manual/compliance-checklist.ts
 
 interface ComplianceItem {
-  id: string;
-  category: 'architecture' | 'code' | 'process' | 'documentation' | 'technology';
-  description: string;
-  requirement: 'mandatory' | 'recommended' | 'optional';
-  checkMethod: 'automated' | 'manual' | 'hybrid';
-  weight: number; // 1-10 (importancia)
+   id: string;
+   category:
+      | "architecture"
+      | "code"
+      | "process"
+      | "documentation"
+      | "technology";
+   description: string;
+   requirement: "mandatory" | "recommended" | "optional";
+   checkMethod: "automated" | "manual" | "hybrid";
+   weight: number; // 1-10 (importancia)
 }
 
 export const complianceChecklist: ComplianceItem[] = [
-  // Arquitectura
-  {
-    id: 'ARCH_001',
-    category: 'architecture',
-    description: 'Backend implementa Clean Architecture con separación clara de capas',
-    requirement: 'mandatory',
-    checkMethod: 'manual',
-    weight: 10
-  },
-  {
-    id: 'ARCH_002',
-    category: 'architecture',
-    description: 'Domain layer no tiene dependencias externas',
-    requirement: 'mandatory',
-    checkMethod: 'manual',
-    weight: 9
-  },
-  {
-    id: 'ARCH_003',
-    category: 'architecture',
-    description: 'Aplicación de principios SOLID en toda la aplicación',
-    requirement: 'mandatory',
-    checkMethod: 'manual',
-    weight: 8
-  },
-  {
-    id: 'ARCH_004',
-    category: 'architecture',
-    description: 'Patrones de diseño aplicados correctamente según contexto',
-    requirement: 'recommended',
-    checkMethod: 'manual',
-    weight: 7
-  },
+   // Arquitectura
+   {
+      id: "ARCH_001",
+      category: "architecture",
+      description:
+         "Backend implementa Clean Architecture con separación clara de capas",
+      requirement: "mandatory",
+      checkMethod: "manual",
+      weight: 10,
+   },
+   {
+      id: "ARCH_002",
+      category: "architecture",
+      description: "Domain layer no tiene dependencias externas",
+      requirement: "mandatory",
+      checkMethod: "manual",
+      weight: 9,
+   },
+   {
+      id: "ARCH_003",
+      category: "architecture",
+      description: "Aplicación de principios SOLID en toda la aplicación",
+      requirement: "mandatory",
+      checkMethod: "manual",
+      weight: 8,
+   },
+   {
+      id: "ARCH_004",
+      category: "architecture",
+      description: "Patrones de diseño aplicados correctamente según contexto",
+      requirement: "recommended",
+      checkMethod: "manual",
+      weight: 7,
+   },
 
-  // Código
-  {
-    id: 'CODE_001',
-    category: 'code',
-    description: 'Nomenclatura consistente según convenciones establecidas',
-    requirement: 'mandatory',
-    checkMethod: 'automated',
-    weight: 8
-  },
-  {
-    id: 'CODE_002',
-    category: 'code',
-    description: 'Estructura de carpetas cumple con el estándar definido',
-    requirement: 'mandatory',
-    checkMethod: 'automated',
-    weight: 9
-  },
-  {
-    id: 'CODE_003',
-    category: 'code',
-    description: 'TypeScript configurado con strict mode en frontend',
-    requirement: 'mandatory',
-    checkMethod: 'automated',
-    weight: 8
-  },
-  {
-    id: 'CODE_004',
-    category: 'code',
-    description: 'ESLint y Prettier configurados y sin errores',
-    requirement: 'mandatory',
-    checkMethod: 'automated',
-    weight: 7
-  },
-  {
-    id: 'CODE_005',
-    category: 'code',
-    description: 'Documentación inline adecuada en funciones complejas',
-    requirement: 'recommended',
-    checkMethod: 'manual',
-    weight: 6
-  },
+   // Código
+   {
+      id: "CODE_001",
+      category: "code",
+      description: "Nomenclatura consistente según convenciones establecidas",
+      requirement: "mandatory",
+      checkMethod: "automated",
+      weight: 8,
+   },
+   {
+      id: "CODE_002",
+      category: "code",
+      description: "Estructura de carpetas cumple con el estándar definido",
+      requirement: "mandatory",
+      checkMethod: "automated",
+      weight: 9,
+   },
+   {
+      id: "CODE_003",
+      category: "code",
+      description: "TypeScript configurado con strict mode en frontend",
+      requirement: "mandatory",
+      checkMethod: "automated",
+      weight: 8,
+   },
+   {
+      id: "CODE_004",
+      category: "code",
+      description: "ESLint y Prettier configurados y sin errores",
+      requirement: "mandatory",
+      checkMethod: "automated",
+      weight: 7,
+   },
+   {
+      id: "CODE_005",
+      category: "code",
+      description: "Documentación inline adecuada en funciones complejas",
+      requirement: "recommended",
+      checkMethod: "manual",
+      weight: 6,
+   },
 
-  // Procesos
-  {
-    id: 'PROC_001',
-    category: 'process',
-    description: 'Git workflow implementado según estándar (GitFlow o similar)',
-    requirement: 'mandatory',
-    checkMethod: 'manual',
-    weight: 8
-  },
-  {
-    id: 'PROC_002',
-    category: 'process',
-    description: 'Code review obligatorio antes de merge a main/master',
-    requirement: 'mandatory',
-    checkMethod: 'manual',
-    weight: 9
-  },
-  {
-    id: 'PROC_003',
-    category: 'process',
-    description: 'CI/CD pipeline configurado y funcionando',
-    requirement: 'mandatory',
-    checkMethod: 'automated',
-    weight: 8
-  },
-  {
-    id: 'PROC_004',
-    category: 'process',
-    description: 'Metodología Scrumban implementada efectivamente',
-    requirement: 'recommended',
-    checkMethod: 'manual',
-    weight: 7
-  },
+   // Procesos
+   {
+      id: "PROC_001",
+      category: "process",
+      description:
+         "Git workflow implementado según estándar (GitFlow o similar)",
+      requirement: "mandatory",
+      checkMethod: "manual",
+      weight: 8,
+   },
+   {
+      id: "PROC_002",
+      category: "process",
+      description: "Code review obligatorio antes de merge a main/master",
+      requirement: "mandatory",
+      checkMethod: "manual",
+      weight: 9,
+   },
+   {
+      id: "PROC_003",
+      category: "process",
+      description: "CI/CD pipeline configurado y funcionando",
+      requirement: "mandatory",
+      checkMethod: "automated",
+      weight: 8,
+   },
+   {
+      id: "PROC_004",
+      category: "process",
+      description: "Metodología Scrumban implementada efectivamente",
+      requirement: "recommended",
+      checkMethod: "manual",
+      weight: 7,
+   },
 
-  // Tecnologías
-  {
-    id: 'TECH_001',
-    category: 'technology',
-    description: 'Stack tecnológico utilizado cumple con las especificaciones',
-    requirement: 'mandatory',
-    checkMethod: 'automated',
-    weight: 10
-  },
-  {
-    id: 'TECH_002',
-    category: 'technology',
-    description: 'Dependencias actualizadas y sin vulnerabilidades críticas',
-    requirement: 'mandatory',
-    checkMethod: 'automated',
-    weight: 9
-  },
-  {
-    id: 'TECH_003',
-    category: 'technology',
-    description: 'Configuraciones de desarrollo, staging y producción separadas',
-    requirement: 'mandatory',
-    checkMethod: 'manual',
-    weight: 8
-  },
+   // Tecnologías
+   {
+      id: "TECH_001",
+      category: "technology",
+      description:
+         "Stack tecnológico utilizado cumple con las especificaciones",
+      requirement: "mandatory",
+      checkMethod: "automated",
+      weight: 10,
+   },
+   {
+      id: "TECH_002",
+      category: "technology",
+      description: "Dependencias actualizadas y sin vulnerabilidades críticas",
+      requirement: "mandatory",
+      checkMethod: "automated",
+      weight: 9,
+   },
+   {
+      id: "TECH_003",
+      category: "technology",
+      description:
+         "Configuraciones de desarrollo, staging y producción separadas",
+      requirement: "mandatory",
+      checkMethod: "manual",
+      weight: 8,
+   },
 
-  // Documentación
-  {
-    id: 'DOC_001',
-    category: 'documentation',
-    description: 'README completo con instrucciones de setup y ejecución',
-    requirement: 'mandatory',
-    checkMethod: 'manual',
-    weight: 8
-  },
-  {
-    id: 'DOC_002',
-    category: 'documentation',
-    description: 'Documentación de APIs actualizada (OpenAPI/Swagger)',
-    requirement: 'mandatory',
-    checkMethod: 'manual',
-    weight: 8
-  },
-  {
-    id: 'DOC_003',
-    category: 'documentation',
-    description: 'Documentación de arquitectura y decisiones técnicas',
-    requirement: 'recommended',
-    checkMethod: 'manual',
-    weight: 7
-  },
-  {
-    id: 'DOC_004',
-    category: 'documentation',
-    description: 'Diagramas de arquitectura actualizados',
-    requirement: 'recommended',
-    checkMethod: 'manual',
-    weight: 6
-  }
+   // Documentación
+   {
+      id: "DOC_001",
+      category: "documentation",
+      description: "README completo con instrucciones de setup y ejecución",
+      requirement: "mandatory",
+      checkMethod: "manual",
+      weight: 8,
+   },
+   {
+      id: "DOC_002",
+      category: "documentation",
+      description: "Documentación de APIs actualizada (OpenAPI/Swagger)",
+      requirement: "mandatory",
+      checkMethod: "manual",
+      weight: 8,
+   },
+   {
+      id: "DOC_003",
+      category: "documentation",
+      description: "Documentación de arquitectura y decisiones técnicas",
+      requirement: "recommended",
+      checkMethod: "manual",
+      weight: 7,
+   },
+   {
+      id: "DOC_004",
+      category: "documentation",
+      description: "Diagramas de arquitectura actualizados",
+      requirement: "recommended",
+      checkMethod: "manual",
+      weight: 6,
+   },
 ];
 
 export interface ComplianceEvaluation {
-  itemId: string;
-  status: 'compliant' | 'partial' | 'non_compliant' | 'not_applicable';
-  score: number; // 0-100
-  comments: string;
-  evidence?: string; // Enlaces a archivos, screenshots, etc.
-  recommendedActions?: string[];
+   itemId: string;
+   status: "compliant" | "partial" | "non_compliant" | "not_applicable";
+   score: number; // 0-100
+   comments: string;
+   evidence?: string; // Enlaces a archivos, screenshots, etc.
+   recommendedActions?: string[];
 }
 
 export class ComplianceEvaluator {
-  private evaluations: ComplianceEvaluation[] = [];
+   private evaluations: ComplianceEvaluation[] = [];
 
-  public evaluateItem(
-    itemId: string, 
-    status: ComplianceEvaluation['status'],
-    score: number,
-    comments: string,
-    evidence?: string,
-    recommendedActions?: string[]
-  ): void {
-    this.evaluations.push({
-      itemId,
-      status,
-      score,
-      comments,
-      evidence,
-      recommendedActions
-    });
-  }
+   public evaluateItem(
+      itemId: string,
+      status: ComplianceEvaluation["status"],
+      score: number,
+      comments: string,
+      evidence?: string,
+      recommendedActions?: string[],
+   ): void {
+      this.evaluations.push({
+         itemId,
+         status,
+         score,
+         comments,
+         evidence,
+         recommendedActions,
+      });
+   }
 
-  public generateReport(): ComplianceReport {
-    const items = complianceChecklist;
-    const evaluations = this.evaluations;
-    
-    const reportData = items.map(item => {
-      const evaluation = evaluations.find(eval => eval.itemId === item.id);
+   public generateReport(): ComplianceReport {
+      const items = complianceChecklist;
+      const evaluations = this.evaluations;
+
+      const reportData = items.map((item) => {
+         const evaluation = evaluations.find((eval) => eval.itemId === item.id);
+         return {
+            item,
+            evaluation: evaluation || {
+               itemId: item.id,
+               status: "not_applicable" as const,
+               score: 0,
+               comments: "No evaluado",
+            },
+         };
+      });
+
+      const overallScore = this.calculateOverallScore(reportData);
+      const categoryScores = this.calculateCategoryScores(reportData);
+
       return {
-        item,
-        evaluation: evaluation || {
-          itemId: item.id,
-          status: 'not_applicable' as const,
-          score: 0,
-          comments: 'No evaluado'
-        }
+         overallScore,
+         categoryScores,
+         items: reportData,
+         summary: this.generateSummary(reportData),
+         recommendations: this.generateRecommendations(reportData),
       };
-    });
+   }
 
-    const overallScore = this.calculateOverallScore(reportData);
-    const categoryScores = this.calculateCategoryScores(reportData);
-    
-    return {
-      overallScore,
-      categoryScores,
-      items: reportData,
-      summary: this.generateSummary(reportData),
-      recommendations: this.generateRecommendations(reportData)
-    };
-  }
+   private calculateOverallScore(data: any[]): number {
+      const weightedScores = data
+         .filter((d) => d.evaluation.status !== "not_applicable")
+         .map((d) => d.evaluation.score * d.item.weight);
 
-  private calculateOverallScore(data: any[]): number {
-    const weightedScores = data
-      .filter(d => d.evaluation.status !== 'not_applicable')
-      .map(d => d.evaluation.score * d.item.weight);
-    
-    const totalWeight = data
-      .filter(d => d.evaluation.status !== 'not_applicable')
-      .reduce((sum, d) => sum + d.item.weight, 0);
+      const totalWeight = data
+         .filter((d) => d.evaluation.status !== "not_applicable")
+         .reduce((sum, d) => sum + d.item.weight, 0);
 
-    return totalWeight > 0 ? 
-      Math.round(weightedScores.reduce((sum, score) => sum + score, 0) / totalWeight) : 0;
-  }
+      return totalWeight > 0
+         ? Math.round(
+            weightedScores.reduce((sum, score) => sum + score, 0) / totalWeight,
+         )
+         : 0;
+   }
 
-  private calculateCategoryScores(data: any[]): Record<string, number> {
-    const categories = ['architecture', 'code', 'process', 'technology', 'documentation'];
-    const scores: Record<string, number> = {};
+   private calculateCategoryScores(data: any[]): Record<string, number> {
+      const categories = [
+         "architecture",
+         "code",
+         "process",
+         "technology",
+         "documentation",
+      ];
+      const scores: Record<string, number> = {};
 
-    categories.forEach(category => {
-      const categoryItems = data.filter(d => 
-        d.item.category === category && d.evaluation.status !== 'not_applicable'
-      );
-      
-      if (categoryItems.length > 0) {
-        const weightedScores = categoryItems.map(d => d.evaluation.score * d.item.weight);
-        const totalWeight = categoryItems.reduce((sum, d) => sum + d.item.weight, 0);
-        scores[category] = Math.round(
-          weightedScores.reduce((sum, score) => sum + score, 0) / totalWeight
-        );
-      } else {
-        scores[category] = 0;
-      }
-    });
+      categories.forEach((category) => {
+         const categoryItems = data.filter((d) =>
+            d.item.category === category &&
+            d.evaluation.status !== "not_applicable"
+         );
 
-    return scores;
-  }
-
-  private generateSummary(data: any[]): ComplianceSummary {
-    const total = data.length;
-    const compliant = data.filter(d => d.evaluation.status === 'compliant').length;
-    const partial = data.filter(d => d.evaluation.status === 'partial').length;
-    const nonCompliant = data.filter(d => d.evaluation.status === 'non_compliant').length;
-    const notApplicable = data.filter(d => d.evaluation.status === 'not_applicable').length;
-
-    const mandatory = data.filter(d => d.item.requirement === 'mandatory');
-    const mandatoryCompliant = mandatory.filter(d => d.evaluation.status === 'compliant').length;
-
-    return {
-      total,
-      compliant,
-      partial,
-      nonCompliant,
-      notApplicable,
-      mandatoryCompliance: Math.round((mandatoryCompliant / mandatory.length) * 100),
-      highPriorityIssues: data
-        .filter(d => d.evaluation.status === 'non_compliant' && d.item.weight >= 8)
-        .map(d => d.item.description)
-    };
-  }
-
-  private generateRecommendations(data: any[]): string[] {
-    const recommendations: string[] = [];
-    
-    // Recomendaciones para ítems no cumplidos de alta prioridad
-    data
-      .filter(d => 
-        d.evaluation.status === 'non_compliant' && 
-        d.item.requirement === 'mandatory'
-      )
-      .forEach(d => {
-        recommendations.push(
-          `🔴 CRÍTICO: ${d.item.description} - ${d.evaluation.comments}`
-        );
-        if (d.evaluation.recommendedActions) {
-          d.evaluation.recommendedActions.forEach(action => {
-            recommendations.push(`   • ${action}`);
-          });
-        }
+         if (categoryItems.length > 0) {
+            const weightedScores = categoryItems.map((d) =>
+               d.evaluation.score * d.item.weight
+            );
+            const totalWeight = categoryItems.reduce(
+               (sum, d) => sum + d.item.weight,
+               0,
+            );
+            scores[category] = Math.round(
+               weightedScores.reduce((sum, score) => sum + score, 0) /
+                  totalWeight,
+            );
+         } else {
+            scores[category] = 0;
+         }
       });
 
-    // Recomendaciones para mejoras
-    data
-      .filter(d => d.evaluation.status === 'partial')
-      .forEach(d => {
-        recommendations.push(
-          `🟡 MEJORA: ${d.item.description} - ${d.evaluation.comments}`
-        );
-      });
+      return scores;
+   }
 
-    return recommendations;
-  }
+   private generateSummary(data: any[]): ComplianceSummary {
+      const total = data.length;
+      const compliant =
+         data.filter((d) => d.evaluation.status === "compliant").length;
+      const partial =
+         data.filter((d) => d.evaluation.status === "partial").length;
+      const nonCompliant =
+         data.filter((d) => d.evaluation.status === "non_compliant").length;
+      const notApplicable =
+         data.filter((d) => d.evaluation.status === "not_applicable").length;
+
+      const mandatory = data.filter((d) => d.item.requirement === "mandatory");
+      const mandatoryCompliant =
+         mandatory.filter((d) => d.evaluation.status === "compliant").length;
+
+      return {
+         total,
+         compliant,
+         partial,
+         nonCompliant,
+         notApplicable,
+         mandatoryCompliance: Math.round(
+            (mandatoryCompliant / mandatory.length) * 100,
+         ),
+         highPriorityIssues: data
+            .filter((d) =>
+               d.evaluation.status === "non_compliant" && d.item.weight >= 8
+            )
+            .map((d) => d.item.description),
+      };
+   }
+
+   private generateRecommendations(data: any[]): string[] {
+      const recommendations: string[] = [];
+
+      // Recomendaciones para ítems no cumplidos de alta prioridad
+      data
+         .filter((d) =>
+            d.evaluation.status === "non_compliant" &&
+            d.item.requirement === "mandatory"
+         )
+         .forEach((d) => {
+            recommendations.push(
+               `🔴 CRÍTICO: ${d.item.description} - ${d.evaluation.comments}`,
+            );
+            if (d.evaluation.recommendedActions) {
+               d.evaluation.recommendedActions.forEach((action) => {
+                  recommendations.push(`   • ${action}`);
+               });
+            }
+         });
+
+      // Recomendaciones para mejoras
+      data
+         .filter((d) => d.evaluation.status === "partial")
+         .forEach((d) => {
+            recommendations.push(
+               `🟡 MEJORA: ${d.item.description} - ${d.evaluation.comments}`,
+            );
+         });
+
+      return recommendations;
+   }
 }
 
 interface ComplianceReport {
-  overallScore: number;
-  categoryScores: Record<string, number>;
-  items: Array<{
-    item: ComplianceItem;
-    evaluation: ComplianceEvaluation;
-  }>;
-  summary: ComplianceSummary;
-  recommendations: string[];
+   overallScore: number;
+   categoryScores: Record<string, number>;
+   items: Array<{
+      item: ComplianceItem;
+      evaluation: ComplianceEvaluation;
+   }>;
+   summary: ComplianceSummary;
+   recommendations: string[];
 }
 
 interface ComplianceSummary {
-  total: number;
-  compliant: number;
-  partial: number;
-  nonCompliant: number;
-  notApplicable: number;
-  mandatoryCompliance: number;
-  highPriorityIssues: string[];
+   total: number;
+   compliant: number;
+   partial: number;
+   nonCompliant: number;
+   notApplicable: number;
+   mandatoryCompliance: number;
+   highPriorityIssues: string[];
 }
 ```
 
@@ -823,200 +866,244 @@ echo "📊 Reporte de métricas técnicas generado exitosamente\n";
 
 ```typescript
 // compliance-evaluation/dashboard/ComplianceDashboard.tsx
-import React, { useState, useEffect } from 'react';
-import { 
-  RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar,
-  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
-  PieChart, Pie, Cell, LineChart, Line
-} from 'recharts';
+import React, { useEffect, useState } from "react";
+import {
+   Bar,
+   BarChart,
+   CartesianGrid,
+   Cell,
+   Line,
+   LineChart,
+   Pie,
+   PieChart,
+   PolarAngleAxis,
+   PolarGrid,
+   PolarRadiusAxis,
+   Radar,
+   RadarChart,
+   ResponsiveContainer,
+   Tooltip,
+   XAxis,
+   YAxis,
+} from "recharts";
 
 interface ComplianceDashboardProps {
-  complianceData: ComplianceReport;
+   complianceData: ComplianceReport;
 }
 
-export const ComplianceDashboard: React.FC<ComplianceDashboardProps> = ({ 
-  complianceData 
+export const ComplianceDashboard: React.FC<ComplianceDashboardProps> = ({
+   complianceData,
 }) => {
-  const [activeTab, setActiveTab] = useState('overview');
+   const [activeTab, setActiveTab] = useState("overview");
 
-  const radarData = Object.entries(complianceData.categoryScores).map(([category, score]) => ({
-    category: category.replace('_', ' ').toUpperCase(),
-    score,
-    fullMark: 100
-  }));
+   const radarData = Object.entries(complianceData.categoryScores).map((
+      [category, score],
+   ) => ({
+      category: category.replace("_", " ").toUpperCase(),
+      score,
+      fullMark: 100,
+   }));
 
-  const pieData = [
-    { name: 'Cumplido', value: complianceData.summary.compliant, color: '#10B981' },
-    { name: 'Parcial', value: complianceData.summary.partial, color: '#F59E0B' },
-    { name: 'No Cumplido', value: complianceData.summary.nonCompliant, color: '#EF4444' },
-    { name: 'No Aplica', value: complianceData.summary.notApplicable, color: '#6B7280' }
-  ];
+   const pieData = [
+      {
+         name: "Cumplido",
+         value: complianceData.summary.compliant,
+         color: "#10B981",
+      },
+      {
+         name: "Parcial",
+         value: complianceData.summary.partial,
+         color: "#F59E0B",
+      },
+      {
+         name: "No Cumplido",
+         value: complianceData.summary.nonCompliant,
+         color: "#EF4444",
+      },
+      {
+         name: "No Aplica",
+         value: complianceData.summary.notApplicable,
+         color: "#6B7280",
+      },
+   ];
 
-  return (
-    <div className="compliance-dashboard">
-      <header className="dashboard-header">
-        <h1>Dashboard de Cumplimiento del Estándar</h1>
-        <div className="overall-score">
-          <div className={`score-circle ${getScoreClass(complianceData.overallScore)}`}>
-            <span className="score">{complianceData.overallScore}</span>
-            <span className="score-label">/100</span>
-          </div>
-        </div>
-      </header>
+   return (
+      <div className="compliance-dashboard">
+         <header className="dashboard-header">
+            <h1>Dashboard de Cumplimiento del Estándar</h1>
+            <div className="overall-score">
+               <div
+                  className={`score-circle ${
+                     getScoreClass(complianceData.overallScore)
+                  }`}
+               >
+                  <span className="score">{complianceData.overallScore}</span>
+                  <span className="score-label">/100</span>
+               </div>
+            </div>
+         </header>
 
-      <nav className="dashboard-tabs">
-        <button 
-          className={activeTab === 'overview' ? 'active' : ''}
-          onClick={() => setActiveTab('overview')}
-        >
-          Resumen
-        </button>
-        <button 
-          className={activeTab === 'categories' ? 'active' : ''}
-          onClick={() => setActiveTab('categories')}
-        >
-          Por Categorías
-        </button>
-        <button 
-          className={activeTab === 'details' ? 'active' : ''}
-          onClick={() => setActiveTab('details')}
-        >
-          Detalles
-        </button>
-        <button 
-          className={activeTab === 'actions' ? 'active' : ''}
-          onClick={() => setActiveTab('actions')}
-        >
-          Plan de Acción
-        </button>
-      </nav>
+         <nav className="dashboard-tabs">
+            <button
+               className={activeTab === "overview" ? "active" : ""}
+               onClick={() => setActiveTab("overview")}
+            >
+               Resumen
+            </button>
+            <button
+               className={activeTab === "categories" ? "active" : ""}
+               onClick={() => setActiveTab("categories")}
+            >
+               Por Categorías
+            </button>
+            <button
+               className={activeTab === "details" ? "active" : ""}
+               onClick={() => setActiveTab("details")}
+            >
+               Detalles
+            </button>
+            <button
+               className={activeTab === "actions" ? "active" : ""}
+               onClick={() => setActiveTab("actions")}
+            >
+               Plan de Acción
+            </button>
+         </nav>
 
-      <main className="dashboard-content">
-        {activeTab === 'overview' && (
-          <OverviewSection 
-            complianceData={complianceData}
-            radarData={radarData}
-            pieData={pieData}
-          />
-        )}
-        {activeTab === 'categories' && (
-          <CategoriesSection complianceData={complianceData} />
-        )}
-        {activeTab === 'details' && (
-          <DetailsSection complianceData={complianceData} />
-        )}
-        {activeTab === 'actions' && (
-          <ActionsSection complianceData={complianceData} />
-        )}
-      </main>
-    </div>
-  );
+         <main className="dashboard-content">
+            {activeTab === "overview" && (
+               <OverviewSection
+                  complianceData={complianceData}
+                  radarData={radarData}
+                  pieData={pieData}
+               />
+            )}
+            {activeTab === "categories" && (
+               <CategoriesSection complianceData={complianceData} />
+            )}
+            {activeTab === "details" && (
+               <DetailsSection complianceData={complianceData} />
+            )}
+            {activeTab === "actions" && (
+               <ActionsSection complianceData={complianceData} />
+            )}
+         </main>
+      </div>
+   );
 };
 
 const OverviewSection: React.FC<{
-  complianceData: ComplianceReport;
-  radarData: any[];
-  pieData: any[];
+   complianceData: ComplianceReport;
+   radarData: any[];
+   pieData: any[];
 }> = ({ complianceData, radarData, pieData }) => (
-  <div className="overview-section">
-    <div className="metrics-grid">
-      <div className="metric-card">
-        <h3>Cumplimiento Obligatorio</h3>
-        <div className="metric-value">
-          {complianceData.summary.mandatoryCompliance}%
-        </div>
-        <div className="metric-description">
-          De los requisitos obligatorios
-        </div>
-      </div>
-      
-      <div className="metric-card">
-        <h3>Issues Críticos</h3>
-        <div className="metric-value">
-          {complianceData.summary.highPriorityIssues.length}
-        </div>
-        <div className="metric-description">
-          Requieren atención inmediata
-        </div>
-      </div>
-      
-      <div className="metric-card">
-        <h3>Elementos Evaluados</h3>
-        <div className="metric-value">
-          {complianceData.summary.total}
-        </div>
-        <div className="metric-description">
-          Del checklist de cumplimiento
-        </div>
-      </div>
-    </div>
+   <div className="overview-section">
+      <div className="metrics-grid">
+         <div className="metric-card">
+            <h3>Cumplimiento Obligatorio</h3>
+            <div className="metric-value">
+               {complianceData.summary.mandatoryCompliance}%
+            </div>
+            <div className="metric-description">
+               De los requisitos obligatorios
+            </div>
+         </div>
 
-    <div className="charts-grid">
-      <div className="chart-container">
-        <h3>Cumplimiento por Categoría</h3>
-        <ResponsiveContainer width="100%" height={300}>
-          <RadarChart data={radarData}>
-            <PolarGrid />
-            <PolarAngleAxis dataKey="category" />
-            <PolarRadiusAxis angle={30} domain={[0, 100]} />
-            <Radar
-              name="Cumplimiento"
-              dataKey="score"
-              stroke="#8884d8"
-              fill="#8884d8"
-              fillOpacity={0.6}
-            />
-          </RadarChart>
-        </ResponsiveContainer>
+         <div className="metric-card">
+            <h3>Issues Críticos</h3>
+            <div className="metric-value">
+               {complianceData.summary.highPriorityIssues.length}
+            </div>
+            <div className="metric-description">
+               Requieren atención inmediata
+            </div>
+         </div>
+
+         <div className="metric-card">
+            <h3>Elementos Evaluados</h3>
+            <div className="metric-value">
+               {complianceData.summary.total}
+            </div>
+            <div className="metric-description">
+               Del checklist de cumplimiento
+            </div>
+         </div>
       </div>
 
-      <div className="chart-container">
-        <h3>Distribución de Estados</h3>
-        <ResponsiveContainer width="100%" height={300}>
-          <PieChart>
-            <Pie
-              data={pieData}
-              cx="50%"
-              cy="50%"
-              labelLine={false}
-              label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
-              outerRadius={80}
-              fill="#8884d8"
-              dataKey="value"
-            >
-              {pieData.map((entry, index) => (
-                <Cell key={`cell-${index}`} fill={entry.color} />
-              ))}
-            </Pie>
-            <Tooltip />
-          </PieChart>
-        </ResponsiveContainer>
-      </div>
-    </div>
+      <div className="charts-grid">
+         <div className="chart-container">
+            <h3>Cumplimiento por Categoría</h3>
+            <ResponsiveContainer width="100%" height={300}>
+               <RadarChart data={radarData}>
+                  <PolarGrid />
+                  <PolarAngleAxis dataKey="category" />
+                  <PolarRadiusAxis angle={30} domain={[0, 100]} />
+                  <Radar
+                     name="Cumplimiento"
+                     dataKey="score"
+                     stroke="#8884d8"
+                     fill="#8884d8"
+                     fillOpacity={0.6}
+                  />
+               </RadarChart>
+            </ResponsiveContainer>
+         </div>
 
-    <div className="priority-issues">
-      <h3>Issues de Alta Prioridad</h3>
-      {complianceData.summary.highPriorityIssues.length > 0 ? (
-        <ul>
-          {complianceData.summary.highPriorityIssues.map((issue, index) => (
-            <li key={index} className="priority-issue">
-              🔴 {issue}
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <p className="no-issues">✅ No hay issues de alta prioridad pendientes</p>
-      )}
-    </div>
-  </div>
+         <div className="chart-container">
+            <h3>Distribución de Estados</h3>
+            <ResponsiveContainer width="100%" height={300}>
+               <PieChart>
+                  <Pie
+                     data={pieData}
+                     cx="50%"
+                     cy="50%"
+                     labelLine={false}
+                     label={({ name, percent }) =>
+                        `${name} ${(percent * 100).toFixed(0)}%`}
+                     outerRadius={80}
+                     fill="#8884d8"
+                     dataKey="value"
+                  >
+                     {pieData.map((entry, index) => (
+                        <Cell key={`cell-${index}`} fill={entry.color} />
+                     ))}
+                  </Pie>
+                  <Tooltip />
+               </PieChart>
+            </ResponsiveContainer>
+         </div>
+      </div>
+
+      <div className="priority-issues">
+         <h3>Issues de Alta Prioridad</h3>
+         {complianceData.summary.highPriorityIssues.length > 0
+            ? (
+               <ul>
+                  {complianceData.summary.highPriorityIssues.map((
+                     issue,
+                     index,
+                  ) => (
+                     <li key={index} className="priority-issue">
+                        🔴 {issue}
+                     </li>
+                  ))}
+               </ul>
+            )
+            : (
+               <p className="no-issues">
+                  ✅ No hay issues de alta prioridad pendientes
+               </p>
+            )}
+      </div>
+   </div>
 );
 
 const getScoreClass = (score: number): string => {
-  if (score >= 90) return 'excellent';
-  if (score >= 80) return 'good';
-  if (score >= 70) return 'acceptable';
-  if (score >= 60) return 'needs-improvement';
-  return 'critical';
+   if (score >= 90) return "excellent";
+   if (score >= 80) return "good";
+   if (score >= 70) return "acceptable";
+   if (score >= 60) return "needs-improvement";
+   return "critical";
 };
 ```
 
@@ -1027,93 +1114,93 @@ const getScoreClass = (score: number): string => {
 name: Compliance Evaluation
 
 on:
-  pull_request:
-    branches: [ main, develop ]
-  push:
-    branches: [ main ]
-  schedule:
-    # Ejecutar evaluación semanal
-    - cron: '0 9 * * 1'
+   pull_request:
+      branches: [main, develop]
+   push:
+      branches: [main]
+   schedule:
+      # Ejecutar evaluación semanal
+      - cron: "0 9 * * 1"
 
 jobs:
-  compliance-evaluation:
-    runs-on: ubuntu-latest
-    
-    steps:
-    - uses: actions/checkout@v3
-    
-    - name: Setup Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '18'
-        cache: 'npm'
-        cache-dependency-path: frontend/package-lock.json
-    
-    - name: Setup PHP
-      uses: shivammathur/setup-php@v2
-      with:
-        php-version: '8.2'
-        extensions: mbstring, xml, ctype, iconv, intl, pdo, mysql
-    
-    - name: Install dependencies
-      run: |
-        cd frontend && npm ci
-        cd ../backend && composer install --prefer-dist --no-progress
-    
-    - name: Run automated compliance checks
-      run: |
-        chmod +x compliance-evaluation/evaluate-compliance.sh
-        ./compliance-evaluation/evaluate-compliance.sh
-    
-    - name: Generate code quality metrics
-      run: |
-        # Frontend metrics
-        cd frontend
-        npm run test:coverage
-        npx eslint src/ --format json --output-file ../compliance-evaluation/reports/eslint-report.json
-        
-        # Backend metrics
-        cd ../backend
-        vendor/bin/phpunit --coverage-clover coverage.xml
-        vendor/bin/phpstan analyse --error-format json > ../compliance-evaluation/reports/phpstan-report.json
-    
-    - name: Calculate compliance score
-      run: |
-        php compliance-evaluation/ComplianceMetrics.php
-    
-    - name: Upload compliance reports
-      uses: actions/upload-artifact@v3
-      with:
-        name: compliance-reports
-        path: compliance-evaluation/reports/
-    
-    - name: Comment PR with compliance results
-      if: github.event_name == 'pull_request'
-      uses: actions/github-script@v6
-      with:
-        script: |
-          const fs = require('fs');
-          const reportPath = 'compliance-evaluation/reports/compliance_report_latest.md';
-          
-          if (fs.existsSync(reportPath)) {
-            const report = fs.readFileSync(reportPath, 'utf8');
-            
-            github.rest.issues.createComment({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: `## 📊 Reporte de Cumplimiento del Estándar\n\n${report}`
-            });
-          }
-    
-    - name: Fail if critical issues found
-      run: |
-        # Verificar si hay issues críticos que deban fallar el build
-        if grep -q "🔴 CRÍTICO" compliance-evaluation/reports/compliance_report_latest.md; then
-          echo "❌ Se encontraron issues críticos de cumplimiento"
-          exit 1
-        fi
-        echo "✅ Evaluación de cumplimiento completada exitosamente"
+   compliance-evaluation:
+      runs-on: ubuntu-latest
+
+      steps:
+         - uses: actions/checkout@v3
+
+         - name: Setup Node.js
+           uses: actions/setup-node@v3
+           with:
+              node-version: "18"
+              cache: "npm"
+              cache-dependency-path: frontend/package-lock.json
+
+         - name: Setup PHP
+           uses: shivammathur/setup-php@v2
+           with:
+              php-version: "8.2"
+              extensions: mbstring, xml, ctype, iconv, intl, pdo, mysql
+
+         - name: Install dependencies
+           run: |
+              cd frontend && npm ci
+              cd ../backend && composer install --prefer-dist --no-progress
+
+         - name: Run automated compliance checks
+           run: |
+              chmod +x compliance-evaluation/evaluate-compliance.sh
+              ./compliance-evaluation/evaluate-compliance.sh
+
+         - name: Generate code quality metrics
+           run: |
+              # Frontend metrics
+              cd frontend
+              npm run test:coverage
+              npx eslint src/ --format json --output-file ../compliance-evaluation/reports/eslint-report.json
+
+              # Backend metrics
+              cd ../backend
+              vendor/bin/phpunit --coverage-clover coverage.xml
+              vendor/bin/phpstan analyse --error-format json > ../compliance-evaluation/reports/phpstan-report.json
+
+         - name: Calculate compliance score
+           run: |
+              php compliance-evaluation/ComplianceMetrics.php
+
+         - name: Upload compliance reports
+           uses: actions/upload-artifact@v3
+           with:
+              name: compliance-reports
+              path: compliance-evaluation/reports/
+
+         - name: Comment PR with compliance results
+           if: github.event_name == 'pull_request'
+           uses: actions/github-script@v6
+           with:
+              script: |
+                 const fs = require('fs');
+                 const reportPath = 'compliance-evaluation/reports/compliance_report_latest.md';
+
+                 if (fs.existsSync(reportPath)) {
+                   const report = fs.readFileSync(reportPath, 'utf8');
+
+                   github.rest.issues.createComment({
+                     issue_number: context.issue.number,
+                     owner: context.repo.owner,
+                     repo: context.repo.repo,
+                     body: `## 📊 Reporte de Cumplimiento del Estándar\n\n${report}`
+                   });
+                 }
+
+         - name: Fail if critical issues found
+           run: |
+              # Verificar si hay issues críticos que deban fallar el build
+              if grep -q "🔴 CRÍTICO" compliance-evaluation/reports/compliance_report_latest.md; then
+                echo "❌ Se encontraron issues críticos de cumplimiento"
+                exit 1
+              fi
+              echo "✅ Evaluación de cumplimiento completada exitosamente"
 ```
 
 ## Tips
@@ -1121,8 +1208,10 @@ jobs:
 ### Evaluación Efectiva
 
 - **Objetividad**: Utiliza métricas objetivas tanto como sea posible
-- **Contextualización**: Considera el contexto del proyecto al evaluar cumplimiento
-- **Evolución**: Actualiza los criterios de evaluación conforme evoluciona el estándar
+- **Contextualización**: Considera el contexto del proyecto al evaluar
+  cumplimiento
+- **Evolución**: Actualiza los criterios de evaluación conforme evoluciona el
+  estándar
 - **Automatización**: Automatiza las verificaciones que sean repetibles
 
 ### Gestión de Resultados
@@ -1136,8 +1225,10 @@ jobs:
 
 - **Benchmarking**: Compara resultados con proyectos anteriores
 - **Tendencias**: Analiza tendencias de cumplimiento a lo largo del tiempo
-- **Feedback**: Incorpora feedback del equipo sobre la utilidad de las evaluaciones
-- **ROI**: Mide el retorno de inversión de mantener altos estándares de cumplimiento
+- **Feedback**: Incorpora feedback del equipo sobre la utilidad de las
+  evaluaciones
+- **ROI**: Mide el retorno de inversión de mantener altos estándares de
+  cumplimiento
 
 ## Ejemplos
 
@@ -1147,6 +1238,7 @@ jobs:
 # Reporte de Cumplimiento del Estándar
 
 ## Información General
+
 - **Proyecto**: E-commerce Platform
 - **Fecha de evaluación**: 2024-03-15
 - **Evaluador**: Tech Lead
@@ -1157,6 +1249,7 @@ jobs:
 **Puntuación General**: 84/100 🟢
 
 ### Puntuaciones por Categoría
+
 - 🟢 **Arquitectura**: 90/100
 - 🟢 **Código**: 85/100
 - 🟡 **Procesos**: 78/100
@@ -1168,6 +1261,7 @@ jobs:
 ## Elementos Evaluados
 
 ### ✅ Cumplidos (18/25)
+
 - Clean Architecture implementada correctamente
 - TypeScript con strict mode configurado
 - CI/CD pipeline funcionando
@@ -1175,21 +1269,25 @@ jobs:
 - Git workflow implementado
 
 ### 🟡 Parcialmente Cumplidos (4/25)
+
 - Documentación de APIs (existe pero incompleta)
 - Cobertura de tests (78% vs 80% requerido)
 - ESLint configurado pero con warnings pendientes
 - Code review proceso definido pero no siempre seguido
 
 ### ❌ No Cumplidos (2/25)
+
 - Documentación de arquitectura desactualizada
 - Métricas de performance no configuradas
 
 ### ➖ No Aplicables (1/25)
+
 - Configuración móvil (proyecto solo web)
 
 ## Issues Críticos
 
 🔴 **CRÍTICO**: Documentación de arquitectura desactualizada
+
 - **Impacto**: Dificulta onboarding y mantenimiento
 - **Acción requerida**: Actualizar diagramas y documentación técnica
 - **Responsable**: Tech Lead
@@ -1198,16 +1296,19 @@ jobs:
 ## Plan de Acción
 
 ### Acciones Inmediatas (1-2 semanas)
+
 1. Actualizar documentación de arquitectura
 2. Configurar métricas de performance básicas
 3. Resolver warnings de ESLint pendientes
 
 ### Acciones de Mejora (1 mes)
+
 1. Completar documentación de APIs
 2. Aumentar cobertura de tests al 85%
 3. Formalizar proceso de code review con checklist
 
 ### Acciones de Optimización (3 meses)
+
 1. Implementar métricas avanzadas de calidad
 2. Automatizar más verificaciones en CI/CD
 3. Crear dashboard de métricas de cumplimiento
@@ -1221,31 +1322,12 @@ jobs:
 
 ## Próxima Evaluación
 
-**Fecha programada**: 2024-06-15
-**Enfoque**: Verificar implementación de plan de acción y reevaluar áreas críticas
+**Fecha programada**: 2024-06-15 **Enfoque**: Verificar implementación de plan
+de acción y reevaluar áreas críticas
 ```
 
 ## Navegación
 
-**Progreso en Mantenimiento y Evolución:**
-
-- ✅ [Mantenimiento y Evolución](./mantenimiento-evolucion.md)
-- ✅ [Monitoreo Post-Deployment](./monitoreo-post-deployment.md)
-- ✅ [Bug Fixes y Hotfixes](./bug-fixes-hotfixes.md)
-- ✅ [Actualización de Dependencias](./actualizacion-dependencias.md)
-- ✅ [Gestión de Nuevas Funcionalidades](./gestion-nuevas-funcionalidades.md)
-- ✅ [Mejoras Continuas Programadas](./mejoras-continuas-programadas.md)
-- ✅ [Documentación y Knowledge Transfer](./documentacion-knowledge-transfer.md)
-- ✅ [Retroalimentación del Equipo](./retroalimentacion-equipo.md)
-- ✅ **Evaluación del Cumplimiento del Estándar** ← Estás aquí
-- ⏭️ [Lecciones Aprendidas](./lecciones-aprendidas.md)
-- ⏭️ [Evaluación de Herramientas](./evaluacion-herramientas.md)
-- ⏭️ [Métricas y Analytics de Uso](./metricas-analytics-uso.md)
-
----
-
-### Siguiente Paso
-
-Continúa con [**Lecciones Aprendidas**](./lecciones-aprendidas.md)
-
-[⬅️ Retroalimentación del Equipo](./retroalimentacion-equipo.md) | [🏠 README Principal](../../README.md) | [➡️ Lecciones Aprendidas](./lecciones-aprendidas.md)
+[⬅️ Retroalimentación del Equipo](./retroalimentacion-equipo.md) |
+[🏠 README Principal](../../README.md) |
+[Lecciones Aprendidas ➡️](./lecciones-aprendidas.md)

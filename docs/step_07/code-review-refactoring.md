@@ -30,7 +30,7 @@ código sin cambiar su comportamiento externo.
 
 ##### **Template de Pull Request Estándar**
 
-```markdown
+````markdown
 <!-- .github/pull_request_template.md -->
 
 # 🚀 Pull Request
@@ -60,6 +60,7 @@ código sin cambiar su comportamiento externo.
 ## ✅ Checklist de completitud
 
 ### Desarrollo
+
 - [ ] El código compila sin errores
 - [ ] Se siguen los estándares de codificación del proyecto
 - [ ] No hay código comentado innecesario
@@ -67,18 +68,21 @@ código sin cambiar su comportamiento externo.
 - [ ] Los nombres de variables y funciones son descriptivos
 
 ### Testing
+
 - [ ] Se agregaron tests unitarios para el nuevo código
 - [ ] Se actualizaron tests existentes si fue necesario
 - [ ] Todos los tests pasan localmente
 - [ ] La cobertura de código se mantiene o mejora
 
 ### Documentación
+
 - [ ] Se actualizó la documentación relevante
 - [ ] Se agregaron comentarios JSDoc/PHPDoc donde es necesario
 - [ ] Se actualizó el README si hay cambios en la configuración
 - [ ] Se documentaron los endpoints de API si aplica
 
 ### Seguridad y Performance
+
 - [ ] Se validaron todas las entradas de usuario
 - [ ] No se exponen datos sensibles
 - [ ] Las consultas a BD son eficientes
@@ -96,10 +100,11 @@ npm install
 composer install
 php artisan migrate --env=testing
 ```
+````
 
 ### Casos de prueba
 
-1. **Caso principal**: 
+1. **Caso principal**:
    - Ir a [URL/funcionalidad]
    - Hacer [acción]
    - Verificar que [resultado esperado]
@@ -114,14 +119,13 @@ php artisan migrate --env=testing
 
 ## 🔗 Issues relacionados
 
-Closes #[número_de_issue]
-Related to #[número_de_issue]
+Closes #[número_de_issue] Related to #[número_de_issue]
 
 ## 📋 Notas adicionales
 
 <!-- Cualquier información adicional que sea relevante para el review -->
-```
 
+````
 ##### **Template para Pull Request de Release**
 
 ```markdown
@@ -202,7 +206,7 @@ Related to #[número_de_issue]
 - [ ] Verify key metrics
 - [ ] Collect user feedback
 - [ ] Update project documentation
-```
+````
 
 #### **2. Flujo de Review Estructurado**
 
@@ -241,31 +245,31 @@ README.md @team-lead
 
 ```json
 {
-  "required_status_checks": {
-    "strict": true,
-    "contexts": [
-      "ci/backend-tests",
-      "ci/frontend-tests",
-      "ci/mobile-tests",
-      "ci/security-scan",
-      "ci/performance-test"
-    ]
-  },
-  "enforce_admins": true,
-  "required_pull_request_reviews": {
-    "required_approving_review_count": 2,
-    "dismiss_stale_reviews": true,
-    "require_code_owner_reviews": true,
-    "bypass_pull_request_allowances": {
+   "required_status_checks": {
+      "strict": true,
+      "contexts": [
+         "ci/backend-tests",
+         "ci/frontend-tests",
+         "ci/mobile-tests",
+         "ci/security-scan",
+         "ci/performance-test"
+      ]
+   },
+   "enforce_admins": true,
+   "required_pull_request_reviews": {
+      "required_approving_review_count": 2,
+      "dismiss_stale_reviews": true,
+      "require_code_owner_reviews": true,
+      "bypass_pull_request_allowances": {
+         "users": [],
+         "teams": ["emergency-response"]
+      }
+   },
+   "restrictions": {
       "users": [],
-      "teams": ["emergency-response"]
-    }
-  },
-  "restrictions": {
-    "users": [],
-    "teams": ["senior-developers"],
-    "apps": ["github-actions"]
-  }
+      "teams": ["senior-developers"],
+      "apps": ["github-actions"]
+   }
 }
 ```
 
@@ -278,49 +282,49 @@ README.md @team-lead
 name: Automated PR Review
 
 on:
-  pull_request:
-    types: [opened, synchronize]
+   pull_request:
+      types: [opened, synchronize]
 
 jobs:
-  automated-review:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+   automated-review:
+      runs-on: ubuntu-latest
+      steps:
+         - name: Checkout code
+           uses: actions/checkout@v3
 
-      - name: Run automated review
-        uses: ./.github/actions/automated-review
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+         - name: Run automated review
+           uses: ./.github/actions/automated-review
+           with:
+              github-token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Comment review results
-        uses: actions/github-script@v6
-        with:
-          script: |
-            const fs = require('fs');
-            const review = JSON.parse(fs.readFileSync('review-results.json'));
-            
-            const comment = `
-            ## 🤖 Automated Review Results
-            
-            ### ✅ Passed Checks
-            ${review.passed.map(check => `- ${check}`).join('\n')}
-            
-            ### ❌ Failed Checks
-            ${review.failed.map(check => `- ${check}`).join('\n')}
-            
-            ### ⚠️ Warnings
-            ${review.warnings.map(warning => `- ${warning}`).join('\n')}
-            
-            **Overall Score**: ${review.score}/100
-            `;
-            
-            github.rest.issues.createComment({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: comment
-            });
+         - name: Comment review results
+           uses: actions/github-script@v6
+           with:
+              script: |
+                 const fs = require('fs');
+                 const review = JSON.parse(fs.readFileSync('review-results.json'));
+
+                 const comment = `
+                 ## 🤖 Automated Review Results
+
+                 ### ✅ Passed Checks
+                 ${review.passed.map(check => `- ${check}`).join('\n')}
+
+                 ### ❌ Failed Checks
+                 ${review.failed.map(check => `- ${check}`).join('\n')}
+
+                 ### ⚠️ Warnings
+                 ${review.warnings.map(warning => `- ${warning}`).join('\n')}
+
+                 **Overall Score**: ${review.score}/100
+                 `;
+
+                 github.rest.issues.createComment({
+                   issue_number: context.issue.number,
+                   owner: context.repo.owner,
+                   repo: context.repo.repo,
+                   body: comment
+                 });
 ```
 
 ##### **Etapa 2: Review Humano**
@@ -333,12 +337,14 @@ jobs:
 ### 1. Arquitectura y Diseño (15 min)
 
 #### Clean Architecture Compliance
+
 - [ ] ¿Las dependencias apuntan hacia el centro?
 - [ ] ¿Domain layer está libre de dependencias externas?
 - [ ] ¿Application layer solo depende de Domain?
 - [ ] ¿Infrastructure está correctamente separada?
 
 #### DDD Principles
+
 - [ ] ¿Las entidades modelan correctamente el dominio?
 - [ ] ¿Los value objects son inmutables?
 - [ ] ¿Los servicios de dominio encapsulan reglas complejas?
@@ -347,13 +353,20 @@ jobs:
 ### 2. Calidad del Código (20 min)
 
 #### SOLID Principles
-- [ ] **Single Responsibility**: ¿Cada clase/función tiene una sola razón para cambiar?
-- [ ] **Open/Closed**: ¿El código está abierto para extensión, cerrado para modificación?
-- [ ] **Liskov Substitution**: ¿Las subclases pueden reemplazar a sus clases base?
-- [ ] **Interface Segregation**: ¿Las interfaces son específicas y no fuerzan dependencias innecesarias?
-- [ ] **Dependency Inversion**: ¿Se depende de abstracciones, no de concreciones?
+
+- [ ] **Single Responsibility**: ¿Cada clase/función tiene una sola razón para
+      cambiar?
+- [ ] **Open/Closed**: ¿El código está abierto para extensión, cerrado para
+      modificación?
+- [ ] **Liskov Substitution**: ¿Las subclases pueden reemplazar a sus clases
+      base?
+- [ ] **Interface Segregation**: ¿Las interfaces son específicas y no fuerzan
+      dependencias innecesarias?
+- [ ] **Dependency Inversion**: ¿Se depende de abstracciones, no de
+      concreciones?
 
 #### Code Quality
+
 - [ ] Nombres descriptivos y consistentes
 - [ ] Funciones pequeñas (< 20 líneas idealmente)
 - [ ] Complejidad ciclomática aceptable
@@ -363,12 +376,14 @@ jobs:
 ### 3. Testing (10 min)
 
 #### Test Coverage
+
 - [ ] Tests unitarios para nueva funcionalidad
 - [ ] Tests de integración si aplica
 - [ ] Tests cubren casos edge
 - [ ] Tests son claros y mantenibles
 
 #### Test Quality
+
 - [ ] Arrange-Act-Assert pattern
 - [ ] Tests independientes
 - [ ] Mocking apropiado
@@ -377,12 +392,14 @@ jobs:
 ### 4. Security & Performance (10 min)
 
 #### Security
+
 - [ ] Input validation
 - [ ] Output encoding
 - [ ] Authentication/Authorization
 - [ ] No hardcoded secrets
 
 #### Performance
+
 - [ ] Consultas DB eficientes
 - [ ] No N+1 queries
 - [ ] Caching apropiado
@@ -404,65 +421,65 @@ jobs:
 // scripts/review-approval-criteria.ts
 
 interface ApprovalCriteria {
-  minimumApprovers: number;
-  requiredRoles: string[];
-  qualityGates: QualityGate[];
-  blockingConditions: BlockingCondition[];
+   minimumApprovers: number;
+   requiredRoles: string[];
+   qualityGates: QualityGate[];
+   blockingConditions: BlockingCondition[];
 }
 
 interface QualityGate {
-  name: string;
-  threshold: number;
-  current: number;
-  status: 'passed' | 'failed' | 'warning';
+   name: string;
+   threshold: number;
+   current: number;
+   status: "passed" | "failed" | "warning";
 }
 
 interface BlockingCondition {
-  condition: string;
-  severity: 'critical' | 'high' | 'medium';
-  blocker: boolean;
+   condition: string;
+   severity: "critical" | "high" | "medium";
+   blocker: boolean;
 }
 
 const approvalCriteria: ApprovalCriteria = {
-  minimumApprovers: 2,
-  requiredRoles: ['senior-developer', 'tech-lead'],
-  qualityGates: [
-    {
-      name: 'Test Coverage',
-      threshold: 80,
-      current: 85,
-      status: 'passed'
-    },
-    {
-      name: 'Code Quality Score',
-      threshold: 7.0,
-      current: 8.2,
-      status: 'passed'
-    },
-    {
-      name: 'Security Vulnerabilities',
-      threshold: 0,
-      current: 0,
-      status: 'passed'
-    }
-  ],
-  blockingConditions: [
-    {
-      condition: 'Critical security vulnerabilities found',
-      severity: 'critical',
-      blocker: true
-    },
-    {
-      condition: 'Test coverage below 80%',
-      severity: 'high',
-      blocker: true
-    },
-    {
-      condition: 'More than 5 code smells',
-      severity: 'medium',
-      blocker: false
-    }
-  ]
+   minimumApprovers: 2,
+   requiredRoles: ["senior-developer", "tech-lead"],
+   qualityGates: [
+      {
+         name: "Test Coverage",
+         threshold: 80,
+         current: 85,
+         status: "passed",
+      },
+      {
+         name: "Code Quality Score",
+         threshold: 7.0,
+         current: 8.2,
+         status: "passed",
+      },
+      {
+         name: "Security Vulnerabilities",
+         threshold: 0,
+         current: 0,
+         status: "passed",
+      },
+   ],
+   blockingConditions: [
+      {
+         condition: "Critical security vulnerabilities found",
+         severity: "critical",
+         blocker: true,
+      },
+      {
+         condition: "Test coverage below 80%",
+         severity: "high",
+         blocker: true,
+      },
+      {
+         condition: "More than 5 code smells",
+         severity: "medium",
+         blocker: false,
+      },
+   ],
 };
 ```
 
@@ -475,51 +492,51 @@ const approvalCriteria: ApprovalCriteria = {
 name: SonarQube Analysis
 
 on:
-  pull_request:
-    types: [opened, synchronize]
+   pull_request:
+      types: [opened, synchronize]
 
 jobs:
-  sonarqube:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
+   sonarqube:
+      runs-on: ubuntu-latest
+      steps:
+         - name: Checkout code
+           uses: actions/checkout@v3
+           with:
+              fetch-depth: 0
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '18'
+         - name: Setup Node.js
+           uses: actions/setup-node@v3
+           with:
+              node-version: "18"
 
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: '8.2'
+         - name: Setup PHP
+           uses: shivammathur/setup-php@v2
+           with:
+              php-version: "8.2"
 
-      - name: Install dependencies
-        run: |
-          npm ci
-          composer install
+         - name: Install dependencies
+           run: |
+              npm ci
+              composer install
 
-      - name: Run tests with coverage
-        run: |
-          npm run test:coverage
-          ./vendor/bin/phpunit --coverage-clover=coverage.xml
+         - name: Run tests with coverage
+           run: |
+              npm run test:coverage
+              ./vendor/bin/phpunit --coverage-clover=coverage.xml
 
-      - name: SonarQube Scan
-        uses: sonarqube-scanner-action@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        with:
-          args: >
-            -Dsonar.projectKey=ecommerce-platform
-            -Dsonar.sources=src,backend/app
-            -Dsonar.tests=tests,backend/tests
-            -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info
-            -Dsonar.php.coverage.reportPaths=coverage.xml
-            -Dsonar.exclusions=**/*.test.js,**/*Test.php
+         - name: SonarQube Scan
+           uses: sonarqube-scanner-action@master
+           env:
+              GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+              SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+           with:
+              args: >
+                 -Dsonar.projectKey=ecommerce-platform
+                 -Dsonar.sources=src,backend/app
+                 -Dsonar.tests=tests,backend/tests
+                 -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info
+                 -Dsonar.php.coverage.reportPaths=coverage.xml
+                 -Dsonar.exclusions=**/*.test.js,**/*Test.php
 ```
 
 #### **CodeClimate Integration**
@@ -528,160 +545,164 @@ jobs:
 # .codeclimate.yml
 version: "2"
 checks:
-  argument-count:
-    config:
-      threshold: 4
-  complex-logic:
-    config:
-      threshold: 4
-  file-lines:
-    config:
-      threshold: 250
-  method-complexity:
-    config:
-      threshold: 5
-  method-count:
-    config:
-      threshold: 20
-  method-lines:
-    config:
-      threshold: 25
+   argument-count:
+      config:
+         threshold: 4
+   complex-logic:
+      config:
+         threshold: 4
+   file-lines:
+      config:
+         threshold: 250
+   method-complexity:
+      config:
+         threshold: 5
+   method-count:
+      config:
+         threshold: 20
+   method-lines:
+      config:
+         threshold: 25
 
 plugins:
-  phpcodesniffer:
-    enabled: true
-    config:
-      standard: "PSR2"
-  eslint:
-    enabled: true
-    channel: "eslint-8"
-  duplication:
-    enabled: true
-    config:
-      languages:
-        - javascript
-        - php
+   phpcodesniffer:
+      enabled: true
+      config:
+         standard: "PSR2"
+   eslint:
+      enabled: true
+      channel: "eslint-8"
+   duplication:
+      enabled: true
+      config:
+         languages:
+            - javascript
+            - php
 
 exclude_patterns:
-  - "tests/"
-  - "spec/"
-  - "**/*.test.js"
-  - "vendor/"
-  - "node_modules/"
+   - "tests/"
+   - "spec/"
+   - "**/*.test.js"
+   - "vendor/"
+   - "node_modules/"
 ```
 
 #### **Automated Review Comments**
 
 ```javascript
 // .github/actions/review-bot/index.js
-const core = require('@actions/core');
-const github = require('@actions/github');
+const core = require("@actions/core");
+const github = require("@actions/github");
 
 async function analyzeAndComment() {
-  const token = core.getInput('github-token');
-  const octokit = github.getOctokit(token);
-  
-  const { context } = github;
-  const pullRequest = context.payload.pull_request;
-  
-  // Analizar archivos modificados
-  const files = await octokit.rest.pulls.listFiles({
-    owner: context.repo.owner,
-    repo: context.repo.repo,
-    pull_number: pullRequest.number
-  });
-  
-  const comments = [];
-  
-  // Análisis de archivos PHP
-  const phpFiles = files.data.filter(file => file.filename.endsWith('.php'));
-  for (const file of phpFiles) {
-    const issues = await analyzePHPFile(file);
-    comments.push(...issues);
-  }
-  
-  // Análisis de archivos JS/TS
-  const jsFiles = files.data.filter(file => 
-    file.filename.match(/\.(js|jsx|ts|tsx)$/)
-  );
-  for (const file of jsFiles) {
-    const issues = await analyzeJSFile(file);
-    comments.push(...issues);
-  }
-  
-  // Crear comentarios en el PR
-  for (const comment of comments) {
-    await octokit.rest.pulls.createReviewComment({
+   const token = core.getInput("github-token");
+   const octokit = github.getOctokit(token);
+
+   const { context } = github;
+   const pullRequest = context.payload.pull_request;
+
+   // Analizar archivos modificados
+   const files = await octokit.rest.pulls.listFiles({
       owner: context.repo.owner,
       repo: context.repo.repo,
       pull_number: pullRequest.number,
-      body: comment.body,
-      path: comment.path,
-      line: comment.line
-    });
-  }
+   });
+
+   const comments = [];
+
+   // Análisis de archivos PHP
+   const phpFiles = files.data.filter((file) => file.filename.endsWith(".php"));
+   for (const file of phpFiles) {
+      const issues = await analyzePHPFile(file);
+      comments.push(...issues);
+   }
+
+   // Análisis de archivos JS/TS
+   const jsFiles = files.data.filter((file) =>
+      file.filename.match(/\.(js|jsx|ts|tsx)$/)
+   );
+   for (const file of jsFiles) {
+      const issues = await analyzeJSFile(file);
+      comments.push(...issues);
+   }
+
+   // Crear comentarios en el PR
+   for (const comment of comments) {
+      await octokit.rest.pulls.createReviewComment({
+         owner: context.repo.owner,
+         repo: context.repo.repo,
+         pull_number: pullRequest.number,
+         body: comment.body,
+         path: comment.path,
+         line: comment.line,
+      });
+   }
 }
 
 async function analyzePHPFile(file) {
-  const issues = [];
-  
-  // Verificar patrones problemáticos
-  if (file.patch.includes('global $')) {
-    issues.push({
-      path: file.filename,
-      line: getLineNumber(file.patch, 'global $'),
-      body: '⚠️ **Evita variables globales**\n\nUsa inyección de dependencias en su lugar.'
-    });
-  }
-  
-  if (file.patch.includes('exit(') || file.patch.includes('die(')) {
-    issues.push({
-      path: file.filename,
-      line: getLineNumber(file.patch, 'exit('),
-      body: '❌ **Evita exit() y die()**\n\nUsa excepciones para manejar errores.'
-    });
-  }
-  
-  return issues;
+   const issues = [];
+
+   // Verificar patrones problemáticos
+   if (file.patch.includes("global $")) {
+      issues.push({
+         path: file.filename,
+         line: getLineNumber(file.patch, "global $"),
+         body:
+            "⚠️ **Evita variables globales**\n\nUsa inyección de dependencias en su lugar.",
+      });
+   }
+
+   if (file.patch.includes("exit(") || file.patch.includes("die(")) {
+      issues.push({
+         path: file.filename,
+         line: getLineNumber(file.patch, "exit("),
+         body:
+            "❌ **Evita exit() y die()**\n\nUsa excepciones para manejar errores.",
+      });
+   }
+
+   return issues;
 }
 
 async function analyzeJSFile(file) {
-  const issues = [];
-  
-  // Verificar uso de console.log
-  if (file.patch.includes('console.log')) {
-    issues.push({
-      path: file.filename,
-      line: getLineNumber(file.patch, 'console.log'),
-      body: '🧹 **Remove console.log**\n\nUsa un logger apropiado o remueve antes del merge.'
-    });
-  }
-  
-  // Verificar any types en TypeScript
-  if (file.patch.includes(': any')) {
-    issues.push({
-      path: file.filename,
-      line: getLineNumber(file.patch, ': any'),
-      body: '🔒 **Evita tipo `any`**\n\nEspecifica tipos más precisos para mejor type safety.'
-    });
-  }
-  
-  return issues;
+   const issues = [];
+
+   // Verificar uso de console.log
+   if (file.patch.includes("console.log")) {
+      issues.push({
+         path: file.filename,
+         line: getLineNumber(file.patch, "console.log"),
+         body:
+            "🧹 **Remove console.log**\n\nUsa un logger apropiado o remueve antes del merge.",
+      });
+   }
+
+   // Verificar any types en TypeScript
+   if (file.patch.includes(": any")) {
+      issues.push({
+         path: file.filename,
+         line: getLineNumber(file.patch, ": any"),
+         body:
+            "🔒 **Evita tipo `any`**\n\nEspecifica tipos más precisos para mejor type safety.",
+      });
+   }
+
+   return issues;
 }
 
 function getLineNumber(patch, searchString) {
-  // Implementar lógica para encontrar número de línea
-  const lines = patch.split('\n');
-  for (let i = 0; i < lines.length; i++) {
-    if (lines[i].includes(searchString)) {
-      return i + 1;
-    }
-  }
-  return 1;
+   // Implementar lógica para encontrar número de línea
+   const lines = patch.split("\n");
+   for (let i = 0; i < lines.length; i++) {
+      if (lines[i].includes(searchString)) {
+         return i + 1;
+      }
+   }
+   return 1;
 }
 
-analyzeAndComment().catch(error => {
-  core.setFailed(error.message);
+analyzeAndComment().catch((error) => {
+   core.setFailed(error.message);
 });
 ```
 
@@ -693,98 +714,108 @@ analyzeAndComment().catch(error => {
 // src/utils/review-metrics.ts
 
 interface ReviewMetrics {
-  averageReviewTime: number; // en horas
-  approvalRate: number; // porcentaje
-  defectDensity: number; // defectos por KLOC
-  reviewParticipation: number; // porcentaje del equipo
-  codeChurn: number; // líneas modificadas/total
-  qualityScore: number; // score general
+   averageReviewTime: number; // en horas
+   approvalRate: number; // porcentaje
+   defectDensity: number; // defectos por KLOC
+   reviewParticipation: number; // porcentaje del equipo
+   codeChurn: number; // líneas modificadas/total
+   qualityScore: number; // score general
 }
 
 interface ReviewData {
-  prNumber: number;
-  author: string;
-  reviewers: string[];
-  createdAt: Date;
-  mergedAt?: Date;
-  linesAdded: number;
-  linesDeleted: number;
-  commentsCount: number;
-  approvalsCount: number;
-  changesRequestedCount: number;
-  qualityGates: QualityGateResult[];
+   prNumber: number;
+   author: string;
+   reviewers: string[];
+   createdAt: Date;
+   mergedAt?: Date;
+   linesAdded: number;
+   linesDeleted: number;
+   commentsCount: number;
+   approvalsCount: number;
+   changesRequestedCount: number;
+   qualityGates: QualityGateResult[];
 }
 
 class ReviewMetricsCalculator {
-  calculateAverageReviewTime(reviews: ReviewData[]): number {
-    const completedReviews = reviews.filter(r => r.mergedAt);
-    const totalTime = completedReviews.reduce((sum, review) => {
-      return sum + (review.mergedAt!.getTime() - review.createdAt.getTime());
-    }, 0);
-    
-    return totalTime / completedReviews.length / (1000 * 60 * 60); // en horas
-  }
-  
-  calculateApprovalRate(reviews: ReviewData[]): number {
-    const approvedReviews = reviews.filter(r => r.approvalsCount >= 2);
-    return (approvedReviews.length / reviews.length) * 100;
-  }
-  
-  calculateDefectDensity(reviews: ReviewData[]): number {
-    const totalLOC = reviews.reduce((sum, r) => sum + r.linesAdded, 0);
-    const totalDefects = reviews.reduce((sum, r) => sum + r.changesRequestedCount, 0);
-    
-    return (totalDefects / totalLOC) * 1000; // defectos por KLOC
-  }
-  
-  generateReport(reviews: ReviewData[]): ReviewMetrics {
-    return {
-      averageReviewTime: this.calculateAverageReviewTime(reviews),
-      approvalRate: this.calculateApprovalRate(reviews),
-      defectDensity: this.calculateDefectDensity(reviews),
-      reviewParticipation: this.calculateParticipation(reviews),
-      codeChurn: this.calculateCodeChurn(reviews),
-      qualityScore: this.calculateQualityScore(reviews)
-    };
-  }
-  
-  private calculateParticipation(reviews: ReviewData[]): number {
-    const uniqueReviewers = new Set(
-      reviews.flatMap(r => r.reviewers)
-    );
-    
-    // Asumiendo un equipo de 8 personas
-    return (uniqueReviewers.size / 8) * 100;
-  }
-  
-  private calculateCodeChurn(reviews: ReviewData[]): number {
-    const totalModified = reviews.reduce((sum, r) => 
-      sum + r.linesAdded + r.linesDeleted, 0
-    );
-    const totalAdded = reviews.reduce((sum, r) => sum + r.linesAdded, 0);
-    
-    return totalModified / totalAdded;
-  }
-  
-  private calculateQualityScore(reviews: ReviewData[]): number {
-    // Algoritmo compuesto que considera múltiples factores
-    const approvalWeight = 0.3;
-    const timeWeight = 0.2;
-    const participationWeight = 0.2;
-    const defectWeight = 0.3;
-    
-    const approvalScore = this.calculateApprovalRate(reviews);
-    const timeScore = Math.max(0, 100 - this.calculateAverageReviewTime(reviews) * 10);
-    const participationScore = this.calculateParticipation(reviews);
-    const defectScore = Math.max(0, 100 - this.calculateDefectDensity(reviews) * 10);
-    
-    return (
-      approvalScore * approvalWeight +
-      timeScore * timeWeight +
-      participationScore * participationWeight +
-      defectScore * defectWeight
-    );
-  }
+   calculateAverageReviewTime(reviews: ReviewData[]): number {
+      const completedReviews = reviews.filter((r) => r.mergedAt);
+      const totalTime = completedReviews.reduce((sum, review) => {
+         return sum + (review.mergedAt!.getTime() - review.createdAt.getTime());
+      }, 0);
+
+      return totalTime / completedReviews.length / (1000 * 60 * 60); // en horas
+   }
+
+   calculateApprovalRate(reviews: ReviewData[]): number {
+      const approvedReviews = reviews.filter((r) => r.approvalsCount >= 2);
+      return (approvedReviews.length / reviews.length) * 100;
+   }
+
+   calculateDefectDensity(reviews: ReviewData[]): number {
+      const totalLOC = reviews.reduce((sum, r) => sum + r.linesAdded, 0);
+      const totalDefects = reviews.reduce(
+         (sum, r) => sum + r.changesRequestedCount,
+         0,
+      );
+
+      return (totalDefects / totalLOC) * 1000; // defectos por KLOC
+   }
+
+   generateReport(reviews: ReviewData[]): ReviewMetrics {
+      return {
+         averageReviewTime: this.calculateAverageReviewTime(reviews),
+         approvalRate: this.calculateApprovalRate(reviews),
+         defectDensity: this.calculateDefectDensity(reviews),
+         reviewParticipation: this.calculateParticipation(reviews),
+         codeChurn: this.calculateCodeChurn(reviews),
+         qualityScore: this.calculateQualityScore(reviews),
+      };
+   }
+
+   private calculateParticipation(reviews: ReviewData[]): number {
+      const uniqueReviewers = new Set(
+         reviews.flatMap((r) => r.reviewers),
+      );
+
+      // Asumiendo un equipo de 8 personas
+      return (uniqueReviewers.size / 8) * 100;
+   }
+
+   private calculateCodeChurn(reviews: ReviewData[]): number {
+      const totalModified = reviews.reduce(
+         (sum, r) => sum + r.linesAdded + r.linesDeleted,
+         0,
+      );
+      const totalAdded = reviews.reduce((sum, r) => sum + r.linesAdded, 0);
+
+      return totalModified / totalAdded;
+   }
+
+   private calculateQualityScore(reviews: ReviewData[]): number {
+      // Algoritmo compuesto que considera múltiples factores
+      const approvalWeight = 0.3;
+      const timeWeight = 0.2;
+      const participationWeight = 0.2;
+      const defectWeight = 0.3;
+
+      const approvalScore = this.calculateApprovalRate(reviews);
+      const timeScore = Math.max(
+         0,
+         100 - this.calculateAverageReviewTime(reviews) * 10,
+      );
+      const participationScore = this.calculateParticipation(reviews);
+      const defectScore = Math.max(
+         0,
+         100 - this.calculateDefectDensity(reviews) * 10,
+      );
+
+      return (
+         approvalScore * approvalWeight +
+         timeScore * timeWeight +
+         participationScore * participationWeight +
+         defectScore * defectWeight
+      );
+   }
 }
 ```
 
@@ -1910,34 +1941,8 @@ echo "📋 Ver reporte en: refactoring-report.html"
 **Reviewer**: @john-doe **Prioridad**: Alta **Area**: Frontend/Components
 ````
 
----
-
 ## Navegación
-
-**Progreso en Testing y Quality Assurance:**
-
-- ✅ [Testing y QA](./testing-qa.md)
-- ✅ [Tipos de Pruebas](./tipos-pruebas.md)
-- ✅ [Testing Funcional Automatizado](./testing-funcional-automatizado.md)
-- ✅ [Testing de Regresión](./testing-regresion.md)
-- ✅ [Checklists QA](./checklists-qa.md)
-- ✅ [Pruebas de Aceptación del Usuario](./pruebas-aceptacion-usuario.md)
-- ✅ [Gestión de Reportes de Errores](./gestion-reportes-errores.md)
-- ✅ [Testing de Performance y Carga](./testing-performance-carga.md)
-- ✅ [Testing de Seguridad OWASP](./testing-seguridad-owasp.md)
-- ✅ [Testing de Usabilidad](./testing-usabilidad.md)
-- ✅ **Code Review y Refactoring** ← Estás aquí
-- ⏭️ [Auditoría de Calidad de Código](./auditoria-calidad-codigo.md)
-- ⏭️ [Checklist Específico de Performance](./checklist-performance.md)
-- ⏭️ [Revisión General del Código](./revision-general-codigo.md)
-- ⏭️ [Optimización de Recursos](./optimizacion-recursos.md)
-
----
-
-### Siguiente Paso
-
-Continúa con [**Auditoría de Calidad de Código**](./auditoria-calidad-codigo.md)
 
 [⬅️ Testing de Usabilidad](./testing-usabilidad.md) |
 [🏠 README Principal](../../README.md) |
-[➡️ Auditoría de Calidad de Código](./auditoria-calidad-codigo.md)
+[Auditoría de Calidad de Código ➡️](./auditoria-calidad-codigo.md)

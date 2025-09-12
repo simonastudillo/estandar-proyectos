@@ -322,25 +322,6 @@ ciclo de vida del proyecto.
 
 ## Navegación
 
-**Progreso en Planificación y Análisis:**
-
-- ✅ [Planificación y Análisis - Introducción](./planificacion-analisis.md)
-- ✅
-  [Requerimientos Funcionales y No Funcionales](./requerimientos-funcionales-no-funcionales.md)
-- ✅ **Análisis de Stakeholders** ← Estás aquí
-- ⏭️ [Roadmap del Proyecto](./roadmap-proyecto.md)
-- ⏭️ [Metodología de Trabajo](./metodologia-trabajo.md)
-- ⏭️ [Definición del Alcance del Proyecto](./definicion-alcance.md)
-- ⏭️ [Estimación de Tiempos y Recursos](./estimacion-tiempos-recursos.md)
-- ⏭️ [Análisis de Riesgos](./analisis-riesgos.md)
-
----
-
-### Siguiente Paso
-
-Continúa con el [**Roadmap del Proyecto**](./roadmap-proyecto.md) para
-establecer la visión estratégica y las fases de evolución de tu proyecto.
-
 [⬅️ Requerimientos](./requerimientos-funcionales-no-funcionales.md) |
 [🏠 README Principal](../../README.md) |
-[➡️ Roadmap del Proyecto](./roadmap-proyecto.md)
+[Roadmap del Proyecto ➡️](./roadmap-proyecto.md)

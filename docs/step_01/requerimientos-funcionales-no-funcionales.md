@@ -278,24 +278,5 @@ visibilidad de inventarios en tiempo real."
 
 ## Navegación
 
-**Progreso en Planificación y Análisis:**
-
-- ✅ [Planificación y Análisis - Introducción](./planificacion-analisis.md)
-- ✅ **Requerimientos Funcionales y No Funcionales** ← Estás aquí
-- ⏭️ [Análisis de Stakeholders](./analisis-stakeholders.md)
-- ⏭️ [Roadmap del Proyecto](./roadmap-proyecto.md)
-- ⏭️ [Metodología de Trabajo](./metodologia-trabajo.md)
-- ⏭️ [Definición del Alcance del Proyecto](./definicion-alcance.md)
-- ⏭️ [Estimación de Tiempos y Recursos](./estimacion-tiempos-recursos.md)
-- ⏭️ [Análisis de Riesgos](./analisis-riesgos.md)
-
----
-
-### Siguiente Paso
-
-Continúa con el [**Análisis de Stakeholders**](./analisis-stakeholders.md) para
-identificar y gestionar a todas las personas que influirán en el éxito de tu
-proyecto.
-
 [⬅️ Volver a Planificación](./planificacion-analisis.md) |
-[➡️ Análisis de Stakeholders](./analisis-stakeholders.md)
+[Análisis de Stakeholders ➡️](./analisis-stakeholders.md)

@@ -794,28 +794,8 @@ export const RouteErrorBoundary: React.FC = () => {
 };
 ```
 
----
-
 ## Navegación
-
-**Progreso en Desarrollo del Backend:**
-
-- ✅ [Desarrollo del Frontend-web](./desarrollo-frontend-web.md)
-- ✅
-  [Configuración React + TypeScript + Vite](./configuracion-react-typescript-vite.md)
-- ✅
-  [Componentes Reutilizables con Tipado](./componentes-reutilizables-tipado.md)
-- ✅ [Redux Toolkit - Estado Global](./redux-toolkit-estado-global.md)
-- ✅ [Integración APIs con Axios](./integracion-apis-axios.md)
-- ✅ **React Router - Navegación** ← Estás aquí
-- ⏭️ [Testing Componentes con Jest](./testing-componentes-jest.md)
-
----
-
-### Siguiente Paso
-
-Continúa con [**Testing Componentes con Jest**](./testing-componentes-jest.md)
 
 [⬅️ Integración APIs con Axios](./integracion-apis-axios.md) |
 [🏠 README Principal](../../README.md) |
-[➡️ Testing Componentes con Jest](./testing-componentes-jest.md)
+[Testing Componentes con Jest ➡️](./testing-componentes-jest.md)

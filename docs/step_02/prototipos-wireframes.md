@@ -983,29 +983,6 @@ Validaciones:
 
 ## Navegación
 
-**Progreso en Diseño y Arquitectura:**
-
-- ✅ [Diseño y Arquitectura - Introducción](./diseno-arquitectura.md)
-- ✅ [Stack Tecnológico](./stack-tecnologico.md)
-- ✅ [Elección de Herramientas](./eleccion-herramientas.md)
-- ✅ [Patrones de Diseño](./patrones-diseno.md)
-- ✅ [Arquitectura del Sistema](./arquitectura-sistema.md)
-- ✅ [Diagrama de Arquitectura General](./diagrama-arquitectura-general.md)
-- ✅ [Estructura de Carpetas](./estructura-carpetas.md)
-- ✅ [Diseño de Base de Datos](./diseno-base-datos.md)
-- ✅ [Diseño de APIs](./diseno-apis.md)
-- ✅ [Diagramas de Flujo](./diagramas-flujo.md)
-- ✅ [Casos de Uso y User Stories](./casos-uso-user-stories.md)
-- ✅ **Prototipos y Wireframes** ← Estás aquí
-- ⏭️ [Especificaciones Técnicas](./especificaciones-tecnicas.md)
-
----
-
-### Siguiente Paso
-
-Continúa con las
-[**Especificaciones Técnicas**](./especificaciones-tecnicas.md).
-
 [⬅️ Casos de Uso y User Stories](./casos-uso-user-stories.md) |
 [🏠 README Principal](../../README.md) |
-[➡️ Especificaciones Técnicas](./especificaciones-tecnicas.md)
+[Especificaciones Técnicas ➡️](./especificaciones-tecnicas.md)

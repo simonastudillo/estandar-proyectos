@@ -635,24 +635,6 @@ export class ErrorBoundary extends Component<Props, State> {
 
 ## Navegación
 
-**Progreso en Mantenimiento y Evolución:**
-
-- ✅ [Mantenimiento y Evolución](./mantenimiento-evolucion.md)
-- ✅ [Monitoreo Post-Deployment](./monitoreo-post-deployment.md)
-- ✅ **Bug Fixes y Hotfixes** ← Estás aquí
-- ⏭️ [Actualización de Dependencias](./actualizacion-dependencias.md)
-- ⏭️ [Gestión de Nuevas Funcionalidades](./gestion-nuevas-funcionalidades.md)
-- ⏭️ [Mejoras continuas programadas](./mejoras-continuas-programadas.md)
-- ⏭️ [Documentación y Knowledge Transfer](./documentacion-knowledge-transfer.md)
-- ⏭️ [Métricas y Analytics de Uso](./metricas-analytics-uso.md)
-
----
-
-### Siguiente Paso
-
-Continúa con
-[**Actualización de Dependencias**](./actualizacion-dependencias.md)
-
 [⬅️ Monitoreo Post-Deployment](./monitoreo-post-deployment.md) |
 [🏠 README Principal](../../README.md) |
-[➡️ Actualización de Dependencias](./actualizacion-dependencias.md)
+[Actualización de Dependencias ➡️](./actualizacion-dependencias.md)

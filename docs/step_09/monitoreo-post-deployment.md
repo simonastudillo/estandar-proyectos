@@ -555,23 +555,6 @@ export const usePerformanceTracking = (pageName: string) => {
 
 ## Navegación
 
-**Progreso en Mantenimiento y Evolución:**
-
-- ✅ [Mantenimiento y Evolución](./mantenimiento-evolucion.md)
-- ✅ **Monitoreo Post-Deployment** ← Estás aquí
-- ⏭️ [Bug Fixes y Hotfixes](./bug-fixes-hotfixes.md)
-- ⏭️ [Actualización de Dependencias](./actualizacion-dependencias.md)
-- ⏭️ [Gestión de Nuevas Funcionalidades](./gestion-nuevas-funcionalidades.md)
-- ⏭️ [Mejoras continuas programadas](./mejoras-continuas-programadas.md)
-- ⏭️ [Documentación y Knowledge Transfer](./documentacion-knowledge-transfer.md)
-- ⏭️ [Métricas y Analytics de Uso](./metricas-analytics-uso.md)
-
----
-
-### Siguiente Paso
-
-Continúa con [**Bug Fixes y Hotfixes**](./bug-fixes-hotfixes.md)
-
 [⬅️ Mantenimiento y Evolución](./mantenimiento-evolucion.md) |
 [🏠 README Principal](../../README.md) |
-[➡️ Bug Fixes y Hotfixes](./bug-fixes-hotfixes.md)
+[Bug Fixes y Hotfixes ➡️](./bug-fixes-hotfixes.md)

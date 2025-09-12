@@ -10,9 +10,8 @@ técnica y optimización del sistema sin esperar a que los problemas se vuelvan
 críticos.
 
 En el contexto de Clean Architecture + DDD, las mejoras continuas aseguran que
-las capas mantengan su independencia, las reglas de dominio permanezcan claras
-y la arquitectura evolucione de manera sostenible a medida que el proyecto
-crece.
+las capas mantengan su independencia, las reglas de dominio permanezcan claras y
+la arquitectura evolucione de manera sostenible a medida que el proyecto crece.
 
 ## ¿Por qué es importante?
 
@@ -23,8 +22,8 @@ crece.
 - **Escalabilidad**: Prepara el sistema para crecimiento futuro
 - **Conocimiento compartido**: Fomenta el aprendizaje continuo del equipo
 - **Competitividad**: Permite adoptar nuevas tecnologías y mejores prácticas
-- **Satisfacción del desarrollador**: Reduce frustración por trabajar con
-  código legacy
+- **Satisfacción del desarrollador**: Reduce frustración por trabajar con código
+  legacy
 - **ROI a largo plazo**: Invierte tiempo ahora para ahorrar mucho más después
 
 ## ¿Qué debe incluir?
@@ -66,31 +65,31 @@ crece.
 ```yaml
 # improvement-schedule.yml
 continuous_improvement:
-  cycles:
-    daily:
-      - code_review_quality_check
-      - automated_code_cleanup
-      - performance_monitoring_review
-    
-    weekly:
-      - technical_debt_assessment
-      - code_quality_metrics_review
-      - refactoring_opportunities_identification
-    
-    monthly:
-      - architecture_review
-      - dependency_updates_major
-      - performance_optimization_sprint
-    
-    quarterly:
-      - technology_stack_evaluation
-      - major_refactoring_initiatives
-      - technical_okrs_review
-  
-  allocation:
-    improvement_time_percentage: 20  # 20% del tiempo del sprint
-    bug_fix_time_percentage: 10
-    feature_development_percentage: 70
+   cycles:
+      daily:
+         - code_review_quality_check
+         - automated_code_cleanup
+         - performance_monitoring_review
+
+      weekly:
+         - technical_debt_assessment
+         - code_quality_metrics_review
+         - refactoring_opportunities_identification
+
+      monthly:
+         - architecture_review
+         - dependency_updates_major
+         - performance_optimization_sprint
+
+      quarterly:
+         - technology_stack_evaluation
+         - major_refactoring_initiatives
+         - technical_okrs_review
+
+   allocation:
+      improvement_time_percentage: 20 # 20% del tiempo del sprint
+      bug_fix_time_percentage: 10
+      feature_development_percentage: 70
 ```
 
 **Script para tracking de tiempo de mejoras:**
@@ -613,194 +612,208 @@ ${opportunity.description}
 
 ```typescript
 // src/components/TechnicalDashboard.tsx
-import React, { useEffect, useState } from 'react';
-import { TechnicalMetrics, ImprovementOpportunity } from '../types/technical-metrics';
+import React, { useEffect, useState } from "react";
+import {
+   ImprovementOpportunity,
+   TechnicalMetrics,
+} from "../types/technical-metrics";
 
 interface TechnicalDashboardProps {
-  refreshInterval?: number;
+   refreshInterval?: number;
 }
 
-export const TechnicalDashboard: React.FC<TechnicalDashboardProps> = ({ 
-  refreshInterval = 300000 // 5 minutes
+export const TechnicalDashboard: React.FC<TechnicalDashboardProps> = ({
+   refreshInterval = 300000, // 5 minutes
 }) => {
-  const [metrics, setMetrics] = useState<TechnicalMetrics | null>(null);
-  const [opportunities, setOpportunities] = useState<ImprovementOpportunity[]>([]);
-  const [loading, setLoading] = useState(true);
+   const [metrics, setMetrics] = useState<TechnicalMetrics | null>(null);
+   const [opportunities, setOpportunities] = useState<ImprovementOpportunity[]>(
+      [],
+   );
+   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const fetchMetrics = async () => {
-      try {
-        const [metricsResponse, opportunitiesResponse] = await Promise.all([
-          fetch('/api/technical-metrics'),
-          fetch('/api/improvement-opportunities')
-        ]);
+   useEffect(() => {
+      const fetchMetrics = async () => {
+         try {
+            const [metricsResponse, opportunitiesResponse] = await Promise.all([
+               fetch("/api/technical-metrics"),
+               fetch("/api/improvement-opportunities"),
+            ]);
 
-        const metricsData = await metricsResponse.json();
-        const opportunitiesData = await opportunitiesResponse.json();
+            const metricsData = await metricsResponse.json();
+            const opportunitiesData = await opportunitiesResponse.json();
 
-        setMetrics(metricsData);
-        setOpportunities(opportunitiesData);
-      } catch (error) {
-        console.error('Error fetching technical metrics:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
+            setMetrics(metricsData);
+            setOpportunities(opportunitiesData);
+         } catch (error) {
+            console.error("Error fetching technical metrics:", error);
+         } finally {
+            setLoading(false);
+         }
+      };
 
-    fetchMetrics();
-    const interval = setInterval(fetchMetrics, refreshInterval);
+      fetchMetrics();
+      const interval = setInterval(fetchMetrics, refreshInterval);
 
-    return () => clearInterval(interval);
-  }, [refreshInterval]);
+      return () => clearInterval(interval);
+   }, [refreshInterval]);
 
-  if (loading) {
-    return <div className="loading">Loading technical metrics...</div>;
-  }
+   if (loading) {
+      return <div className="loading">Loading technical metrics...</div>;
+   }
 
-  return (
-    <div className="technical-dashboard">
-      <h1>🔧 Technical Improvements Dashboard</h1>
-      
-      {/* Technical Debt Overview */}
-      <section className="debt-overview">
-        <h2>Technical Debt Index</h2>
-        <div className="debt-gauge">
-          <div 
-            className={`debt-score ${getDebtScoreClass(metrics?.technicalDebtIndex)}`}
-          >
-            {metrics?.technicalDebtIndex.toFixed(1)}%
-          </div>
-          <div className="debt-trend">
-            Trend: {metrics?.debtTrend > 0 ? '📈' : '📉'} 
-            {Math.abs(metrics?.debtTrend || 0).toFixed(1)}%
-          </div>
-        </div>
-      </section>
+   return (
+      <div className="technical-dashboard">
+         <h1>🔧 Technical Improvements Dashboard</h1>
 
-      {/* Quality Metrics */}
-      <section className="quality-metrics">
-        <h2>Quality Metrics</h2>
-        <div className="metrics-grid">
-          <MetricCard 
-            title="Test Coverage"
-            value={`${metrics?.testCoverage}%`}
-            target="85%"
-            trend={metrics?.coverageTrend}
-          />
-          <MetricCard 
-            title="Code Complexity"
-            value={metrics?.avgComplexity?.toFixed(1)}
-            target="< 8"
-            trend={metrics?.complexityTrend}
-          />
-          <MetricCard 
-            title="Duplication"
-            value={`${metrics?.duplicationPercentage}%`}
-            target="< 5%"
-            trend={metrics?.duplicationTrend}
-          />
-          <MetricCard 
-            title="Vulnerabilities"
-            value={metrics?.securityVulnerabilities}
-            target="0"
-            trend={metrics?.vulnerabilitiesTrend}
-          />
-        </div>
-      </section>
-
-      {/* Improvement Opportunities */}
-      <section className="improvement-opportunities">
-        <h2>Top Improvement Opportunities</h2>
-        <div className="opportunities-list">
-          {opportunities.slice(0, 5).map((opportunity, index) => (
-            <div key={index} className="opportunity-card">
-              <div className="opportunity-header">
-                <span className={`priority ${opportunity.priority}`}>
-                  {opportunity.priority.toUpperCase()}
-                </span>
-                <span className="effort">
-                  {opportunity.effortHours}h effort
-                </span>
-              </div>
-              <h3>{opportunity.description}</h3>
-              <p className="opportunity-impact">
-                Impact: {opportunity.impact} | ROI: {opportunity.roi?.toFixed(1)}
-              </p>
-              <div className="opportunity-actions">
-                <button 
-                  onClick={() => createImprovementTask(opportunity)}
-                  className="btn-create-task"
-                >
-                  Create Task
-                </button>
-                <button 
-                  onClick={() => viewDetails(opportunity)}
-                  className="btn-details"
-                >
-                  View Details
-                </button>
-              </div>
+         {/* Technical Debt Overview */}
+         <section className="debt-overview">
+            <h2>Technical Debt Index</h2>
+            <div className="debt-gauge">
+               <div
+                  className={`debt-score ${
+                     getDebtScoreClass(metrics?.technicalDebtIndex)
+                  }`}
+               >
+                  {metrics?.technicalDebtIndex.toFixed(1)}%
+               </div>
+               <div className="debt-trend">
+                  Trend: {metrics?.debtTrend > 0 ? "📈" : "📉"}
+                  {Math.abs(metrics?.debtTrend || 0).toFixed(1)}%
+               </div>
             </div>
-          ))}
-        </div>
-      </section>
+         </section>
 
-      {/* OKR Progress */}
-      <section className="okr-progress">
-        <h2>Technical OKRs Progress</h2>
-        <div className="okrs-list">
-          {metrics?.technicalOKRs?.map((okr, index) => (
-            <div key={index} className="okr-card">
-              <h3>{okr.objective}</h3>
-              <div className="progress-bar">
-                <div 
-                  className="progress-fill"
-                  style={{ width: `${okr.progress}%` }}
-                />
-              </div>
-              <span className="progress-text">{okr.progress.toFixed(1)}%</span>
+         {/* Quality Metrics */}
+         <section className="quality-metrics">
+            <h2>Quality Metrics</h2>
+            <div className="metrics-grid">
+               <MetricCard
+                  title="Test Coverage"
+                  value={`${metrics?.testCoverage}%`}
+                  target="85%"
+                  trend={metrics?.coverageTrend}
+               />
+               <MetricCard
+                  title="Code Complexity"
+                  value={metrics?.avgComplexity?.toFixed(1)}
+                  target="< 8"
+                  trend={metrics?.complexityTrend}
+               />
+               <MetricCard
+                  title="Duplication"
+                  value={`${metrics?.duplicationPercentage}%`}
+                  target="< 5%"
+                  trend={metrics?.duplicationTrend}
+               />
+               <MetricCard
+                  title="Vulnerabilities"
+                  value={metrics?.securityVulnerabilities}
+                  target="0"
+                  trend={metrics?.vulnerabilitiesTrend}
+               />
             </div>
-          ))}
-        </div>
-      </section>
-    </div>
-  );
+         </section>
+
+         {/* Improvement Opportunities */}
+         <section className="improvement-opportunities">
+            <h2>Top Improvement Opportunities</h2>
+            <div className="opportunities-list">
+               {opportunities.slice(0, 5).map((opportunity, index) => (
+                  <div key={index} className="opportunity-card">
+                     <div className="opportunity-header">
+                        <span className={`priority ${opportunity.priority}`}>
+                           {opportunity.priority.toUpperCase()}
+                        </span>
+                        <span className="effort">
+                           {opportunity.effortHours}h effort
+                        </span>
+                     </div>
+                     <h3>{opportunity.description}</h3>
+                     <p className="opportunity-impact">
+                        Impact: {opportunity.impact} | ROI:{" "}
+                        {opportunity.roi?.toFixed(1)}
+                     </p>
+                     <div className="opportunity-actions">
+                        <button
+                           onClick={() =>
+                              createImprovementTask(opportunity)}
+                           className="btn-create-task"
+                        >
+                           Create Task
+                        </button>
+                        <button
+                           onClick={() =>
+                              viewDetails(opportunity)}
+                           className="btn-details"
+                        >
+                           View Details
+                        </button>
+                     </div>
+                  </div>
+               ))}
+            </div>
+         </section>
+
+         {/* OKR Progress */}
+         <section className="okr-progress">
+            <h2>Technical OKRs Progress</h2>
+            <div className="okrs-list">
+               {metrics?.technicalOKRs?.map((okr, index) => (
+                  <div key={index} className="okr-card">
+                     <h3>{okr.objective}</h3>
+                     <div className="progress-bar">
+                        <div
+                           className="progress-fill"
+                           style={{ width: `${okr.progress}%` }}
+                        />
+                     </div>
+                     <span className="progress-text">
+                        {okr.progress.toFixed(1)}%
+                     </span>
+                  </div>
+               ))}
+            </div>
+         </section>
+      </div>
+   );
 };
 
 const MetricCard: React.FC<{
-  title: string;
-  value: string | number;
-  target: string;
-  trend?: number;
+   title: string;
+   value: string | number;
+   target: string;
+   trend?: number;
 }> = ({ title, value, target, trend }) => (
-  <div className="metric-card">
-    <h3>{title}</h3>
-    <div className="metric-value">{value}</div>
-    <div className="metric-target">Target: {target}</div>
-    {trend !== undefined && (
-      <div className={`metric-trend ${trend >= 0 ? 'positive' : 'negative'}`}>
-        {trend >= 0 ? '↗️' : '↘️'} {Math.abs(trend).toFixed(1)}%
-      </div>
-    )}
-  </div>
+   <div className="metric-card">
+      <h3>{title}</h3>
+      <div className="metric-value">{value}</div>
+      <div className="metric-target">Target: {target}</div>
+      {trend !== undefined && (
+         <div
+            className={`metric-trend ${trend >= 0 ? "positive" : "negative"}`}
+         >
+            {trend >= 0 ? "↗️" : "↘️"} {Math.abs(trend).toFixed(1)}%
+         </div>
+      )}
+   </div>
 );
 
 const getDebtScoreClass = (score?: number): string => {
-  if (!score) return 'unknown';
-  if (score < 20) return 'excellent';
-  if (score < 40) return 'good';
-  if (score < 60) return 'warning';
-  return 'critical';
+   if (!score) return "unknown";
+   if (score < 20) return "excellent";
+   if (score < 40) return "good";
+   if (score < 60) return "warning";
+   return "critical";
 };
 
 const createImprovementTask = (opportunity: ImprovementOpportunity) => {
-  // Implementar creación de tarea
-  console.log('Creating improvement task:', opportunity);
+   // Implementar creación de tarea
+   console.log("Creating improvement task:", opportunity);
 };
 
 const viewDetails = (opportunity: ImprovementOpportunity) => {
-  // Implementar vista de detalles
-  console.log('Viewing opportunity details:', opportunity);
+   // Implementar vista de detalles
+   console.log("Viewing opportunity details:", opportunity);
 };
 ```
 
@@ -842,16 +855,19 @@ const viewDetails = (opportunity: ImprovementOpportunity) => {
 # Sprint Planning Template
 
 ## Sprint Goals
+
 - Feature development: 70% (56 hours)
-- Bug fixes: 10% (8 hours)  
+- Bug fixes: 10% (8 hours)
 - Technical improvements: 20% (16 hours)
 
 ## Technical Improvement Backlog
+
 1. **Refactor UserService complexity** (8h) - High ROI
 2. **Add tests for PaymentProcessor** (4h) - Risk mitigation
 3. **Optimize database queries** (4h) - Performance gain
 
 ## Definition of Done
+
 - [ ] Feature requirements met
 - [ ] Tests added/updated (minimum 80% coverage)
 - [ ] Code review completed
@@ -898,31 +914,38 @@ echo -e "\n✅ Analysis complete. Review metrics and plan improvements."
 # Technical OKRs Review - Q4 2024
 
 ## Objective 1: Reduce Technical Debt Index
+
 **Progress: 67%** 🟡
 
 ### Key Results:
+
 - ✅ Reduce TDI from 45% to 30% → **Achieved: 32%** (96% progress)
-- 🟡 Increase test coverage to 85% → **Current: 78%** (67% progress)  
+- 🟡 Increase test coverage to 85% → **Current: 78%** (67% progress)
 - 🔴 Reduce avg complexity to 8 → **Current: 11** (25% progress)
 
 ### Next Steps:
+
 - Focus on high-complexity methods identification
 - Schedule test-writing sessions
 - Implement complexity gates in CI/CD
 
 ## Objective 2: Optimize Performance
+
 **Progress: 89%** 🟢
 
 ### Key Results:
+
 - ✅ P95 response time < 500ms → **Achieved: 420ms**
 - ✅ DB query performance +40% → **Achieved: +45%**
 - 🟡 Cache hit ratio 95% → **Current: 92%**
 
 ### Next Steps:
+
 - Analyze cache miss patterns
 - Implement cache warming strategies
 
 ## Actions for Next Quarter:
+
 1. Continue complexity reduction focus
 2. Invest in automated testing tools
 3. Performance optimization workshop
@@ -930,23 +953,6 @@ echo -e "\n✅ Analysis complete. Review metrics and plan improvements."
 
 ## Navegación
 
-**Progreso en Mantenimiento y Evolución:**
-
-- ✅ [Mantenimiento y Evolución](./mantenimiento-evolucion.md)
-- ✅ [Monitoreo Post-Deployment](./monitoreo-post-deployment.md)
-- ✅ [Bug Fixes y Hotfixes](./bug-fixes-hotfixes.md)
-- ✅ [Actualización de Dependencias](./actualizacion-dependencias.md)
-- ✅ [Gestión de Nuevas Funcionalidades](./gestion-nuevas-funcionalidades.md)
-- ✅ **Mejoras Continuas Programadas** ← Estás aquí
-- ⏭️ [Documentación y Knowledge Transfer](./documentacion-knowledge-transfer.md)
-- ⏭️ [Métricas y Analytics de Uso](./metricas-analytics-uso.md)
-
----
-
-### Siguiente Paso
-
-Continúa con [**Documentación y Knowledge Transfer**](./documentacion-knowledge-transfer.md)
-
 [⬅️ Gestión de Nuevas Funcionalidades](./gestion-nuevas-funcionalidades.md) |
 [🏠 README Principal](../../README.md) |
-[➡️ Documentación y Knowledge Transfer](./documentacion-knowledge-transfer.md)
+[Documentación y Knowledge Transfer ➡️](./documentacion-knowledge-transfer.md)

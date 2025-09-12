@@ -422,34 +422,7 @@ describe("User Registration Flow", () => {
 | API         | ⚡⚡      | 🎯🎯🎯    | ⭐⭐⭐        | ✅✅          | Contratos de servicios     |
 | Performance | ⚡        | 🎯🎯      | ⭐⭐          | ✅            | Carga y rendimiento        |
 
----
-
 ## Navegación
 
-**Progreso en Testing y Quality Assurance:**
-
-- ✅ [Testing y QA](./testing-qa.md)
-- ✅ **Tipos de Pruebas** ← Estás aquí
-- ⏭️ [Testing Funcional Automatizado](./testing-funcional-automatizado.md)
-- ⏭️ [Testing de Regresión](./testing-regresion.md)
-- ⏭️ [Checklists QA](./checklists-qa.md)
-- ⏭️ [Pruebas de Aceptación del Usuario](./pruebas-aceptacion-usuario.md)
-- ⏭️ [Gestión de Reportes de Errores](./gestion-reportes-errores.md)
-- ⏭️ [Testing de Performance y Carga](./testing-performance-carga.md)
-- ⏭️ [Testing de Seguridad OWASP](./testing-seguridad-owasp.md)
-- ⏭️ [Testing de Usabilidad](./testing-usabilidad.md)
-- ⏭️ [Code Review y Refactoring](./code-review-refactoring.md)
-- ⏭️ [Auditoría y Calidad del Código](./auditoria-calidad-codigo.md)
-- ⏭️ [Checklist Específico de Performance](./checklist-performance.md)
-- ⏭️ [Revisión General del Código](./revision-general-codigo.md)
-- ⏭️ [Optimización de Recursos](./optimizacion-recursos.md)
-
----
-
-### Siguiente Paso
-
-Continúa con
-[**Testing Funcional Automatizado**](./testing-funcional-automatizado.md)
-
 [⬅️ Testing y QA](./testing-qa.md) | [🏠 README Principal](../../README.md) |
-[➡️ Testing Funcional Automatizado](./testing-funcional-automatizado.md)
+[Testing Funcional Automatizado ➡️](./testing-funcional-automatizado.md)

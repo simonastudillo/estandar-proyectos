@@ -1278,24 +1278,6 @@ class DatabaseDashboardController extends Controller
 
 ## Navegación
 
-**Progreso en Despliegue y DevOps:**
-
-- ✅ [Despliegue y DevOps](./despliegue-devops.md)
-- ✅
-  [Configuración de Servidores de Producción](./configuracion-servidores-produccion.md)
-- ✅ [CI/CD Pipelines con GitHub Actions](./ci-cd-pipelines-github-actions.md)
-- ✅ [Docker y Contenedores](./docker-contenedores.md)
-- ✅ [Monitoreo y Logging](./monitoreo-logging.md)
-- ✅ **Optimización de Base de Datos** ← Estás aquí
-- ⏭️ [Backup y Recovery](./backup-recovery-strategies.md)
-- ⏭️ [SSL y Configuraciones de Seguridad](./ssl-configuraciones-seguridad.md)
-
----
-
-### Siguiente Paso
-
-Continúa con [**Backup y Recovery**](./backup-recovery-strategies.md)
-
 [⬅️ Monitoreo y Logging](./monitoreo-logging.md) |
 [🏠 README Principal](../../README.md) |
-[➡️ Backup y Recovery](./backup-recovery-strategies.md)
+[Backup y Recovery ➡️](./backup-recovery-strategies.md)

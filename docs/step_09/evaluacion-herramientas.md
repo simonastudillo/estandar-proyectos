@@ -2,18 +2,27 @@
 
 ## ¿Qué es?
 
-La evaluación de herramientas es un proceso sistemático para analizar la efectividad, eficiencia y valor de todas las herramientas tecnológicas utilizadas durante el proyecto. Incluye desde herramientas de desarrollo hasta plataformas de colaboración, infraestructura y servicios externos.
+La evaluación de herramientas es un proceso sistemático para analizar la
+efectividad, eficiencia y valor de todas las herramientas tecnológicas
+utilizadas durante el proyecto. Incluye desde herramientas de desarrollo hasta
+plataformas de colaboración, infraestructura y servicios externos.
 
 ## ¿Por qué es importante?
 
-- **Optimización de stack**: Identifica herramientas que aportan más valor al equipo
+- **Optimización de stack**: Identifica herramientas que aportan más valor al
+  equipo
 - **Reducción de costos**: Elimina herramientas redundantes o de bajo valor
-- **Mejora de productividad**: Maximiza la eficiencia del equipo con herramientas adecuadas
-- **Decisiones informadas**: Proporciona datos para futuras selecciones de herramientas
-- **Identificación de gaps**: Detecta necesidades no cubiertas por herramientas actuales
+- **Mejora de productividad**: Maximiza la eficiencia del equipo con
+  herramientas adecuadas
+- **Decisiones informadas**: Proporciona datos para futuras selecciones de
+  herramientas
+- **Identificación de gaps**: Detecta necesidades no cubiertas por herramientas
+  actuales
 - **ROI medible**: Cuantifica el retorno de inversión en herramientas
-- **Satisfacción del equipo**: Evalúa la experiencia del desarrollador con las herramientas
-- **Evolución tecnológica**: Mantiene el stack actualizado con mejores alternativas
+- **Satisfacción del equipo**: Evalúa la experiencia del desarrollador con las
+  herramientas
+- **Evolución tecnológica**: Mantiene el stack actualizado con mejores
+  alternativas
 
 ## ¿Qué debe incluir?
 
@@ -110,167 +119,197 @@ chmod +x tools-evaluation/evaluate-tools.sh
 // tools-evaluation/surveys/ToolsSurvey.ts
 
 interface ToolEvaluation {
-  toolName: string;
-  category: 'development' | 'collaboration' | 'infrastructure' | 'quality' | 'design';
-  usage: {
-    frequency: 'daily' | 'weekly' | 'monthly' | 'rarely';
-    duration: number; // meses usando la herramienta
-    proficiencyLevel: 'beginner' | 'intermediate' | 'advanced' | 'expert';
-  };
-  satisfaction: {
-    overallSatisfaction: number; // 1-10
-    easeOfUse: number; // 1-10
-    performance: number; // 1-10
-    reliability: number; // 1-10
-    documentation: number; // 1-10
-    support: number; // 1-10
-  };
-  productivity: {
-    productivityImpact: number; // -5 to +5 (muy negativo a muy positivo)
-    timeToProductivity: 'immediate' | 'days' | 'weeks' | 'months';
-    learningCurve: 'easy' | 'moderate' | 'steep' | 'very_steep';
-  };
-  features: {
-    mostUsedFeatures: string[];
-    missingFeatures: string[];
-    unnecessaryFeatures: string[];
-  };
-  comparison: {
-    alternativesConsidered: string[];
-    reasonForChoice: string;
-    wouldRecommend: boolean;
-    replacementSuggestions?: string;
-  };
-  openFeedback: {
-    whatWorksWell: string;
-    frustrations: string;
-    improvements: string;
-    dealbreakers?: string;
-  };
+   toolName: string;
+   category:
+      | "development"
+      | "collaboration"
+      | "infrastructure"
+      | "quality"
+      | "design";
+   usage: {
+      frequency: "daily" | "weekly" | "monthly" | "rarely";
+      duration: number; // meses usando la herramienta
+      proficiencyLevel: "beginner" | "intermediate" | "advanced" | "expert";
+   };
+   satisfaction: {
+      overallSatisfaction: number; // 1-10
+      easeOfUse: number; // 1-10
+      performance: number; // 1-10
+      reliability: number; // 1-10
+      documentation: number; // 1-10
+      support: number; // 1-10
+   };
+   productivity: {
+      productivityImpact: number; // -5 to +5 (muy negativo a muy positivo)
+      timeToProductivity: "immediate" | "days" | "weeks" | "months";
+      learningCurve: "easy" | "moderate" | "steep" | "very_steep";
+   };
+   features: {
+      mostUsedFeatures: string[];
+      missingFeatures: string[];
+      unnecessaryFeatures: string[];
+   };
+   comparison: {
+      alternativesConsidered: string[];
+      reasonForChoice: string;
+      wouldRecommend: boolean;
+      replacementSuggestions?: string;
+   };
+   openFeedback: {
+      whatWorksWell: string;
+      frustrations: string;
+      improvements: string;
+      dealbreakers?: string;
+   };
 }
 
 interface TeamToolsAssessment {
-  teamInfo: {
-    teamSize: number;
-    roles: string[];
-    projectDuration: number;
-  };
-  toolsEvaluated: ToolEvaluation[];
-  teamDynamics: {
-    toolAdoptionChallenges: string[];
-    trainingNeeds: string[];
-    integrationIssues: string[];
-  };
-  costAnalysis: {
-    budgetConstraints: string;
-    costEffectiveness: Record<string, number>; // tool -> score
-    hiddenCosts: string[];
-  };
-  overallRecommendations: {
-    toolsToKeep: string[];
-    toolsToReplace: string[];
-    toolsToAdd: string[];
-    budgetReallocation: string;
-  };
+   teamInfo: {
+      teamSize: number;
+      roles: string[];
+      projectDuration: number;
+   };
+   toolsEvaluated: ToolEvaluation[];
+   teamDynamics: {
+      toolAdoptionChallenges: string[];
+      trainingNeeds: string[];
+      integrationIssues: string[];
+   };
+   costAnalysis: {
+      budgetConstraints: string;
+      costEffectiveness: Record<string, number>; // tool -> score
+      hiddenCosts: string[];
+   };
+   overallRecommendations: {
+      toolsToKeep: string[];
+      toolsToReplace: string[];
+      toolsToAdd: string[];
+      budgetReallocation: string;
+   };
 }
 
 export class ToolsEvaluationSurvey {
-  private evaluations: ToolEvaluation[] = [];
+   private evaluations: ToolEvaluation[] = [];
 
-  public addToolEvaluation(evaluation: ToolEvaluation): void {
-    this.evaluations.push(evaluation);
-  }
+   public addToolEvaluation(evaluation: ToolEvaluation): void {
+      this.evaluations.push(evaluation);
+   }
 
-  public generateTeamAssessment(teamInfo: any): TeamToolsAssessment {
-    return {
-      teamInfo,
-      toolsEvaluated: this.evaluations,
-      teamDynamics: this.analyzeTeamDynamics(),
-      costAnalysis: this.analyzeCosts(),
-      overallRecommendations: this.generateRecommendations()
-    };
-  }
+   public generateTeamAssessment(teamInfo: any): TeamToolsAssessment {
+      return {
+         teamInfo,
+         toolsEvaluated: this.evaluations,
+         teamDynamics: this.analyzeTeamDynamics(),
+         costAnalysis: this.analyzeCosts(),
+         overallRecommendations: this.generateRecommendations(),
+      };
+   }
 
-  private analyzeTeamDynamics(): any {
-    // Analizar patrones en adopción y uso de herramientas
-    const adoptionChallenges = this.evaluations
-      .filter(eval => eval.productivity.timeToProductivity === 'months')
-      .map(eval => `${eval.toolName}: curva de aprendizaje muy lenta`);
+   private analyzeTeamDynamics(): any {
+      // Analizar patrones en adopción y uso de herramientas
+      const adoptionChallenges = this.evaluations
+         .filter((eval) => eval.productivity.timeToProductivity === "months")
+         .map((eval) => `${eval.toolName}: curva de aprendizaje muy lenta`);
 
-    const trainingNeeds = this.evaluations
-      .filter(eval => eval.usage.proficiencyLevel === 'beginner' && eval.usage.frequency === 'daily')
-      .map(eval => `Capacitación necesaria en ${eval.toolName}`);
+      const trainingNeeds = this.evaluations
+         .filter((eval) =>
+            eval.usage.proficiencyLevel === "beginner" &&
+            eval.usage.frequency === "daily"
+         )
+         .map((eval) => `Capacitación necesaria en ${eval.toolName}`);
 
-    return {
-      toolAdoptionChallenges: adoptionChallenges,
-      trainingNeeds: trainingNeeds,
-      integrationIssues: this.identifyIntegrationIssues()
-    };
-  }
+      return {
+         toolAdoptionChallenges: adoptionChallenges,
+         trainingNeeds: trainingNeeds,
+         integrationIssues: this.identifyIntegrationIssues(),
+      };
+   }
 
-  private generateRecommendations(): any {
-    const highSatisfactionTools = this.evaluations
-      .filter(eval => eval.satisfaction.overallSatisfaction >= 8)
-      .map(eval => eval.toolName);
+   private generateRecommendations(): any {
+      const highSatisfactionTools = this.evaluations
+         .filter((eval) => eval.satisfaction.overallSatisfaction >= 8)
+         .map((eval) => eval.toolName);
 
-    const lowSatisfactionTools = this.evaluations
-      .filter(eval => eval.satisfaction.overallSatisfaction <= 5)
-      .map(eval => eval.toolName);
+      const lowSatisfactionTools = this.evaluations
+         .filter((eval) => eval.satisfaction.overallSatisfaction <= 5)
+         .map((eval) => eval.toolName);
 
-    const suggestedAdditions = this.evaluations
-      .flatMap(eval => eval.features.missingFeatures)
-      .filter((feature, index, array) => array.indexOf(feature) === index); // unique
+      const suggestedAdditions = this.evaluations
+         .flatMap((eval) => eval.features.missingFeatures)
+         .filter((feature, index, array) => array.indexOf(feature) === index); // unique
 
-    return {
-      toolsToKeep: highSatisfactionTools,
-      toolsToReplace: lowSatisfactionTools,
-      toolsToAdd: suggestedAdditions,
-      budgetReallocation: this.suggestBudgetReallocation()
-    };
-  }
+      return {
+         toolsToKeep: highSatisfactionTools,
+         toolsToReplace: lowSatisfactionTools,
+         toolsToAdd: suggestedAdditions,
+         budgetReallocation: this.suggestBudgetReallocation(),
+      };
+   }
 
-  public exportDetailedReport(): string {
-    const assessment = this.generateTeamAssessment({
-      teamSize: 8,
-      roles: ['Frontend', 'Backend', 'DevOps', 'QA'],
-      projectDuration: 6
-    });
+   public exportDetailedReport(): string {
+      const assessment = this.generateTeamAssessment({
+         teamSize: 8,
+         roles: ["Frontend", "Backend", "DevOps", "QA"],
+         projectDuration: 6,
+      });
 
-    let report = "# Reporte Detallado de Evaluación de Herramientas\n\n";
-    
-    report += "## Resumen Ejecutivo\n\n";
-    report += `- **Herramientas evaluadas**: ${this.evaluations.length}\n`;
-    report += `- **Satisfacción promedio**: ${this.calculateAverageSatisfaction()}/10\n`;
-    report += `- **Herramientas recomendadas para mantener**: ${assessment.overallRecommendations.toolsToKeep.length}\n`;
-    report += `- **Herramientas recomendadas para reemplazar**: ${assessment.overallRecommendations.toolsToReplace.length}\n\n`;
+      let report = "# Reporte Detallado de Evaluación de Herramientas\n\n";
 
-    // Análisis por categoría
-    const categories = ['development', 'collaboration', 'infrastructure', 'quality', 'design'];
-    categories.forEach(category => {
-      const categoryTools = this.evaluations.filter(eval => eval.category === category);
-      if (categoryTools.length > 0) {
-        report += `### ${category.charAt(0).toUpperCase() + category.slice(1)}\n\n`;
-        categoryTools.forEach(tool => {
-          report += `#### ${tool.toolName}\n`;
-          report += `- **Satisfacción**: ${tool.satisfaction.overallSatisfaction}/10\n`;
-          report += `- **Impacto en productividad**: ${tool.productivity.productivityImpact > 0 ? '+' : ''}${tool.productivity.productivityImpact}\n`;
-          report += `- **Recomendación**: ${tool.comparison.wouldRecommend ? '✅ Mantener' : '❌ Considerar reemplazo'}\n\n`;
-        });
-      }
-    });
+      report += "## Resumen Ejecutivo\n\n";
+      report += `- **Herramientas evaluadas**: ${this.evaluations.length}\n`;
+      report +=
+         `- **Satisfacción promedio**: ${this.calculateAverageSatisfaction()}/10\n`;
+      report +=
+         `- **Herramientas recomendadas para mantener**: ${assessment.overallRecommendations.toolsToKeep.length}\n`;
+      report +=
+         `- **Herramientas recomendadas para reemplazar**: ${assessment.overallRecommendations.toolsToReplace.length}\n\n`;
 
-    return report;
-  }
+      // Análisis por categoría
+      const categories = [
+         "development",
+         "collaboration",
+         "infrastructure",
+         "quality",
+         "design",
+      ];
+      categories.forEach((category) => {
+         const categoryTools = this.evaluations.filter((eval) =>
+            eval.category === category
+         );
+         if (categoryTools.length > 0) {
+            report += `### ${
+               category.charAt(0).toUpperCase() + category.slice(1)
+            }\n\n`;
+            categoryTools.forEach((tool) => {
+               report += `#### ${tool.toolName}\n`;
+               report +=
+                  `- **Satisfacción**: ${tool.satisfaction.overallSatisfaction}/10\n`;
+               report += `- **Impacto en productividad**: ${
+                  tool.productivity.productivityImpact > 0 ? "+" : ""
+               }${tool.productivity.productivityImpact}\n`;
+               report += `- **Recomendación**: ${
+                  tool.comparison.wouldRecommend
+                     ? "✅ Mantener"
+                     : "❌ Considerar reemplazo"
+               }\n\n`;
+            });
+         }
+      });
 
-  private calculateAverageSatisfaction(): number {
-    if (this.evaluations.length === 0) return 0;
-    
-    const totalSatisfaction = this.evaluations.reduce(
-      (sum, eval) => sum + eval.satisfaction.overallSatisfaction, 0
-    );
-    
-    return Math.round((totalSatisfaction / this.evaluations.length) * 10) / 10;
-  }
+      return report;
+   }
+
+   private calculateAverageSatisfaction(): number {
+      if (this.evaluations.length === 0) return 0;
+
+      const totalSatisfaction = this.evaluations.reduce(
+         (sum, eval) => sum + eval.satisfaction.overallSatisfaction,
+         0,
+      );
+
+      return Math.round((totalSatisfaction / this.evaluations.length) * 10) /
+         10;
+   }
 }
 ```
 
@@ -564,529 +603,601 @@ echo "📊 Reporte de benchmarking generado exitosamente\n";
 
 ```typescript
 // tools-evaluation/dashboard/ToolsDashboard.tsx
-import React, { useState, useEffect } from 'react';
-import { 
-  RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar,
-  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
-  ScatterChart, Scatter, LineChart, Line
-} from 'recharts';
+import React, { useEffect, useState } from "react";
+import {
+   Bar,
+   BarChart,
+   CartesianGrid,
+   Line,
+   LineChart,
+   PolarAngleAxis,
+   PolarGrid,
+   PolarRadiusAxis,
+   Radar,
+   RadarChart,
+   ResponsiveContainer,
+   Scatter,
+   ScatterChart,
+   Tooltip,
+   XAxis,
+   YAxis,
+} from "recharts";
 
 interface ToolsDashboardProps {
-  evaluations: ToolEvaluation[];
-  benchmarks: BenchmarkResult[];
-  costAnalysis: CostAnalysis;
+   evaluations: ToolEvaluation[];
+   benchmarks: BenchmarkResult[];
+   costAnalysis: CostAnalysis;
 }
 
-export const ToolsDashboard: React.FC<ToolsDashboardProps> = ({ 
-  evaluations, benchmarks, costAnalysis 
+export const ToolsDashboard: React.FC<ToolsDashboardProps> = ({
+   evaluations,
+   benchmarks,
+   costAnalysis,
 }) => {
-  const [activeView, setActiveView] = useState('overview');
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+   const [activeView, setActiveView] = useState("overview");
+   const [selectedCategory, setSelectedCategory] = useState<string | null>(
+      null,
+   );
 
-  const satisfactionData = evaluations.map(eval => ({
-    name: eval.toolName,
-    satisfaction: eval.satisfaction.overallSatisfaction,
-    productivity: eval.productivity.productivityImpact + 5, // normalize to 0-10
-    cost: costAnalysis.toolCosts[eval.toolName] || 0,
-    category: eval.category
-  }));
+   const satisfactionData = evaluations.map((eval) => ({
+      name: eval.toolName,
+      satisfaction: eval.satisfaction.overallSatisfaction,
+      productivity: eval.productivity.productivityImpact + 5, // normalize to 0-10
+      cost: costAnalysis.toolCosts[eval.toolName] || 0,
+      category: eval.category,
+   }));
 
-  const categoryAverages = evaluations.reduce((acc, eval) => {
-    if (!acc[eval.category]) {
-      acc[eval.category] = { total: 0, count: 0, tools: [] };
-    }
-    acc[eval.category].total += eval.satisfaction.overallSatisfaction;
-    acc[eval.category].count += 1;
-    acc[eval.category].tools.push(eval.toolName);
-    return acc;
-  }, {} as Record<string, any>);
+   const categoryAverages = evaluations.reduce((acc, eval) => {
+      if (!acc[eval.category]) {
+         acc[eval.category] = { total: 0, count: 0, tools: [] };
+      }
+      acc[eval.category].total += eval.satisfaction.overallSatisfaction;
+      acc[eval.category].count += 1;
+      acc[eval.category].tools.push(eval.toolName);
+      return acc;
+   }, {} as Record<string, any>);
 
-  const categoryData = Object.entries(categoryAverages).map(([category, data]) => ({
-    category: category.replace('_', ' ').toUpperCase(),
-    average: Math.round(data.total / data.count),
-    toolCount: data.count,
-    tools: data.tools
-  }));
+   const categoryData = Object.entries(categoryAverages).map((
+      [category, data],
+   ) => ({
+      category: category.replace("_", " ").toUpperCase(),
+      average: Math.round(data.total / data.count),
+      toolCount: data.count,
+      tools: data.tools,
+   }));
 
-  return (
-    <div className="tools-dashboard">
-      <header className="dashboard-header">
-        <h1>Dashboard de Evaluación de Herramientas</h1>
-        <div className="summary-metrics">
-          <div className="metric-card">
-            <h3>Herramientas Evaluadas</h3>
-            <div className="metric-value">{evaluations.length}</div>
-          </div>
-          <div className="metric-card">
-            <h3>Satisfacción Promedio</h3>
-            <div className="metric-value">
-              {Math.round(
-                evaluations.reduce((sum, eval) => sum + eval.satisfaction.overallSatisfaction, 0) / 
-                evaluations.length * 10
-              ) / 10}/10
+   return (
+      <div className="tools-dashboard">
+         <header className="dashboard-header">
+            <h1>Dashboard de Evaluación de Herramientas</h1>
+            <div className="summary-metrics">
+               <div className="metric-card">
+                  <h3>Herramientas Evaluadas</h3>
+                  <div className="metric-value">{evaluations.length}</div>
+               </div>
+               <div className="metric-card">
+                  <h3>Satisfacción Promedio</h3>
+                  <div className="metric-value">
+                     {Math.round(
+                        evaluations.reduce((sum, eval) =>
+                           sum + eval.satisfaction.overallSatisfaction, 0) /
+                           evaluations.length * 10,
+                     ) / 10}/10
+                  </div>
+               </div>
+               <div className="metric-card">
+                  <h3>Costo Total Mensual</h3>
+                  <div className="metric-value">
+                     ${Object.values(costAnalysis.toolCosts).reduce(
+                        (sum, cost) =>
+                           sum + cost,
+                        0,
+                     )}/mes
+                  </div>
+               </div>
+               <div className="metric-card">
+                  <h3>ROI Promedio</h3>
+                  <div className="metric-value">
+                     {Math.round(costAnalysis.averageROI * 100)}%
+                  </div>
+               </div>
             </div>
-          </div>
-          <div className="metric-card">
-            <h3>Costo Total Mensual</h3>
-            <div className="metric-value">
-              ${Object.values(costAnalysis.toolCosts).reduce((sum, cost) => sum + cost, 0)}/mes
-            </div>
-          </div>
-          <div className="metric-card">
-            <h3>ROI Promedio</h3>
-            <div className="metric-value">
-              {Math.round(costAnalysis.averageROI * 100)}%
-            </div>
-          </div>
-        </div>
-      </header>
+         </header>
 
-      <nav className="dashboard-tabs">
-        <button 
-          className={activeView === 'overview' ? 'active' : ''}
-          onClick={() => setActiveView('overview')}
-        >
-          Resumen
-        </button>
-        <button 
-          className={activeView === 'satisfaction' ? 'active' : ''}
-          onClick={() => setActiveView('satisfaction')}
-        >
-          Satisfacción
-        </button>
-        <button 
-          className={activeView === 'performance' ? 'active' : ''}
-          onClick={() => setActiveView('performance')}
-        >
-          Rendimiento
-        </button>
-        <button 
-          className={activeView === 'cost' ? 'active' : ''}
-          onClick={() => setActiveView('cost')}
-        >
-          Análisis de Costos
-        </button>
-        <button 
-          className={activeView === 'recommendations' ? 'active' : ''}
-          onClick={() => setActiveView('recommendations')}
-        >
-          Recomendaciones
-        </button>
-      </nav>
+         <nav className="dashboard-tabs">
+            <button
+               className={activeView === "overview" ? "active" : ""}
+               onClick={() =>
+                  setActiveView("overview")}
+            >
+               Resumen
+            </button>
+            <button
+               className={activeView === "satisfaction" ? "active" : ""}
+               onClick={() => setActiveView("satisfaction")}
+            >
+               Satisfacción
+            </button>
+            <button
+               className={activeView === "performance" ? "active" : ""}
+               onClick={() => setActiveView("performance")}
+            >
+               Rendimiento
+            </button>
+            <button
+               className={activeView === "cost" ? "active" : ""}
+               onClick={() => setActiveView("cost")}
+            >
+               Análisis de Costos
+            </button>
+            <button
+               className={activeView === "recommendations" ? "active" : ""}
+               onClick={() => setActiveView("recommendations")}
+            >
+               Recomendaciones
+            </button>
+         </nav>
 
-      <main className="dashboard-content">
-        {activeView === 'overview' && (
-          <OverviewSection 
-            categoryData={categoryData}
-            satisfactionData={satisfactionData}
-            evaluations={evaluations}
-          />
-        )}
-        {activeView === 'satisfaction' && (
-          <SatisfactionSection 
-            evaluations={evaluations}
-            satisfactionData={satisfactionData}
-          />
-        )}
-        {activeView === 'performance' && (
-          <PerformanceSection 
-            benchmarks={benchmarks}
-            evaluations={evaluations}
-          />
-        )}
-        {activeView === 'cost' && (
-          <CostAnalysisSection 
-            costAnalysis={costAnalysis}
-            evaluations={evaluations}
-          />
-        )}
-        {activeView === 'recommendations' && (
-          <RecommendationsSection 
-            evaluations={evaluations}
-            benchmarks={benchmarks}
-            costAnalysis={costAnalysis}
-          />
-        )}
-      </main>
-    </div>
-  );
+         <main className="dashboard-content">
+            {activeView === "overview" && (
+               <OverviewSection
+                  categoryData={categoryData}
+                  satisfactionData={satisfactionData}
+                  evaluations={evaluations}
+               />
+            )}
+            {activeView === "satisfaction" && (
+               <SatisfactionSection
+                  evaluations={evaluations}
+                  satisfactionData={satisfactionData}
+               />
+            )}
+            {activeView === "performance" && (
+               <PerformanceSection
+                  benchmarks={benchmarks}
+                  evaluations={evaluations}
+               />
+            )}
+            {activeView === "cost" && (
+               <CostAnalysisSection
+                  costAnalysis={costAnalysis}
+                  evaluations={evaluations}
+               />
+            )}
+            {activeView === "recommendations" && (
+               <RecommendationsSection
+                  evaluations={evaluations}
+                  benchmarks={benchmarks}
+                  costAnalysis={costAnalysis}
+               />
+            )}
+         </main>
+      </div>
+   );
 };
 
 const OverviewSection: React.FC<{
-  categoryData: any[];
-  satisfactionData: any[];
-  evaluations: ToolEvaluation[];
+   categoryData: any[];
+   satisfactionData: any[];
+   evaluations: ToolEvaluation[];
 }> = ({ categoryData, satisfactionData, evaluations }) => {
-  
-  const topTools = evaluations
-    .sort((a, b) => b.satisfaction.overallSatisfaction - a.satisfaction.overallSatisfaction)
-    .slice(0, 5);
+   const topTools = evaluations
+      .sort((a, b) =>
+         b.satisfaction.overallSatisfaction - a.satisfaction.overallSatisfaction
+      )
+      .slice(0, 5);
 
-  const problematicTools = evaluations
-    .filter(eval => eval.satisfaction.overallSatisfaction <= 5)
-    .sort((a, b) => a.satisfaction.overallSatisfaction - b.satisfaction.overallSatisfaction);
+   const problematicTools = evaluations
+      .filter((eval) => eval.satisfaction.overallSatisfaction <= 5)
+      .sort((a, b) =>
+         a.satisfaction.overallSatisfaction - b.satisfaction.overallSatisfaction
+      );
 
-  return (
-    <div className="overview-section">
-      <div className="charts-row">
-        <div className="chart-container">
-          <h3>Satisfacción por Categoría</h3>
-          <ResponsiveContainer width="100%" height={300}>
-            <BarChart data={categoryData}>
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="category" />
-              <YAxis domain={[0, 10]} />
-              <Tooltip />
-              <Bar dataKey="average" fill="#8884d8" />
-            </BarChart>
-          </ResponsiveContainer>
-        </div>
-
-        <div className="chart-container">
-          <h3>Satisfacción vs Costo</h3>
-          <ResponsiveContainer width="100%" height={300}>
-            <ScatterChart data={satisfactionData}>
-              <CartesianGrid />
-              <XAxis dataKey="satisfaction" domain={[0, 10]} />
-              <YAxis dataKey="cost" />
-              <Tooltip 
-                formatter={(value, name, props) => [
-                  name === 'cost' ? `$${value}/mes` : value,
-                  name === 'cost' ? 'Costo' : 'Satisfacción'
-                ]}
-                labelFormatter={(label) => `Herramienta: ${label}`}
-              />
-              <Scatter 
-                dataKey="cost" 
-                fill="#8884d8"
-                name="cost"
-              />
-            </ScatterChart>
-          </ResponsiveContainer>
-        </div>
-      </div>
-
-      <div className="tools-lists">
-        <div className="top-tools">
-          <h3>🌟 Herramientas Mejor Valoradas</h3>
-          <div className="tools-ranking">
-            {topTools.map((tool, index) => (
-              <div key={tool.toolName} className="tool-rank-item">
-                <div className="rank">#{index + 1}</div>
-                <div className="tool-info">
-                  <div className="tool-name">{tool.toolName}</div>
-                  <div className="tool-category">{tool.category}</div>
-                </div>
-                <div className="tool-score">
-                  {tool.satisfaction.overallSatisfaction}/10
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {problematicTools.length > 0 && (
-          <div className="problematic-tools">
-            <h3>⚠️ Herramientas Problemáticas</h3>
-            <div className="tools-list">
-              {problematicTools.map(tool => (
-                <div key={tool.toolName} className="problematic-tool-item">
-                  <div className="tool-header">
-                    <span className="tool-name">{tool.toolName}</span>
-                    <span className="tool-score low">
-                      {tool.satisfaction.overallSatisfaction}/10
-                    </span>
-                  </div>
-                  <div className="main-issues">
-                    <strong>Principales problemas:</strong>
-                    <ul>
-                      {tool.openFeedback.frustrations && (
-                        <li>{tool.openFeedback.frustrations}</li>
-                      )}
-                      {tool.features.missingFeatures.slice(0, 2).map((feature, idx) => (
-                        <li key={idx}>Falta: {feature}</li>
-                      ))}
-                    </ul>
-                  </div>
-                  {tool.comparison.replacementSuggestions && (
-                    <div className="replacement-suggestion">
-                      <strong>Alternativa sugerida:</strong> {tool.comparison.replacementSuggestions}
-                    </div>
-                  )}
-                </div>
-              ))}
+   return (
+      <div className="overview-section">
+         <div className="charts-row">
+            <div className="chart-container">
+               <h3>Satisfacción por Categoría</h3>
+               <ResponsiveContainer width="100%" height={300}>
+                  <BarChart data={categoryData}>
+                     <CartesianGrid strokeDasharray="3 3" />
+                     <XAxis dataKey="category" />
+                     <YAxis domain={[0, 10]} />
+                     <Tooltip />
+                     <Bar dataKey="average" fill="#8884d8" />
+                  </BarChart>
+               </ResponsiveContainer>
             </div>
-          </div>
-        )}
-      </div>
 
-      <div className="insights-section">
-        <h3>💡 Insights Clave</h3>
-        <div className="insights-grid">
-          <div className="insight-card">
-            <h4>Categoría más satisfactoria</h4>
-            <p>{categoryData.sort((a, b) => b.average - a.average)[0]?.category}</p>
-          </div>
-          <div className="insight-card">
-            <h4>Mayor oportunidad de mejora</h4>
-            <p>{categoryData.sort((a, b) => a.average - b.average)[0]?.category}</p>
-          </div>
-          <div className="insight-card">
-            <h4>Herramientas infrautilizadas</h4>
-            <p>{evaluations.filter(e => e.usage.frequency === 'rarely').length} herramientas</p>
-          </div>
-        </div>
+            <div className="chart-container">
+               <h3>Satisfacción vs Costo</h3>
+               <ResponsiveContainer width="100%" height={300}>
+                  <ScatterChart data={satisfactionData}>
+                     <CartesianGrid />
+                     <XAxis dataKey="satisfaction" domain={[0, 10]} />
+                     <YAxis dataKey="cost" />
+                     <Tooltip
+                        formatter={(value, name, props) => [
+                           name === "cost" ? `$${value}/mes` : value,
+                           name === "cost" ? "Costo" : "Satisfacción",
+                        ]}
+                        labelFormatter={(label) => `Herramienta: ${label}`}
+                     />
+                     <Scatter
+                        dataKey="cost"
+                        fill="#8884d8"
+                        name="cost"
+                     />
+                  </ScatterChart>
+               </ResponsiveContainer>
+            </div>
+         </div>
+
+         <div className="tools-lists">
+            <div className="top-tools">
+               <h3>🌟 Herramientas Mejor Valoradas</h3>
+               <div className="tools-ranking">
+                  {topTools.map((tool, index) => (
+                     <div key={tool.toolName} className="tool-rank-item">
+                        <div className="rank">#{index + 1}</div>
+                        <div className="tool-info">
+                           <div className="tool-name">{tool.toolName}</div>
+                           <div className="tool-category">{tool.category}</div>
+                        </div>
+                        <div className="tool-score">
+                           {tool.satisfaction.overallSatisfaction}/10
+                        </div>
+                     </div>
+                  ))}
+               </div>
+            </div>
+
+            {problematicTools.length > 0 && (
+               <div className="problematic-tools">
+                  <h3>⚠️ Herramientas Problemáticas</h3>
+                  <div className="tools-list">
+                     {problematicTools.map((tool) => (
+                        <div
+                           key={tool.toolName}
+                           className="problematic-tool-item"
+                        >
+                           <div className="tool-header">
+                              <span className="tool-name">{tool.toolName}</span>
+                              <span className="tool-score low">
+                                 {tool.satisfaction.overallSatisfaction}/10
+                              </span>
+                           </div>
+                           <div className="main-issues">
+                              <strong>Principales problemas:</strong>
+                              <ul>
+                                 {tool.openFeedback.frustrations && (
+                                    <li>{tool.openFeedback.frustrations}</li>
+                                 )}
+                                 {tool.features.missingFeatures.slice(0, 2).map(
+                                    (feature, idx) => (
+                                       <li key={idx}>Falta: {feature}</li>
+                                    )
+                                 )}
+                              </ul>
+                           </div>
+                           {tool.comparison.replacementSuggestions && (
+                              <div className="replacement-suggestion">
+                                 <strong>Alternativa sugerida:</strong>{" "}
+                                 {tool.comparison.replacementSuggestions}
+                              </div>
+                           )}
+                        </div>
+                     ))}
+                  </div>
+               </div>
+            )}
+         </div>
+
+         <div className="insights-section">
+            <h3>💡 Insights Clave</h3>
+            <div className="insights-grid">
+               <div className="insight-card">
+                  <h4>Categoría más satisfactoria</h4>
+                  <p>
+                     {categoryData.sort((a, b) => b.average - a.average)[0]
+                        ?.category}
+                  </p>
+               </div>
+               <div className="insight-card">
+                  <h4>Mayor oportunidad de mejora</h4>
+                  <p>
+                     {categoryData.sort((a, b) => a.average - b.average)[0]
+                        ?.category}
+                  </p>
+               </div>
+               <div className="insight-card">
+                  <h4>Herramientas infrautilizadas</h4>
+                  <p>
+                     {evaluations.filter((e) => e.usage.frequency === "rarely")
+                        .length} herramientas
+                  </p>
+               </div>
+            </div>
+         </div>
       </div>
-    </div>
-  );
+   );
 };
 
 const RecommendationsSection: React.FC<{
-  evaluations: ToolEvaluation[];
-  benchmarks: BenchmarkResult[];
-  costAnalysis: CostAnalysis;
+   evaluations: ToolEvaluation[];
+   benchmarks: BenchmarkResult[];
+   costAnalysis: CostAnalysis;
 }> = ({ evaluations, benchmarks, costAnalysis }) => {
-  
-  const generateRecommendations = () => {
-    const recommendations: Array<{
-      type: 'keep' | 'improve' | 'replace' | 'add';
-      priority: 'high' | 'medium' | 'low';
-      tool?: string;
-      category?: string;
-      description: string;
-      impact: string;
-      effort: 'low' | 'medium' | 'high';
-      timeline: string;
-    }> = [];
+   const generateRecommendations = () => {
+      const recommendations: Array<{
+         type: "keep" | "improve" | "replace" | "add";
+         priority: "high" | "medium" | "low";
+         tool?: string;
+         category?: string;
+         description: string;
+         impact: string;
+         effort: "low" | "medium" | "high";
+         timeline: string;
+      }> = [];
 
-    // Herramientas para mantener
-    evaluations
-      .filter(eval => eval.satisfaction.overallSatisfaction >= 8 && eval.comparison.wouldRecommend)
-      .forEach(tool => {
-        recommendations.push({
-          type: 'keep',
-          priority: 'low',
-          tool: tool.toolName,
-          category: tool.category,
-          description: `Mantener ${tool.toolName} - alta satisfacción del equipo`,
-          impact: 'Mantener productividad actual',
-          effort: 'low',
-          timeline: 'Continuo'
-        });
+      // Herramientas para mantener
+      evaluations
+         .filter((eval) =>
+            eval.satisfaction.overallSatisfaction >= 8 &&
+            eval.comparison.wouldRecommend
+         )
+         .forEach((tool) => {
+            recommendations.push({
+               type: "keep",
+               priority: "low",
+               tool: tool.toolName,
+               category: tool.category,
+               description:
+                  `Mantener ${tool.toolName} - alta satisfacción del equipo`,
+               impact: "Mantener productividad actual",
+               effort: "low",
+               timeline: "Continuo",
+            });
+         });
+
+      // Herramientas para reemplazar
+      evaluations
+         .filter((eval) =>
+            eval.satisfaction.overallSatisfaction <= 5 ||
+            !eval.comparison.wouldRecommend
+         )
+         .forEach((tool) => {
+            recommendations.push({
+               type: "replace",
+               priority: "high",
+               tool: tool.toolName,
+               category: tool.category,
+               description:
+                  `Reemplazar ${tool.toolName} - baja satisfacción (${tool.satisfaction.overallSatisfaction}/10)`,
+               impact: "Mejora significativa en productividad",
+               effort: "high",
+               timeline: "3-6 meses",
+            });
+         });
+
+      // Herramientas para mejorar
+      evaluations
+         .filter((eval) =>
+            eval.satisfaction.overallSatisfaction > 5 &&
+            eval.satisfaction.overallSatisfaction < 8
+         )
+         .forEach((tool) => {
+            recommendations.push({
+               type: "improve",
+               priority: "medium",
+               tool: tool.toolName,
+               category: tool.category,
+               description:
+                  `Optimizar uso de ${tool.toolName} - potencial no aprovechado`,
+               impact: "Mejora moderada en eficiencia",
+               effort: "medium",
+               timeline: "1-2 meses",
+            });
+         });
+
+      // Herramientas faltantes identificadas
+      const missingFeatures = evaluations.flatMap((eval) =>
+         eval.features.missingFeatures
+      );
+      const frequentMissing = missingFeatures.reduce((acc, feature) => {
+         acc[feature] = (acc[feature] || 0) + 1;
+         return acc;
+      }, {} as Record<string, number>);
+
+      Object.entries(frequentMissing)
+         .filter(([_, count]) => count >= 2)
+         .forEach(([feature, count]) => {
+            recommendations.push({
+               type: "add",
+               priority: "medium",
+               description:
+                  `Agregar herramienta para: ${feature} (solicitado por ${count} miembros del equipo)`,
+               impact: "Llenar gap de funcionalidad",
+               effort: "medium",
+               timeline: "1-3 meses",
+            });
+         });
+
+      return recommendations.sort((a, b) => {
+         const priorityOrder = { high: 3, medium: 2, low: 1 };
+         return priorityOrder[b.priority] - priorityOrder[a.priority];
+      });
+   };
+
+   const recommendations = generateRecommendations();
+
+   const budgetOptimization = () => {
+      const highCostLowValue = evaluations.filter((eval) => {
+         const cost = costAnalysis.toolCosts[eval.toolName] || 0;
+         return cost > 50 && eval.satisfaction.overallSatisfaction < 7;
       });
 
-    // Herramientas para reemplazar
-    evaluations
-      .filter(eval => eval.satisfaction.overallSatisfaction <= 5 || !eval.comparison.wouldRecommend)
-      .forEach(tool => {
-        recommendations.push({
-          type: 'replace',
-          priority: 'high',
-          tool: tool.toolName,
-          category: tool.category,
-          description: `Reemplazar ${tool.toolName} - baja satisfacción (${tool.satisfaction.overallSatisfaction}/10)`,
-          impact: 'Mejora significativa en productividad',
-          effort: 'high',
-          timeline: '3-6 meses'
-        });
+      const lowCostHighValue = evaluations.filter((eval) => {
+         const cost = costAnalysis.toolCosts[eval.toolName] || 0;
+         return cost < 20 && eval.satisfaction.overallSatisfaction >= 8;
       });
 
-    // Herramientas para mejorar
-    evaluations
-      .filter(eval => eval.satisfaction.overallSatisfaction > 5 && eval.satisfaction.overallSatisfaction < 8)
-      .forEach(tool => {
-        recommendations.push({
-          type: 'improve',
-          priority: 'medium',
-          tool: tool.toolName,
-          category: tool.category,
-          description: `Optimizar uso de ${tool.toolName} - potencial no aprovechado`,
-          impact: 'Mejora moderada en eficiencia',
-          effort: 'medium',
-          timeline: '1-2 meses'
-        });
-      });
+      return { highCostLowValue, lowCostHighValue };
+   };
 
-    // Herramientas faltantes identificadas
-    const missingFeatures = evaluations.flatMap(eval => eval.features.missingFeatures);
-    const frequentMissing = missingFeatures.reduce((acc, feature) => {
-      acc[feature] = (acc[feature] || 0) + 1;
-      return acc;
-    }, {} as Record<string, number>);
+   const budget = budgetOptimization();
 
-    Object.entries(frequentMissing)
-      .filter(([_, count]) => count >= 2)
-      .forEach(([feature, count]) => {
-        recommendations.push({
-          type: 'add',
-          priority: 'medium',
-          description: `Agregar herramienta para: ${feature} (solicitado por ${count} miembros del equipo)`,
-          impact: 'Llenar gap de funcionalidad',
-          effort: 'medium',
-          timeline: '1-3 meses'
-        });
-      });
-
-    return recommendations.sort((a, b) => {
-      const priorityOrder = { high: 3, medium: 2, low: 1 };
-      return priorityOrder[b.priority] - priorityOrder[a.priority];
-    });
-  };
-
-  const recommendations = generateRecommendations();
-
-  const budgetOptimization = () => {
-    const highCostLowValue = evaluations.filter(eval => {
-      const cost = costAnalysis.toolCosts[eval.toolName] || 0;
-      return cost > 50 && eval.satisfaction.overallSatisfaction < 7;
-    });
-
-    const lowCostHighValue = evaluations.filter(eval => {
-      const cost = costAnalysis.toolCosts[eval.toolName] || 0;
-      return cost < 20 && eval.satisfaction.overallSatisfaction >= 8;
-    });
-
-    return { highCostLowValue, lowCostHighValue };
-  };
-
-  const budget = budgetOptimization();
-
-  return (
-    <div className="recommendations-section">
-      <div className="recommendations-summary">
-        <h3>📋 Plan de Acción Recomendado</h3>
-        <div className="action-summary">
-          <div className="action-type">
-            <span className="count">{recommendations.filter(r => r.type === 'keep').length}</span>
-            <span className="label">Mantener</span>
-          </div>
-          <div className="action-type">
-            <span className="count">{recommendations.filter(r => r.type === 'improve').length}</span>
-            <span className="label">Optimizar</span>
-          </div>
-          <div className="action-type">
-            <span className="count">{recommendations.filter(r => r.type === 'replace').length}</span>
-            <span className="label">Reemplazar</span>
-          </div>
-          <div className="action-type">
-            <span className="count">{recommendations.filter(r => r.type === 'add').length}</span>
-            <span className="label">Agregar</span>
-          </div>
-        </div>
-      </div>
-
-      <div className="recommendations-list">
-        <h4>Recomendaciones Prioritizadas</h4>
-        {recommendations.map((rec, index) => (
-          <div key={index} className={`recommendation-item ${rec.type} ${rec.priority}`}>
-            <div className="recommendation-header">
-              <div className="recommendation-type">
-                {rec.type === 'keep' && '✅'}
-                {rec.type === 'improve' && '🔧'}
-                {rec.type === 'replace' && '🔄'}
-                {rec.type === 'add' && '➕'}
-              </div>
-              <div className="recommendation-priority">
-                <span className={`priority-badge ${rec.priority}`}>
-                  {rec.priority.toUpperCase()}
-                </span>
-              </div>
+   return (
+      <div className="recommendations-section">
+         <div className="recommendations-summary">
+            <h3>📋 Plan de Acción Recomendado</h3>
+            <div className="action-summary">
+               <div className="action-type">
+                  <span className="count">
+                     {recommendations.filter((r) => r.type === "keep").length}
+                  </span>
+                  <span className="label">Mantener</span>
+               </div>
+               <div className="action-type">
+                  <span className="count">
+                     {recommendations.filter((r) => r.type === "improve")
+                        .length}
+                  </span>
+                  <span className="label">Optimizar</span>
+               </div>
+               <div className="action-type">
+                  <span className="count">
+                     {recommendations.filter((r) => r.type === "replace")
+                        .length}
+                  </span>
+                  <span className="label">Reemplazar</span>
+               </div>
+               <div className="action-type">
+                  <span className="count">
+                     {recommendations.filter((r) => r.type === "add").length}
+                  </span>
+                  <span className="label">Agregar</span>
+               </div>
             </div>
-            <div className="recommendation-content">
-              <h5>{rec.description}</h5>
-              <div className="recommendation-details">
-                <div className="detail">
-                  <strong>Impacto:</strong> {rec.impact}
-                </div>
-                <div className="detail">
-                  <strong>Esfuerzo:</strong> {rec.effort}
-                </div>
-                <div className="detail">
-                  <strong>Timeline:</strong> {rec.timeline}
-                </div>
-              </div>
+         </div>
+
+         <div className="recommendations-list">
+            <h4>Recomendaciones Prioritizadas</h4>
+            {recommendations.map((rec, index) => (
+               <div
+                  key={index}
+                  className={`recommendation-item ${rec.type} ${rec.priority}`}
+               >
+                  <div className="recommendation-header">
+                     <div className="recommendation-type">
+                        {rec.type === "keep" && "✅"}
+                        {rec.type === "improve" && "🔧"}
+                        {rec.type === "replace" && "🔄"}
+                        {rec.type === "add" && "➕"}
+                     </div>
+                     <div className="recommendation-priority">
+                        <span className={`priority-badge ${rec.priority}`}>
+                           {rec.priority.toUpperCase()}
+                        </span>
+                     </div>
+                  </div>
+                  <div className="recommendation-content">
+                     <h5>{rec.description}</h5>
+                     <div className="recommendation-details">
+                        <div className="detail">
+                           <strong>Impacto:</strong> {rec.impact}
+                        </div>
+                        <div className="detail">
+                           <strong>Esfuerzo:</strong> {rec.effort}
+                        </div>
+                        <div className="detail">
+                           <strong>Timeline:</strong> {rec.timeline}
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            ))}
+         </div>
+
+         <div className="budget-optimization">
+            <h4>💰 Optimización de Presupuesto</h4>
+
+            {budget.highCostLowValue.length > 0 && (
+               <div className="budget-section">
+                  <h5>🔴 Alto Costo, Bajo Valor</h5>
+                  <p>
+                     Herramientas que consumen recursos pero generan poca
+                     satisfacción:
+                  </p>
+                  <ul>
+                     {budget.highCostLowValue.map((tool) => (
+                        <li key={tool.toolName}>
+                           <strong>{tool.toolName}</strong>: ${costAnalysis
+                              .toolCosts[tool.toolName]}/mes (satisfacción:{" "}
+                           {tool.satisfaction.overallSatisfaction}/10)
+                        </li>
+                     ))}
+                  </ul>
+               </div>
+            )}
+
+            {budget.lowCostHighValue.length > 0 && (
+               <div className="budget-section">
+                  <h5>🟢 Bajo Costo, Alto Valor</h5>
+                  <p>Herramientas eficientes que podrían expandirse:</p>
+                  <ul>
+                     {budget.lowCostHighValue.map((tool) => (
+                        <li key={tool.toolName}>
+                           <strong>{tool.toolName}</strong>: ${costAnalysis
+                              .toolCosts[tool.toolName]}/mes (satisfacción:{" "}
+                           {tool.satisfaction.overallSatisfaction}/10)
+                        </li>
+                     ))}
+                  </ul>
+               </div>
+            )}
+         </div>
+
+         <div className="implementation-roadmap">
+            <h4>🗺️ Roadmap de Implementación</h4>
+
+            <div className="timeline">
+               <div className="timeline-period">
+                  <h5>Próximos 30 días (Prioridad Alta)</h5>
+                  <ul>
+                     {recommendations
+                        .filter((r) => r.priority === "high")
+                        .slice(0, 3)
+                        .map((rec, idx) => <li key={idx}>{rec.description}
+                        </li>)}
+                  </ul>
+               </div>
+
+               <div className="timeline-period">
+                  <h5>1-3 meses (Prioridad Media)</h5>
+                  <ul>
+                     {recommendations
+                        .filter((r) => r.priority === "medium")
+                        .slice(0, 4)
+                        .map((rec, idx) => <li key={idx}>{rec.description}
+                        </li>)}
+                  </ul>
+               </div>
+
+               <div className="timeline-period">
+                  <h5>3-6 meses (Optimización Continua)</h5>
+                  <ul>
+                     {recommendations
+                        .filter((r) => r.priority === "low")
+                        .slice(0, 3)
+                        .map((rec, idx) => <li key={idx}>{rec.description}
+                        </li>)}
+                  </ul>
+               </div>
             </div>
-          </div>
-        ))}
+         </div>
       </div>
-
-      <div className="budget-optimization">
-        <h4>💰 Optimización de Presupuesto</h4>
-        
-        {budget.highCostLowValue.length > 0 && (
-          <div className="budget-section">
-            <h5>🔴 Alto Costo, Bajo Valor</h5>
-            <p>Herramientas que consumen recursos pero generan poca satisfacción:</p>
-            <ul>
-              {budget.highCostLowValue.map(tool => (
-                <li key={tool.toolName}>
-                  <strong>{tool.toolName}</strong>: ${costAnalysis.toolCosts[tool.toolName]}/mes 
-                  (satisfacción: {tool.satisfaction.overallSatisfaction}/10)
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
-
-        {budget.lowCostHighValue.length > 0 && (
-          <div className="budget-section">
-            <h5>🟢 Bajo Costo, Alto Valor</h5>
-            <p>Herramientas eficientes que podrían expandirse:</p>
-            <ul>
-              {budget.lowCostHighValue.map(tool => (
-                <li key={tool.toolName}>
-                  <strong>{tool.toolName}</strong>: ${costAnalysis.toolCosts[tool.toolName]}/mes 
-                  (satisfacción: {tool.satisfaction.overallSatisfaction}/10)
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
-      </div>
-
-      <div className="implementation-roadmap">
-        <h4>🗺️ Roadmap de Implementación</h4>
-        
-        <div className="timeline">
-          <div className="timeline-period">
-            <h5>Próximos 30 días (Prioridad Alta)</h5>
-            <ul>
-              {recommendations
-                .filter(r => r.priority === 'high')
-                .slice(0, 3)
-                .map((rec, idx) => (
-                  <li key={idx}>{rec.description}</li>
-                ))}
-            </ul>
-          </div>
-          
-          <div className="timeline-period">
-            <h5>1-3 meses (Prioridad Media)</h5>
-            <ul>
-              {recommendations
-                .filter(r => r.priority === 'medium')
-                .slice(0, 4)
-                .map((rec, idx) => (
-                  <li key={idx}>{rec.description}</li>
-                ))}
-            </ul>
-          </div>
-          
-          <div className="timeline-period">
-            <h5>3-6 meses (Optimización Continua)</h5>
-            <ul>
-              {recommendations
-                .filter(r => r.priority === 'low')
-                .slice(0, 3)
-                .map((rec, idx) => (
-                  <li key={idx}>{rec.description}</li>
-                ))}
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+   );
 };
 ```
 
@@ -1097,87 +1208,87 @@ const RecommendationsSection: React.FC<{
 name: Monthly Tools Evaluation
 
 on:
-  schedule:
-    # Ejecutar el primer día de cada mes
-    - cron: '0 9 1 * *'
-  workflow_dispatch: # Permitir ejecución manual
+   schedule:
+      # Ejecutar el primer día de cada mes
+      - cron: "0 9 1 * *"
+   workflow_dispatch: # Permitir ejecución manual
 
 jobs:
-  tools-evaluation:
-    runs-on: ubuntu-latest
-    
-    steps:
-    - uses: actions/checkout@v3
-    
-    - name: Setup Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '18'
-    
-    - name: Setup PHP
-      uses: shivammathur/setup-php@v2
-      with:
-        php-version: '8.2'
-    
-    - name: Install dependencies
-      run: |
-        cd frontend && npm ci
-        cd ../backend && composer install
-    
-    - name: Run tools benchmarking
-      run: |
-        # Ejecutar benchmarks automáticos
-        ./tools-evaluation/evaluate-tools.sh
-        php tools-evaluation/benchmarks/ToolsBenchmark.php
-    
-    - name: Collect usage metrics
-      run: |
-        # Recopilar métricas de uso de GitHub API
-        gh api repos/:owner/:repo/actions/runs --paginate \
-          | jq '[.workflow_runs[] | select(.created_at > (now - 2592000))] | length' \
-          > tools-evaluation/metrics/github-actions-usage.json
-        
-        # Métricas de commits y PRs
-        gh api repos/:owner/:repo/commits --since="$(date -d '30 days ago' --iso-8601)" \
-          | jq 'length' > tools-evaluation/metrics/git-activity.json
-    
-    - name: Generate evaluation report
-      run: |
-        # Generar reporte consolidado
-        node tools-evaluation/scripts/generate-monthly-report.js
-    
-    - name: Update tools documentation
-      run: |
-        # Actualizar documentación con nuevas métricas
-        cp tools-evaluation/reports/monthly-tools-report-$(date +%Y%m).md \
-           docs/tools-evaluation-latest.md
-    
-    - name: Create issue with findings
-      if: always()
-      uses: actions/github-script@v6
-      with:
-        script: |
-          const fs = require('fs');
-          const reportPath = `tools-evaluation/reports/monthly-tools-report-${new Date().getFullYear()}${String(new Date().getMonth() + 1).padStart(2, '0')}.md`;
-          
-          if (fs.existsSync(reportPath)) {
-            const report = fs.readFileSync(reportPath, 'utf8');
-            
-            await github.rest.issues.create({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              title: `📊 Evaluación Mensual de Herramientas - ${new Date().toLocaleDateString('es-ES', { year: 'numeric', month: 'long' })}`,
-              body: `## 🔧 Reporte Automático de Evaluación de Herramientas\n\n${report}\n\n---\n\n**Generado automáticamente el ${new Date().toLocaleDateString()}**`,
-              labels: ['tools-evaluation', 'monthly-report', 'enhancement']
-            });
-          }
-    
-    - name: Archive reports
-      uses: actions/upload-artifact@v3
-      with:
-        name: tools-evaluation-reports
-        path: tools-evaluation/reports/
-        retention-days: 90
+   tools-evaluation:
+      runs-on: ubuntu-latest
+
+      steps:
+         - uses: actions/checkout@v3
+
+         - name: Setup Node.js
+           uses: actions/setup-node@v3
+           with:
+              node-version: "18"
+
+         - name: Setup PHP
+           uses: shivammathur/setup-php@v2
+           with:
+              php-version: "8.2"
+
+         - name: Install dependencies
+           run: |
+              cd frontend && npm ci
+              cd ../backend && composer install
+
+         - name: Run tools benchmarking
+           run: |
+              # Ejecutar benchmarks automáticos
+              ./tools-evaluation/evaluate-tools.sh
+              php tools-evaluation/benchmarks/ToolsBenchmark.php
+
+         - name: Collect usage metrics
+           run: |
+              # Recopilar métricas de uso de GitHub API
+              gh api repos/:owner/:repo/actions/runs --paginate \
+                | jq '[.workflow_runs[] | select(.created_at > (now - 2592000))] | length' \
+                > tools-evaluation/metrics/github-actions-usage.json
+
+              # Métricas de commits y PRs
+              gh api repos/:owner/:repo/commits --since="$(date -d '30 days ago' --iso-8601)" \
+                | jq 'length' > tools-evaluation/metrics/git-activity.json
+
+         - name: Generate evaluation report
+           run: |
+              # Generar reporte consolidado
+              node tools-evaluation/scripts/generate-monthly-report.js
+
+         - name: Update tools documentation
+           run: |
+              # Actualizar documentación con nuevas métricas
+              cp tools-evaluation/reports/monthly-tools-report-$(date +%Y%m).md \
+                 docs/tools-evaluation-latest.md
+
+         - name: Create issue with findings
+           if: always()
+           uses: actions/github-script@v6
+           with:
+              script: |
+                 const fs = require('fs');
+                 const reportPath = `tools-evaluation/reports/monthly-tools-report-${new Date().getFullYear()}${String(new Date().getMonth() + 1).padStart(2, '0')}.md`;
+
+                 if (fs.existsSync(reportPath)) {
+                   const report = fs.readFileSync(reportPath, 'utf8');
+
+                   await github.rest.issues.create({
+                     owner: context.repo.owner,
+                     repo: context.repo.repo,
+                     title: `📊 Evaluación Mensual de Herramientas - ${new Date().toLocaleDateString('es-ES', { year: 'numeric', month: 'long' })}`,
+                     body: `## 🔧 Reporte Automático de Evaluación de Herramientas\n\n${report}\n\n---\n\n**Generado automáticamente el ${new Date().toLocaleDateString()}**`,
+                     labels: ['tools-evaluation', 'monthly-report', 'enhancement']
+                   });
+                 }
+
+         - name: Archive reports
+           uses: actions/upload-artifact@v3
+           with:
+              name: tools-evaluation-reports
+              path: tools-evaluation/reports/
+              retention-days: 90
 ```
 
 ## Tips
@@ -1208,7 +1319,8 @@ jobs:
 - **Evaluación regular**: Programa evaluaciones periódicas
 - **Nuevas herramientas**: Mantente al día con herramientas emergentes
 - **Feedback continuo**: Captura feedback informal durante el desarrollo
-- **Adaptación**: Adapta las herramientas a las necesidades cambiantes del equipo
+- **Adaptación**: Adapta las herramientas a las necesidades cambiantes del
+  equipo
 
 ## Ejemplos
 
@@ -1218,6 +1330,7 @@ jobs:
 # Evaluación: Visual Studio Code
 
 ## Información Básica
+
 - **Categoría**: Herramienta de Desarrollo
 - **Tiempo de uso**: 12 meses
 - **Usuarios**: 8/8 desarrolladores del equipo
@@ -1225,6 +1338,7 @@ jobs:
 ## Satisfacción del Equipo
 
 ### Puntuaciones (1-10)
+
 - **Satisfacción general**: 9.2/10
 - **Facilidad de uso**: 9.5/10
 - **Performance**: 8.8/10
@@ -1233,7 +1347,9 @@ jobs:
 - **Soporte**: 8.5/10
 
 ### Feedback Cualitativo
+
 **Lo que funciona bien:**
+
 - Extensiones abundantes y de calidad
 - IntelliSense excelente para TypeScript
 - Integración perfecta con Git
@@ -1241,6 +1357,7 @@ jobs:
 - Multiplataforma sin problemas
 
 **Frustraciones:**
+
 - Consumo de memoria alto con muchas extensiones
 - Ocasionalmente lento al abrir proyectos grandes
 - Algunas extensiones conflictúan entre sí
@@ -1248,29 +1365,35 @@ jobs:
 ## Métricas de Performance
 
 ### Benchmarks Técnicos
+
 - **Tiempo de startup**: 4.2 segundos (Good)
 - **Uso de memoria**: 450MB promedio (Good)
 - **Tiempo de indexación**: 30 segundos para proyecto completo (Excellent)
 - **Frecuencia de crashes**: 0.2 por mes (Excellent)
 
 ### Métricas de Productividad
+
 - **Tiempo hasta productividad**: Inmediato para desarrolladores con experiencia
-- **Curva de aprendizaje**: Fácil para desarrolladores, moderate para principiantes
+- **Curva de aprendizaje**: Fácil para desarrolladores, moderate para
+  principiantes
 - **Impacto en velocidad de desarrollo**: +40% vs editores básicos
 
 ## Análisis de Costo
 
 ### Costo Directo
+
 - **Licencia**: $0 (gratuito)
 - **Extensiones premium**: $15/mes/desarrollador promedio
 - **Total mensual**: $120/mes para el equipo
 
 ### Costo Indirecto
+
 - **Capacitación inicial**: ~4 horas por desarrollador nuevo
 - **Mantenimiento**: ~2 horas/mes configuración y troubleshooting
 - **Hardware adicional**: Recomendable 16GB RAM (+$200 por máquina)
 
 ### ROI
+
 - **Ganancia en productividad**: 8 horas/semana/desarrollador
 - **Valor económico**: $6,400/mes en tiempo ahorrado
 - **ROI**: 5,233% (excelente)
@@ -1278,24 +1401,29 @@ jobs:
 ## Comparación con Alternativas
 
 ### vs JetBrains WebStorm
+
 - **Ventajas**: Gratuito, más liviano, mayor ecosistema de extensiones
 - **Desventajas**: Menos features advanced de refactoring
 
 ### vs Sublime Text
+
 - **Ventajas**: Mejor IntelliSense, debugging integrado, ecosystem más rico
 - **Desventajas**: Mayor uso de recursos
 
 ## Recomendaciones
 
 ### Acción Recomendada: ✅ MANTENER
+
 **Justificación**: Herramienta extremadamente valiosa con ROI excepcional
 
 ### Optimizaciones Sugeridas
+
 1. **Gestión de extensiones**: Crear perfiles optimizados por tipo de desarrollo
 2. **Performance**: Configurar exclusiones de indexación para node_modules
 3. **Estandarización**: Crear workspace settings compartidas para el equipo
 
 ### Plan de Mejora
+
 - **Corto plazo (1 mes)**: Implementar configuración estándar del equipo
 - **Medio plazo (3 meses)**: Evaluar extensiones premium para el equipo completo
 - **Largo plazo (6 meses)**: Monitorear VS Code Insiders para features nuevas
@@ -1308,12 +1436,11 @@ jobs:
 
 ## Resumen Ejecutivo
 
-**Herramientas evaluadas**: 24
-**Satisfacción promedio**: 7.8/10
-**Presupuesto total**: $2,400/mes
-**ROI promedio**: 342%
+**Herramientas evaluadas**: 24 **Satisfacción promedio**: 7.8/10 **Presupuesto
+total**: $2,400/mes **ROI promedio**: 342%
 
 ### Decisiones Clave Recomendadas
+
 - ✅ **Mantener**: VS Code, GitHub Actions, Slack, Jest (alta satisfacción)
 - 🔄 **Reemplazar**: Heroku → AWS (costo/beneficio)
 - 🔧 **Optimizar**: Jira (subutilizado), Figma (licencias extra)
@@ -1322,16 +1449,19 @@ jobs:
 ## Análisis por Categoría
 
 ### 🟢 Desarrollo (Promedio: 8.7/10)
+
 - **VS Code**: 9.2/10 - Mantener definitivamente
 - **Git**: 9.0/10 - Estándar de la industria
 - **npm/Composer**: 8.1/10 - Herramientas necesarias
 
 ### 🟡 Colaboración (Promedio: 7.2/10)
+
 - **Slack**: 8.5/10 - Muy valorado por el equipo
 - **Jira**: 6.8/10 - Funcional pero could be better
 - **GitHub**: 8.9/10 - Excelente para code review
 
 ### 🔴 Infraestructura (Promedio: 6.5/10)
+
 - **Heroku**: 5.8/10 - Caro para el valor proporcionado
 - **GitHub Actions**: 8.2/10 - Confiable y bien integrado
 - **Docker**: 7.5/10 - Útil pero curva de aprendizaje
@@ -1339,12 +1469,14 @@ jobs:
 ## Impacto Financiero
 
 ### Optimizaciones Identificadas
+
 - **Ahorro potencial**: $800/mes
   - Heroku → AWS: -$400/mes
   - Optimización licencias Figma: -$200/mes
   - Eliminar herramientas duplicadas: -$200/mes
 
 ### Inversiones Recomendadas
+
 - **Costo adicional**: $300/mes
   - Playwright licencias: +$100/mes
   - Datadog plan básico: +$200/mes
@@ -1354,48 +1486,31 @@ jobs:
 ## Plan de Implementación
 
 ### Fase 1 (Mes 1): Optimizaciones Rápidas
+
 - Revisar y optimizar licencias existentes
 - Configurar VS Code estandarizado
 - Eliminar herramientas duplicadas
 
 ### Fase 2 (Mes 2-3): Reemplazos Críticos
+
 - Migrar de Heroku a AWS
 - Implementar Playwright para E2E testing
 - Setup inicial de Datadog
 
 ### Fase 3 (Mes 4-6): Mejoras Continuas
+
 - Optimizar workflows de Jira
 - Evaluar herramientas emergentes
 - Medir impacto de cambios implementados
 
 ## Próxima Evaluación
 
-**Fecha**: Julio 2024
-**Enfoque especial**: Impacto de cambios implementados, nuevas herramientas de AI/ML para desarrollo
+**Fecha**: Julio 2024 **Enfoque especial**: Impacto de cambios implementados,
+nuevas herramientas de AI/ML para desarrollo
 ```
 
 ## Navegación
 
-**Progreso en Mantenimiento y Evolución:**
-
-- ✅ [Mantenimiento y Evolución](./mantenimiento-evolucion.md)
-- ✅ [Monitoreo Post-Deployment](./monitoreo-post-deployment.md)
-- ✅ [Bug Fixes y Hotfixes](./bug-fixes-hotfixes.md)
-- ✅ [Actualización de Dependencias](./actualizacion-dependencias.md)
-- ✅ [Gestión de Nuevas Funcionalidades](./gestion-nuevas-funcionalidades.md)
-- ✅ [Mejoras Continuas Programadas](./mejoras-continuas-programadas.md)
-- ✅ [Documentación y Knowledge Transfer](./documentacion-knowledge-transfer.md)
-- ✅ [Retroalimentación del Equipo](./retroalimentacion-equipo.md)
-- ✅ [Evaluación del Cumplimiento del Estándar](./evaluacion-cumplimiento-estandar.md)
-- ✅ [Lecciones Aprendidas](./lecciones-aprendidas.md)
-- ✅ **Evaluación de Herramientas** ← Estás aquí
-- ⏭️ [Cierre de Proyecto](./cierre-proyecto.md)
-- ⏭️ [Métricas y Analytics de Uso](./metricas-analytics-uso.md)
-
----
-
-### Siguiente Paso
-
-Continúa con [**Cierre de Proyecto**](./cierre-proyecto.md)
-
-[⬅️ Lecciones Aprendidas](./lecciones-aprendidas.md) | [🏠 README Principal](../../README.md) | [➡️ Cierre de Proyecto](./cierre-proyecto.md)
+[⬅️ Lecciones Aprendidas](./lecciones-aprendidas.md) |
+[🏠 README Principal](../../README.md) |
+[Cierre de Proyecto ➡️](./cierre-proyecto.md)

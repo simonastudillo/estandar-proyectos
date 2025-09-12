@@ -2,7 +2,10 @@
 
 ## ¿Qué es?
 
-La retroalimentación del equipo es un proceso estructurado para recopilar opiniones, experiencias y sugerencias de todos los miembros del equipo de desarrollo sobre el proyecto, los procesos utilizados, las herramientas, la metodología y la colaboración en general.
+La retroalimentación del equipo es un proceso estructurado para recopilar
+opiniones, experiencias y sugerencias de todos los miembros del equipo de
+desarrollo sobre el proyecto, los procesos utilizados, las herramientas, la
+metodología y la colaboración en general.
 
 ## ¿Por qué es importante?
 
@@ -12,7 +15,8 @@ La retroalimentación del equipo es un proceso estructurado para recopilar opini
 - **Cultura colaborativa**: Fomenta la comunicación abierta y honesta
 - **Retención de talento**: Demuestra que las opiniones del equipo son valoradas
 - **Optimización de procesos**: Identifica procesos que funcionan bien o mal
-- **Desarrollo profesional**: Identifica necesidades de capacitación y crecimiento
+- **Desarrollo profesional**: Identifica necesidades de capacitación y
+  crecimiento
 - **Calidad de trabajo**: Mejora el ambiente y las condiciones de trabajo
 
 ## ¿Qué debe incluir?
@@ -100,54 +104,54 @@ EOF
 ```typescript
 // surveys/team-feedback.ts
 interface TeamFeedbackSurvey {
-  // Información del participante
-  participantInfo: {
-    role: 'Frontend' | 'Backend' | 'Fullstack' | 'DevOps' | 'QA' | 'PM';
-    experienceLevel: 'Junior' | 'Mid' | 'Senior' | 'Lead';
-    projectDuration: number; // meses en el proyecto
-  };
+   // Información del participante
+   participantInfo: {
+      role: "Frontend" | "Backend" | "Fullstack" | "DevOps" | "QA" | "PM";
+      experienceLevel: "Junior" | "Mid" | "Senior" | "Lead";
+      projectDuration: number; // meses en el proyecto
+   };
 
-  // Evaluación de procesos (1-5 scale)
-  processEvaluation: {
-    methodologyEffectiveness: number;
-    communicationQuality: number;
-    decisionMakingSpeed: number;
-    conflictResolution: number;
-    documentationQuality: number;
-  };
+   // Evaluación de procesos (1-5 scale)
+   processEvaluation: {
+      methodologyEffectiveness: number;
+      communicationQuality: number;
+      decisionMakingSpeed: number;
+      conflictResolution: number;
+      documentationQuality: number;
+   };
 
-  // Evaluación de herramientas (1-5 scale)
-  toolsEvaluation: {
-    developmentTools: number;
-    collaborationTools: number;
-    cicdPipeline: number;
-    monitoringTools: number;
-    testingFramework: number;
-  };
+   // Evaluación de herramientas (1-5 scale)
+   toolsEvaluation: {
+      developmentTools: number;
+      collaborationTools: number;
+      cicdPipeline: number;
+      monitoringTools: number;
+      testingFramework: number;
+   };
 
-  // Evaluación del equipo (1-5 scale)
-  teamEvaluation: {
-    collaboration: number;
-    knowledgeSharing: number;
-    workDistribution: number;
-    mentorship: number;
-    teamSpirit: number;
-  };
+   // Evaluación del equipo (1-5 scale)
+   teamEvaluation: {
+      collaboration: number;
+      knowledgeSharing: number;
+      workDistribution: number;
+      mentorship: number;
+      teamSpirit: number;
+   };
 
-  // Comentarios abiertos
-  openFeedback: {
-    whatWorkedWell: string[];
-    whatDidntWork: string[];
-    suggestions: string[];
-    additionalComments: string;
-  };
+   // Comentarios abiertos
+   openFeedback: {
+      whatWorkedWell: string[];
+      whatDidntWork: string[];
+      suggestions: string[];
+      additionalComments: string;
+   };
 
-  // Satisfacción general
-  overallSatisfaction: {
-    projectSatisfaction: number; // 1-10
-    wouldRecommend: boolean;
-    wouldWorkAgain: boolean;
-  };
+   // Satisfacción general
+   overallSatisfaction: {
+      projectSatisfaction: number; // 1-10
+      wouldRecommend: boolean;
+      wouldWorkAgain: boolean;
+   };
 }
 ```
 
@@ -358,133 +362,159 @@ file_put_contents(
 
 ```typescript
 // dashboard/feedback-dashboard.tsx
-import React, { useState, useEffect } from 'react';
-import { 
-  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
-  RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar,
-  PieChart, Pie, Cell
-} from 'recharts';
+import React, { useEffect, useState } from "react";
+import {
+   Bar,
+   BarChart,
+   CartesianGrid,
+   Cell,
+   Pie,
+   PieChart,
+   PolarAngleAxis,
+   PolarGrid,
+   PolarRadiusAxis,
+   Radar,
+   RadarChart,
+   ResponsiveContainer,
+   Tooltip,
+   XAxis,
+   YAxis,
+} from "recharts";
 
 interface FeedbackDashboardProps {
-  feedbackData: ConsolidatedFeedback;
+   feedbackData: ConsolidatedFeedback;
 }
 
-export const FeedbackDashboard: React.FC<FeedbackDashboardProps> = ({ 
-  feedbackData 
+export const FeedbackDashboard: React.FC<FeedbackDashboardProps> = ({
+   feedbackData,
 }) => {
-  const [activeTab, setActiveTab] = useState('overview');
+   const [activeTab, setActiveTab] = useState("overview");
 
-  const satisfactionData = [
-    { category: 'Proyecto General', satisfaction: feedbackData.summary.overall_satisfaction },
-    { category: 'Procesos', satisfaction: calculateProcessSatisfaction(feedbackData) },
-    { category: 'Herramientas', satisfaction: calculateToolSatisfaction(feedbackData) },
-    { category: 'Equipo', satisfaction: calculateTeamSatisfaction(feedbackData) }
-  ];
+   const satisfactionData = [
+      {
+         category: "Proyecto General",
+         satisfaction: feedbackData.summary.overall_satisfaction,
+      },
+      {
+         category: "Procesos",
+         satisfaction: calculateProcessSatisfaction(feedbackData),
+      },
+      {
+         category: "Herramientas",
+         satisfaction: calculateToolSatisfaction(feedbackData),
+      },
+      {
+         category: "Equipo",
+         satisfaction: calculateTeamSatisfaction(feedbackData),
+      },
+   ];
 
-  return (
-    <div className="feedback-dashboard">
-      <header className="dashboard-header">
-        <h1>Dashboard de Retroalimentación del Equipo</h1>
-        <div className="project-info">
-          <span>Proyecto: {feedbackData.projectName}</span>
-          <span>Participantes: {feedbackData.summary.total_participants}</span>
-        </div>
-      </header>
+   return (
+      <div className="feedback-dashboard">
+         <header className="dashboard-header">
+            <h1>Dashboard de Retroalimentación del Equipo</h1>
+            <div className="project-info">
+               <span>Proyecto: {feedbackData.projectName}</span>
+               <span>
+                  Participantes: {feedbackData.summary.total_participants}
+               </span>
+            </div>
+         </header>
 
-      <nav className="dashboard-tabs">
-        <button 
-          className={activeTab === 'overview' ? 'active' : ''}
-          onClick={() => setActiveTab('overview')}
-        >
-          Resumen General
-        </button>
-        <button 
-          className={activeTab === 'satisfaction' ? 'active' : ''}
-          onClick={() => setActiveTab('satisfaction')}
-        >
-          Satisfacción
-        </button>
-        <button 
-          className={activeTab === 'trends' ? 'active' : ''}
-          onClick={() => setActiveTab('trends')}
-        >
-          Tendencias
-        </button>
-        <button 
-          className={activeTab === 'actions' ? 'active' : ''}
-          onClick={() => setActiveTab('actions')}
-        >
-          Acciones
-        </button>
-      </nav>
+         <nav className="dashboard-tabs">
+            <button
+               className={activeTab === "overview" ? "active" : ""}
+               onClick={() => setActiveTab("overview")}
+            >
+               Resumen General
+            </button>
+            <button
+               className={activeTab === "satisfaction" ? "active" : ""}
+               onClick={() => setActiveTab("satisfaction")}
+            >
+               Satisfacción
+            </button>
+            <button
+               className={activeTab === "trends" ? "active" : ""}
+               onClick={() => setActiveTab("trends")}
+            >
+               Tendencias
+            </button>
+            <button
+               className={activeTab === "actions" ? "active" : ""}
+               onClick={() => setActiveTab("actions")}
+            >
+               Acciones
+            </button>
+         </nav>
 
-      <main className="dashboard-content">
-        {activeTab === 'overview' && (
-          <OverviewSection feedbackData={feedbackData} />
-        )}
-        {activeTab === 'satisfaction' && (
-          <SatisfactionSection satisfactionData={satisfactionData} />
-        )}
-        {activeTab === 'trends' && (
-          <TrendsSection trends={feedbackData.trends} />
-        )}
-        {activeTab === 'actions' && (
-          <ActionsSection actionItems={feedbackData.actionItems} />
-        )}
-      </main>
-    </div>
-  );
+         <main className="dashboard-content">
+            {activeTab === "overview" && (
+               <OverviewSection feedbackData={feedbackData} />
+            )}
+            {activeTab === "satisfaction" && (
+               <SatisfactionSection satisfactionData={satisfactionData} />
+            )}
+            {activeTab === "trends" && (
+               <TrendsSection trends={feedbackData.trends} />
+            )}
+            {activeTab === "actions" && (
+               <ActionsSection actionItems={feedbackData.actionItems} />
+            )}
+         </main>
+      </div>
+   );
 };
 
-const OverviewSection: React.FC<{ feedbackData: ConsolidatedFeedback }> = ({ 
-  feedbackData 
+const OverviewSection: React.FC<{ feedbackData: ConsolidatedFeedback }> = ({
+   feedbackData,
 }) => (
-  <div className="overview-section">
-    <div className="key-metrics">
-      <div className="metric-card">
-        <h3>Satisfacción General</h3>
-        <div className="metric-value">
-          {feedbackData.summary.overall_satisfaction}/10
-        </div>
+   <div className="overview-section">
+      <div className="key-metrics">
+         <div className="metric-card">
+            <h3>Satisfacción General</h3>
+            <div className="metric-value">
+               {feedbackData.summary.overall_satisfaction}/10
+            </div>
+         </div>
+         <div className="metric-card">
+            <h3>Temas Clave</h3>
+            <ul>
+               {feedbackData.summary.key_themes.map((theme, index) => (
+                  <li key={index}>{theme}</li>
+               ))}
+            </ul>
+         </div>
+         <div className="metric-card">
+            <h3>Issues Prioritarios</h3>
+            <ul>
+               {feedbackData.summary.priority_issues.map((issue, index) => (
+                  <li key={index} className={`priority-${issue.level}`}>
+                     {issue.description}
+                  </li>
+               ))}
+            </ul>
+         </div>
       </div>
-      <div className="metric-card">
-        <h3>Temas Clave</h3>
-        <ul>
-          {feedbackData.summary.key_themes.map((theme, index) => (
-            <li key={index}>{theme}</li>
-          ))}
-        </ul>
-      </div>
-      <div className="metric-card">
-        <h3>Issues Prioritarios</h3>
-        <ul>
-          {feedbackData.summary.priority_issues.map((issue, index) => (
-            <li key={index} className={`priority-${issue.level}`}>
-              {issue.description}
-            </li>
-          ))}
-        </ul>
-      </div>
-    </div>
 
-    <div className="feedback-summary">
-      <h3>Resumen de Feedback</h3>
-      <div className="feedback-categories">
-        <div className="positive-feedback">
-          <h4>✅ Aspectos Positivos</h4>
-          {feedbackData.summary.positive_aspects.map((aspect, index) => (
-            <p key={index}>{aspect}</p>
-          ))}
-        </div>
-        <div className="improvement-areas">
-          <h4>⚠️ Áreas de Mejora</h4>
-          {feedbackData.summary.improvement_areas.map((area, index) => (
-            <p key={index}>{area}</p>
-          ))}
-        </div>
+      <div className="feedback-summary">
+         <h3>Resumen de Feedback</h3>
+         <div className="feedback-categories">
+            <div className="positive-feedback">
+               <h4>✅ Aspectos Positivos</h4>
+               {feedbackData.summary.positive_aspects.map((aspect, index) => (
+                  <p key={index}>{aspect}</p>
+               ))}
+            </div>
+            <div className="improvement-areas">
+               <h4>⚠️ Áreas de Mejora</h4>
+               {feedbackData.summary.improvement_areas.map((area, index) => (
+                  <p key={index}>{area}</p>
+               ))}
+            </div>
+         </div>
       </div>
-    </div>
-  </div>
+   </div>
 );
 ```
 
@@ -492,7 +522,8 @@ const OverviewSection: React.FC<{ feedbackData: ConsolidatedFeedback }> = ({
 
 ### Facilitación Efectiva
 
-- **Ambiente seguro**: Crea un espacio donde todos se sientan cómodos compartiendo
+- **Ambiente seguro**: Crea un espacio donde todos se sientan cómodos
+  compartiendo
 - **Participación equilibrada**: Asegúrate de que todos tengan voz
 - **Enfoque constructivo**: Mantén el feedback orientado a soluciones
 - **Documentación**: Registra todo el feedback de manera estructurada
@@ -513,9 +544,11 @@ const OverviewSection: React.FC<{ feedbackData: ConsolidatedFeedback }> = ({
 
 ### Cultura de Feedback
 
-- **Regularidad**: Haz de la retroalimentación un proceso regular, no solo al final
+- **Regularidad**: Haz de la retroalimentación un proceso regular, no solo al
+  final
 - **Transparencia**: Comparte resultados y acciones con todo el equipo
-- **Implementación**: Demuestra que el feedback se toma en serio implementando cambios
+- **Implementación**: Demuestra que el feedback se toma en serio implementando
+  cambios
 - **Reconocimiento**: Reconoce y celebra cuando el feedback lleva a mejoras
 
 ## Ejemplos
@@ -526,30 +559,35 @@ const OverviewSection: React.FC<{ feedbackData: ConsolidatedFeedback }> = ({
 # Retroalimentación Individual - Ana García (Frontend Developer)
 
 ## Aspectos Positivos
+
 - La colaboración con el equipo de backend fue excelente
 - Las daily standups fueron efectivas y concisas
 - El uso de TypeScript mejoró significativamente la calidad del código
 - El proceso de code review funcionó muy bien
 
 ## Aspectos a Mejorar
+
 - Las reuniones de planning se extendían demasiado
 - Faltó documentación técnica en algunos componentes críticos
 - El proceso de testing de componentes fue inconsistente
 - La comunicación con el cliente fue limitada
 
 ## Sugerencias Específicas
+
 - Implementar time-boxing estricto en las reuniones
 - Crear templates obligatorios para documentación de componentes
 - Establecer coverage mínimo de tests y automation en CI/CD
 - Incluir a developers en algunas reuniones con cliente
 
 ## Desarrollo Personal
+
 - Desarrollé habilidades avanzadas en React hooks y context
 - Mejoré mis skills de code review y mentoring
 - Me gustaría aprender más sobre performance optimization
 - Necesito capacitación en testing avanzado (E2E, visual testing)
 
 ## Evaluación General
+
 - Satisfacción general: 8/10
 - Recomendaría este enfoque: Sí, con las mejoras mencionadas
 - Comentarios adicionales: Fue un proyecto desafiante pero muy gratificante
@@ -559,75 +597,56 @@ const OverviewSection: React.FC<{ feedbackData: ConsolidatedFeedback }> = ({
 
 ```json
 {
-  "project_name": "E-commerce Platform",
-  "summary": {
-    "total_participants": 8,
-    "overall_satisfaction": 7.8,
-    "key_themes": [
-      "Colaboración efectiva del equipo",
-      "Necesidad de mejor documentación",
-      "Procesos de meeting demasiado largos",
-      "Stack tecnológico bien elegido"
-    ],
-    "priority_issues": [
+   "project_name": "E-commerce Platform",
+   "summary": {
+      "total_participants": 8,
+      "overall_satisfaction": 7.8,
+      "key_themes": [
+         "Colaboración efectiva del equipo",
+         "Necesidad de mejor documentación",
+         "Procesos de meeting demasiado largos",
+         "Stack tecnológico bien elegido"
+      ],
+      "priority_issues": [
+         {
+            "level": "high",
+            "description": "Optimizar duración y efectividad de reuniones"
+         },
+         {
+            "level": "medium",
+            "description": "Mejorar procesos de documentación técnica"
+         }
+      ]
+   },
+   "trends": {
+      "tools": {
+         "most_liked": ["TypeScript", "React", "GitHub Actions"],
+         "least_liked": ["Current testing framework", "Documentation tools"],
+         "improvement_needed": ["E2E testing setup", "API documentation"]
+      },
+      "processes": {
+         "most_effective": ["Daily standups", "Code review", "Git workflow"],
+         "least_effective": ["Sprint planning", "Client communication"],
+         "improvement_needed": ["Meeting efficiency", "Knowledge transfer"]
+      }
+   },
+   "actionItems": [
       {
-        "level": "high",
-        "description": "Optimizar duración y efectividad de reuniones"
+         "suggestion": "Implementar time-boxing en todas las reuniones",
+         "priority": 9,
+         "category": "process_improvement"
       },
       {
-        "level": "medium", 
-        "description": "Mejorar procesos de documentación técnica"
+         "suggestion": "Crear templates de documentación obligatorios",
+         "priority": 8,
+         "category": "documentation"
       }
-    ]
-  },
-  "trends": {
-    "tools": {
-      "most_liked": ["TypeScript", "React", "GitHub Actions"],
-      "least_liked": ["Current testing framework", "Documentation tools"],
-      "improvement_needed": ["E2E testing setup", "API documentation"]
-    },
-    "processes": {
-      "most_effective": ["Daily standups", "Code review", "Git workflow"],
-      "least_effective": ["Sprint planning", "Client communication"],
-      "improvement_needed": ["Meeting efficiency", "Knowledge transfer"]
-    }
-  },
-  "actionItems": [
-    {
-      "suggestion": "Implementar time-boxing en todas las reuniones",
-      "priority": 9,
-      "category": "process_improvement"
-    },
-    {
-      "suggestion": "Crear templates de documentación obligatorios",
-      "priority": 8,
-      "category": "documentation"
-    }
-  ]
+   ]
 }
 ```
 
 ## Navegación
 
-**Progreso en Mantenimiento y Evolución:**
-
-- ✅ [Mantenimiento y Evolución](./mantenimiento-evolucion.md)
-- ✅ [Monitoreo Post-Deployment](./monitoreo-post-deployment.md)
-- ✅ [Bug Fixes y Hotfixes](./bug-fixes-hotfixes.md)
-- ✅ [Actualización de Dependencias](./actualizacion-dependencias.md)
-- ✅ [Gestión de Nuevas Funcionalidades](./gestion-nuevas-funcionalidades.md)
-- ✅ [Mejoras Continuas Programadas](./mejoras-continuas-programadas.md)
-- ✅ [Documentación y Knowledge Transfer](./documentacion-knowledge-transfer.md)
-- ✅ **Retroalimentación del Equipo** ← Estás aquí
-- ⏭️ [Evaluación del Cumplimiento del Estándar](./evaluacion-cumplimiento-estandar.md)
-- ⏭️ [Lecciones Aprendidas](./lecciones-aprendidas.md)
-- ⏭️ [Evaluación de Herramientas](./evaluacion-herramientas.md)
-- ⏭️ [Métricas y Analytics de Uso](./metricas-analytics-uso.md)
-
----
-
-### Siguiente Paso
-
-Continúa con [**Evaluación del Cumplimiento del Estándar**](./evaluacion-cumplimiento-estandar.md)
-
-[⬅️ Documentación y Knowledge Transfer](./documentacion-knowledge-transfer.md) | [🏠 README Principal](../../README.md) | [➡️ Evaluación del Cumplimiento del Estándar](./evaluacion-cumplimiento-estandar.md)
+[⬅️ Documentación y Knowledge Transfer](./documentacion-knowledge-transfer.md) |
+[🏠 README Principal](../../README.md) |
+[Evaluación del Cumplimiento del Estándar ➡️](./evaluacion-cumplimiento-estandar.md)

@@ -318,23 +318,6 @@ jobs:
 
 ## Navegación
 
-**Progreso en Mantenimiento y Evolución:**
-
-- ✅ **Mantenimiento y Evolución** ← Estás aquí
-- ⏭️ [Monitoreo Post-Deployment](./monitoreo-post-deployment.md)
-- ⏭️ [Bug Fixes y Hotfixes](./bug-fixes-hotfixes.md)
-- ⏭️ [Actualización de Dependencias](./actualizacion-dependencias.md)
-- ⏭️ [Gestión de Nuevas Funcionalidades](./gestion-nuevas-funcionalidades.md)
-- ⏭️ [Mejoras continuas programadas](./mejoras-continuas-programadas.md)
-- ⏭️ [Documentación y Knowledge Transfer](./documentacion-knowledge-transfer.md)
-- ⏭️ [Métricas y Analytics de Uso](./metricas-analytics-uso.md)
-
----
-
-### Siguiente Paso
-
-Continúa con [**Monitoreo Post-Deployment**](./monitoreo-post-deployment.md)
-
 [⬅️ Etapa 8: SSL y Configuraciones de Seguridad](../step_08/ssl-configuraciones-seguridad.md)
 | [🏠 README Principal](../../README.md) |
-[➡️ Monitoreo Post-Deployment](./monitoreo-post-deployment.md)
+[Monitoreo Post-Deployment ➡️](./monitoreo-post-deployment.md)

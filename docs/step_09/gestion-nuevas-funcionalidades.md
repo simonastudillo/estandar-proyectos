@@ -818,24 +818,6 @@ jobs:
 
 ## Navegación
 
-**Progreso en Mantenimiento y Evolución:**
-
-- ✅ [Mantenimiento y Evolución](./mantenimiento-evolucion.md)
-- ✅ [Monitoreo Post-Deployment](./monitoreo-post-deployment.md)
-- ✅ [Bug Fixes y Hotfixes](./bug-fixes-hotfixes.md)
-- ✅ [Actualización de Dependencias](./actualizacion-dependencias.md)
-- ✅ **Gestión de Nuevas Funcionalidades** ← Estás aquí
-- ⏭️ [Mejoras continuas programadas](./mejoras-continuas-programadas.md)
-- ⏭️ [Documentación y Knowledge Transfer](./documentacion-knowledge-transfer.md)
-- ⏭️ [Métricas y Analytics de Uso](./metricas-analytics-uso.md)
-
----
-
-### Siguiente Paso
-
-Continúa con
-[**Mejoras continuas programadas**](./mejoras-continuas-programadas.md)
-
 [⬅️ Actualización de Dependencias](./actualizacion-dependencias.md) |
 [🏠 README Principal](../../README.md) |
-[➡️ Mejoras continuas programadas](./mejoras-continuas-programadas.md)
+[Mejoras continuas programadas ➡️](./mejoras-continuas-programadas.md)

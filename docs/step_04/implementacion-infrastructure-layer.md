@@ -2,12 +2,18 @@
 
 ## ¿Qué es?
 
-La capa de infraestructura es la capa más externa que implementa todos los detalles técnicos y se conecta con tecnologías específicas como bases de datos, APIs externas, frameworks web y servicios de terceros. Esta capa implementa las interfaces definidas en las capas superiores y maneja toda la comunicación con el mundo exterior.
+La capa de infraestructura es la capa más externa que implementa todos los
+detalles técnicos y se conecta con tecnologías específicas como bases de datos,
+APIs externas, frameworks web y servicios de terceros. Esta capa implementa las
+interfaces definidas en las capas superiores y maneja toda la comunicación con
+el mundo exterior.
 
 ## ¿Por qué es importante?
 
-- **Implementación concreta**: Provee las implementaciones reales de los contratos definidos
-- **Integración tecnológica**: Conecta el sistema con Laravel, bases de datos y servicios externos
+- **Implementación concreta**: Provee las implementaciones reales de los
+  contratos definidos
+- **Integración tecnológica**: Conecta el sistema con Laravel, bases de datos y
+  servicios externos
 - **Adaptación**: Adapta las tecnologías externas a las necesidades del dominio
 - **Aislamiento**: Permite cambiar tecnologías sin afectar las capas superiores
 - **Configuración**: Maneja toda la configuración específica del entorno
@@ -66,7 +72,8 @@ app/Infrastructure/
 3. **Controladores API**: Endpoints HTTP para la aplicación
 4. **Form Requests**: Validación de datos de entrada
 5. **API Resources**: Formateo de respuestas JSON
-6. **Servicios Externos**: Implementaciones de contratos para servicios de terceros
+6. **Servicios Externos**: Implementaciones de contratos para servicios de
+   terceros
 7. **Service Providers**: Configuración de inyección de dependencias
 
 ## ¿Qué debo hacer?
@@ -643,27 +650,8 @@ class OrderController extends Controller
 }
 ```
 
----
-
 ## Navegación
 
-**Progreso en Desarrollo del Backend:**
-
-- ✅ [Desarrollo del Backend](./desarrollo-backend.md)
-- ✅ [Implementación Domain Layer](./implementacion-domain-layer.md)
-- ✅ [Implementación Application Layer](./implementacion-application-layer.md)
-- ✅ **Implementación Infrastructure Layer** ← Estás aquí
-- ⏭️ [APIs RESTful Versionadas](./apis-restful-versionadas.md)
-- ⏭️ [Autenticación Laravel Sanctum](./autenticacion-laravel-sanctum.md)
-- ⏭️ [Testing TDD Backend](./testing-tdd-backend.md)
-
----
-
-### Siguiente Paso
-
-Continúa con
-[**APIs RESTful Versionadas**](./apis-restful-versionadas.md).
-
-[⬅️ Implementación Application Layer](./implementacion-application-layer.md)
-| [🏠 README Principal](../../README.md) |
-[➡️ APIs RESTful Versionadas](./apis-restful-versionadas.md)
+[⬅️ Implementación Application Layer](./implementacion-application-layer.md) |
+[🏠 README Principal](../../README.md) |
+[APIs RESTful Versionadas ➡️](./apis-restful-versionadas.md)

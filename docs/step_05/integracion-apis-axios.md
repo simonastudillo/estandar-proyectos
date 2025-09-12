@@ -928,28 +928,8 @@ export const uploadService = {
 };
 ```
 
----
-
 ## Navegación
-
-**Progreso en Desarrollo del Backend:**
-
-- ✅ [Desarrollo del Frontend-web](./desarrollo-frontend-web.md)
-- ✅
-  [Configuración React + TypeScript + Vite](./configuracion-react-typescript-vite.md)
-- ✅
-  [Componentes Reutilizables con Tipado](./componentes-reutilizables-tipado.md)
-- ✅ [Redux Toolkit - Estado Global](./redux-toolkit-estado-global.md)
-- ✅ **Integración APIs con Axios** ← Estás aquí
-- ⏭️ [React Router - Navegación](./react-router-navegacion.md)
-- ⏭️ [Testing Componentes con Jest](./testing-componentes-jest.md)
-
----
-
-### Siguiente Paso
-
-Continúa con [**React Router - Navegación**](./react-router-navegacion.md)
 
 [⬅️ Redux Toolkit - Estado Global](./redux-toolkit-estado-global.md) |
 [🏠 README Principal](../../README.md) |
-[➡️ React Router - Navegación](./react-router-navegacion.md)
+[React Router - Navegación ➡️](./react-router-navegacion.md)
