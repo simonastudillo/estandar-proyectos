@@ -49,8 +49,11 @@ implementación, siguiendo los principios SOLID, Clean Code y Clean Architecture
 ## Etapas de Diseño y Arquitectura
 
 - [Stack tecnológico inicial](./stack-tecnologico.md)
+- [Elección de herramientas](./eleccion-herramientas.md)
 - [Patrones de diseño del proyecto](./patrones-diseno.md)
 - [Arquitectura del sistema](./arquitectura-sistema.md)
+- [Diagrama de arquitectura general](./diagrama-arquitectura-general.md)
+- [Convenciones y estándares](./convenciones-estandares.md)
 - [Estructura de carpetas base](./estructura-carpetas.md)
 - [Diseño de base de datos (ERD)](./diseno-base-datos.md)
 - [Diseño de APIs (OpenAPI/Swagger)](./diseno-apis.md)

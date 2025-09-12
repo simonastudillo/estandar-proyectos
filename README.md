@@ -102,6 +102,7 @@ Architecture + DDD:
 - ✅ [Arquitectura del sistema](./docs/step_02/arquitectura-sistema.md)
 - ✅
   [Diagrama de arquitectura general](./docs/step_02/diagrama-arquitectura-general.md)
+- ✅ [Convenciones y estándares](./docs/step_02/convenciones-estandares.md)
 - ✅ [Estructura de carpetas base](./docs/step_02/estructura-carpetas.md)
 - ✅ [Diseño de base de datos (ERD)](./docs/step_02/diseno-base-datos.md)
 - ✅ [Diseño de APIs (OpenAPI/Swagger)](./docs/step_02/diseno-apis.md)
@@ -268,6 +269,7 @@ estandar-proyectos/
 │   │   ├── patrones-diseno.md
 │   │   ├── arquitectura-sistema.md
 │   │   ├── diagrama-arquitectura-general.md
+│   │   ├── convenciones-estandares.md
 │   │   ├── estructura-carpetas.md
 │   │   ├── diseno-base-datos.md
 │   │   ├── diseno-apis.md

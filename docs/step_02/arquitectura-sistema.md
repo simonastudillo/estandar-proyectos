@@ -533,6 +533,7 @@ export const userService = {
 - ✅ [Patrones de Diseño](./patrones-diseno.md)
 - ✅ **Arquitectura del Sistema** ← Estás aquí
 - ⏭️ [Diagrama de Arquitectura General](./diagrama-arquitectura-general.md)
+- ⏭️ [Convenciones y Estándares](./convenciones-estandares.md)
 - ⏭️ [Estructura de Carpetas](./estructura-carpetas.md)
 - ⏭️ [Diseño de Base de Datos](./diseno-base-datos.md)
 - ⏭️ [Diseño de APIs](./diseno-apis.md)

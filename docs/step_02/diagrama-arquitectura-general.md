@@ -397,6 +397,7 @@ DESARROLLO                STAGING                 PRODUCCIÓN
 - ✅ [Patrones de Diseño](./patrones-diseno.md)
 - ✅ [Arquitectura del Sistema](./arquitectura-sistema.md)
 - ✅ **Diagrama de Arquitectura General** ← Estás aquí
+- ⏭️ [Convenciones y Estándares](./convenciones-estandares.md)
 - ⏭️ [Estructura de Carpetas](./estructura-carpetas.md)
 - ⏭️ [Diseño de Base de Datos](./diseno-base-datos.md)
 - ⏭️ [Diseño de APIs](./diseno-apis.md)
@@ -409,8 +410,8 @@ DESARROLLO                STAGING                 PRODUCCIÓN
 
 ### Siguiente Paso
 
-Continúa con la [**Estructura de Carpetas**](./estructura-carpetas.md).
+Continúa con las [**Convenciones y Estándares**](./convenciones-estandares.md).
 
 [⬅️ Arquitectura del Sistema](./arquitectura-sistema.md) |
 [🏠 README Principal](../../README.md) |
-[➡️ Estructura de Carpetas](./estructura-carpetas.md)
+[➡️ Convenciones y Estándares](./convenciones-estandares.md)
