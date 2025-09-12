@@ -152,6 +152,7 @@ real, sin embargo el objetivo es utilizar en proyectos futuros.
 - [Ejemplos de Testing por Lenguaje](./docs/step_07/ejemplos-testing-por-lenguaje.md)
 - [Cobertura de Pruebas (Coverage)](./docs/step_07/cobertura-pruebas.md)
 - [Testing por Entorno](./docs/step_07/testing-por-entorno.md)
+- [Checklist de Testing por Tipo de Proyecto](./docs/step_07/checklist-testing-proyectos.md)
 - [Testing Funcional Automatizado](./docs/step_07/testing-funcional-automatizado.md)
 - [Testing de Regresión](./docs/step_07/testing-regresion.md)
 - [Checklists QA](./docs/step_07/checklists-qa.md)
