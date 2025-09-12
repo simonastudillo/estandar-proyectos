@@ -671,4 +671,4 @@ abstract class UnitTestCase extends TestCase
 
 [⬅️ Tipos de Pruebas](./tipos-pruebas.md) |
 [🏠 README Principal](../../README.md) |
-[Testing funcional automatizado ➡️](./testing-funcional-automatizado.md)
+[Ejemplos de Testing por Lenguaje ➡️](./ejemplos-testing-por-lenguaje.md)
