@@ -278,6 +278,6 @@ processor.processPayment(50);
 
 ## Navegación
 
-[⬅️ Elección de Herramientas](./eleccion-herramientas.md) |
+[⬅️ Generación de Diagramas](./generacion-diagramas.md) |
 [🏠 README Principal](../../README.md) |
 [Arquitectura del Sistema ➡️](./arquitectura-sistema.md)
