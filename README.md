@@ -12,6 +12,9 @@ despliegue y mantenimiento.
 (Domain-Driven Design) y está diseñada para ser utilizada con GitHub Copilot
 siguiendo las instrucciones específicas del repositorio.**
 
+Actualmente la documentación es solo teórica, no se ha aplicado en un proyecto
+real, sin embargo el objetivo es utilizar en proyectos futuros.
+
 ## Estado Actual
 
 ### ✅ Etapas Completadas
@@ -77,7 +80,7 @@ siguiendo las instrucciones específicas del repositorio.**
 
 ### [1. Planificación y Análisis](./docs/step_01/planificacion-analisis.md) ✅
 
-Esta etapa está **completamente documentada** y lista para usar:
+Esta etapa tiene un enfoque en planificación y análisis detallado:
 
 - ✅
   [Definición de requerimientos funcionales y no funcionales](./docs/step_01/requerimientos-funcionales-no-funcionales.md)
@@ -91,8 +94,7 @@ Esta etapa está **completamente documentada** y lista para usar:
 
 ### [2. Diseño y Arquitectura](./docs/step_02/diseno-arquitectura.md) ✅
 
-Esta etapa está **completamente documentada** con enfoque en Clean
-Architecture + DDD:
+Esta etapa tiene un enfoque en Clean Architecture + DDD: Architecture + DDD:
 
 - ✅ [Stack tecnológico inicial](./docs/step_02/stack-tecnologico.md)
 - ✅ [Elección de herramientas](./docs/step_02/eleccion-herramientas.md)
@@ -113,8 +115,7 @@ Architecture + DDD:
 
 **Estado**: Documentación completa
 
-Esta etapa está **completamente documentada** con todas las configuraciones
-necesarias:
+Esta etapa tiene un enfoque en todas las configuraciones necesarias:
 
 - ✅ [Requisitos mínimos del sistema](./docs/step_03/requisitos-sistema.md)
 - ✅
@@ -138,8 +139,7 @@ necesarias:
 
 **Estado**: Documentación completa
 
-Esta etapa está **completamente documentada** con enfoque en Clean
-Architecture + DDD:
+Esta etapa tiene un enfoque en Clean Architecture + DDD: Architecture + DDD:
 
 - ✅ [Desarrollo del Backend](./docs/step_04/desarrollo-backend.md)
 - ✅
@@ -157,8 +157,7 @@ Architecture + DDD:
 
 **Estado**: Documentación completa
 
-Esta etapa está **completamente documentada** con enfoque en tipado fuerte y
-arquitectura escalable:
+Esta etapa tiene un enfoque en tipado fuerte y arquitectura escalable:
 
 - ✅ [Desarrollo del Frontend Web](./docs/step_05/desarrollo-frontend-web.md)
 - ✅
@@ -175,8 +174,7 @@ arquitectura escalable:
 
 **Estado**: Documentación completa
 
-Esta etapa está **completamente documentada** con enfoque en desarrollo móvil
-multiplataforma:
+Esta etapa tiene un enfoque en desarrollo móvil multiplataforma:
 
 - ✅ [Desarrollo de Aplicación Móvil](./docs/step_06/desarrollo-movil.md)
 - ✅
@@ -194,8 +192,7 @@ multiplataforma:
 
 **Estado**: Documentación completa
 
-Esta etapa está **completamente documentada** con enfoque en calidad y testing
-integral:
+Esta etapa tiene un enfoque en calidad y testing integral:
 
 - ✅ [Testing y Quality Assurance](./docs/step_07/testing-qa.md)
 - ✅ [Tipos de Pruebas](./docs/step_07/tipos-pruebas.md)
@@ -220,8 +217,7 @@ integral:
 
 **Estado**: Documentación completa
 
-Esta etapa está **completamente documentada** con enfoque en infraestructura,
-automatización y seguridad:
+Esta etapa tiene un enfoque en infraestructura, automatización y seguridad:
 
 - ✅ [Despliegue y DevOps](./docs/step_08/despliegue-devops.md)
 - ✅
@@ -231,6 +227,7 @@ automatización y seguridad:
 - ✅ [Docker y Contenedores](./docs/step_08/docker-contenedores.md)
 - ✅ [Monitoreo y Logging](./docs/step_08/monitoreo-logging.md)
 - ✅ [Backup y Recovery](./docs/step_08/backup-recovery-strategies.md)
+- ✅ [Optimización base de datos](./docs/step_08/optimizacion-base-datos.md)
 - ✅
   [SSL y Configuraciones de Seguridad](./docs/step_08/ssl-configuraciones-seguridad.md)
 
@@ -238,8 +235,7 @@ automatización y seguridad:
 
 **Estado**: Documentación completa
 
-Esta etapa está **completamente documentada** con enfoque en sostenibilidad y
-evolución continua:
+Esta etapa tiene un enfoque en sostenibilidad y evolución continua:
 
 - ✅ [Mantenimiento y Evolución](./docs/step_09/mantenimiento-evolucion.md)
 - ✅ [Monitoreo Post-Deployment](./docs/step_09/monitoreo-post-deployment.md)
@@ -336,6 +332,7 @@ estandar-proyectos/
 │   │   ├── ci-cd-pipelines-github-actions.md
 │   │   ├── docker-contenedores.md
 │   │   ├── monitoreo-logging.md
+│   │   ├── optimizacion-base-datos.md
 │   │   ├── backup-recovery-strategies.md
 │   │   └── ssl-configuraciones-seguridad.md
 │   └── step_09/                   # Mantenimiento y Evolución (Completado)
