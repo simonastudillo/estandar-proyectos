@@ -92,9 +92,10 @@ usuario final.
 <!-- Instalar Hotjar -->
 <script>
    (function (h, o, t, j, a, r) {
-      h.hj = h.hj || function () {
-         (h.hj.q = h.hj.q || []).push(arguments);
-      };
+      h.hj = h.hj ||
+         function () {
+            (h.hj.q = h.hj.q || []).push(arguments);
+         };
       h._hjSettings = { hjid: YOUR_HOTJAR_ID, hjsv: 6 };
       a = o.getElementsByTagName("head")[0];
       r = o.createElement("script");
@@ -166,9 +167,10 @@ export class AnalyticsService {
 <!-- Microsoft Clarity -->
 <script type="text/javascript">
    (function (c, l, a, r, i, t, y) {
-      c[a] = c[a] || function () {
-         (c[a].q = c[a].q || []).push(arguments);
-      };
+      c[a] = c[a] ||
+         function () {
+            (c[a].q = c[a].q || []).push(arguments);
+         };
       t = l.createElement(r);
       t.async = 1;
       t.src = "https://www.clarity.ms/tag/" + i;
@@ -299,7 +301,7 @@ echo "🔍 Ejecutando tests de accesibilidad..."
 for url in "${URLS[@]}"; do
   echo "Testing: $url"
   pa11y "$url" --reporter json > "reports/a11y-$(echo $url | sed 's/[^a-zA-Z0-9]/-/g').json"
-  
+
   # Mostrar resumen
   violations=$(pa11y "$url" --reporter json | jq '. | length')
   echo "  Violations found: $violations"
@@ -438,8 +440,8 @@ export class UsabilityTestRunner {
          );
       }
 
-      const highFrustrationTasks = this.session.tasks.filter((t) =>
-         t.frustrationLevel >= 4
+      const highFrustrationTasks = this.session.tasks.filter(
+         (t) => t.frustrationLevel >= 4,
       );
       if (highFrustrationTasks.length > 0) {
          recommendations.push(
@@ -549,9 +551,11 @@ interface ABTestResult {
    isLoading: boolean;
 }
 
-export function useABTest(
-   { testName, variants, weights }: ABTestConfig,
-): ABTestResult {
+export function useABTest({
+   testName,
+   variants,
+   weights,
+}: ABTestConfig): ABTestResult {
    const [variant, setVariant] = useState<string>("");
    const [isLoading, setIsLoading] = useState(true);
 
@@ -642,9 +646,10 @@ interface CTAButtonProps {
    children: React.ReactNode;
 }
 
-export default function CTAButton(
-   { onClick, children }: CTAButtonProps,
-): JSX.Element {
+export default function CTAButton({
+   onClick,
+   children,
+}: CTAButtonProps): JSX.Element {
    const { variant, isLoading } = useABTest({
       testName: "cta-button-color",
       variants: ["blue", "green", "red"],
@@ -761,7 +766,7 @@ export class CognitiveLoadAnalyzer {
       forms.forEach((form) => {
          const fields = form.querySelectorAll("input, select, textarea").length;
          const groups = form.querySelectorAll("fieldset, .form-group").length;
-         totalComplexity += fields + (groups * 0.5);
+         totalComplexity += fields + groups * 0.5;
       });
 
       return totalComplexity;
@@ -1208,26 +1213,8 @@ node scripts/generate-usability-report.js \
 echo "✅ Usability testing completado. Ver: $RESULTS_DIR/consolidated-report.html"
 ```
 
----
-
 ## Navegación
-
-**Progreso en Testing y Quality Assurance:**
-
-- ✅ [Testing y QA](./testing-qa.md)
-- ✅ [Testing Funcional Automatizado](./testing-funcional-automatizado.md)
-- ✅ [Testing de Performance y Carga](./testing-performance-carga.md)
-- ✅ [Testing de Seguridad OWASP](./testing-seguridad-owasp.md)
-- ✅ **Testing de Usabilidad** ← Estás aquí
-- ⏭️ [Code Review y Refactoring](./code-review-refactoring.md)
-- ⏭️ [Auditoría de Calidad de Código](./auditoria-calidad-codigo.md)
-
----
-
-### Siguiente Paso
-
-Continúa con [**Code Review y Refactoring**](./code-review-refactoring.md)
 
 [⬅️ Testing de Seguridad OWASP](./testing-seguridad-owasp.md) |
 [🏠 README Principal](../../README.md) |
-[➡️ Code Review y Refactoring](./code-review-refactoring.md)
+[Code Review y Refactoring ➡️](./code-review-refactoring.md)

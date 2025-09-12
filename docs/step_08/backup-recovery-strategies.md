@@ -593,24 +593,6 @@ mysql -e "DROP DATABASE $TEST_DB;"
 
 ## Navegación
 
-**Progreso en Despliegue y DevOps:**
-
-- ✅ [Despliegue y DevOps](./despliegue-devops.md)
-- ✅
-  [Configuración de Servidores de Producción](./configuracion-servidores-produccion.md)
-- ✅ [CI/CD Pipelines con GitHub Actions](./ci-cd-pipelines-github-actions.md)
-- ✅ [Docker y Contenedores](./docker-contenedores.md)
-- ✅ [Monitoreo y Logging](./monitoreo-logging.md)
-- ✅ **Backup y Recovery** ← Estás aquí
-- ⏭️ [SSL y Configuraciones de Seguridad](./ssl-configuraciones-seguridad.md)
-
----
-
-### Siguiente Paso
-
-Continúa con
-[**SSL y Configuraciones de Seguridad**](./ssl-configuraciones-seguridad.md)
-
-[⬅️ Monitoreo y Logging](./monitoreo-logging.md) |
+[⬅️ Optimización base de datos](./optimizacion-base-datos.md) |
 [🏠 README Principal](../../README.md) |
-[➡️ SSL y Configuraciones de Seguridad](./ssl-configuraciones-seguridad.md)
+[SSL y Configuraciones de Seguridad ➡️](./ssl-configuraciones-seguridad.md)

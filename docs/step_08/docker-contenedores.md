@@ -638,23 +638,6 @@ docker stack deploy -c docker-compose.prod.yml myapp
 
 ## Navegación
 
-**Progreso en Despliegue y DevOps:**
-
-- ✅ [Despliegue y DevOps](./despliegue-devops.md)
-- ✅
-  [Configuración de Servidores de Producción](./configuracion-servidores-produccion.md)
-- ✅ [CI/CD Pipelines con GitHub Actions](./ci-cd-pipelines-github-actions.md)
-- ✅ **Docker y Contenedores** ← Estás aquí
-- ⏭️ [Monitoreo y Logging](./monitoreo-logging.md)
-- ⏭️ [Backup y Recovery](./backup-recovery-strategies.md)
-- ⏭️ [SSL y Configuraciones de Seguridad](./ssl-configuraciones-seguridad.md)
-
----
-
-### Siguiente Paso
-
-Continúa con [**Monitoreo y Logging**](./monitoreo-logging.md)
-
 [⬅️ CI/CD Pipelines con GitHub Actions](./ci-cd-pipelines-github-actions.md) |
 [🏠 README Principal](../../README.md) |
-[➡️ Monitoreo y Logging](./monitoreo-logging.md)
+[Monitoreo y Logging ➡️](./monitoreo-logging.md)

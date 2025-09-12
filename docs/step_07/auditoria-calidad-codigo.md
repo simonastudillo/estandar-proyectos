@@ -308,10 +308,10 @@ export class CodeMetricsCollector {
          this.traverseDirectory(dir, files);
       }
 
-      return files.filter((file) =>
-         file.endsWith(".ts") ||
-         file.endsWith(".tsx") ||
-         file.endsWith(".php")
+      return files.filter(
+         (file) =>
+            file.endsWith(".ts") || file.endsWith(".tsx") ||
+            file.endsWith(".php"),
       );
    }
 
@@ -389,8 +389,12 @@ export class CodeMetricsCollector {
       // MI = MAX(0, (171 - 5.2 * ln(V) - 0.23 * G - 16.2 * ln(LOC)) * 100 / 171)
       const mi = Math.max(
          0,
-         (171 - 5.2 * Math.log(halsteadVolume) - 0.23 * complexity -
-            16.2 * Math.log(lines)) * 100 / 171,
+         ((171 -
+            5.2 * Math.log(halsteadVolume) -
+            0.23 * complexity -
+            16.2 * Math.log(lines)) *
+            100) /
+            171,
       );
 
       return Math.round(mi);
@@ -506,7 +510,10 @@ export class CodeMetricsCollector {
       const blocks: string[] = [];
 
       for (let i = 0; i < lines.length - 5; i++) {
-         const block = lines.slice(i, i + 5).join("\n").trim();
+         const block = lines
+            .slice(i, i + 5)
+            .join("\n")
+            .trim();
          if (block.length > 50) {
             blocks.push(block);
          }
@@ -778,9 +785,9 @@ export class AuditReportGenerator {
                 <h3>Criterios No Cumplidos:</h3>
                 <ul>
                     ${
-               qualityGate.failedCriteria.map((criteria) =>
-                  `<li>${criteria}</li>`
-               ).join("")
+               qualityGate.failedCriteria
+                  .map((criteria) => `<li>${criteria}</li>`)
+                  .join("")
             }
                 </ul>
                 `
@@ -800,7 +807,9 @@ export class AuditReportGenerator {
                 </div>
                 <div class="metric-card">
                     <div class="metric-value">${
-         summary.overallCoverage.toFixed(1)
+         summary.overallCoverage.toFixed(
+            1,
+         )
       }%</div>
                     <div class="metric-label">Cobertura de Tests</div>
                 </div>
@@ -836,9 +845,13 @@ export class AuditReportGenerator {
             <div class="recommendations">
                 <h3>💡 Recomendaciones</h3>
                 ${
-               qualityGate.recommendations.map((rec) => `
+               qualityGate.recommendations
+                  .map(
+                     (rec) => `
                 <div class="recommendation-item">${rec}</div>
-                `).join("")
+                `,
+                  )
+                  .join("")
             }
             </div>
             `
@@ -859,7 +872,10 @@ export class AuditReportGenerator {
                 </thead>
                 <tbody>
                     ${
-         metrics.files.slice(0, 20).map((file) => `
+         metrics.files
+            .slice(0, 20)
+            .map(
+               (file) => `
                     <tr>
                         <td>${file.path.split("/").pop()}</td>
                         <td>${file.lines}</td>
@@ -868,7 +884,9 @@ export class AuditReportGenerator {
                         <td>${file.testCoverage.toFixed(1)}%</td>
                         <td>${file.codeSmells.length}</td>
                     </tr>
-                    `).join("")
+                    `,
+            )
+            .join("")
       }
                 </tbody>
             </table>
@@ -951,10 +969,11 @@ ${
          metrics.files
             .sort((a, b) => b.complexity - a.complexity)
             .slice(0, 10)
-            .map((file) =>
-               `| ${
-                  file.path.split("/").pop()
-               } | ${file.lines} | ${file.complexity} | ${file.maintainabilityIndex} | ${file.codeSmells.length} |`
+            .map(
+               (file) =>
+                  `| ${
+                     file.path.split("/").pop()
+                  } | ${file.lines} | ${file.complexity} | ${file.maintainabilityIndex} | ${file.codeSmells.length} |`,
             )
             .join("\n")
       }
@@ -966,10 +985,13 @@ ${
             .filter((file) => file.codeSmells.length > 0)
             .sort((a, b) => b.codeSmells.length - a.codeSmells.length)
             .slice(0, 5)
-            .map((file) => `
+            .map(
+               (file) => `
 ### ${file.path.split("/").pop()}
 ${file.codeSmells.map((smell) => `- ${smell}`).join("\n")}
-`).join("\n")
+`,
+            )
+            .join("\n")
       }
     `.trim();
    }
@@ -1200,7 +1222,8 @@ export class HistoricalAnalysis {
    private static loadHistoricalData(reportsDir: string): HistoricalMetrics[] {
       const historical: HistoricalMetrics[] = [];
 
-      const reportDirs = fs.readdirSync(reportsDir)
+      const reportDirs = fs
+         .readdirSync(reportsDir)
          .filter((dir) => dir.match(/\d{4}-\d{2}-\d{2}/))
          .sort();
 
@@ -1282,7 +1305,9 @@ export class HistoricalAnalysis {
                     {
                         label: 'Coverage %',
                         data: ${
-         JSON.stringify(historical.map((d) => d.coverage))
+         JSON.stringify(
+            historical.map((d) => d.coverage),
+         )
       },
                         borderColor: 'rgb(54, 162, 235)',
                         tension: 0.1
@@ -1319,29 +1344,8 @@ export class HistoricalAnalysis {
 - **Acción**: Los reportes deben llevar a acciones concretas
 - **Comunicación**: Comparte resultados con todo el equipo
 
----
-
 ## Navegación
-
-**Progreso en Testing y Quality Assurance:**
-
-- ✅ [Testing y QA](./testing-qa.md)
-- ✅ [Testing Funcional Automatizado](./testing-funcional-automatizado.md)
-- ✅ [Testing de Performance y Carga](./testing-performance-carga.md)
-- ✅ [Testing de Seguridad OWASP](./testing-seguridad-owasp.md)
-- ✅ [Testing de Usabilidad](./testing-usabilidad.md)
-- ✅ [Code Review y Refactoring](./code-review-refactoring.md)
-- ✅ **Auditoría de Calidad de Código** ← Estás aquí
-
----
-
-### 🎉 Etapa Completada
-
-¡Felicitaciones! Has completado la **Etapa 7: Testing y Quality Assurance**.
-
-**Próximo paso**: Continúa con la
-[**Etapa 8: Despliegue y Monitoreo**](../step_08/despliegue-devops.md).
 
 [⬅️ Code Review y Refactoring](./code-review-refactoring.md) |
 [🏠 README Principal](../../README.md) |
-[➡️ Despliegue y Monitoreo](../step_08/despliegue-devops.md)
+[Checklist Específico de Performance ➡️](./checklist-performance.md)

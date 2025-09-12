@@ -146,12 +146,12 @@ proyecto/
 
 ```json
 {
-  "dependencies": {
-    "react": "^18.0.0",
-    "typescript": "^5.0.0",
-    "@mui/material": "^5.0.0",
-    "react-router-dom": "^6.0.0"
-  }
+   "dependencies": {
+      "react": "^18.0.0",
+      "typescript": "^5.0.0",
+      "@mui/material": "^5.0.0",
+      "react-router-dom": "^6.0.0"
+   }
 }
 ```
 
@@ -159,35 +159,15 @@ proyecto/
 
 ```json
 {
-  "require": {
-    "laravel/framework": "^10.0",
-    "laravel/sanctum": "^3.0"
-  }
+   "require": {
+      "laravel/framework": "^10.0",
+      "laravel/sanctum": "^3.0"
+   }
 }
 ```
 
 ## Navegación
 
-**Progreso en Diseño y Arquitectura:**
-
-- ✅ [Diseño y Arquitectura - Introducción](./diseno-arquitectura.md)
-- ✅ **Stack Tecnológico** ← Estás aquí
-- ⏭️ [Patrones de Diseño](./patrones-diseno.md)
-- ⏭️ [Arquitectura del Sistema](./arquitectura-sistema.md)
-- ⏭️ [Estructura de Carpetas](./estructura-carpetas.md)
-- ⏭️ [Diseño de Base de Datos](./diseno-base-datos.md)
-- ⏭️ [Diseño de APIs](./diseno-apis.md)
-- ⏭️ [Diagramas de Flujo](./diagramas-flujo.md)
-- ⏭️ [Casos de Uso y User Stories](./casos-uso-user-stories.md)
-- ⏭️ [Prototipos y Wireframes](./prototipos-wireframes.md)
-- ⏭️ [Especificaciones Técnicas](./especificaciones-tecnicas.md)
-
----
-
-### Siguiente Paso
-
-Continúa con los [**Patrones de Diseño**](./patrones-diseno.md).
-
 [⬅️ Diseño y Arquitectura](./diseno-arquitectura.md) |
 [🏠 README Principal](../../README.md) |
-[➡️ Patrones de Diseño](./patrones-diseno.md)
+[Elección de Herramientas ➡️](./eleccion-herramientas.md)

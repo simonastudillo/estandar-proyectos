@@ -559,39 +559,8 @@ describe("Button Component", () => {
 });
 ```
 
----
-
 ## Navegación
-
-**Progreso en Configuración del Entorno de Desarrollo:**
-
-- ✅
-  [Configuración del Entorno - Introducción](./configuracion-entorno-desarrollo.md)
-- ✅
-  [Configuración de repositorios Git y GitHub](./configuracion-repositorios-git.md)
-- ✅
-  [Setup de entornos de desarrollo local con Docker](./setup-entorno-local-docker.md)
-- ✅
-  [Configuración de herramientas de CI/CD con GitHub Actions](./configuracion-cicd-github-actions.md)
-- ✅
-  [Setup de ambientes (desarrollo, testing, staging, producción)](./setup-ambientes-multiples.md)
-- ✅
-  [Configuración de herramientas de calidad](./configuracion-herramientas-calidad.md)
-- ✅
-  [Setup de Laravel con Clean Architecture](./setup-laravel-clean-architecture.md)
-- ⏭️ **Configuración de React + TypeScript + Vite** ← Estás aquí
-
----
-
-### 🎉 Etapa Completada
-
-¡Felicitaciones! Has completado la **Etapa 3: Configuración del Entorno de
-Desarrollo**.
-
-**Próximo paso**: Continúa con la
-[**Etapa 4: Desarrollo del Backend (Laravel + Clean Architecture)**](../step_04/desarrollo-backend.md)
-donde veremos la implementación de las distintas capas.
 
 [⬅️ Setup de Laravel con Clean Architecture](./setup-laravel-clean-architecture.md)
 | [🏠 README Principal](../../README.md) |
-[➡️ Desarrollo del backend](../step_04/desarrollo-backend.md)
+[Etapa 4: Desarrollo del backend ➡️](../step_04/desarrollo-backend.md)

@@ -674,32 +674,6 @@ if (config.debug) {
 
 ## Navegación
 
-**Progreso en Configuración del Entorno de Desarrollo:**
-
-- ✅
-  [Configuración del Entorno - Introducción](./configuracion-entorno-desarrollo.md)
-- ✅
-  [Configuración de repositorios Git y GitHub](./configuracion-repositorios-git.md)
-- ✅
-  [Setup de entornos de desarrollo local con Docker](./setup-entorno-local-docker.md)
-- ✅
-  [Configuración de herramientas de CI/CD con GitHub Actions](./configuracion-cicd-github-actions.md)
-- ⏭️ **Setup de ambientes (desarrollo, testing, staging, producción)** ← Estás
-  aquí
-- ⏭️
-  [Configuración de herramientas de calidad de código](./configuracion-herramientas-calidad.md)
-- ⏭️
-  [Setup de Laravel con Clean Architecture](./setup-laravel-clean-architecture.md)
-- ⏭️
-  [Configuración de React + TypeScript + Vite](./configuracion-react-typescript-vite.md)
-
----
-
-### Siguiente Paso
-
-Continúa con
-[**Configuración de herramientas de calidad de código**](./configuracion-herramientas-calidad.md)
-
 [⬅️ Configuración de herramientas de CI/CD con GitHub Actions](./configuracion-cicd-github-actions.md)
 | [🏠 README Principal](../../README.md) |
-[➡️ Configuración de herramientas de calidad de código](./configuracion-herramientas-calidad.md)
+[Configuración de herramientas de calidad de código ➡️](./configuracion-herramientas-calidad.md)

@@ -289,28 +289,6 @@ objetivos del proyecto.
 
 ## Navegación
 
-**Progreso en Planificación y Análisis:**
-
-- ✅ [Planificación y Análisis - Introducción](./planificacion-analisis.md)
-- ✅
-  [Requerimientos Funcionales y No Funcionales](./requerimientos-funcionales-no-funcionales.md)
-- ✅ [Análisis de Stakeholders](./analisis-stakeholders.md)
-- ✅ [Roadmap del Proyecto](./roadmap-proyecto.md)
-- ✅ [Metodología de Trabajo](./metodologia-trabajo.md)
-- ✅ [Definición del Alcance del Proyecto](./definicion-alcance.md)
-- ✅ [Estimación de Tiempos y Recursos](./estimacion-tiempos-recursos.md)
-- ✅ **Análisis de Riesgos** ← Estás aquí
-
----
-
-### 🎉 Etapa Completada
-
-¡Felicitaciones! Has completado la **Etapa 1: Planificación y Análisis**.
-
-**Próximo paso**: Continúa con la
-[**Etapa 2: Diseño y Arquitectura**](../step_02/diseno-arquitectura.md) donde
-definirás la estructura técnica de tu proyecto.
-
 [⬅️ Estimación de Tiempos](./estimacion-tiempos-recursos.md) |
 [🏠 README Principal](../../README.md) |
-[➡️ Diseño y Arquitectura](../step_02/diseno-arquitectura.md)
+[Etapa 2: Diseño y Arquitectura ➡️](../step_02/diseno-arquitectura.md)

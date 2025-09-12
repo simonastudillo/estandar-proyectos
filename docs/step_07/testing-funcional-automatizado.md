@@ -273,9 +273,7 @@ describe("LoginForm", () => {
    const renderWithProviders = (component: React.ReactElement) => {
       return render(
          <Provider store={store}>
-            <BrowserRouter>
-               {component}
-            </BrowserRouter>
+            <BrowserRouter>{component}</BrowserRouter>
          </Provider>,
       );
    };
@@ -285,8 +283,9 @@ describe("LoginForm", () => {
 
       expect(screen.getByLabelText(/email/i)).toBeInTheDocument();
       expect(screen.getByLabelText(/contraseña/i)).toBeInTheDocument();
-      expect(screen.getByRole("button", { name: /iniciar sesión/i }))
-         .toBeInTheDocument();
+      expect(
+         screen.getByRole("button", { name: /iniciar sesión/i }),
+      ).toBeInTheDocument();
    });
 
    it("should show validation errors for empty fields", async () => {
@@ -299,8 +298,9 @@ describe("LoginForm", () => {
 
       expect(await screen.findByText(/email es requerido/i))
          .toBeInTheDocument();
-      expect(await screen.findByText(/contraseña es requerida/i))
-         .toBeInTheDocument();
+      expect(
+         await screen.findByText(/contraseña es requerida/i),
+      ).toBeInTheDocument();
    });
 
    it("should show error for invalid email format", async () => {
@@ -314,8 +314,9 @@ describe("LoginForm", () => {
       });
       await user.click(submitButton);
 
-      expect(await screen.findByText(/email debe ser válido/i))
-         .toBeInTheDocument();
+      expect(
+         await screen.findByText(/email debe ser válido/i),
+      ).toBeInTheDocument();
    });
 
    it("should submit form with valid credentials", async () => {
@@ -363,13 +364,14 @@ describe("LoginForm", () => {
       await user.type(passwordInput, "password-incorrecto");
       await user.click(submitButton);
 
-      expect(await screen.findByText(/credenciales inválidas/i))
-         .toBeInTheDocument();
+      expect(
+         await screen.findByText(/credenciales inválidas/i),
+      ).toBeInTheDocument();
    });
 
    it("should disable submit button while loading", async () => {
-      mockLoginFn.mockImplementation(() =>
-         new Promise((resolve) => setTimeout(resolve, 1000))
+      mockLoginFn.mockImplementation(
+         () => new Promise((resolve) => setTimeout(resolve, 1000)),
       );
 
       renderWithProviders(<LoginForm />);
@@ -705,9 +707,7 @@ const server = setupServer(
    rest.get("/api/v1/users", (req, res, ctx) => {
       return res(
          ctx.json({
-            data: [
-               { id: 1, name: "Juan", email: "juan@example.com" },
-            ],
+            data: [{ id: 1, name: "Juan", email: "juan@example.com" }],
          }),
       );
    }),
@@ -758,26 +758,8 @@ describe("UserService", () => {
 });
 ```
 
----
-
 ## Navegación
 
-**Progreso en Testing y Quality Assurance:**
-
-- ✅ [Testing y QA](./testing-qa.md)
-- ✅ **Testing Funcional Automatizado** ← Estás aquí
-- ⏭️ [Testing de Performance y Carga](./testing-performance-carga.md)
-- ⏭️ [Testing de Seguridad OWASP](./testing-seguridad-owasp.md)
-- ⏭️ [Testing de Usabilidad](./testing-usabilidad.md)
-- ⏭️ [Code Review y Refactoring](./code-review-refactoring.md)
-- ⏭️ [Auditoría de Calidad de Código](./auditoria-calidad-codigo.md)
-
----
-
-### Siguiente Paso
-
-Continúa con
-[**Testing de Performance y Carga**](./testing-performance-carga.md)
-
-[⬅️ Testing y QA](./testing-qa.md) | [🏠 README Principal](../../README.md) |
-[➡️ Testing de Performance y Carga](./testing-performance-carga.md)
+[⬅️ Tipos de Pruebas](./tipos-pruebas.md) |
+[🏠 README Principal](../../README.md) |
+[Testing de Regresión ➡️](./testing-regresion.md)

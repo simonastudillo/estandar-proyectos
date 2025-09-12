@@ -2,16 +2,27 @@
 
 ## ¿Qué es?
 
-La configuración de herramientas de calidad de código es el proceso de implementar y configurar herramientas automatizadas que analizan, validan y mejoran la calidad del código fuente. Estas herramientas incluyen linters, formateadores, analizadores estáticos, herramientas de testing y validadores de tipos que garantizan que el código siga estándares, buenas prácticas y principios de Clean Code.
+La configuración de herramientas de calidad de código es el proceso de
+implementar y configurar herramientas automatizadas que analizan, validan y
+mejoran la calidad del código fuente. Estas herramientas incluyen linters,
+formateadores, analizadores estáticos, herramientas de testing y validadores de
+tipos que garantizan que el código siga estándares, buenas prácticas y
+principios de Clean Code.
 
 ## ¿Por qué es importante?
 
-- **Consistencia**: Mantiene un estilo de código uniforme en todo el equipo de desarrollo
-- **Calidad**: Detecta errores potenciales, vulnerabilidades y code smells antes de la producción
-- **Mantenibilidad**: Facilita la lectura, comprensión y modificación del código a largo plazo
-- **Productividad**: Automatiza tareas repetitivas de revisión de código y reduce el tiempo en code reviews
-- **Confiabilidad**: Reduce bugs y problemas en producción mediante análisis temprano
-- **Adherencia a estándares**: Garantiza que el código siga los principios SOLID, DRY y Clean Architecture
+- **Consistencia**: Mantiene un estilo de código uniforme en todo el equipo de
+  desarrollo
+- **Calidad**: Detecta errores potenciales, vulnerabilidades y code smells antes
+  de la producción
+- **Mantenibilidad**: Facilita la lectura, comprensión y modificación del código
+  a largo plazo
+- **Productividad**: Automatiza tareas repetitivas de revisión de código y
+  reduce el tiempo en code reviews
+- **Confiabilidad**: Reduce bugs y problemas en producción mediante análisis
+  temprano
+- **Adherencia a estándares**: Garantiza que el código siga los principios
+  SOLID, DRY y Clean Architecture
 
 ## ¿Qué debe incluir?
 
@@ -80,65 +91,65 @@ npm install --save-dev eslint-plugin-jsx-a11y eslint-plugin-import
 
 ```json
 {
-  "env": {
-    "browser": true,
-    "es2021": true,
-    "node": true
-  },
-  "extends": [
-    "eslint:recommended",
-    "@typescript-eslint/recommended",
-    "plugin:react/recommended",
-    "plugin:react-hooks/recommended",
-    "plugin:jsx-a11y/recommended",
-    "plugin:import/recommended",
-    "plugin:import/typescript"
-  ],
-  "parser": "@typescript-eslint/parser",
-  "parserOptions": {
-    "ecmaFeatures": {
-      "jsx": true
-    },
-    "ecmaVersion": "latest",
-    "sourceType": "module",
-    "project": "./tsconfig.json"
-  },
-  "plugins": [
-    "react",
-    "react-hooks",
-    "@typescript-eslint",
-    "jsx-a11y",
-    "import"
-  ],
-  "rules": {
-    "@typescript-eslint/no-unused-vars": "error",
-    "@typescript-eslint/explicit-function-return-type": "warn",
-    "@typescript-eslint/no-explicit-any": "error",
-    "react/react-in-jsx-scope": "off",
-    "react/prop-types": "off",
-    "import/order": [
-      "error",
-      {
-        "groups": [
-          "builtin",
-          "external",
-          "internal",
-          "parent",
-          "sibling",
-          "index"
-        ],
-        "newlines-between": "always"
+   "env": {
+      "browser": true,
+      "es2021": true,
+      "node": true
+   },
+   "extends": [
+      "eslint:recommended",
+      "@typescript-eslint/recommended",
+      "plugin:react/recommended",
+      "plugin:react-hooks/recommended",
+      "plugin:jsx-a11y/recommended",
+      "plugin:import/recommended",
+      "plugin:import/typescript"
+   ],
+   "parser": "@typescript-eslint/parser",
+   "parserOptions": {
+      "ecmaFeatures": {
+         "jsx": true
+      },
+      "ecmaVersion": "latest",
+      "sourceType": "module",
+      "project": "./tsconfig.json"
+   },
+   "plugins": [
+      "react",
+      "react-hooks",
+      "@typescript-eslint",
+      "jsx-a11y",
+      "import"
+   ],
+   "rules": {
+      "@typescript-eslint/no-unused-vars": "error",
+      "@typescript-eslint/explicit-function-return-type": "warn",
+      "@typescript-eslint/no-explicit-any": "error",
+      "react/react-in-jsx-scope": "off",
+      "react/prop-types": "off",
+      "import/order": [
+         "error",
+         {
+            "groups": [
+               "builtin",
+               "external",
+               "internal",
+               "parent",
+               "sibling",
+               "index"
+            ],
+            "newlines-between": "always"
+         }
+      ]
+   },
+   "settings": {
+      "react": {
+         "version": "detect"
+      },
+      "import/resolver": {
+         "typescript": true
       }
-    ]
-  },
-  "settings": {
-    "react": {
-      "version": "detect"
-    },
-    "import/resolver": {
-      "typescript": true
-    }
-  }
+   }
 }
 ```
 
@@ -152,14 +163,14 @@ npm install --save-dev prettier eslint-config-prettier eslint-plugin-prettier
 
 ```json
 {
-  "semi": true,
-  "trailingComma": "es5",
-  "singleQuote": true,
-  "printWidth": 80,
-  "tabWidth": 2,
-  "useTabs": false,
-  "bracketSpacing": true,
-  "arrowParens": "avoid"
+   "semi": true,
+   "trailingComma": "es5",
+   "singleQuote": true,
+   "printWidth": 80,
+   "tabWidth": 2,
+   "useTabs": false,
+   "bracketSpacing": true,
+   "arrowParens": "avoid"
 }
 ```
 
@@ -169,28 +180,28 @@ npm install --save-dev prettier eslint-config-prettier eslint-plugin-prettier
 
 ```json
 {
-  "compilerOptions": {
-    "target": "ES2020",
-    "useDefineForClassFields": true,
-    "lib": ["ES2020", "DOM", "DOM.Iterable"],
-    "module": "ESNext",
-    "skipLibCheck": true,
-    "moduleResolution": "bundler",
-    "allowImportingTsExtensions": true,
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "noEmit": true,
-    "jsx": "react-jsx",
-    "strict": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true,
-    "exactOptionalPropertyTypes": true,
-    "noImplicitReturns": true,
-    "noImplicitOverride": true
-  },
-  "include": ["src"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+   "compilerOptions": {
+      "target": "ES2020",
+      "useDefineForClassFields": true,
+      "lib": ["ES2020", "DOM", "DOM.Iterable"],
+      "module": "ESNext",
+      "skipLibCheck": true,
+      "moduleResolution": "bundler",
+      "allowImportingTsExtensions": true,
+      "resolveJsonModule": true,
+      "isolatedModules": true,
+      "noEmit": true,
+      "jsx": "react-jsx",
+      "strict": true,
+      "noUnusedLocals": true,
+      "noUnusedParameters": true,
+      "noFallthroughCasesInSwitch": true,
+      "exactOptionalPropertyTypes": true,
+      "noImplicitReturns": true,
+      "noImplicitOverride": true
+   },
+   "include": ["src"],
+   "references": [{ "path": "./tsconfig.node.json" }]
 }
 ```
 
@@ -204,26 +215,26 @@ npm install --save-dev jest @types/jest ts-jest @testing-library/react @testing-
 
 ```javascript
 export default {
-  preset: "ts-jest",
-  testEnvironment: "jsdom",
-  setupFilesAfterEnv: ["<rootDir>/src/setupTests.ts"],
-  moduleNameMapping: {
-    "^@/(.*)$": "<rootDir>/src/$1",
-  },
-  collectCoverageFrom: [
-    "src/**/*.{ts,tsx}",
-    "!src/**/*.d.ts",
-    "!src/main.tsx",
-    "!src/vite-env.d.ts",
-  ],
-  coverageThreshold: {
-    global: {
-      branches: 80,
-      functions: 80,
-      lines: 80,
-      statements: 80,
-    },
-  },
+   preset: "ts-jest",
+   testEnvironment: "jsdom",
+   setupFilesAfterEnv: ["<rootDir>/src/setupTests.ts"],
+   moduleNameMapping: {
+      "^@/(.*)$": "<rootDir>/src/$1",
+   },
+   collectCoverageFrom: [
+      "src/**/*.{ts,tsx}",
+      "!src/**/*.d.ts",
+      "!src/main.tsx",
+      "!src/vite-env.d.ts",
+   ],
+   coverageThreshold: {
+      global: {
+         branches: 80,
+         functions: 80,
+         lines: 80,
+         statements: 80,
+      },
+   },
 };
 ```
 
@@ -314,30 +325,30 @@ composer require --dev qossmic/deptrac-shim
 
 ```yaml
 deptrac:
-  paths:
-    - ./app
-  exclude_files:
-    - "#.*test.*#"
-  layers:
-    - name: Domain
-      collectors:
-        - type: directory
-          regex: app/Domain/.*
-    - name: Application
-      collectors:
-        - type: directory
-          regex: app/Application/.*
-    - name: Infrastructure
-      collectors:
-        - type: directory
-          regex: app/Infrastructure/.*
-  ruleset:
-    Domain: ~
-    Application:
-      - Domain
-    Infrastructure:
-      - Application
-      - Domain
+   paths:
+      - ./app
+   exclude_files:
+      - "#.*test.*#"
+   layers:
+      - name: Domain
+        collectors:
+           - type: directory
+             regex: app/Domain/.*
+      - name: Application
+        collectors:
+           - type: directory
+             regex: app/Application/.*
+      - name: Infrastructure
+        collectors:
+           - type: directory
+             regex: app/Infrastructure/.*
+   ruleset:
+      Domain: ~
+      Application:
+         - Domain
+      Infrastructure:
+         - Application
+         - Domain
 ```
 
 #### PHPUnit Configuration
@@ -392,20 +403,20 @@ deptrac:
 
 ```json
 {
-  "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "preview": "vite preview",
-    "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "lint:fix": "eslint src --ext ts,tsx --fix",
-    "format": "prettier --write \"src/**/*.{ts,tsx,js,jsx,json,css,md}\"",
-    "format:check": "prettier --check \"src/**/*.{ts,tsx,js,jsx,json,css,md}\"",
-    "test": "jest",
-    "test:watch": "jest --watch",
-    "test:coverage": "jest --coverage",
-    "type-check": "tsc --noEmit",
-    "quality": "npm run type-check && npm run lint && npm run format:check && npm run test"
-  }
+   "scripts": {
+      "dev": "vite",
+      "build": "tsc && vite build",
+      "preview": "vite preview",
+      "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+      "lint:fix": "eslint src --ext ts,tsx --fix",
+      "format": "prettier --write \"src/**/*.{ts,tsx,js,jsx,json,css,md}\"",
+      "format:check": "prettier --check \"src/**/*.{ts,tsx,js,jsx,json,css,md}\"",
+      "test": "jest",
+      "test:watch": "jest --watch",
+      "test:coverage": "jest --coverage",
+      "type-check": "tsc --noEmit",
+      "quality": "npm run type-check && npm run lint && npm run format:check && npm run test"
+   }
 }
 ```
 
@@ -413,15 +424,15 @@ deptrac:
 
 ```json
 {
-  "scripts": {
-    "analyse": "phpstan analyse",
-    "format": "php-cs-fixer fix",
-    "format:check": "php-cs-fixer fix --dry-run --diff",
-    "test": "phpunit",
-    "test:coverage": "phpunit --coverage-html coverage",
-    "architecture": "deptrac analyse",
-    "quality": ["@analyse", "@format:check", "@test", "@architecture"]
-  }
+   "scripts": {
+      "analyse": "phpstan analyse",
+      "format": "php-cs-fixer fix",
+      "format:check": "php-cs-fixer fix --dry-run --diff",
+      "test": "phpunit",
+      "test:coverage": "phpunit --coverage-html coverage",
+      "architecture": "deptrac analyse",
+      "quality": ["@analyse", "@format:check", "@test", "@architecture"]
+   }
 }
 ```
 
@@ -431,26 +442,26 @@ deptrac:
 
 ```json
 {
-  "editor.formatOnSave": true,
-  "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true,
-    "source.organizeImports": true
-  },
-  "eslint.validate": [
-    "javascript",
-    "javascriptreact",
-    "typescript",
-    "typescriptreact"
-  ],
-  "[php]": {
-    "editor.defaultFormatter": "junstyle.php-cs-fixer"
-  },
-  "php-cs-fixer.onsave": true,
-  "phpstan.enabled": true,
-  "typescript.preferences.quoteStyle": "single",
-  "files.associations": {
-    "*.php": "php"
-  }
+   "editor.formatOnSave": true,
+   "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": true,
+      "source.organizeImports": true
+   },
+   "eslint.validate": [
+      "javascript",
+      "javascriptreact",
+      "typescript",
+      "typescriptreact"
+   ],
+   "[php]": {
+      "editor.defaultFormatter": "junstyle.php-cs-fixer"
+   },
+   "php-cs-fixer.onsave": true,
+   "phpstan.enabled": true,
+   "typescript.preferences.quoteStyle": "single",
+   "files.associations": {
+      "*.php": "php"
+   }
 }
 ```
 
@@ -458,33 +469,40 @@ deptrac:
 
 ```json
 {
-  "recommendations": [
-    "ms-vscode.vscode-typescript-next",
-    "esbenp.prettier-vscode",
-    "dbaeumer.vscode-eslint",
-    "ms-vscode.vscode-json",
-    "junstyle.php-cs-fixer",
-    "phpstan.phpstan",
-    "bmewburn.vscode-intelephense-client"
-  ]
+   "recommendations": [
+      "ms-vscode.vscode-typescript-next",
+      "esbenp.prettier-vscode",
+      "dbaeumer.vscode-eslint",
+      "ms-vscode.vscode-json",
+      "junstyle.php-cs-fixer",
+      "phpstan.phpstan",
+      "bmewburn.vscode-intelephense-client"
+   ]
 }
 ```
 
 ## Tips
 
-1. **Configuración Incremental**: Implementa las herramientas gradualmente, comenzando por las más críticas (linting y formateo)
+1. **Configuración Incremental**: Implementa las herramientas gradualmente,
+   comenzando por las más críticas (linting y formateo)
 
-2. **Integración con CI/CD**: Asegúrate de que todas las validaciones se ejecuten en el pipeline de GitHub Actions
+2. **Integración con CI/CD**: Asegúrate de que todas las validaciones se
+   ejecuten en el pipeline de GitHub Actions
 
-3. **Educación del Equipo**: Capacita al equipo sobre el uso y beneficios de estas herramientas
+3. **Educación del Equipo**: Capacita al equipo sobre el uso y beneficios de
+   estas herramientas
 
-4. **Configuración Compartida**: Mantén las configuraciones en el repositorio para que todos usen las mismas reglas
+4. **Configuración Compartida**: Mantén las configuraciones en el repositorio
+   para que todos usen las mismas reglas
 
-5. **Performance**: Configura las herramientas para que no impacten significativamente el tiempo de desarrollo
+5. **Performance**: Configura las herramientas para que no impacten
+   significativamente el tiempo de desarrollo
 
-6. **Excepciones Controladas**: Usa comentarios especiales para deshabilitar reglas solo cuando sea absolutamente necesario
+6. **Excepciones Controladas**: Usa comentarios especiales para deshabilitar
+   reglas solo cuando sea absolutamente necesario
 
-7. **Revisión Regular**: Revisa y actualiza las configuraciones periódicamente según evolucione el proyecto
+7. **Revisión Regular**: Revisa y actualiza las configuraciones periódicamente
+   según evolucione el proyecto
 
 ## Ejemplos
 
@@ -492,23 +510,23 @@ deptrac:
 
 ```typescript
 // src/components/Button/Button.test.tsx
-import { render, screen, fireEvent } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { Button } from "./Button";
 
 describe("Button Component", () => {
-  it("should render correctly", () => {
-    render(<Button>Click me</Button>);
-    expect(screen.getByRole("button")).toBeInTheDocument();
-  });
+   it("should render correctly", () => {
+      render(<Button>Click me</Button>);
+      expect(screen.getByRole("button")).toBeInTheDocument();
+   });
 
-  it("should call onClick when clicked", () => {
-    const handleClick = jest.fn();
-    render(<Button onClick={handleClick}>Click me</Button>);
+   it("should call onClick when clicked", () => {
+      const handleClick = jest.fn();
+      render(<Button onClick={handleClick}>Click me</Button>);
 
-    fireEvent.click(screen.getByRole("button"));
-    expect(handleClick).toHaveBeenCalledTimes(1);
-  });
+      fireEvent.click(screen.getByRole("button"));
+      expect(handleClick).toHaveBeenCalledTimes(1);
+   });
 });
 ```
 
@@ -607,30 +625,6 @@ Thumbs.db
 
 ## Navegación
 
-**Progreso en Configuración del Entorno de Desarrollo:**
-
-- ✅
-  [Configuración del Entorno - Introducción](./configuracion-entorno-desarrollo.md)
-- ✅
-  [Configuración de repositorios Git y GitHub](./configuracion-repositorios-git.md)
-- ✅
-  [Setup de entornos de desarrollo local con Docker](./setup-entorno-local-docker.md)
-- ✅
-  [Configuración de herramientas de CI/CD con GitHub Actions](./configuracion-cicd-github-actions.md)
-- ✅ [Setup de ambientes (desarrollo, testing, staging, producción)](./setup-ambientes-multiples.md)
-- ⏭️ **Configuración de herramientas de calidad de código** ← Estás aquí
-- ⏭️
-  [Setup de Laravel con Clean Architecture](./setup-laravel-clean-architecture.md)
-- ⏭️
-  [Configuración de React + TypeScript + Vite](./configuracion-react-typescript-vite.md)
-
----
-
-### Siguiente Paso
-
-Continúa con
-[**Setup de Laravel con Clean Architecture**](./setup-laravel-clean-architecture.md)
-
 [⬅️ Setup de ambientes (desarrollo, testing, staging, producción)](./setup-ambientes-multiples.md)
 | [🏠 README Principal](../../README.md) |
-[➡️ Setup de Laravel con Clean Architecture](./setup-laravel-clean-architecture.md)
+[Setup de Laravel con Clean Architecture ➡️](./setup-laravel-clean-architecture.md)

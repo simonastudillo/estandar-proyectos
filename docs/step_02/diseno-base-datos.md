@@ -256,7 +256,7 @@ DELIMITER ;
    - Claves foráneas: Nombre de tabla en singular + `_id`: `user_id`,
      `category_id`
    - Índices: Inglés, snake*case, prefijo `idx*`: `idx_users_email`,
-`idx_products_category`
+     `idx_products_category`
    - Triggers: Inglés, snake_case: `audit_users_update`, `validate_order_total`
 
 2. **Tipos de datos optimizados**:
@@ -498,35 +498,5 @@ FLUSH PRIVILEGES;
 
 ## Navegación
 
-**Progreso en Diseño y Arquitectura:**
-
-- ✅ [Diseño y Arquitectura - Introducción](./diseno-arquitectura.md)
-- ✅ [Stack Tecnológico](./stack-tecnologico.md)
-- ✅ [Patrones de Diseño](./patrones-diseno.md)
-- ✅ [Arquitectura del Sistema](./arquitectura-sistema.md)
-- ✅ [Estructura de Carpetas](./estructura-carpetas.md)
-- ✅ **Diseño de Base de Datos** ← Estás aquí
-- ⏭️ [Diseño de APIs](./diseno-apis.md)
-- ⏭️ [Diagramas de Flujo](./diagramas-flujo.md)
-- ⏭️ [Casos de Uso y User Stories](./casos-uso-user-stories.md)
-- ⏭️ [Prototipos y Wireframes](./prototipos-wireframes.md)
-- ⏭️ [Especificaciones Técnicas](./especificaciones-tecnicas.md)
-
----
-
-### Siguiente Paso
-
-Continúa con el [**Diseño de APIs**](./diseno-apis.md).
-
 [⬅️ Estructura de Carpetas](./estructura-carpetas.md) |
-[🏠 README Principal](../../README.md) |
-[➡️ Diseño de APIs](./diseno-apis.md)
-
-### 🏠 Inicio
-
-[README - Estándar de Proyectos](../../README.md)
-
----
-
-**Story Points estimados**: 8 puntos **Tiempo estimado**: 2-3 sprints
-(dependiendo de la complejidad del dominio)
+[🏠 README Principal](../../README.md) | [Diseño de APIs ➡️](./diseno-apis.md)

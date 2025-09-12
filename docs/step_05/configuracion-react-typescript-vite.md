@@ -501,28 +501,8 @@ describe("Button Component", () => {
 });
 ```
 
----
-
 ## Navegación
-
-**Progreso en Desarrollo del Backend:**
-
-- ✅ [Desarrollo del Frontend-web](./desarrollo-frontend-web.md)
-- ✅ **Configuración React + TypeScript + Vite** ← Estás aquí
-- ⏭️
-  [Componentes Reutilizables con Tipado](./componentes-reutilizables-tipado.md)
-- ⏭️ [Redux Toolkit - Estado Global](./redux-toolkit-estado-global.md)
-- ⏭️ [Integración APIs con Axios](./integracion-apis-axios.md)
-- ⏭️ [React Router - Navegación](./react-router-navegacion.md)
-- ⏭️ [Testing Componentes con Jest](./testing-componentes-jest.md)
-
----
-
-### Siguiente Paso
-
-Continúa con
-[**Componentes Reutilizables con Tipado**](./componentes-reutilizables-tipado.md)
 
 [⬅️ Desarrollo del Frontend-web](./desarrollo-frontend-web.md) |
 [🏠 README Principal](../../README.md) |
-[➡️ Componentes Reutilizables con Tipado](./componentes-reutilizables-tipado.md)
+[Componentes Reutilizables con Tipado ➡️](./componentes-reutilizables-tipado.md)

@@ -2,21 +2,28 @@
 
 ## ¿Qué es?
 
-El setup de Laravel con Clean Architecture es la configuración e implementación de un backend Laravel siguiendo los principios de Clean Architecture y Domain-Driven Design (DDD). Esta arquitectura separa completamente las reglas de negocio del framework, creando un código más mantenible, testeable y escalable.
+El setup de Laravel con Clean Architecture es la configuración e implementación
+de un backend Laravel siguiendo los principios de Clean Architecture y
+Domain-Driven Design (DDD). Esta arquitectura separa completamente las reglas de
+negocio del framework, creando un código más mantenible, testeable y escalable.
 
 ## ¿Por qué es importante?
 
-- **Separación de responsabilidades**: Las reglas de negocio están completamente desacopladas del framework Laravel
+- **Separación de responsabilidades**: Las reglas de negocio están completamente
+  desacopladas del framework Laravel
 - **Testabilidad**: Permite testing unitario sin dependencias externas
 - **Escalabilidad**: Facilita el crecimiento y mantenimiento del proyecto
-- **Flexibilidad**: Permite cambiar implementaciones sin afectar la lógica de negocio
-- **Claridad**: La arquitectura es explícita y fácil de entender para nuevos desarrolladores
+- **Flexibilidad**: Permite cambiar implementaciones sin afectar la lógica de
+  negocio
+- **Claridad**: La arquitectura es explícita y fácil de entender para nuevos
+  desarrolladores
 
 ## ¿Qué debe incluir?
 
 ### 1. Estructura de carpetas
 
-- **Domain**: Entidades, Value Objects, Repositorios (interfaces), Servicios de dominio
+- **Domain**: Entidades, Value Objects, Repositorios (interfaces), Servicios de
+  dominio
 - **Application**: Casos de uso, DTOs, Commands, Queries
 - **Infrastructure**: Implementaciones concretas (Eloquent, HTTP, Console)
 - **Shared**: Código compartido entre capas
@@ -311,7 +318,8 @@ class UserController extends Controller
 3. **Valida en el borde**: Las validaciones van en Form Requests
 4. **Exceptions específicas**: Crea excepciones de dominio específicas
 5. **Tests unitarios**: Testea los casos de uso independientemente del framework
-6. **UUIDs públicos**: Usa UUIDs para identificadores públicos, IDs incrementales internamente
+6. **UUIDs públicos**: Usa UUIDs para identificadores públicos, IDs
+   incrementales internamente
 
 ## Ejemplos
 
@@ -383,29 +391,6 @@ class SyncUsersCommand extends Command
 
 ## Navegación
 
-**Progreso en Configuración del Entorno de Desarrollo:**
-
-- ✅
-  [Configuración del Entorno - Introducción](./configuracion-entorno-desarrollo.md)
-- ✅
-  [Configuración de repositorios Git y GitHub](./configuracion-repositorios-git.md)
-- ✅
-  [Setup de entornos de desarrollo local con Docker](./setup-entorno-local-docker.md)
-- ✅
-  [Configuración de herramientas de CI/CD con GitHub Actions](./configuracion-cicd-github-actions.md)
-- ✅ [Setup de ambientes (desarrollo, testing, staging, producción)](./setup-ambientes-multiples.md)
-- ✅ [Configuración de herramientas de calidad](./configuracion-herramientas-calidad.md)
-- ⏭️ **Setup de Laravel con Clean Architecture** ← Estás aquí
-- ⏭️
-  [Configuración de React + TypeScript + Vite](./configuracion-react-typescript-vite.md)
-
----
-
-### Siguiente Paso
-
-Continúa con
-[**Configuración de React + TypeScript + Vite**](./configuracion-react-typescript-vite.md)
-
 [⬅️ Configuración de herramientas de calidad](./configuracion-herramientas-calidad.md)
 | [🏠 README Principal](../../README.md) |
-[➡️ Configuración de React + TypeScript + Vite](./configuracion-react-typescript-vite.md)
+[Configuración de React + TypeScript + Vite ➡️](./configuracion-react-typescript-vite.md)

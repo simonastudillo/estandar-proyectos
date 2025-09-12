@@ -676,28 +676,8 @@ describe("authSlice", () => {
 });
 ```
 
----
-
 ## Navegación
-
-**Progreso en Desarrollo del Backend:**
-
-- ✅ [Desarrollo del Frontend-web](./desarrollo-frontend-web.md)
-- ✅
-  [Configuración React + TypeScript + Vite](./configuracion-react-typescript-vite.md)
-- ✅
-  [Componentes Reutilizables con Tipado](./componentes-reutilizables-tipado.md)
-- ✅ **Redux Toolkit - Estado Global** ← Estás aquí
-- ⏭️ [Integración APIs con Axios](./integracion-apis-axios.md)
-- ⏭️ [React Router - Navegación](./react-router-navegacion.md)
-- ⏭️ [Testing Componentes con Jest](./testing-componentes-jest.md)
-
----
-
-### Siguiente Paso
-
-Continúa con [**Integración APIs con Axios**](./integracion-apis-axios.md)
 
 [⬅️ Componentes Reutilizables con Tipado](./componentes-reutilizables-tipado.md)
 | [🏠 README Principal](../../README.md) |
-[➡️ Integración APIs con Axios](./integracion-apis-axios.md)
+[Integración APIs con Axios ➡️](./integracion-apis-axios.md)

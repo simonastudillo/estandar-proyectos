@@ -653,31 +653,8 @@ Esta versión requiere iOS 12.0+ o Android 6.0+
 };
 ```
 
----
-
 ## Navegación
-
-**Progreso en Desarrollo de Aplicación Móvil (React Native):**
-
-- ✅ [Desarrollo de Aplicación Móvil](./desarrollo-movil.md)
-- ✅
-  [Configuración React Native + TypeScript](./configuracion-react-native-typescript.md)
-- ✅ [Pantallas y React Navigation](./pantallas-react-navigation.md)
-- ✅ [Sincronización Estado Redux](./sincronizacion-estado-redux.md)
-- ✅ [Integración APIs Móvil](./integracion-apis-movil.md)
-- ✅ [Testing Dispositivos y Simuladores](./testing-dispositivos-simuladores.md)
-- ✅ **Preparación App Stores** ← Estás aquí
-
----
-
-### 🎉 Etapa Completada
-
-¡Felicitaciones! Has completado la **Etapa 6: Desarrollo de Aplicación Móvil
-(React Native)**.
-
-**Próximo paso**: Continúa con la
-[**Etapa 7: Testing y Quality Assurance**](../step_07/testing-qa.md).
 
 [⬅️ Testing Dispositivos y Simuladores](./testing-dispositivos-simuladores.md) |
 [🏠 README Principal](../../README.md) |
-[➡️ Testing y Quality Assurance](../step_07/testing-qa.md)
+[Etapa 7: Testing y Quality Assurance ➡️](../step_07/testing-qa.md)

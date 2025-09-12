@@ -2,16 +2,26 @@
 
 ## ¿Qué es?
 
-El desarrollo del backend es la fase donde implementamos toda la lógica de negocio y servicios del lado servidor utilizando Laravel con una arquitectura limpia basada en Domain-Driven Design (DDD). Esta etapa se centra en crear un sistema robusto, mantenible y escalable que separe claramente las responsabilidades entre las diferentes capas de la aplicación.
+El desarrollo del backend es la fase donde implementamos toda la lógica de
+negocio y servicios del lado servidor utilizando Laravel con una arquitectura
+limpia basada en Domain-Driven Design (DDD). Esta etapa se centra en crear un
+sistema robusto, mantenible y escalable que separe claramente las
+responsabilidades entre las diferentes capas de la aplicación.
 
 ## ¿Por qué es importante?
 
-- **Separación de responsabilidades**: Permite mantener las reglas de negocio independientes del framework Laravel
-- **Mantenibilidad**: Facilita el mantenimiento y evolución del código a largo plazo
-- **Testabilidad**: Mejora la capacidad de realizar testing unitario y de integración
-- **Escalabilidad**: Permite que el sistema crezca de manera ordenada y controlada
-- **Flexibilidad**: Facilita el cambio de tecnologías sin afectar las reglas de negocio
-- **Consistencia**: Garantiza que todo el equipo desarrolle siguiendo los mismos patrones
+- **Separación de responsabilidades**: Permite mantener las reglas de negocio
+  independientes del framework Laravel
+- **Mantenibilidad**: Facilita el mantenimiento y evolución del código a largo
+  plazo
+- **Testabilidad**: Mejora la capacidad de realizar testing unitario y de
+  integración
+- **Escalabilidad**: Permite que el sistema crezca de manera ordenada y
+  controlada
+- **Flexibilidad**: Facilita el cambio de tecnologías sin afectar las reglas de
+  negocio
+- **Consistencia**: Garantiza que todo el equipo desarrolle siguiendo los mismos
+  patrones
 
 ## ¿Qué debe incluir?
 
@@ -231,27 +241,8 @@ class CreateUserUseCase
 }
 ```
 
----
-
 ## Navegación
-
-**Progreso en Desarrollo del Backend:**
-
-- ✅ **Desarrollo del Backend** ← Estás aquí
-- ⏭️ [Implementación Domain Layer](./implementacion-domain-layer.md)
-- ⏭️ [Implementación Application Layer](./implementacion-application-layer.md)
-- ⏭️ [Implementación Infrastructure Layer](./implementacion-infrastructure-layer.md)
-- ⏭️ [APIs RESTful Versionadas](./apis-restful-versionadas.md)
-- ⏭️ [Autenticación Laravel Sanctum](./autenticacion-laravel-sanctum.md)
-- ⏭️ [Testing TDD Backend](./testing-tdd-backend.md)
-
----
-
-### Siguiente Paso
-
-Continúa con
-[**Implementación Domain Layer**](./implementacion-domain-layer.md)
 
 [⬅️ Etapa 3: Configuración de React + TypeScript + Vite](../step_03/configuracion-react-typescript-vite.md)
 | [🏠 README Principal](../../README.md) |
-[➡️ Implementación Domain Layer](./implementacion-domain-layer.md)
+[Implementación Domain Layer ➡️](./implementacion-domain-layer.md)

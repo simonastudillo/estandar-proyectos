@@ -2,23 +2,36 @@
 
 ## ¿Qué es?
 
-Los casos de uso y user stories son técnicas complementarias para capturar y documentar los requisitos funcionales del sistema desde la perspectiva del usuario. Los casos de uso proporcionan una descripción detallada de las interacciones entre los actores y el sistema, mientras que las user stories ofrecen una perspectiva más ágil y centrada en el valor de negocio.
+Los casos de uso y user stories son técnicas complementarias para capturar y
+documentar los requisitos funcionales del sistema desde la perspectiva del
+usuario. Los casos de uso proporcionan una descripción detallada de las
+interacciones entre los actores y el sistema, mientras que las user stories
+ofrecen una perspectiva más ágil y centrada en el valor de negocio.
 
 ### Casos de Uso
 
-Son descripciones narrativas de las interacciones entre un actor (usuario, sistema externo) y el sistema para lograr un objetivo específico. Incluyen flujos principales, alternativos y de excepción.
+Son descripciones narrativas de las interacciones entre un actor (usuario,
+sistema externo) y el sistema para lograr un objetivo específico. Incluyen
+flujos principales, alternativos y de excepción.
 
 ### User Stories
 
-Son descripciones cortas y simples de una funcionalidad desde la perspectiva del usuario final, siguiendo el formato: "Como [tipo de usuario], quiero [funcionalidad] para [beneficio/valor]".
+Son descripciones cortas y simples de una funcionalidad desde la perspectiva del
+usuario final, siguiendo el formato: "Como [tipo de usuario], quiero
+[funcionalidad] para [beneficio/valor]".
 
 ## ¿Por qué es importante?
 
-1. **Claridad de Requisitos**: Proporcionan una comprensión clara de lo que el sistema debe hacer
-2. **Comunicación Efectiva**: Facilitan la comunicación entre stakeholders, desarrolladores y usuarios
-3. **Planificación Ágil**: Las user stories permiten una planificación flexible y iterativa
-4. **Trazabilidad**: Permiten rastrear desde los requisitos hasta la implementación
-5. **Validación**: Sirven como base para pruebas de aceptación y validación del sistema
+1. **Claridad de Requisitos**: Proporcionan una comprensión clara de lo que el
+   sistema debe hacer
+2. **Comunicación Efectiva**: Facilitan la comunicación entre stakeholders,
+   desarrolladores y usuarios
+3. **Planificación Ágil**: Las user stories permiten una planificación flexible
+   y iterativa
+4. **Trazabilidad**: Permiten rastrear desde los requisitos hasta la
+   implementación
+5. **Validación**: Sirven como base para pruebas de aceptación y validación del
+   sistema
 6. **Estimación**: Facilitan la estimación de esfuerzo y tiempo de desarrollo
 
 ## ¿Qué debe incluir?
@@ -158,7 +171,8 @@ UC-002 → US-004, US-005
 ### Para User Stories:
 
 1. **INVEST**: Independent, Negotiable, Valuable, Estimable, Small, Testable
-2. **3 C's**: Card (historia), Conversation (discusión), Confirmation (criterios)
+2. **3 C's**: Card (historia), Conversation (discusión), Confirmation
+   (criterios)
 3. **Evita soluciones técnicas**: Enfócate en el "qué" no en el "cómo"
 4. **Historias épicas**: Divide historias grandes en más pequeñas
 5. **Criterios SMART**: Specific, Measurable, Achievable, Relevant, Time-bound
@@ -333,26 +347,6 @@ Sprints estimados: 3-4 sprints
 
 ## Navegación
 
-**Progreso en Diseño y Arquitectura:**
-
-- ✅ [Diseño y Arquitectura - Introducción](./diseno-arquitectura.md)
-- ✅ [Stack Tecnológico](./stack-tecnologico.md)
-- ✅ [Patrones de Diseño](./patrones-diseno.md)
-- ✅ [Arquitectura del Sistema](./arquitectura-sistema.md)
-- ✅ [Estructura de Carpetas](./estructura-carpetas.md)
-- ✅ [Diseño de Base de Datos](./diseno-base-datos.md)
-- ✅ [Diseño de APIs](./diseno-apis.md)
-- ✅ [Diagramas de Flujo](./diagramas-flujo.md)
-- ✅ **Casos de Uso y User Stories** ← Estás aquí
-- ⏭️ [Prototipos y Wireframes](./prototipos-wireframes.md)
-- ⏭️ [Especificaciones Técnicas](./especificaciones-tecnicas.md)
-
----
-
-### Siguiente Paso
-
-Continúa con los [**Prototipos y Wireframes**](./prototipos-wireframes.md).
-
 [⬅️ Diagramas de Flujo](./diagramas-flujo.md) |
 [🏠 README Principal](../../README.md) |
-[➡️ Prototipos y Wireframes](./prototipos-wireframes.md)
+[Prototipos y Wireframes ➡️](./prototipos-wireframes.md)

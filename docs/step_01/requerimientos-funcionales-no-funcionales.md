@@ -45,6 +45,42 @@ sistema.
 
 ## ¿Qué Debe Incluir?
 
+### 🎯 **Objetivos del Proyecto**
+
+#### **Objetivo General**
+
+- **Propósito Principal**: Define la razón de ser del proyecto y el problema de
+  negocio que busca resolver
+- **Valor para el Usuario**: Especifica el beneficio principal que obtendrán los
+  usuarios finales
+- **Alcance General**: Establece los límites y el contexto en el que operará la
+  solución
+- **Impacto Esperado**: Define los cambios positivos que el proyecto generará en
+  la organización o usuarios
+
+#### **Objetivos Específicos**
+
+- **Metas Concretas y Medibles**: Lista de objetivos SMART (Específicos,
+  Medibles, Alcanzables, Relevantes, con Tiempo definido)
+- **Funcionalidades Clave**: Principales características que debe incluir el
+  sistema para alcanzar el objetivo general
+- **Beneficios por Tipo de Usuario**: Valor específico que cada tipo de usuario
+  obtendrá del sistema
+- **Criterios de Éxito**: Métricas cuantificables que determinarán si el
+  proyecto fue exitoso
+- **Indicadores de Rendimiento (KPIs)**: Métricas que se monitorearan para
+  evaluar el impacto del proyecto
+
+#### **Alcance del Proyecto**
+
+- **Inclusiones**: Lo que SÍ abarcará el proyecto en su versión inicial
+- **Exclusiones**: Lo que NO se incluirá en esta versión (pero podría
+  considerarse en futuras iteraciones)
+- **Limitaciones**: Restricciones técnicas, de tiempo o presupuesto que afectan
+  el alcance
+- **Supuestos**: Condiciones que se asumen como verdaderas para el desarrollo
+  del proyecto
+
 ### 📋 **Requerimientos Funcionales**
 
 #### **Casos de Uso Detallados**
@@ -104,6 +140,9 @@ sistema.
 
 - **Herramienta**: Microsoft Word, Google Docs o Confluence
 - **Estructura**:
+  - **Objetivos del Proyecto**: Objetivo general, objetivos específicos y
+    criterios de éxito
+  - **Alcance del Proyecto**: Inclusiones, exclusiones, limitaciones y supuestos
   - Introducción y objetivos
   - Requerimientos funcionales organizados por módulos
   - Requerimientos no funcionales categorizados
@@ -131,6 +170,19 @@ sistema.
 - **Validación**: Revisión con stakeholders antes de desarrollo
 
 ## Tips
+
+### 🎯 **Para Objetivos del Proyecto**
+
+- **Usa la metodología SMART**: Específicos, Medibles, Alcanzables, Relevantes y
+  con Tiempo definido
+- **Conecta con métricas de negocio**: Cada objetivo debe tener KPIs asociados y
+  formas de medición
+- **Diferencia objetivo general de específicos**: El general es la visión macro,
+  los específicos son las metas concretas
+- **Incluye el "por qué"**: Explica la justificación de negocio detrás de cada
+  objetivo
+- **Define criterios de éxito cuantificables**: Evita términos subjetivos como
+  "mejor" o "más eficiente"
 
 ### 💡 **Para Requerimientos Funcionales**
 
@@ -162,6 +214,33 @@ sistema.
 - **Análisis de impacto**: Evaluar cómo cada cambio afecta otros requerimientos
 
 ## Ejemplos
+
+### 🎯 **Ejemplo de Objetivos del Proyecto**
+
+**Objetivo General:** "Desarrollar una plataforma de e-commerce B2B que permita
+a empresas manufactureras gestionar eficientemente sus procesos de compra y
+venta, reduciendo los tiempos de transacción en un 40% y mejorando la
+visibilidad de inventarios en tiempo real."
+
+**Objetivos Específicos:**
+
+1. **Automatización de Procesos**:
+   - Reducir el tiempo promedio de procesamiento de órdenes de 2 días a 4 horas
+   - Eliminar el 80% de la documentación en papel mediante digitalización
+
+2. **Mejora en la Experiencia del Usuario**:
+   - Lograr un Net Promoter Score (NPS) superior a 70
+   - Reducir el tiempo de onboarding de nuevos usuarios a menos de 15 minutos
+
+3. **Optimización Operacional**:
+   - Incrementar la precisión del inventario del 85% al 98%
+   - Reducir los costos operativos en un 25% mediante automatización
+
+**Criterios de Éxito:**
+
+- 500+ empresas registradas en los primeros 6 meses
+- $1M+ en transacciones procesadas mensualmente
+- Tiempo de inactividad < 0.1% (99.9% uptime)
 
 ### 📋 **Ejemplo de Requerimiento Funcional**
 
@@ -199,24 +278,5 @@ sistema.
 
 ## Navegación
 
-**Progreso en Planificación y Análisis:**
-
-- ✅ [Planificación y Análisis - Introducción](./planificacion-analisis.md)
-- ✅ **Requerimientos Funcionales y No Funcionales** ← Estás aquí
-- ⏭️ [Análisis de Stakeholders](./analisis-stakeholders.md)
-- ⏭️ [Roadmap del Proyecto](./roadmap-proyecto.md)
-- ⏭️ [Metodología de Trabajo](./metodologia-trabajo.md)
-- ⏭️ [Definición del Alcance del Proyecto](./definicion-alcance.md)
-- ⏭️ [Estimación de Tiempos y Recursos](./estimacion-tiempos-recursos.md)
-- ⏭️ [Análisis de Riesgos](./analisis-riesgos.md)
-
----
-
-### Siguiente Paso
-
-Continúa con el [**Análisis de Stakeholders**](./analisis-stakeholders.md) para
-identificar y gestionar a todas las personas que influirán en el éxito de tu
-proyecto.
-
 [⬅️ Volver a Planificación](./planificacion-analisis.md) |
-[➡️ Análisis de Stakeholders](./analisis-stakeholders.md)
+[Análisis de Stakeholders ➡️](./analisis-stakeholders.md)

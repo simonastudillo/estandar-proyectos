@@ -846,31 +846,8 @@ jobs:
 - ❌ No mantener los tests actualizados
 - ❌ No ejecutar tests antes de commits
 
----
-
 ## Navegación
-
-**Progreso en Desarrollo del Backend:**
-
-- ✅ [Desarrollo del Backend](./desarrollo-backend.md)
-- ✅ [Implementación Domain Layer](./implementacion-domain-layer.md)
-- ✅ [Implementación Application Layer](./implementacion-application-layer.md)
-- ✅
-  [Implementación Infrastructure Layer](./implementacion-infrastructure-layer.md)
-- ✅ [APIs RESTful Versionadas](./apis-restful-versionadas.md)
-- ✅ [Autenticación Laravel Sanctum](./autenticacion-laravel-sanctum.md)
-- ✅ **Testing TDD Backend** ← Estás aquí
-
----
-
-### 🎉 Etapa Completada
-
-¡Felicitaciones! Has completado la **Etapa 4: Desarrollo del Backend (Laravel +
-Clean Architecture)**.
-
-**Próximo paso**: Continúa con la
-[**Etapa 5: Desarrollo del Frontend Web (React + TypeScript)**](../step_05/desarrollo-frontend-web.md).
 
 [⬅️ Autenticación Laravel Sanctum](./autenticacion-laravel-sanctum.md) |
 [🏠 README Principal](../../README.md) |
-[➡️ Desarrollo del frontend-web](../step_05/desarrollo-frontend-web.md)
+[Etapa 5: Desarrollo del frontend-web ➡️](../step_05/desarrollo-frontend-web.md)

@@ -150,51 +150,8 @@ soportará todo el proceso de construcción del software, garantizando
 - Establecer procesos de backup y recovery
 - Configurar monitoreo básico y logging
 
-## Etapas de Configuración del Entorno
-
-- [Configuración de repositorios Git y GitHub](./configuracion-repositorios-git.md)
-- [Setup de entornos de desarrollo local con Docker](./setup-entorno-local-docker.md)
-- [Configuración de herramientas de CI/CD con GitHub Actions](./configuracion-cicd-github-actions.md)
-- [Setup de ambientes (desarrollo, testing, staging, producción)](./setup-ambientes-multiples.md)
-- [Configuración de herramientas de calidad de código](./configuracion-herramientas-calidad.md)
-- [Setup de Laravel con Clean Architecture](./setup-laravel-clean-architecture.md)
-- [Configuración de React + TypeScript + Vite](./configuracion-react-typescript-vite.md)
-
----
-
-## Siguiente Paso
-
-Una vez que comprendas la importancia de esta etapa, continúa con la
-[**Configuración de repositorios Git y GitHub**](./configuracion-repositorios-git.md)
-donde establecerás la base del control de versiones y colaboración del proyecto.
-
 ## Navegación
-
-**Progreso en Configuración del Entorno de Desarrollo:**
-
-- ⏭️ **Configuración del Entorno de Desarrollo - Introducción** ← Estás aquí
-- ⏭️
-  [Configuración de repositorios Git y GitHub](./configuracion-repositorios-git.md)
-- ⏭️
-  [Setup de entornos de desarrollo local con Docker](./setup-entorno-local-docker.md)
-- ⏭️
-  [Configuración de herramientas de CI/CD con GitHub Actions](./configuracion-cicd-github-actions.md)
-- ⏭️
-  [Setup de ambientes (desarrollo, testing, staging, producción)](./setup-ambientes-multiples.md)
-- ⏭️
-  [Configuración de herramientas de calidad de código](./configuracion-herramientas-calidad.md)
-- ⏭️
-  [Setup de Laravel con Clean Architecture](./setup-laravel-clean-architecture.md)
-- ⏭️
-  [Configuración de React + TypeScript + Vite](./configuracion-react-typescript-vite.md)
-
----
-
-### Siguiente Paso
-
-Continúa con
-[**Configuración de repositorios Git y GitHub**](./configuracion-repositorios-git.md).
 
 [⬅️ Etapa 2: Especificaciones Técnicas](../step_02/especificaciones-tecnicas.md)
 | [🏠 README Principal](../../README.md) |
-[➡️ Configuración de repositorios Git y GitHub](./configuracion-repositorios-git.md)
+[Requisitos mínimos del sistema ➡️](./requisitos-sistema.md)

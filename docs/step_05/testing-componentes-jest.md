@@ -944,32 +944,8 @@ describe("HeavyComponent Performance", () => {
 });
 ```
 
----
-
 ## Navegación
-
-**Progreso en Desarrollo del Backend:**
-
-- ✅ [Desarrollo del Frontend-web](./desarrollo-frontend-web.md)
-- ✅
-  [Configuración React + TypeScript + Vite](./configuracion-react-typescript-vite.md)
-- ✅
-  [Componentes Reutilizables con Tipado](./componentes-reutilizables-tipado.md)
-- ✅ [Redux Toolkit - Estado Global](./redux-toolkit-estado-global.md)
-- ✅ [Integración APIs con Axios](./integracion-apis-axios.md)
-- ✅ [React Router - Navegación](./react-router-navegacion.md)
-- ✅ **Testing Componentes con Jest** ← Estás aquí
-
----
-
-### 🎉 Etapa Completada
-
-¡Felicitaciones! Has completado la **Etapa 5: Desarrollo del Frontend Web
-(React + TypeScript)**.
-
-**Próximo paso**: Continúa con la
-[**Etapa 6: Desarrollo de Aplicación Móvil (React Native)**](../step_06/desarrollo-movil.md).
 
 [⬅️ React Router - Navegación](./react-router-navegacion.md) |
 [🏠 README Principal](../../README.md) |
-[➡️ Desarrollo movil](../step_06/desarrollo-movil.md)
+[Etapa 6:Desarrollo movil ➡️](../step_06/desarrollo-movil.md)

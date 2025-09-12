@@ -201,11 +201,11 @@ parameters:
         - tests
     excludePaths:
         - vendor
-    
+
     # Reglas de seguridad
     checkMissingIterableValueType: false
     checkGenericClassInNonGenericObjectType: false
-    
+
     # Validaciones de seguridad personalizadas
     customRulesetUsed: true
 EOF
@@ -310,17 +310,17 @@ class AuthSecurityTest extends TestCase
     public function test_validates_jwt_token_integrity()
     {
         $user = User::factory()->create();
-        
+
         // Generar token válido
         $validToken = $user->createToken('test')->plainTextToken;
-        
+
         // Modificar token (simular tampering)
         $tamperedToken = $validToken . 'tampered';
-        
+
         $response = $this->withHeaders([
             'Authorization' => 'Bearer ' . $tamperedToken
         ])->getJson('/api/v1/users/profile');
-        
+
         $response->assertStatus(401);
     }
 }
@@ -360,7 +360,7 @@ class SqlInjectionTest extends TestCase
 
             // Debe fallar la autenticación, no causar error SQL
             $response->assertStatus(422);
-            
+
             // Verificar que la tabla users sigue existiendo
             $this->assertDatabaseCount('users', 0);
         }
@@ -394,7 +394,7 @@ class SqlInjectionTest extends TestCase
 
         // Debe retornar 404, no ejecutar SQL malicioso
         $response->assertStatus(404);
-        
+
         // Verificar que el usuario original sigue existiendo
         $this->assertDatabaseHas('users', ['id' => $user->id]);
     }
@@ -519,7 +519,7 @@ class SecurityHeaders
         $response = $next($request);
 
         // Content Security Policy
-        $response->headers->set('Content-Security-Policy', 
+        $response->headers->set('Content-Security-Policy',
             "default-src 'self'; " .
             "script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; " .
             "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; " .
@@ -541,13 +541,13 @@ class SecurityHeaders
         $response->headers->set('Referrer-Policy', 'strict-origin-when-cross-origin');
 
         // Permissions Policy
-        $response->headers->set('Permissions-Policy', 
+        $response->headers->set('Permissions-Policy',
             'camera=(), microphone=(), geolocation=(), payment=()'
         );
 
         // HSTS (solo en HTTPS)
         if ($request->isSecure()) {
-            $response->headers->set('Strict-Transport-Security', 
+            $response->headers->set('Strict-Transport-Security',
                 'max-age=31536000; includeSubDomains; preload'
             );
         }
@@ -565,36 +565,38 @@ import helmet from "helmet";
 import { Application } from "express";
 
 export function configureSecurityHeaders(app: Application): void {
-   app.use(helmet({
-      contentSecurityPolicy: {
-         directives: {
-            defaultSrc: ["'self'"],
-            scriptSrc: [
-               "'self'",
-               "'unsafe-inline'",
-               "https://cdnjs.cloudflare.com",
-            ],
-            styleSrc: [
-               "'self'",
-               "'unsafe-inline'",
-               "https://fonts.googleapis.com",
-            ],
-            fontSrc: ["'self'", "https://fonts.gstatic.com"],
-            imgSrc: ["'self'", "data:", "https:"],
-            connectSrc: ["'self'", "https://api.example.com"],
-            objectSrc: ["'none'"],
-            upgradeInsecureRequests: [],
+   app.use(
+      helmet({
+         contentSecurityPolicy: {
+            directives: {
+               defaultSrc: ["'self'"],
+               scriptSrc: [
+                  "'self'",
+                  "'unsafe-inline'",
+                  "https://cdnjs.cloudflare.com",
+               ],
+               styleSrc: [
+                  "'self'",
+                  "'unsafe-inline'",
+                  "https://fonts.googleapis.com",
+               ],
+               fontSrc: ["'self'", "https://fonts.gstatic.com"],
+               imgSrc: ["'self'", "data:", "https:"],
+               connectSrc: ["'self'", "https://api.example.com"],
+               objectSrc: ["'none'"],
+               upgradeInsecureRequests: [],
+            },
          },
-      },
-      hsts: {
-         maxAge: 31536000,
-         includeSubDomains: true,
-         preload: true,
-      },
-      noSniff: true,
-      xssFilter: true,
-      referrerPolicy: { policy: "strict-origin-when-cross-origin" },
-   }));
+         hsts: {
+            maxAge: 31536000,
+            includeSubDomains: true,
+            preload: true,
+         },
+         noSniff: true,
+         xssFilter: true,
+         referrerPolicy: { policy: "strict-origin-when-cross-origin" },
+      }),
+   );
 }
 ```
 
@@ -757,7 +759,7 @@ return [
             'days' => 30,
             'formatter' => \Monolog\Formatter\JsonFormatter::class,
         ],
-        
+
         'audit' => [
             'driver' => 'daily',
             'path' => storage_path('logs/audit.log'),
@@ -765,7 +767,7 @@ return [
             'days' => 90,
             'formatter' => \Monolog\Formatter\JsonFormatter::class,
         ],
-        
+
         'intrusion' => [
             'driver' => 'single',
             'path' => storage_path('logs/intrusion.log'),
@@ -998,7 +1000,9 @@ export class SecurityUtils {
       const array = new Uint8Array(16);
       crypto.getRandomValues(array);
       return Array.from(array, (byte) => byte.toString(16).padStart(2, "0"))
-         .join("");
+         .join(
+            "",
+         );
    }
 
    // Validar contraseña segura
@@ -1009,11 +1013,13 @@ export class SecurityUtils {
       const hasNumbers = /\d/.test(password);
       const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
 
-      return password.length >= minLength &&
+      return (
+         password.length >= minLength &&
          hasUpperCase &&
          hasLowerCase &&
          hasNumbers &&
-         hasSpecialChar;
+         hasSpecialChar
+      );
    }
 }
 ```
@@ -1114,26 +1120,8 @@ echo "✅ Testing de penetración completado."
 echo "📋 Reporte disponible en: $REPORT_DIR/executive-summary.md"
 ```
 
----
-
 ## Navegación
-
-**Progreso en Testing y Quality Assurance:**
-
-- ✅ [Testing y QA](./testing-qa.md)
-- ✅ [Testing Funcional Automatizado](./testing-funcional-automatizado.md)
-- ✅ [Testing de Performance y Carga](./testing-performance-carga.md)
-- ✅ **Testing de Seguridad OWASP** ← Estás aquí
-- ⏭️ [Testing de Usabilidad](./testing-usabilidad.md)
-- ⏭️ [Code Review y Refactoring](./code-review-refactoring.md)
-- ⏭️ [Auditoría de Calidad de Código](./auditoria-calidad-codigo.md)
-
----
-
-### Siguiente Paso
-
-Continúa con [**Testing de Usabilidad**](./testing-usabilidad.md)
 
 [⬅️ Testing de Performance y Carga](./testing-performance-carga.md) |
 [🏠 README Principal](../../README.md) |
-[➡️ Testing de Usabilidad](./testing-usabilidad.md)
+[Testing de Usabilidad ➡️](./testing-usabilidad.md)

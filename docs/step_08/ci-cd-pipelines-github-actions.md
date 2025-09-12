@@ -507,23 +507,6 @@ jobs:
 
 ## Navegación
 
-**Progreso en Despliegue y DevOps:**
-
-- ✅ [Despliegue y DevOps](./despliegue-devops.md)
-- ✅
-  [Configuración de Servidores de Producción](./configuracion-servidores-produccion.md)
-- ✅ **CI/CD Pipelines con GitHub Actions** ← Estás aquí
-- ⏭️ [Docker y Contenedores](./docker-contenedores.md)
-- ⏭️ [Monitoreo y Logging](./monitoreo-logging.md)
-- ⏭️ [Backup y Recovery](./backup-recovery-strategies.md)
-- ⏭️ [SSL y Configuraciones de Seguridad](./ssl-configuraciones-seguridad.md)
-
----
-
-### Siguiente Paso
-
-Continúa con [**Docker y Contenedores**](./docker-contenedores.md)
-
 [⬅️ Configuración de Servidores de Producción](./configuracion-servidores-produccion.md)
 | [🏠 README Principal](../../README.md) |
-[➡️ Docker y Contenedores](./docker-contenedores.md)
+[Docker y Contenedores ➡️](./docker-contenedores.md)

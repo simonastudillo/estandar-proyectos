@@ -2,7 +2,11 @@
 
 ## ¿Qué es?
 
-Laravel Sanctum es el sistema de autenticación oficial de Laravel para APIs, que proporciona una solución simple y liviana para autenticar SPAs (Single Page Applications), aplicaciones móviles y APIs simples mediante tokens. Sanctum ofrece tanto autenticación basada en sesiones para SPAs como tokens de API para aplicaciones móviles y servicios de terceros.
+Laravel Sanctum es el sistema de autenticación oficial de Laravel para APIs, que
+proporciona una solución simple y liviana para autenticar SPAs (Single Page
+Applications), aplicaciones móviles y APIs simples mediante tokens. Sanctum
+ofrece tanto autenticación basada en sesiones para SPAs como tokens de API para
+aplicaciones móviles y servicios de terceros.
 
 ## ¿Por qué es importante?
 
@@ -719,27 +723,8 @@ class AuthTest extends TestCase
 }
 ```
 
----
-
 ## Navegación
 
-**Progreso en Desarrollo del Backend:**
-
-- ✅ [Desarrollo del Backend](./desarrollo-backend.md)
-- ✅ [Implementación Domain Layer](./implementacion-domain-layer.md)
-- ✅ [Implementación Application Layer](./implementacion-application-layer.md)
-- ✅ [Implementación Infrastructure Layer](./implementacion-infrastructure-layer.md)
-- ✅ [APIs RESTful Versionadas](./apis-restful-versionadas.md)
-- ✅ **Autenticación Laravel Sanctum** ← Estás aquí
-- ⏭️ [Testing TDD Backend](./testing-tdd-backend.md)
-
----
-
-### Siguiente Paso
-
-Continúa con
-[**Testing TDD Backend**](./testing-tdd-backend.md).
-
-[⬅️ APIs RESTful Versionadas](./apis-restful-versionadas.md)
-| [🏠 README Principal](../../README.md) |
-[➡️ Testing TDD Backend](./testing-tdd-backend.md)
+[⬅️ APIs RESTful Versionadas](./apis-restful-versionadas.md) |
+[🏠 README Principal](../../README.md) |
+[Testing TDD Backend ➡️](./testing-tdd-backend.md)

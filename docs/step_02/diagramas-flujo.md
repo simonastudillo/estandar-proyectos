@@ -2,18 +2,27 @@
 
 ## ¿Qué es?
 
-Los diagramas de flujo son representaciones gráficas que muestran la secuencia de pasos, decisiones y procesos dentro de un sistema o aplicación. Utilizan símbolos estandarizados para representar diferentes tipos de operaciones, como procesos, decisiones, entradas/salidas, y puntos de inicio y fin.
+Los diagramas de flujo son representaciones gráficas que muestran la secuencia
+de pasos, decisiones y procesos dentro de un sistema o aplicación. Utilizan
+símbolos estandarizados para representar diferentes tipos de operaciones, como
+procesos, decisiones, entradas/salidas, y puntos de inicio y fin.
 
 ## ¿Por qué es importante?
 
 Los diagramas de flujo son fundamentales para:
 
-- **Visualización clara**: Permiten entender de manera visual cómo fluye la información y los procesos en el sistema
-- **Comunicación efectiva**: Facilitan la comunicación entre desarrolladores, stakeholders y usuarios finales
-- **Identificación de problemas**: Ayudan a detectar cuellos de botella, redundancias o procesos innecesarios
-- **Documentación técnica**: Sirven como documentación viva del comportamiento del sistema
-- **Planificación y análisis**: Permiten analizar diferentes escenarios y planificar mejoras
-- **Debugging y testing**: Facilitan la identificación de casos de prueba y puntos críticos
+- **Visualización clara**: Permiten entender de manera visual cómo fluye la
+  información y los procesos en el sistema
+- **Comunicación efectiva**: Facilitan la comunicación entre desarrolladores,
+  stakeholders y usuarios finales
+- **Identificación de problemas**: Ayudan a detectar cuellos de botella,
+  redundancias o procesos innecesarios
+- **Documentación técnica**: Sirven como documentación viva del comportamiento
+  del sistema
+- **Planificación y análisis**: Permiten analizar diferentes escenarios y
+  planificar mejoras
+- **Debugging y testing**: Facilitan la identificación de casos de prueba y
+  puntos críticos
 
 ## ¿Qué debe incluir?
 
@@ -66,14 +75,20 @@ Un diagrama de flujo completo debe contener:
 
 ## Tips
 
-- **Usa herramientas apropiadas**: Lucidchart, Draw.io, Miro, o herramientas de código como Mermaid
-- **Mantén simplicidad**: Evita sobrecargar los diagramas con demasiada información
+- **Usa herramientas apropiadas**: Lucidchart, Draw.io, Miro, o herramientas de
+  código como Mermaid
+- **Mantén simplicidad**: Evita sobrecargar los diagramas con demasiada
+  información
 - **Sé consistente**: Usa la misma simbología y estilo en todos los diagramas
 - **Incluye casos de error**: No olvides documentar qué pasa cuando algo falla
-- **Utiliza colores estratégicamente**: Para destacar procesos críticos o diferentes tipos de flujo
-- **Agrupa procesos relacionados**: Mantén coherencia visual agrupando procesos similares
-- **Valida con usuarios reales**: Asegúrate de que los flujos representen la realidad
-- **Mantén actualizado**: Los diagramas obsoletos son peores que no tener diagramas
+- **Utiliza colores estratégicamente**: Para destacar procesos críticos o
+  diferentes tipos de flujo
+- **Agrupa procesos relacionados**: Mantén coherencia visual agrupando procesos
+  similares
+- **Valida con usuarios reales**: Asegúrate de que los flujos representen la
+  realidad
+- **Mantén actualizado**: Los diagramas obsoletos son peores que no tener
+  diagramas
 
 ## Ejemplos
 
@@ -146,26 +161,5 @@ flowchart TD
 
 ## Navegación
 
-**Progreso en Diseño y Arquitectura:**
-
-- ✅ [Diseño y Arquitectura - Introducción](./diseno-arquitectura.md)
-- ✅ [Stack Tecnológico](./stack-tecnologico.md)
-- ✅ [Patrones de Diseño](./patrones-diseno.md)
-- ✅ [Arquitectura del Sistema](./arquitectura-sistema.md)
-- ✅ [Estructura de Carpetas](./estructura-carpetas.md)
-- ✅ [Diseño de Base de Datos](./diseno-base-datos.md)
-- ✅ [Diseño de APIs](./diseno-apis.md)
-- ✅ **Diagramas de Flujo** ← Estás aquí
-- ⏭️ [Casos de Uso y User Stories](./casos-uso-user-stories.md)
-- ⏭️ [Prototipos y Wireframes](./prototipos-wireframes.md)
-- ⏭️ [Especificaciones Técnicas](./especificaciones-tecnicas.md)
-
----
-
-### Siguiente Paso
-
-Continúa con los [**Casos de Uso y User Stories**](./casos-uso-user-stories.md).
-
-[⬅️ Diseño de APIs](./diseno-apis.md) |
-[🏠 README Principal](../../README.md) |
-[➡️ Casos de Uso y User Stories](./casos-uso-user-stories.md)
+[⬅️ Diseño de APIs](./diseno-apis.md) | [🏠 README Principal](../../README.md) |
+[Casos de Uso y User Stories ➡️](./casos-uso-user-stories.md)

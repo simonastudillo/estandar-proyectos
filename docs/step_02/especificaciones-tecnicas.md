@@ -338,30 +338,6 @@ Deployment_Specifications:
 
 ## Navegación
 
-**Progreso en Diseño y Arquitectura:**
-
-- ✅ [Diseño y Arquitectura - Introducción](./diseno-arquitectura.md)
-- ✅ [Stack Tecnológico](./stack-tecnologico.md)
-- ✅ [Patrones de Diseño](./patrones-diseno.md)
-- ✅ [Arquitectura del Sistema](./arquitectura-sistema.md)
-- ✅ [Estructura de Carpetas](./estructura-carpetas.md)
-- ✅ [Diseño de Base de Datos](./diseno-base-datos.md)
-- ✅ [Diseño de APIs](./diseno-apis.md)
-- ✅ [Diagramas de Flujo](./diagramas-flujo.md)
-- ✅ [Casos de Uso y User Stories](./casos-uso-user-stories.md)
-- ✅ [Prototipos y Wireframes](./prototipos-wireframes.md)
-- ✅ **Especificaciones Técnicas** ← Estás aquí
-
----
-
-### 🎉 Etapa Completada
-
-¡Felicitaciones! Has completado la **Etapa 2: Diseño y Arquitectura**.
-
-**Próximo paso**: Continúa con la
-[**Etapa 3: Configuración del Entorno de Desarrollo**](../step_03/configuracion-entorno.md)
-donde configurarás tu ambiente de desarrollo.
-
 [⬅️ Prototipos y Wireframes](./prototipos-wireframes.md) |
 [🏠 README Principal](../../README.md) |
-[➡️ Configuración del Entorno](../step_03/configuracion-entorno.md)
+[Etapa 3: Configuración del Entorno ➡️](../step_03/configuracion-entorno-desarrollo.md)

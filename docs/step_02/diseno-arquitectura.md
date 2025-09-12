@@ -46,50 +46,8 @@ implementación, siguiendo los principios SOLID, Clean Code y Clean Architecture
 - El diseño por componentes permite WIP limits efectivos en el tablero Kanban
 - Las APIs bien definidas facilitan el desarrollo paralelo entre equipos
 
-## Etapas de Diseño y Arquitectura
-
-- [Stack tecnológico inicial](./stack-tecnologico.md)
-- [Patrones de diseño del proyecto](./patrones-diseno.md)
-- [Arquitectura del sistema](./arquitectura-sistema.md)
-- [Estructura de carpetas base](./estructura-carpetas.md)
-- [Diseño de base de datos (ERD)](./diseno-base-datos.md)
-- [Diseño de APIs (OpenAPI/Swagger)](./diseno-apis.md)
-- [Diagramas de flujo](./diagramas-flujo.md)
-- [Casos de uso y User Stories](./casos-uso-user-stories.md)
-- [Prototipos y wireframes](./prototipos-wireframes.md)
-- [Especificaciones técnicas](./especificaciones-tecnicas.md)
-
----
-
-## Siguiente Paso
-
-Una vez que comprendas la importancia de esta etapa, continúa con la
-[**Definición del Stack Tecnológico Inicial**](./stack-tecnologico.md) donde
-establecerás las tecnologías, frameworks y herramientas base que utilizarás en
-tu proyecto.
-
 ## Navegación
-
-**Progreso en Diseño y Arquitectura:**
-
-- ✅ **Diseño y Arquitectura - Introducción** ← Estás aquí
-- ⏭️ [Stack Tecnológico](./stack-tecnologico.md)
-- ⏭️ [Patrones de Diseño](./patrones-diseno.md)
-- ⏭️ [Arquitectura del Sistema](./arquitectura-sistema.md)
-- ⏭️ [Estructura de Carpetas](./estructura-carpetas.md)
-- ⏭️ [Diseño de Base de Datos](./diseno-base-datos.md)
-- ⏭️ [Diseño de APIs](./diseno-apis.md)
-- ⏭️ [Diagramas de Flujo](./diagramas-flujo.md)
-- ⏭️ [Casos de Uso y User Stories](./casos-uso-user-stories.md)
-- ⏭️ [Prototipos y Wireframes](./prototipos-wireframes.md)
-- ⏭️ [Especificaciones Técnicas](./especificaciones-tecnicas.md)
-
----
-
-### Siguiente Paso
-
-Continúa con la [**Definición del Stack Tecnológico**](./stack-tecnologico.md).
 
 [⬅️ Etapa 1: Análisis de Riesgos](../step_01/analisis-riesgos.md) |
 [🏠 README Principal](../../README.md) |
-[➡️ Stack Tecnológico](./stack-tecnologico.md)
+[Stack Tecnológico ➡️](./stack-tecnologico.md)

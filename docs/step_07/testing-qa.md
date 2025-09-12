@@ -139,7 +139,7 @@ class CreateUserUseCaseTest extends TestCase
         // Arrange
         $mockRepository = $this->mock(UserRepository::class);
         $useCase = new CreateUserUseCase($mockRepository);
-        
+
         $userData = [
             'name' => 'Juan Pérez',
             'email' => 'juan@example.com',
@@ -185,11 +185,7 @@ import LoginForm from "./LoginForm";
 
 describe("LoginForm", () => {
    const renderWithProvider = (component: React.ReactElement) => {
-      return render(
-         <Provider store={store}>
-            {component}
-         </Provider>,
-      );
+      return render(<Provider store={store}>{component}</Provider>);
    };
 
    it("should render login form with email and password fields", () => {
@@ -210,8 +206,9 @@ describe("LoginForm", () => {
       fireEvent.change(emailInput, { target: { value: "invalid-email" } });
       fireEvent.click(submitButton);
 
-      expect(await screen.findByText(/email debe ser válido/i))
-         .toBeInTheDocument();
+      expect(
+         await screen.findByText(/email debe ser válido/i),
+      ).toBeInTheDocument();
    });
 });
 ```
@@ -256,27 +253,8 @@ jobs:
            uses: codecov/codecov-action@v3
 ```
 
----
-
 ## Navegación
-
-**Progreso en Testing y Quality Assurance:**
-
-- ✅ **Testing y QA** ← Estás aquí
-- ⏭️ [Testing Funcional Automatizado](./testing-funcional-automatizado.md)
-- ⏭️ [Testing de Performance y Carga](./testing-performance-carga.md)
-- ⏭️ [Testing de Seguridad OWASP](./testing-seguridad-owasp.md)
-- ⏭️ [Testing de Usabilidad](./testing-usabilidad.md)
-- ⏭️ [Code Review y Refactoring](./code-review-refactoring.md)
-- ⏭️ [Auditoría de Calidad de Código](./auditoria-calidad-codigo.md)
-
----
-
-### Siguiente Paso
-
-Continúa con
-[**Testing Funcional Automatizado**](./testing-funcional-automatizado.md)
 
 [⬅️ Etapa 6: Preparación App Stores](../step_06/preparacion-app-stores.md) |
 [🏠 README Principal](../../README.md) |
-[➡️ Testing Funcional Automatizado](./testing-funcional-automatizado.md)
+[Tipos de Pruebas ➡️](./tipos-pruebas.md)

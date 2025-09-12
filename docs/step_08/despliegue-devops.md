@@ -217,24 +217,6 @@ server {
 
 ## Navegación
 
-**Progreso en Despliegue y DevOps:**
-
-- ✅ **Despliegue y DevOps** ← Estás aquí
-- ⏭️
-  [Configuración de Servidores de Producción](./configuracion-servidores-produccion.md)
-- ⏭️ [CI/CD Pipelines con GitHub Actions](./ci-cd-pipelines-github-actions.md)
-- ⏭️ [Docker y Contenedores](./docker-contenedores.md)
-- ⏭️ [Monitoreo y Logging](./monitoreo-logging.md)
-- ⏭️ [Backup y Recovery](./backup-recovery-strategies.md)
-- ⏭️ [SSL y Configuraciones de Seguridad](./ssl-configuraciones-seguridad.md)
-
----
-
-### Siguiente Paso
-
-Continúa con
-[**Configuración de Servidores de Producción**](./configuracion-servidores-produccion.md)
-
 [⬅️ Etapa 7: Auditoría de Calidad de Código](../step_07/auditoria-calidad-codigo.md)
 | [🏠 README Principal](../../README.md) |
-[➡️ Configuración de Servidores de Producción](./configuracion-servidores-produccion.md)
+[Configuración de Servidores de Producción ➡️](./configuracion-servidores-produccion.md)

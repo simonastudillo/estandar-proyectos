@@ -47,6 +47,50 @@ ciclo de vida del proyecto.
 
 ## ¿Qué Debe Incluir?
 
+### 👥 **Público Objetivo / Usuarios Finales**
+
+#### **Segmentación de Usuarios**
+
+- **Usuario Primario**: Grupo principal que usará el sistema diariamente
+- **Usuario Secundario**: Grupos que usarán funcionalidades específicas
+  ocasionalmente
+- **Usuario Administrador**: Personas responsables de configuración y
+  mantenimiento
+- **Usuario Consultor**: Roles que solo consultan información sin modificar
+
+#### **Demografía y Contexto**
+
+- **Perfil Demográfico**: Edad, educación, experiencia técnica, ubicación
+  geográfica
+- **Contexto Laboral**: Cargo, antigüedad, responsabilidades, presión de tiempo
+- **Experiencia Tecnológica**: Nivel de confort con tecnología, sistemas que usa
+  actualmente
+- **Patrones de Uso**: Cuándo, dónde y cómo interactuarán con el sistema
+
+#### **Necesidades y Motivaciones**
+
+- **Problemas Actuales**: Qué dificultades enfrentan que el sistema debe
+  resolver
+- **Objetivos Profesionales**: Cómo el sistema los ayudará a ser más efectivos
+- **Motivaciones Personales**: Beneficios individuales que buscan obtener
+- **Barreras de Adopción**: Resistencias o dificultades previstas para adoptar
+  el sistema
+
+#### **Personas / Arquetipos de Usuario**
+
+- **Persona Primaria**: Descripción detallada del usuario más importante
+- **Personas Secundarias**: Otros arquetipos relevantes con características
+  específicas
+- **Anti-personas**: Usuarios para los que NO está diseñado el sistema
+- **User Journey Maps**: Flujos de interacción típicos de cada persona
+
+#### **Criterios de Éxito del Usuario**
+
+- **Tareas que debe poder completar**: Objetivos funcionales específicos
+- **Tiempo esperado por tarea**: Eficiencia que esperan lograr
+- **Nivel de satisfacción**: Experiencia de usuario deseada
+- **Curva de aprendizaje**: Tiempo aceptable para dominar el sistema
+
 ### 👥 **Categorización de Stakeholders**
 
 #### **Por Tipo de Relación**
@@ -168,6 +212,64 @@ ciclo de vida del proyecto.
 
 ## Ejemplos
 
+### 👤 **Ejemplo de Público Objetivo / Usuarios Finales**
+
+#### **Proyecto: Sistema de Gestión de Inventarios**
+
+**Usuario Primario - "Ana, la Operadora de Bodega"**
+
+- **Demografía**: 35 años, técnica en logística, 8 años de experiencia
+- **Contexto**: Trabaja turnos de 8 horas, maneja 200+ movimientos diarios
+- **Experiencia Técnica**: Básica, usa principalmente Excel y sistemas legacy
+- **Necesidades**: Registrar movimientos rápidamente, consultar existencias,
+  generar reportes
+- **Motivaciones**: Reducir errores manuales, trabajar más eficientemente
+- **Barreras**: Resistencia al cambio, preocupación por complejidad del nuevo
+  sistema
+
+**Usuario Secundario - "Carlos, el Supervisor de Inventarios"**
+
+- **Demografía**: 42 años, ingeniero industrial, 12 años en la empresa
+- **Contexto**: Supervisa 3 operadores, responsable de precisión de inventarios
+- **Experiencia Técnica**: Intermedia, usa múltiples sistemas empresariales
+- **Necesidades**: Reportes detallados, alertas de discrepancias, análisis de
+  tendencias
+- **Motivaciones**: Mejorar control, reducir pérdidas, optimizar procesos
+- **Barreras**: Tiempo limitado para capacitación, necesita migración de datos
+  históricos
+
+**Usuario Administrador - "Luis, el Administrador de Sistemas"**
+
+- **Demografía**: 29 años, ingeniero en sistemas, 5 años de experiencia
+- **Contexto**: Responsable de configuración, usuarios y mantenimiento técnico
+- **Experiencia Técnica**: Avanzada, maneja múltiples tecnologías
+- **Necesidades**: Interfaz de administración intuitiva, logs detallados,
+  configuración flexible
+- **Motivaciones**: Sistema estable, fácil mantenimiento, buena documentación
+- **Barreras**: Recursos limitados, múltiples sistemas bajo su responsabilidad
+
+#### **User Journey Map - Ana (Operadora)**
+
+1. **Llegada al trabajo** → Login rápido sin complicaciones
+2. **Revisión pendientes** → Dashboard con tareas del día
+3. **Registro movimientos** → Entrada/salida de productos ágil
+4. **Consultas frecuentes** → Búsqueda rápida de existencias
+5. **Fin de turno** → Reporte de movimientos del día
+
+#### **Criterios de Éxito por Usuario**
+
+**Ana (Operadora)**:
+
+- Registrar movimiento completo en < 30 segundos
+- Encontrar producto existente en < 10 segundos
+- Aprender funciones básicas en 2 horas de capacitación
+
+**Carlos (Supervisor)**:
+
+- Generar reporte semanal en < 5 minutos
+- Identificar discrepancias automáticamente
+- Configurar alertas personalizadas fácilmente
+
 ### 👤 **Ejemplo de Registro de Stakeholder**
 
 **Stakeholder: María González**
@@ -220,25 +322,6 @@ ciclo de vida del proyecto.
 
 ## Navegación
 
-**Progreso en Planificación y Análisis:**
-
-- ✅ [Planificación y Análisis - Introducción](./planificacion-analisis.md)
-- ✅
-  [Requerimientos Funcionales y No Funcionales](./requerimientos-funcionales-no-funcionales.md)
-- ✅ **Análisis de Stakeholders** ← Estás aquí
-- ⏭️ [Roadmap del Proyecto](./roadmap-proyecto.md)
-- ⏭️ [Metodología de Trabajo](./metodologia-trabajo.md)
-- ⏭️ [Definición del Alcance del Proyecto](./definicion-alcance.md)
-- ⏭️ [Estimación de Tiempos y Recursos](./estimacion-tiempos-recursos.md)
-- ⏭️ [Análisis de Riesgos](./analisis-riesgos.md)
-
----
-
-### Siguiente Paso
-
-Continúa con el [**Roadmap del Proyecto**](./roadmap-proyecto.md) para
-establecer la visión estratégica y las fases de evolución de tu proyecto.
-
 [⬅️ Requerimientos](./requerimientos-funcionales-no-funcionales.md) |
 [🏠 README Principal](../../README.md) |
-[➡️ Roadmap del Proyecto](./roadmap-proyecto.md)
+[Roadmap del Proyecto ➡️](./roadmap-proyecto.md)

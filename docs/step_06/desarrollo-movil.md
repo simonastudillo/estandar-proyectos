@@ -247,28 +247,8 @@ class ApiService {
 export const apiService = new ApiService();
 ```
 
----
-
 ## Navegación
-
-**Progreso en Desarrollo de Aplicación Móvil (React Native):**
-
-- ✅ **Desarrollo de Aplicación Móvil** ← Estás aquí
-- ⏭️
-  [Configuración React Native + TypeScript](./configuracion-react-native-typescript.md)
-- ⏭️ [Pantallas y React Navigation](./pantallas-react-navigation.md)
-- ⏭️ [Sincronización Estado Redux](./sincronizacion-estado-redux.md)
-- ⏭️ [Integración APIs Móvil](./integracion-apis-movil.md)
-- ⏭️ [Testing Dispositivos y Simuladores](./testing-dispositivos-simuladores.md)
-- ⏭️ [Preparación App Stores](./preparacion-app-stores.md)
-
----
-
-### Siguiente Paso
-
-Continúa con
-[**Configuración React Native + TypeScript**](./configuracion-react-native-typescript.md)
 
 [⬅️ Etapa 5: testing-componentes-jest](../step_05/testing-componentes-jest.md) |
 [🏠 README Principal](../../README.md) |
-[➡️ Configuración React Native + TypeScript](./configuracion-react-native-typescript.md)
+[Configuración React Native + TypeScript ➡️](./configuracion-react-native-typescript.md)

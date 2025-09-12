@@ -778,28 +778,8 @@ export const WithIcon: Story = {
 };
 ```
 
----
-
 ## Navegación
-
-**Progreso en Desarrollo del Backend:**
-
-- ✅ [Desarrollo del Frontend-web](./desarrollo-frontend-web.md)
-- ✅
-  [Configuración React + TypeScript + Vite](./configuracion-react-typescript-vite.md)
-- ✅ **Componentes Reutilizables con Tipado** ← Estás aquí
-- ⏭️ [Redux Toolkit - Estado Global](./redux-toolkit-estado-global.md)
-- ⏭️ [Integración APIs con Axios](./integracion-apis-axios.md)
-- ⏭️ [React Router - Navegación](./react-router-navegacion.md)
-- ⏭️ [Testing Componentes con Jest](./testing-componentes-jest.md)
-
----
-
-### Siguiente Paso
-
-Continúa con
-[**Redux Toolkit - Estado Global**](./redux-toolkit-estado-global.md)
 
 [⬅️ Configuración React + TypeScript + Vite](./configuracion-react-typescript-vite.md)
 | [🏠 README Principal](../../README.md) |
-[➡️ Redux Toolkit - Estado Global](./redux-toolkit-estado-global.md)
+[Redux Toolkit - Estado Global ➡️](./redux-toolkit-estado-global.md)

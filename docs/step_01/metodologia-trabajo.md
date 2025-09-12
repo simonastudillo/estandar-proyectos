@@ -329,26 +329,6 @@ Frontend:
 
 ## Navegación
 
-**Progreso en Planificación y Análisis:**
-
-- ✅ [Planificación y Análisis - Introducción](./planificacion-analisis.md)
-- ✅
-  [Requerimientos Funcionales y No Funcionales](./requerimientos-funcionales-no-funcionales.md)
-- ✅ [Análisis de Stakeholders](./analisis-stakeholders.md)
-- ✅ [Roadmap del Proyecto](./roadmap-proyecto.md)
-- ✅ **Metodología de Trabajo** ← Estás aquí
-- ⏭️ [Definición del Alcance del Proyecto](./definicion-alcance.md)
-- ⏭️ [Estimación de Tiempos y Recursos](./estimacion-tiempos-recursos.md)
-- ⏭️ [Análisis de Riesgos](./analisis-riesgos.md)
-
----
-
-### Siguiente Paso
-
-Continúa con la
-[**Definición del Alcance del Proyecto**](./definicion-alcance.md) para
-establecer límites claros basados en el roadmap y metodología ya definidos.
-
 [⬅️ Roadmap del Proyecto](./roadmap-proyecto.md) |
 [🏠 README Principal](../../README.md) |
-[➡️ Definición del Alcance](./definicion-alcance.md)
+[Definición del Alcance ➡️](./definicion-alcance.md)

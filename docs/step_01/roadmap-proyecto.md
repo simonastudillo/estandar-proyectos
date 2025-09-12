@@ -311,25 +311,6 @@ errores de conteo manual
 
 ## Navegación
 
-**Progreso en Planificación y Análisis:**
-
-- ✅ [Planificación y Análisis - Introducción](./planificacion-analisis.md)
-- ✅
-  [Requerimientos Funcionales y No Funcionales](./requerimientos-funcionales-no-funcionales.md)
-- ✅ [Análisis de Stakeholders](./analisis-stakeholders.md)
-- ✅ **Roadmap del Proyecto** ← Estás aquí
-- ⏭️ [Metodología de Trabajo](./metodologia-trabajo.md)
-- ⏭️ [Definición del Alcance del Proyecto](./definicion-alcance.md)
-- ⏭️ [Estimación de Tiempos y Recursos](./estimacion-tiempos-recursos.md)
-- ⏭️ [Análisis de Riesgos](./analisis-riesgos.md)
-
----
-
-### Siguiente Paso
-
-Continúa con la [**Metodología de Trabajo**](./metodologia-trabajo.md) para
-definir cómo trabajará tu equipo y qué framework de desarrollo utilizarás.
-
 [⬅️ Análisis de Stakeholders](./analisis-stakeholders.md) |
 [🏠 README Principal](../../README.md) |
-[➡️ Metodología de Trabajo](./metodologia-trabajo.md)
+[Metodología de Trabajo ➡️](./metodologia-trabajo.md)

@@ -373,41 +373,41 @@ import { userService } from "../services/userService";
 import { User } from "../types/User";
 
 interface UserState {
-  users: User[];
-  loading: boolean;
-  error: string | null;
+   users: User[];
+   loading: boolean;
+   error: string | null;
 }
 
 const initialState: UserState = {
-  users: [],
-  loading: false,
-  error: null,
+   users: [],
+   loading: false,
+   error: null,
 };
 
 export const fetchUsers = createAsyncThunk("users/fetchUsers", async () => {
-  const response = await userService.getUsers();
-  return response.data;
+   const response = await userService.getUsers();
+   return response.data;
 });
 
 const userSlice = createSlice({
-  name: "users",
-  initialState,
-  reducers: {},
-  extraReducers: (builder) => {
-    builder
-      .addCase(fetchUsers.pending, (state) => {
-        state.loading = true;
-        state.error = null;
-      })
-      .addCase(fetchUsers.fulfilled, (state, action) => {
-        state.loading = false;
-        state.users = action.payload;
-      })
-      .addCase(fetchUsers.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.error.message || "Error fetching users";
-      });
-  },
+   name: "users",
+   initialState,
+   reducers: {},
+   extraReducers: (builder) => {
+      builder
+         .addCase(fetchUsers.pending, (state) => {
+            state.loading = true;
+            state.error = null;
+         })
+         .addCase(fetchUsers.fulfilled, (state, action) => {
+            state.loading = false;
+            state.users = action.payload;
+         })
+         .addCase(fetchUsers.rejected, (state, action) => {
+            state.loading = false;
+            state.error = action.error.message || "Error fetching users";
+         });
+   },
 });
 
 export default userSlice.reducer;
@@ -478,73 +478,53 @@ import { CreateUserRequest, UpdateUserRequest, User } from "../types/User";
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const apiClient = axios.create({
-  baseURL: API_BASE_URL,
-  headers: {
-    "Content-Type": "application/json",
-  },
+   baseURL: API_BASE_URL,
+   headers: {
+      "Content-Type": "application/json",
+   },
 });
 
 // Interceptor para agregar token de autenticación
 apiClient.interceptors.request.use((config) => {
-  const token = localStorage.getItem("authToken");
-  if (token) {
-    config.headers.Authorization = `Bearer ${token}`;
-  }
-  return config;
+   const token = localStorage.getItem("authToken");
+   if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+   }
+   return config;
 });
 
 export const userService = {
-  async getUsers(): Promise<{ data: User[] }> {
-    const response = await apiClient.get("/users");
-    return response.data;
-  },
+   async getUsers(): Promise<{ data: User[] }> {
+      const response = await apiClient.get("/users");
+      return response.data;
+   },
 
-  async getUserById(id: number): Promise<{ data: User }> {
-    const response = await apiClient.get(`/users/${id}`);
-    return response.data;
-  },
+   async getUserById(id: number): Promise<{ data: User }> {
+      const response = await apiClient.get(`/users/${id}`);
+      return response.data;
+   },
 
-  async createUser(userData: CreateUserRequest): Promise<{ data: User }> {
-    const response = await apiClient.post("/users", userData);
-    return response.data;
-  },
+   async createUser(userData: CreateUserRequest): Promise<{ data: User }> {
+      const response = await apiClient.post("/users", userData);
+      return response.data;
+   },
 
-  async updateUser(
-    id: number,
-    userData: UpdateUserRequest
-  ): Promise<{ data: User }> {
-    const response = await apiClient.put(`/users/${id}`, userData);
-    return response.data;
-  },
+   async updateUser(
+      id: number,
+      userData: UpdateUserRequest,
+   ): Promise<{ data: User }> {
+      const response = await apiClient.put(`/users/${id}`, userData);
+      return response.data;
+   },
 
-  async deleteUser(id: number): Promise<void> {
-    await apiClient.delete(`/users/${id}`);
-  },
+   async deleteUser(id: number): Promise<void> {
+      await apiClient.delete(`/users/${id}`);
+   },
 };
 ```
 
 ## Navegación
 
-**Progreso en Diseño y Arquitectura:**
-
-- ✅ [Diseño y Arquitectura - Introducción](./diseno-arquitectura.md)
-- ✅ [Stack Tecnológico](./stack-tecnologico.md)
-- ✅ [Patrones de Diseño](./patrones-diseno.md)
-- ✅ **Arquitectura del Sistema** ← Estás aquí
-- ⏭️ [Estructura de Carpetas](./estructura-carpetas.md)
-- ⏭️ [Diseño de Base de Datos](./diseno-base-datos.md)
-- ⏭️ [Diseño de APIs](./diseno-apis.md)
-- ⏭️ [Diagramas de Flujo](./diagramas-flujo.md)
-- ⏭️ [Casos de Uso y User Stories](./casos-uso-user-stories.md)
-- ⏭️ [Prototipos y Wireframes](./prototipos-wireframes.md)
-- ⏭️ [Especificaciones Técnicas](./especificaciones-tecnicas.md)
-
----
-
-### Siguiente Paso
-
-Continúa con la [**Estructura de Carpetas**](./estructura-carpetas.md).
-
 [⬅️ Patrones de Diseño](./patrones-diseno.md) |
 [🏠 README Principal](../../README.md) |
-[➡️ Estructura de Carpetas](./estructura-carpetas.md)
+[Diagrama de Arquitectura General ➡️](./diagrama-arquitectura-general.md)

@@ -657,26 +657,6 @@ fi
 
 ## Navegación
 
-**Progreso en Despliegue y DevOps:**
-
-- ✅ [Despliegue y DevOps](./despliegue-devops.md)
-- ✅
-  [Configuración de Servidores de Producción](./configuracion-servidores-produccion.md)
-- ✅ [CI/CD Pipelines con GitHub Actions](./ci-cd-pipelines-github-actions.md)
-- ✅ [Docker y Contenedores](./docker-contenedores.md)
-- ✅ [Monitoreo y Logging](./monitoreo-logging.md)
-- ✅ [Backup y Recovery](./backup-recovery-strategies.md)
-- ✅ **SSL y Configuraciones de Seguridad** ← Estás aquí
-
----
-
-### 🎉 Etapa Completada
-
-¡Felicitaciones! Has completado la **Etapa 8: Despliegue y DevOps**.
-
-**Próximo paso**: Continúa con la
-[**Etapa 9: Mantenimiento y Evolución**](../step_09/mantenimiento-evolucion.md).
-
 [⬅️ Backup y Recovery](./backup-recovery-strategies.md) |
 [🏠 README Principal](../../README.md) |
-[➡️ Mantenimiento y Evolución](../step_09/mantenimiento-evolucion.md)
+[Etapa 9: Mantenimiento y Evolución ➡️](../step_09/mantenimiento-evolucion.md)

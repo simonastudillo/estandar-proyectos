@@ -2,16 +2,26 @@
 
 ## ¿Qué es?
 
-Las APIs RESTful versionadas son interfaces de programación de aplicaciones que siguen los principios REST (Representational State Transfer) y incluyen un sistema de versionado que permite evolucionar la API sin romper la compatibilidad con clientes existentes. Este enfoque garantiza que diferentes versiones de la API puedan coexistir y que los cambios se introduzcan de manera controlada.
+Las APIs RESTful versionadas son interfaces de programación de aplicaciones que
+siguen los principios REST (Representational State Transfer) y incluyen un
+sistema de versionado que permite evolucionar la API sin romper la
+compatibilidad con clientes existentes. Este enfoque garantiza que diferentes
+versiones de la API puedan coexistir y que los cambios se introduzcan de manera
+controlada.
 
 ## ¿Por qué es importante?
 
-- **Compatibilidad hacia atrás**: Permite mantener versiones anteriores funcionando mientras se desarrollan nuevas funcionalidades
-- **Evolución controlada**: Facilita la introducción de cambios sin afectar clientes existentes
-- **Documentación clara**: Cada versión tiene su propia documentación y comportamiento definido
-- **Migración gradual**: Los clientes pueden migrar a nuevas versiones a su propio ritmo
+- **Compatibilidad hacia atrás**: Permite mantener versiones anteriores
+  funcionando mientras se desarrollan nuevas funcionalidades
+- **Evolución controlada**: Facilita la introducción de cambios sin afectar
+  clientes existentes
+- **Documentación clara**: Cada versión tiene su propia documentación y
+  comportamiento definido
+- **Migración gradual**: Los clientes pueden migrar a nuevas versiones a su
+  propio ritmo
 - **Mantenimiento**: Permite deprecar versiones antiguas de forma planificada
-- **Estabilidad**: Garantiza que los cambios no rompan aplicaciones en producción
+- **Estabilidad**: Garantiza que los cambios no rompan aplicaciones en
+  producción
 
 ## ¿Qué debe incluir?
 
@@ -34,7 +44,8 @@ routes/api/
 ### Componentes de las APIs
 
 1. **Versionado por URL**: `/api/v1/users`, `/api/v2/users`
-2. **Controladores específicos por versión**: `V1\UserController`, `V2\UserController`
+2. **Controladores específicos por versión**: `V1\UserController`,
+   `V2\UserController`
 3. **Resources versionados**: `V1\UserResource`, `V2\UserResource`
 4. **Documentación separada**: Swagger/OpenAPI por versión
 5. **Middleware de validación**: Verificación de versión y formato
@@ -589,27 +600,8 @@ class UserApiTest extends TestCase
 }
 ```
 
----
-
 ## Navegación
-
-**Progreso en Desarrollo del Backend:**
-
-- ✅ [Desarrollo del Backend](./desarrollo-backend.md)
-- ✅ [Implementación Domain Layer](./implementacion-domain-layer.md)
-- ✅ [Implementación Application Layer](./implementacion-application-layer.md)
-- ✅ [Implementación Infrastructure Layer](./implementacion-infrastructure-layer.md)
-- ✅ **APIs RESTful Versionadas** ← Estás aquí
-- ⏭️ [Autenticación Laravel Sanctum](./autenticacion-laravel-sanctum.md)
-- ⏭️ [Testing TDD Backend](./testing-tdd-backend.md)
-
----
-
-### Siguiente Paso
-
-Continúa con
-[**Autenticación Laravel Sanctum**](./autenticacion-laravel-sanctum.md).
 
 [⬅️ Implementación Infrastructure Layer](./implementacion-infrastructure-layer.md)
 | [🏠 README Principal](../../README.md) |
-[➡️ Autenticación Laravel Sanctum](./autenticacion-laravel-sanctum.md)
+[Autenticación Laravel Sanctum ➡️](./autenticacion-laravel-sanctum.md)

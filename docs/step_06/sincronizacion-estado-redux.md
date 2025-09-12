@@ -529,27 +529,8 @@ export const useNetworkStatus = () => {
 };
 ```
 
----
-
 ## Navegación
-
-**Progreso en Desarrollo de Aplicación Móvil (React Native):**
-
-- ✅ [Desarrollo de Aplicación Móvil](./desarrollo-movil.md)
-- ✅
-  [Configuración React Native + TypeScript](./configuracion-react-native-typescript.md)
-- ✅ [Pantallas y React Navigation](./pantallas-react-navigation.md)
-- ✅ **Sincronización Estado Redux** ← Estás aquí
-- ⏭️ [Integración APIs Móvil](./integracion-apis-movil.md)
-- ⏭️ [Testing Dispositivos y Simuladores](./testing-dispositivos-simuladores.md)
-- ⏭️ [Preparación App Stores](./preparacion-app-stores.md)
-
----
-
-### Siguiente Paso
-
-Continúa con [**Integración APIs Móvil**](./integracion-apis-movil.md)
 
 [⬅️ Pantallas y React Navigation](./pantallas-react-navigation.md) |
 [🏠 README Principal](../../README.md) |
-[➡️ Integración APIs Móvil](./integracion-apis-movil.md)
+[Integración APIs Móvil ➡️](./integracion-apis-movil.md)
