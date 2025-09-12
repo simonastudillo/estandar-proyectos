@@ -794,5 +794,4 @@ coverage_gates:
 ## Navegación
 
 [⬅️ Ejemplos de Testing por Lenguaje](./ejemplos-testing-por-lenguaje.md) |
-[Inicio](../../README.md) |
-[Testing funcional automatizado ➡️](./testing-funcional-automatizado.md)
+[Inicio](../../README.md) | [Testing por Entorno ➡️](./testing-por-entorno.md)
