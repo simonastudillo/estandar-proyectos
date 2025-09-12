@@ -453,6 +453,350 @@ SELECT
 FROM INFORMATION_SCHEMA.STATISTICS
 WHERE TABLE_SCHEMA = 'your_database'
 ORDER BY CARDINALITY DESC;
+
+-- Test de performance de diferentes tipos de JOIN
+-- 1. INNER JOIN vs LEFT JOIN performance
+SELECT 'INNER JOIN Test' as test_type;
+SET @start_time = NOW(3);
+SELECT COUNT(*) FROM users u INNER JOIN orders o ON u.id = o.user_id;
+SET @end_time = NOW(3);
+SELECT TIMESTAMPDIFF(MICROSECOND, @start_time, @end_time) / 1000 as execution_time_ms;
+
+SELECT 'LEFT JOIN Test' as test_type;
+SET @start_time = NOW(3);
+SELECT COUNT(*) FROM users u LEFT JOIN orders o ON u.id = o.user_id;
+SET @end_time = NOW(3);
+SELECT TIMESTAMPDIFF(MICROSECOND, @start_time, @end_time) / 1000 as execution_time_ms;
+
+-- 2. Test de subconsultas vs JOINs
+SELECT 'Subquery Test' as test_type;
+SET @start_time = NOW(3);
+SELECT * FROM users WHERE id IN (SELECT user_id FROM orders WHERE total > 100);
+SET @end_time = NOW(3);
+SELECT TIMESTAMPDIFF(MICROSECOND, @start_time, @end_time) / 1000 as execution_time_ms;
+
+SELECT 'JOIN Test' as test_type;
+SET @start_time = NOW(3);
+SELECT DISTINCT u.* FROM users u INNER JOIN orders o ON u.id = o.user_id WHERE o.total > 100;
+SET @end_time = NOW(3);
+SELECT TIMESTAMPDIFF(MICROSECOND, @start_time, @end_time) / 1000 as execution_time_ms;
+
+-- 3. Análisis de EXPLAIN para optimización
+EXPLAIN FORMAT=JSON
+SELECT u.name, u.email, COUNT(o.id) as order_count, SUM(o.total) as total_spent
+FROM users u
+LEFT JOIN orders o ON u.id = o.user_id
+WHERE u.created_at >= DATE_SUB(NOW(), INTERVAL 1 YEAR)
+GROUP BY u.id, u.name, u.email
+HAVING order_count > 0
+ORDER BY total_spent DESC
+LIMIT 50;
+
+-- 4. Test de índices compuestos
+-- Crear índice compuesto para testing
+CREATE INDEX idx_orders_user_date_total ON orders(user_id, created_at, total);
+
+-- Test query que se beneficia del índice compuesto
+EXPLAIN ANALYZE
+SELECT * FROM orders
+WHERE user_id = 123
+  AND created_at >= DATE_SUB(NOW(), INTERVAL 30 DAY)
+  AND total > 50
+ORDER BY created_at DESC;
+
+-- 5. Test de particionado (ejemplo conceptual)
+-- Crear tabla particionada para testing de performance
+CREATE TABLE orders_partitioned (
+    id INT AUTO_INCREMENT,
+    user_id INT NOT NULL,
+    total DECIMAL(10,2),
+    created_at TIMESTAMP,
+    PRIMARY KEY (id, created_at)
+) PARTITION BY RANGE (YEAR(created_at)) (
+    PARTITION p2023 VALUES LESS THAN (2024),
+    PARTITION p2024 VALUES LESS THAN (2025),
+    PARTITION p2025 VALUES LESS THAN (2026)
+);
+
+-- Test de performance entre tabla normal y particionada
+SET @start_time = NOW(3);
+SELECT COUNT(*) FROM orders WHERE YEAR(created_at) = 2024;
+SET @end_time = NOW(3);
+SELECT 'Normal Table' as table_type, TIMESTAMPDIFF(MICROSECOND, @start_time, @end_time) / 1000 as execution_time_ms;
+
+SET @start_time = NOW(3);
+SELECT COUNT(*) FROM orders_partitioned WHERE YEAR(created_at) = 2024;
+SET @end_time = NOW(3);
+SELECT 'Partitioned Table' as table_type, TIMESTAMPDIFF(MICROSECOND, @start_time, @end_time) / 1000 as execution_time_ms;
+```
+
+#### Script de análisis de performance de DB
+
+```php
+<?php
+// scripts/db-performance-analyzer.php
+
+class DatabasePerformanceAnalyzer
+{
+    private $pdo;
+    private $results = [];
+
+    public function __construct()
+    {
+        $this->pdo = new PDO(
+            "mysql:host=" . env('DB_HOST') . ";dbname=" . env('DB_DATABASE'),
+            env('DB_USERNAME'),
+            env('DB_PASSWORD')
+        );
+    }
+
+    public function runAnalysis(): array
+    {
+        echo "🗃️ Database Performance Analysis\n";
+        echo "==============================\n\n";
+
+        $this->analyzeSlowQueries();
+        $this->analyzeIndexUsage();
+        $this->analyzeTableSizes();
+        $this->analyzeConnectionPool();
+        $this->analyzeCacheHitRates();
+        $this->analyzeQueryPatterns();
+
+        return $this->results;
+    }
+
+    private function analyzeSlowQueries(): void
+    {
+        echo "1. 🐌 Slow Query Analysis\n";
+
+        // Enable slow query log if not enabled
+        $this->pdo->exec("SET GLOBAL slow_query_log = 'ON'");
+        $this->pdo->exec("SET GLOBAL long_query_time = 0.1"); // Log queries > 100ms
+
+        // Get slow queries from the last hour
+        $stmt = $this->pdo->query("
+            SELECT sql_text, query_time, lock_time, rows_sent, rows_examined
+            FROM mysql.slow_log
+            WHERE start_time >= DATE_SUB(NOW(), INTERVAL 1 HOUR)
+            ORDER BY query_time DESC
+            LIMIT 10
+        ");
+
+        $slowQueries = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        foreach ($slowQueries as $query) {
+            echo "   ⚠️  Query Time: {$query['query_time']}s\n";
+            echo "      Query: " . substr($query['sql_text'], 0, 100) . "...\n";
+            echo "      Rows Examined: {$query['rows_examined']}\n\n";
+        }
+
+        $this->results['slow_queries'] = $slowQueries;
+    }
+
+    private function analyzeIndexUsage(): void
+    {
+        echo "2. 📇 Index Usage Analysis\n";
+
+        // Find tables without primary keys
+        $stmt = $this->pdo->query("
+            SELECT table_name
+            FROM information_schema.tables
+            WHERE table_schema = DATABASE()
+            AND table_name NOT IN (
+                SELECT table_name
+                FROM information_schema.key_column_usage
+                WHERE constraint_name = 'PRIMARY'
+                AND table_schema = DATABASE()
+            )
+        ");
+
+        $tablesWithoutPK = $stmt->fetchAll(PDO::FETCH_COLUMN);
+
+        if (!empty($tablesWithoutPK)) {
+            echo "   ❌ Tables without primary key:\n";
+            foreach ($tablesWithoutPK as $table) {
+                echo "      - $table\n";
+            }
+        }
+
+        // Find unused indexes
+        $stmt = $this->pdo->query("
+            SELECT s.table_name, s.index_name, s.cardinality
+            FROM information_schema.statistics s
+            LEFT JOIN information_schema.key_column_usage k
+                ON s.table_name = k.table_name AND s.index_name = k.constraint_name
+            WHERE s.table_schema = DATABASE()
+            AND k.constraint_name IS NULL
+            AND s.cardinality < 10
+            ORDER BY s.cardinality ASC
+        ");
+
+        $lowCardinalityIndexes = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        if (!empty($lowCardinalityIndexes)) {
+            echo "   ⚠️  Indexes with low cardinality (potentially unused):\n";
+            foreach ($lowCardinalityIndexes as $index) {
+                echo "      - {$index['table_name']}.{$index['index_name']} (cardinality: {$index['cardinality']})\n";
+            }
+        }
+
+        $this->results['index_analysis'] = [
+            'tables_without_pk' => $tablesWithoutPK,
+            'low_cardinality_indexes' => $lowCardinalityIndexes
+        ];
+    }
+
+    private function analyzeTableSizes(): void
+    {
+        echo "\n3. 📊 Table Size Analysis\n";
+
+        $stmt = $this->pdo->query("
+            SELECT
+                table_name,
+                table_rows,
+                ROUND(((data_length + index_length) / 1024 / 1024), 2) AS size_mb,
+                ROUND((data_length / 1024 / 1024), 2) AS data_mb,
+                ROUND((index_length / 1024 / 1024), 2) AS index_mb,
+                ROUND((index_length / data_length * 100), 2) AS index_ratio
+            FROM information_schema.tables
+            WHERE table_schema = DATABASE()
+            AND table_type = 'BASE TABLE'
+            ORDER BY (data_length + index_length) DESC
+            LIMIT 10
+        ");
+
+        $tableSizes = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        foreach ($tableSizes as $table) {
+            echo "   📋 {$table['table_name']}: {$table['size_mb']} MB\n";
+            echo "      Rows: " . number_format($table['table_rows']) . "\n";
+            echo "      Data: {$table['data_mb']} MB, Index: {$table['index_mb']} MB\n";
+            echo "      Index Ratio: {$table['index_ratio']}%\n\n";
+        }
+
+        $this->results['table_sizes'] = $tableSizes;
+    }
+
+    private function analyzeConnectionPool(): void
+    {
+        echo "4. 🔗 Connection Pool Analysis\n";
+
+        $stmt = $this->pdo->query("SHOW STATUS LIKE 'Threads_connected'");
+        $connections = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        $stmt = $this->pdo->query("SHOW VARIABLES LIKE 'max_connections'");
+        $maxConnections = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        $connectionRatio = ($connections['Value'] / $maxConnections['Value']) * 100;
+
+        echo "   🔌 Active Connections: {$connections['Value']}\n";
+        echo "   🎯 Max Connections: {$maxConnections['Value']}\n";
+        echo "   📊 Usage: " . round($connectionRatio, 2) . "%\n";
+
+        if ($connectionRatio > 80) {
+            echo "   ⚠️  High connection usage! Consider increasing max_connections or connection pooling.\n";
+        }
+
+        $this->results['connections'] = [
+            'active' => $connections['Value'],
+            'max' => $maxConnections['Value'],
+            'usage_percent' => round($connectionRatio, 2)
+        ];
+    }
+
+    private function analyzeCacheHitRates(): void
+    {
+        echo "\n5. 💾 Cache Hit Rates\n";
+
+        // Query Cache
+        $stmt = $this->pdo->query("SHOW STATUS LIKE 'Qcache_hits'");
+        $qcacheHits = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        $stmt = $this->pdo->query("SHOW STATUS LIKE 'Qcache_inserts'");
+        $qcacheInserts = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($qcacheHits && $qcacheInserts) {
+            $qcacheHitRate = ($qcacheHits['Value'] / ($qcacheHits['Value'] + $qcacheInserts['Value'])) * 100;
+            echo "   🎯 Query Cache Hit Rate: " . round($qcacheHitRate, 2) . "%\n";
+        }
+
+        // InnoDB Buffer Pool
+        $stmt = $this->pdo->query("SHOW STATUS LIKE 'Innodb_buffer_pool_read_requests'");
+        $bufferReadRequests = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        $stmt = $this->pdo->query("SHOW STATUS LIKE 'Innodb_buffer_pool_reads'");
+        $bufferReads = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($bufferReadRequests && $bufferReads) {
+            $bufferHitRate = (1 - ($bufferReads['Value'] / $bufferReadRequests['Value'])) * 100;
+            echo "   🗃️ InnoDB Buffer Pool Hit Rate: " . round($bufferHitRate, 2) . "%\n";
+        }
+
+        $this->results['cache_hit_rates'] = [
+            'query_cache' => round($qcacheHitRate ?? 0, 2),
+            'innodb_buffer_pool' => round($bufferHitRate ?? 0, 2)
+        ];
+    }
+
+    private function analyzeQueryPatterns(): void
+    {
+        echo "\n6. 🔍 Query Pattern Analysis\n";
+
+        $stmt = $this->pdo->query("
+            SHOW STATUS WHERE Variable_name IN (
+                'Com_select', 'Com_insert', 'Com_update', 'Com_delete',
+                'Com_insert_select', 'Com_replace', 'Com_replace_select'
+            )
+        ");
+
+        $queryStats = $stmt->fetchAll(PDO::FETCH_KEY_PAIR);
+
+        echo "   📊 Query Distribution:\n";
+        foreach ($queryStats as $type => $count) {
+            echo "      " . str_replace('Com_', '', $type) . ": " . number_format($count) . "\n";
+        }
+
+        $this->results['query_patterns'] = $queryStats;
+    }
+
+    public function generateRecommendations(): array
+    {
+        $recommendations = [];
+
+        // Recommendations based on analysis results
+        if (!empty($this->results['slow_queries'])) {
+            $recommendations[] = "Optimize slow queries identified in the analysis";
+        }
+
+        if (!empty($this->results['index_analysis']['tables_without_pk'])) {
+            $recommendations[] = "Add primary keys to tables: " . implode(', ', $this->results['index_analysis']['tables_without_pk']);
+        }
+
+        if ($this->results['connections']['usage_percent'] > 80) {
+            $recommendations[] = "Consider increasing max_connections or implementing connection pooling";
+        }
+
+        if ($this->results['cache_hit_rates']['query_cache'] < 90) {
+            $recommendations[] = "Optimize query cache configuration";
+        }
+
+        if ($this->results['cache_hit_rates']['innodb_buffer_pool'] < 95) {
+            $recommendations[] = "Consider increasing innodb_buffer_pool_size";
+        }
+
+        return $recommendations;
+    }
+}
+
+// Execute the analyzer
+$analyzer = new DatabasePerformanceAnalyzer();
+$results = $analyzer->runAnalysis();
+$recommendations = $analyzer->generateRecommendations();
+
+echo "\n📋 Recommendations:\n";
+foreach ($recommendations as $recommendation) {
+    echo "   - $recommendation\n";
+}
 ```
 
 ### 6. Monitoreo durante las pruebas
