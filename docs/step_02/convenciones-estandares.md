@@ -27,6 +27,38 @@ fundamentales para el trabajo en equipo y la escalabilidad del código.
 
 ### Nomenclaturas y Convenciones Generales
 
+...
+
+### Reglas por Lenguaje
+
+...
+
+### Estilo de Código
+
+...
+
+### Comentarios y Anotaciones
+
+...
+
+### Buenas Prácticas
+
+...
+
+### Reglas del Sentido Común
+
+...
+
+### Control de Versiones Semántico (SemVer)
+
+...
+
+### Convención de Mensajes de Commit
+
+...
+
+### Nomenclaturas y Convenciones Generales
+
 #### Archivos y Carpetas
 
 - **Carpetas**: kebab-case para estructura de proyecto
@@ -437,6 +469,262 @@ final class UserService
     }
 }
 ```
+
+### Reglas del Sentido Común
+
+#### Principios Fundamentales
+
+1. **Claridad sobre Cleverness**
+   - Código claro es mejor que código "inteligente"
+   - Si necesitas explicar cómo funciona, probablemente necesita refactoring
+   - Optimiza para el desarrollador que leerá el código en 6 meses
+
+```typescript
+// ❌ Evitar: Cleverness innecesario
+const f = (x: any[]) => x.reduce((a, b) => a + (b.v || 0), 0);
+
+// ✅ Preferir: Código claro y expresivo
+function calculateTotalValue(items: { value?: number }[]): number {
+   return items.reduce((total, item) => total + (item.value || 0), 0);
+}
+```
+
+2. **Principio DRY Aplicado con Sentido**
+   - No repetir código, pero tampoco sobre-abstraer prematuramente
+   - Tres o más repeticiones justifican abstracción
+   - La abstracción debe tener un propósito claro del dominio
+
+```typescript
+// ❌ Repetición innecesaria
+function validateUserEmail(email: string): boolean {
+   return email.includes("@") && email.includes(".") && email.length > 5;
+}
+
+function validateAdminEmail(email: string): boolean {
+   return email.includes("@") && email.includes(".") && email.length > 5;
+}
+
+// ✅ Abstracción apropiada
+function isValidEmailFormat(email: string): boolean {
+   return email.includes("@") && email.includes(".") && email.length > 5;
+}
+
+function validateUserEmail(email: string): boolean {
+   return isValidEmailFormat(email);
+}
+
+function validateAdminEmail(email: string): boolean {
+   return isValidEmailFormat(email) && email.endsWith("@company.com");
+}
+```
+
+3. **Nombrado Descriptivo y Consistente**
+   - Los nombres deben explicar la intención sin necesidad de comentarios
+   - Usar el mismo vocabulario del dominio del negocio
+   - Evitar abreviaciones y nombres genéricos
+
+```typescript
+// ❌ Nombres poco descriptivos
+const d = new Date();
+const u = users.filter((x) => x.active);
+function proc(data: any): any {}
+
+// ✅ Nombres descriptivos
+const currentDate = new Date();
+const activeUsers = users.filter((user) => user.isActive);
+function processPaymentTransaction(transaction: PaymentData): PaymentResult {}
+```
+
+4. **Funciones Pequeñas y Enfocadas**
+   - Una función debe hacer una sola cosa y hacerla bien
+   - Máximo 20-30 líneas por función
+   - Si necesitas scrollear para ver toda la función, es muy larga
+
+```typescript
+// ❌ Función que hace demasiadas cosas
+function processUser(userData: any): any {
+   // Validar datos
+   if (!userData.email || !userData.name) return null;
+
+   // Crear usuario
+   const user = { ...userData, id: generateId() };
+
+   // Enviar email
+   sendWelcomeEmail(user.email);
+
+   // Guardar en BD
+   database.save(user);
+
+   // Actualizar cache
+   cache.invalidate("users");
+
+   return user;
+}
+
+// ✅ Funciones enfocadas
+function validateUserData(userData: UserInput): boolean {
+   return Boolean(userData.email && userData.name);
+}
+
+function createUserEntity(userData: UserInput): User {
+   return { ...userData, id: generateId() };
+}
+
+function processNewUser(userData: UserInput): User | null {
+   if (!validateUserData(userData)) {
+      return null;
+   }
+
+   const user = createUserEntity(userData);
+
+   // Coordinar las operaciones relacionadas
+   sendWelcomeEmail(user.email);
+   database.save(user);
+   cache.invalidate("users");
+
+   return user;
+}
+```
+
+5. **Comentarios Cuando Son Necesarios**
+   - Explicar el "por qué", no el "qué"
+   - Los comentarios deben agregar valor, no repetir el código
+   - Actualizar comentarios cuando cambies el código
+
+```typescript
+// ❌ Comentarios obvios
+let i = 0; // inicializar contador en 0
+i++; // incrementar contador
+
+// ✅ Comentarios que agregan valor
+// Usar algoritmo de Luhn para validar números de tarjeta de crédito
+// según estándar ISO/IEC 7812-1
+function validateCreditCard(cardNumber: string): boolean {
+   // Implementación del algoritmo
+}
+
+// Timeout de 30 segundos porque el servicio externo es lento
+// y preferimos fallar gracefully que bloquear la UI
+const API_TIMEOUT = 30000;
+```
+
+6. **Manejo de Errores Consistente y Predecible**
+   - Fallar rápido y con mensajes claros
+   - Ser consistente en cómo manejas errores similares
+   - No silenciar errores sin una buena razón
+
+```typescript
+// ❌ Manejo inconsistente de errores
+function getUser(id: string): User | null | undefined {
+   try {
+      return userService.find(id);
+   } catch {
+      return null; // A veces null
+   }
+}
+
+function getOrder(id: string): Order | undefined {
+   try {
+      return orderService.find(id);
+   } catch {
+      return undefined; // A veces undefined
+   }
+}
+
+// ✅ Manejo consistente
+type Result<T> = { success: true; data: T } | { success: false; error: string };
+
+function getUser(id: string): Result<User> {
+   try {
+      const user = userService.find(id);
+      return { success: true, data: user };
+   } catch (error) {
+      return {
+         success: false,
+         error: `Failed to fetch user: ${error.message}`,
+      };
+   }
+}
+
+function getOrder(id: string): Result<Order> {
+   try {
+      const order = orderService.find(id);
+      return { success: true, data: order };
+   } catch (error) {
+      return {
+         success: false,
+         error: `Failed to fetch order: ${error.message}`,
+      };
+   }
+}
+```
+
+7. **Performance vs. Legibilidad**
+   - Optimizar cuando sea necesario, no prematuramente
+   - Medir antes de optimizar
+   - La legibilidad es más importante que micro-optimizaciones
+
+```typescript
+// ❌ Optimización prematura que reduce legibilidad
+const u = new Map(users.map((u) => [u.id, u]));
+const result = orders.map((o) => ({ ...o, user: u.get(o.uid) }));
+
+// ✅ Código claro, optimizar solo si es necesario
+const userMap = new Map(users.map((user) => [user.id, user]));
+const ordersWithUsers = orders.map((order) => ({
+   ...order,
+   user: userMap.get(order.userId),
+}));
+```
+
+8. **Consistencia en el Proyecto**
+   - Seguir las convenciones establecidas en el proyecto
+   - Si cambias un patrón, cambiarlo en todo el proyecto
+   - Documentar decisiones arquitectónicas importantes
+
+```typescript
+// Si el proyecto usa Result pattern, úsalo consistentemente
+// Si usa excepciones, úsalas consistentemente
+// No mezclar patrones sin una razón válida
+
+// ✅ Consistente con el patrón del proyecto
+class UserService {
+   async createUser(data: CreateUserRequest): Promise<Result<User>> {
+      // Implementación usando Result pattern
+   }
+
+   async updateUser(
+      id: string,
+      data: UpdateUserRequest,
+   ): Promise<Result<User>> {
+      // Implementación usando Result pattern
+   }
+}
+```
+
+#### Señales de Alerta (Code Smells)
+
+- **Funciones con más de 3-4 parámetros**: Considera usar un objeto de
+  configuración
+- **Clases con más de 10 métodos públicos**: Probablemente hace demasiadas cosas
+- **Archivos con más de 300-400 líneas**: Considera dividir en módulos más
+  pequeños
+- **Comentarios que explican código complejo**: El código debería refactorizarse
+- **Variables booleanas en nombres de funciones**: `getUserActive()` vs
+  `getActiveUsers()`
+- **Números mágicos**: Usar constantes con nombres descriptivos
+
+#### Reglas de Oro
+
+1. **Regla del Boy Scout**: Deja el código mejor de como lo encontraste
+2. **Principio YAGNI**: You Aren't Gonna Need It - No implementes funcionalidad
+   que "podrías necesitar"
+3. **Principio KISS**: Keep It Simple, Stupid - La solución más simple que
+   funcione
+4. **Regla de los dos minutos**: Si no entiendes qué hace una función en dos
+   minutos, necesita refactoring
+5. **Ley de Demeter**: Un objeto solo debe comunicarse con sus "amigos
+   inmediatos"
 
 ### Control de Versiones Semántico (SemVer)
 
