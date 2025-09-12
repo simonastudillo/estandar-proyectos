@@ -52,7 +52,111 @@ Laravel, frontend React, móvil React Native).
 
 ## ¿Qué debe incluir?
 
-### 📁 **Configuración Inicial del Repositorio**
+### � **Conventional Commits y Mensajes Estándar**
+
+#### **Formato de Commits**
+
+Los mensajes de commit deben seguir el estándar **Conventional Commits** para mantener un historial limpio y permitir automatización:
+
+```bash
+<tipo>[ámbito opcional]: <descripción>
+
+[cuerpo opcional]
+
+[footer opcional]
+```
+
+#### **Tipos de Commit Permitidos**
+
+- **feat**: Nueva funcionalidad para el usuario
+- **fix**: Corrección de bug
+- **docs**: Cambios en documentación
+- **style**: Cambios de formato (espacios, comas, etc.)
+- **refactor**: Refactoring de código sin cambios funcionales
+- **test**: Agregar o modificar tests
+- **chore**: Cambios en build, dependencias, etc.
+- **perf**: Mejoras de performance
+- **ci**: Cambios en configuración de CI/CD
+- **build**: Cambios en sistema de build
+
+#### **Ejemplos de Commits Válidos**
+
+```bash
+# Funcionalidades
+feat(auth): agregar autenticación con Laravel Sanctum
+feat(user): implementar CRUD de usuarios en domain layer
+feat(api): agregar endpoint GET /api/v1/users
+
+# Correcciones
+fix(auth): corregir validación de tokens expirados
+fix(database): resolver problema de conexión en producción
+
+# Documentación
+docs(readme): actualizar instrucciones de instalación
+docs(api): agregar documentación de endpoints v2
+
+# Refactoring
+refactor(user): extraer validaciones a value objects
+refactor(api): simplificar estructura de responses
+
+# Tests
+test(auth): agregar tests unitarios para AuthService
+test(integration): agregar tests de endpoints de usuarios
+```
+
+### 🌳 **Branching Strategy - Git Flow Adaptado**
+
+#### **Estructura de Ramas**
+
+```bash
+main/                    # Código en producción (solo releases)
+├── develop/            # Rama principal de desarrollo
+│   ├── feature/user-management     # Nueva funcionalidad
+│   ├── feature/auth-system        # Nueva funcionalidad
+│   └── feature/api-v2            # Nueva funcionalidad
+├── release/v1.2.0     # Preparación de release
+├── hotfix/urgent-bug  # Correcciones urgentes en producción
+└── docs/update-readme # Actualizaciones de documentación
+```
+
+#### **Convenciones de Nombres de Ramas**
+
+- **main**: Código estable en producción
+- **develop**: Integración de features completadas
+- **feature/[nombre-descriptivo]**: Nuevas funcionalidades
+- **release/v[x.y.z]**: Preparación de versiones
+- **hotfix/[descripción-corta]**: Correcciones urgentes
+- **docs/[tema]**: Actualizaciones de documentación
+- **chore/[tarea]**: Tareas de mantenimiento
+
+#### **Flujo de Trabajo por Tipo de Rama**
+
+```bash
+# 1. Feature Development
+git checkout develop
+git pull origin develop
+git checkout -b feature/user-authentication
+# ... desarrollo ...
+git commit -m "feat(auth): implementar login con Sanctum"
+git push origin feature/user-authentication
+# Crear Pull Request hacia develop
+
+# 2. Release Preparation
+git checkout develop
+git checkout -b release/v1.2.0
+# ... preparar release (tests, docs, etc.) ...
+git commit -m "chore(release): preparar versión v1.2.0"
+# Merge a main y develop, crear tag
+
+# 3. Hotfix
+git checkout main
+git checkout -b hotfix/critical-security-fix
+# ... corrección urgente ...
+git commit -m "fix(security): corregir vulnerabilidad en auth"
+# Merge a main y develop
+```
+
+### �📁 **Configuración Inicial del Repositorio**
 
 #### **1. Inicialización y Estructura Básica**
 
@@ -732,6 +836,161 @@ curl -X POST https://api.github.com/repos/usuario/repo/hooks \
       "content_type": "json"
     }
   }'
+```
+
+### 🪝 **Git Hooks para Automatización**
+
+#### **Pre-commit Hook - Validaciones Automáticas**
+
+```bash
+#!/bin/sh
+# .git/hooks/pre-commit
+
+echo "🔍 Ejecutando validaciones pre-commit..."
+
+# 1. Validar formato de commit message
+if [ -z "$(head -1 .git/COMMIT_EDITMSG 2>/dev/null | grep -E '^(feat|fix|docs|style|refactor|test|chore|perf|ci|build)(\(.+\))?: .{1,50}')" ]; then
+    echo "❌ Error: Mensaje de commit no sigue Conventional Commits"
+    echo "   Formato: tipo(ámbito): descripción"
+    echo "   Ejemplo: feat(auth): agregar autenticación con JWT"
+    exit 1
+fi
+
+# 2. Ejecutar linting en archivos modificados
+echo "🎨 Verificando formato de código..."
+
+# Linting para JavaScript/TypeScript
+if git diff --cached --name-only | grep -E '\.(js|jsx|ts|tsx)$'; then
+    npm run lint:check
+    if [ $? -ne 0 ]; then
+        echo "❌ Error: Problemas de linting en archivos JS/TS"
+        echo "   Ejecuta: npm run lint:fix"
+        exit 1
+    fi
+fi
+
+# Linting para PHP
+if git diff --cached --name-only | grep '\.php$'; then
+    ./vendor/bin/php-cs-fixer fix --dry-run --diff
+    if [ $? -ne 0 ]; then
+        echo "❌ Error: Problemas de formato en archivos PHP"
+        echo "   Ejecuta: composer run format"
+        exit 1
+    fi
+fi
+
+# 3. Ejecutar tests unitarios rápidos
+echo "🧪 Ejecutando tests unitarios..."
+npm run test:unit --silent
+if [ $? -ne 0 ]; then
+    echo "❌ Error: Tests unitarios fallando"
+    echo "   Revisa los tests antes de hacer commit"
+    exit 1
+fi
+
+echo "✅ Todas las validaciones pasaron correctamente"
+```
+
+#### **Commit-msg Hook - Validación de Mensajes**
+
+```bash
+#!/bin/sh
+# .git/hooks/commit-msg
+
+commit_regex='^(feat|fix|docs|style|refactor|test|chore|perf|ci|build)(\(.+\))?: .{1,50}'
+
+if ! grep -qE "$commit_regex" "$1"; then
+    echo "❌ Error: Mensaje de commit inválido"
+    echo ""
+    echo "El formato debe ser: tipo(ámbito): descripción"
+    echo ""
+    echo "Tipos válidos:"
+    echo "  feat     - nueva funcionalidad"
+    echo "  fix      - corrección de bug"
+    echo "  docs     - cambios en documentación"
+    echo "  style    - cambios de formato"
+    echo "  refactor - refactoring sin cambios funcionales"
+    echo "  test     - agregar o modificar tests"
+    echo "  chore    - tareas de mantenimiento"
+    echo "  perf     - mejoras de performance"
+    echo "  ci       - cambios en CI/CD"
+    echo "  build    - cambios en build system"
+    echo ""
+    echo "Ejemplos válidos:"
+    echo "  feat(auth): agregar login con OAuth"
+    echo "  fix(database): corregir conexión en staging"
+    echo "  docs(readme): actualizar instrucciones"
+    exit 1
+fi
+```
+
+#### **Pre-push Hook - Validaciones Avanzadas**
+
+```bash
+#!/bin/sh
+# .git/hooks/pre-push
+
+echo "🚀 Ejecutando validaciones pre-push..."
+
+# 1. Verificar que no se está pusheando a main directamente
+branch=$(git rev-parse --abbrev-ref HEAD)
+if [ "$branch" = "main" ]; then
+    echo "❌ Error: No se permite push directo a main"
+    echo "   Usa Pull Requests para mergear a main"
+    exit 1
+fi
+
+# 2. Ejecutar test suite completo
+echo "🧪 Ejecutando test suite completo..."
+npm run test:all
+if [ $? -ne 0 ]; then
+    echo "❌ Error: Test suite completo fallando"
+    exit 1
+fi
+
+# 3. Verificar que la rama está actualizada con develop
+echo "🔄 Verificando sincronización con develop..."
+git fetch origin develop
+if ! git merge-base --is-ancestor origin/develop HEAD; then
+    echo "⚠️  Advertencia: La rama no está actualizada con develop"
+    echo "   Ejecuta: git rebase origin/develop"
+    echo "   ¿Continuar anyway? (y/N)"
+    read -r response
+    if [ "$response" != "y" ] && [ "$response" != "Y" ]; then
+        exit 1
+    fi
+fi
+
+echo "✅ Validaciones pre-push completadas"
+```
+
+#### **Script de Instalación de Hooks**
+
+```bash
+#!/bin/bash
+# scripts/install-git-hooks.sh
+
+echo "📦 Instalando Git Hooks..."
+
+# Crear directorio de hooks si no existe
+mkdir -p .git/hooks
+
+# Copiar hooks
+cp scripts/hooks/pre-commit .git/hooks/
+cp scripts/hooks/commit-msg .git/hooks/
+cp scripts/hooks/pre-push .git/hooks/
+
+# Hacer ejecutables
+chmod +x .git/hooks/pre-commit
+chmod +x .git/hooks/commit-msg
+chmod +x .git/hooks/pre-push
+
+echo "✅ Git Hooks instalados correctamente"
+echo ""
+echo "Hooks instalados:"
+echo "  - pre-commit: valida formato y ejecuta tests"
+echo "  - commit-msg: valida formato de mensajes"
+echo "  - pre-push: ejecuta test suite completo"
 ```
 
 ## Ejemplos
