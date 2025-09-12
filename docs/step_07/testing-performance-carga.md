@@ -66,27 +66,27 @@ rendimiento del sistema.
 ```yaml
 # performance-requirements.yml
 response_time:
-   api_endpoints:
-      maximum: 200ms
-      average: 100ms
-   page_load:
-      maximum: 2s
-      average: 1s
+  api_endpoints:
+    maximum: 200ms
+    average: 100ms
+  page_load:
+    maximum: 2s
+    average: 1s
 
 throughput:
-   api_requests: 1000 rps
-   concurrent_users: 500
-   daily_transactions: 100000
+  api_requests: 1000 rps
+  concurrent_users: 500
+  daily_transactions: 100000
 
 resource_utilization:
-   cpu: 70%
-   memory: 80%
-   disk_io: 60%
-   network: 50%
+  cpu: 70%
+  memory: 80%
+  disk_io: 60%
+  network: 50%
 
 availability:
-   uptime: 99.9%
-   max_downtime: 8.76h/year
+  uptime: 99.9%
+  max_downtime: 8.76h/year
 ```
 
 ### 2. Configurar herramientas de testing
@@ -165,12 +165,12 @@ export let options = {
 
 export default function() {
   let response = http.get('http://localhost:8000/api/v1/users');
-  
+
   check(response, {
     'status is 200': (r) => r.status === 200,
     'response time < 200ms': (r) => r.timings.duration < 200,
   });
-  
+
   sleep(1);
 }
 EOF
@@ -186,100 +186,100 @@ k6 run load-test.js
 ```yaml
 # api-performance-test.yml
 config:
-   target: "http://localhost:8000"
-   phases:
-      # Warm-up
-      - duration: 30
-        arrivalRate: 5
-        name: "Warm-up"
-      # Load test
-      - duration: 120
-        arrivalRate: 20
-        name: "Load test"
-      # Stress test
-      - duration: 60
-        arrivalRate: 50
-        name: "Stress test"
-      # Cool down
-      - duration: 30
-        arrivalRate: 5
-        name: "Cool down"
+  target: "http://localhost:8000"
+  phases:
+    # Warm-up
+    - duration: 30
+      arrivalRate: 5
+      name: "Warm-up"
+    # Load test
+    - duration: 120
+      arrivalRate: 20
+      name: "Load test"
+    # Stress test
+    - duration: 60
+      arrivalRate: 50
+      name: "Stress test"
+    # Cool down
+    - duration: 30
+      arrivalRate: 5
+      name: "Cool down"
 
-   variables:
-      # Variables para datos dinámicos
-      userId: "{{ $randomInt(1, 1000) }}"
-      email: "user{{ $randomInt(1, 10000) }}@example.com"
+  variables:
+    # Variables para datos dinámicos
+    userId: "{{ $randomInt(1, 1000) }}"
+    email: "user{{ $randomInt(1, 10000) }}@example.com"
 
 scenarios:
-   - name: "User Management API"
-     weight: 40
-     flow:
-        # Autenticación
-        - post:
-             url: "/api/v1/auth/login"
-             json:
-                email: "admin@example.com"
-                password: "password123"
-             capture:
-                json: "$.token"
-                as: "authToken"
+  - name: "User Management API"
+    weight: 40
+    flow:
+      # Autenticación
+      - post:
+          url: "/api/v1/auth/login"
+          json:
+            email: "admin@example.com"
+            password: "password123"
+          capture:
+            json: "$.token"
+            as: "authToken"
 
-        # Listar usuarios
-        - get:
-             url: "/api/v1/users"
-             headers:
-                Authorization: "Bearer {{ authToken }}"
-             expect:
-                - statusCode: 200
-                - hasProperty: "data"
+      # Listar usuarios
+      - get:
+          url: "/api/v1/users"
+          headers:
+            Authorization: "Bearer {{ authToken }}"
+          expect:
+            - statusCode: 200
+            - hasProperty: "data"
 
-        # Crear usuario
-        - post:
-             url: "/api/v1/users"
-             headers:
-                Authorization: "Bearer {{ authToken }}"
-             json:
-                name: "Test User {{ userId }}"
-                email: "{{ email }}"
-                password: "password123"
-             capture:
-                json: "$.data.id"
-                as: "newUserId"
-             expect:
-                - statusCode: 201
+      # Crear usuario
+      - post:
+          url: "/api/v1/users"
+          headers:
+            Authorization: "Bearer {{ authToken }}"
+          json:
+            name: "Test User {{ userId }}"
+            email: "{{ email }}"
+            password: "password123"
+          capture:
+            json: "$.data.id"
+            as: "newUserId"
+          expect:
+            - statusCode: 201
 
-        # Obtener usuario específico
-        - get:
-             url: "/api/v1/users/{{ newUserId }}"
-             headers:
-                Authorization: "Bearer {{ authToken }}"
-             expect:
-                - statusCode: 200
+      # Obtener usuario específico
+      - get:
+          url: "/api/v1/users/{{ newUserId }}"
+          headers:
+            Authorization: "Bearer {{ authToken }}"
+          expect:
+            - statusCode: 200
 
-   - name: "Public API"
-     weight: 30
-     flow:
-        # Endpoints públicos
-        - get:
-             url: "/api/v1/public/stats"
-             expect:
-                - statusCode: 200
-                - contentType: "application/json"
+  - name: "Public API"
+    weight: 30
+    flow:
+      # Endpoints públicos
+      - get:
+          url: "/api/v1/public/stats"
+          expect:
+            - statusCode: 200
+            - contentType: "application/json"
 
-   - name: "File Upload"
-     weight: 30
-     flow:
-        # Test de subida de archivos
-        - post:
-             url: "/api/v1/files/upload"
-             beforeRequest: "generateFileData"
-             expect:
-                - statusCode: 200
+  - name: "File Upload"
+    weight: 30
+    flow:
+      # Test de subida de archivos
+      - post:
+          url: "/api/v1/files/upload"
+          beforeRequest: "generateFileData"
+          expect:
+            - statusCode: 200
 
 # Funciones personalizadas
 functions:
-   generateFileData:
-      - log: "Generating file data for upload test"
+  generateFileData:
+    - log: "Generating file data for upload test"
 ```
 
 ### 4. Configurar testing de frontend
@@ -306,10 +306,10 @@ async function runLighthouse(url) {
     onlyCategories: ['performance'],
     port: chrome.port,
   };
-  
+
   const runnerResult = await lighthouse(url, options);
   await chrome.kill();
-  
+
   return runnerResult.lhr;
 }
 
@@ -336,58 +336,60 @@ node performance-audit.js
 import { expect, test } from "@playwright/test";
 
 test.describe("Page Load Performance", () => {
-   test("home page should load within 2 seconds", async ({ page }) => {
-      const startTime = Date.now();
+  test("home page should load within 2 seconds", async ({ page }) => {
+    const startTime = Date.now();
 
-      await page.goto("/");
-      await page.waitForLoadState("networkidle");
+    await page.goto("/");
+    await page.waitForLoadState("networkidle");
 
-      const loadTime = Date.now() - startTime;
-      expect(loadTime).toBeLessThan(2000);
+    const loadTime = Date.now() - startTime;
+    expect(loadTime).toBeLessThan(2000);
 
-      // Verificar métricas de performance
-      const performanceMetrics = await page.evaluate(() => {
-         const navigation = performance.getEntriesByType(
-            "navigation",
-         )[0] as PerformanceNavigationTiming;
-         return {
-            domContentLoaded: navigation.domContentLoadedEventEnd -
-               navigation.domContentLoadedEventStart,
-            firstPaint: performance.getEntriesByName("first-paint")[0]
-               ?.startTime,
-            firstContentfulPaint: performance.getEntriesByName(
-               "first-contentful-paint",
-            )[0]?.startTime,
-         };
-      });
+    // Verificar métricas de performance
+    const performanceMetrics = await page.evaluate(() => {
+      const navigation = performance.getEntriesByType(
+        "navigation"
+      )[0] as PerformanceNavigationTiming;
+      return {
+        domContentLoaded:
+          navigation.domContentLoadedEventEnd -
+          navigation.domContentLoadedEventStart,
+        firstPaint: performance.getEntriesByName("first-paint")[0]?.startTime,
+        firstContentfulPaint: performance.getEntriesByName(
+          "first-contentful-paint"
+        )[0]?.startTime,
+      };
+    });
 
-      expect(performanceMetrics.domContentLoaded).toBeLessThan(1000);
-      expect(performanceMetrics.firstContentfulPaint).toBeLessThan(1500);
-   });
+    expect(performanceMetrics.domContentLoaded).toBeLessThan(1000);
+    expect(performanceMetrics.firstContentfulPaint).toBeLessThan(1500);
+  });
 
-   test("dashboard should handle large datasets efficiently", async ({ page }) => {
-      // Navegar al dashboard con muchos datos
-      await page.goto("/dashboard?limit=1000");
+  test("dashboard should handle large datasets efficiently", async ({
+    page,
+  }) => {
+    // Navegar al dashboard con muchos datos
+    await page.goto("/dashboard?limit=1000");
 
-      // Medir tiempo de renderizado
-      const startTime = Date.now();
-      await page.waitForSelector("[data-testid=data-table]");
-      const renderTime = Date.now() - startTime;
+    // Medir tiempo de renderizado
+    const startTime = Date.now();
+    await page.waitForSelector("[data-testid=data-table]");
+    const renderTime = Date.now() - startTime;
 
-      expect(renderTime).toBeLessThan(3000);
+    expect(renderTime).toBeLessThan(3000);
 
-      // Verificar que la tabla sea responsive
-      const scrollPerformance = await page.evaluate(() => {
-         const table = document.querySelector("[data-testid=data-table]");
-         const startScroll = performance.now();
+    // Verificar que la tabla sea responsive
+    const scrollPerformance = await page.evaluate(() => {
+      const table = document.querySelector("[data-testid=data-table]");
+      const startScroll = performance.now();
 
-         table?.scrollTo({ top: 1000, behavior: "instant" });
+      table?.scrollTo({ top: 1000, behavior: "instant" });
 
-         return performance.now() - startScroll;
-      });
+      return performance.now() - startScroll;
+    });
 
-      expect(scrollPerformance).toBeLessThan(100);
-   });
+    expect(scrollPerformance).toBeLessThan(100);
+  });
 });
 ```
 
@@ -405,11 +407,11 @@ BEGIN
   DECLARE i INT DEFAULT 1;
   DECLARE start_time DATETIME;
   DECLARE end_time DATETIME;
-  
+
   SET start_time = NOW(3);
-  
+
   WHILE i <= num_records DO
-    INSERT INTO users (name, email, password, created_at, updated_at) 
+    INSERT INTO users (name, email, password, created_at, updated_at)
     VALUES (
       CONCAT('User ', i),
       CONCAT('user', i, '@example.com'),
@@ -419,9 +421,9 @@ BEGIN
     );
     SET i = i + 1;
   END WHILE;
-  
+
   SET end_time = NOW(3);
-  SELECT CONCAT('Inserted ', num_records, ' records in ', 
+  SELECT CONCAT('Inserted ', num_records, ' records in ',
                 TIMESTAMPDIFF(MICROSECOND, start_time, end_time) / 1000, ' ms') AS result;
 END$$
 DELIMITER ;
@@ -430,7 +432,7 @@ DELIMITER ;
 CALL BulkInsertUsers(10000);
 
 -- Test de consultas complejas
-EXPLAIN ANALYZE 
+EXPLAIN ANALYZE
 SELECT u.*, p.title, COUNT(o.id) as order_count
 FROM users u
 LEFT JOIN profiles p ON u.id = p.user_id
@@ -442,13 +444,13 @@ ORDER BY order_count DESC
 LIMIT 100;
 
 -- Análisis de índices
-SELECT 
+SELECT
   TABLE_NAME,
   INDEX_NAME,
   CARDINALITY,
   PAGES,
   FILTER_CONDITION
-FROM INFORMATION_SCHEMA.STATISTICS 
+FROM INFORMATION_SCHEMA.STATISTICS
 WHERE TABLE_SCHEMA = 'your_database'
 ORDER BY CARDINALITY DESC;
 ```
@@ -472,21 +474,21 @@ END_TIME=$(($(date +%s) + $DURATION))
 
 while [ $(date +%s) -lt $END_TIME ]; do
   TIMESTAMP=$(date '+%Y-%m-%d %H:%M:%S')
-  
+
   # CPU usage
   CPU=$(top -bn1 | grep "Cpu(s)" | awk '{print $2}' | sed 's/%us,//')
-  
+
   # Memory usage
   MEMORY=$(free | grep Mem | awk '{printf "%.1f", $3/$2 * 100.0}')
-  
+
   # Disk I/O
   DISK_IO=$(iostat -d 1 1 | grep -A1 "Device" | tail -1 | awk '{print $4}')
-  
+
   # Network
   NETWORK=$(cat /proc/net/dev | grep eth0 | awk '{print $2","$10}')
-  
+
   echo "$TIMESTAMP,$CPU,$MEMORY,$DISK_IO,$NETWORK" >> $OUTPUT_FILE
-  
+
   sleep $INTERVAL
 done
 
@@ -502,105 +504,105 @@ echo "Monitoreo completado. Resultados en: $OUTPUT_FILE"
 name: Performance Tests
 
 on:
-   schedule:
-      - cron: "0 2 * * *" # Diario a las 2 AM
-   pull_request:
-      branches: [main]
-      paths: ["src/**", "api/**"]
+  schedule:
+    - cron: "0 2 * * *" # Diario a las 2 AM
+  pull_request:
+    branches: [main]
+    paths: ["src/**", "api/**"]
 
 jobs:
-   api-performance:
-      runs-on: ubuntu-latest
-      services:
-         mysql:
-            image: mysql:8.0
-            env:
-               MYSQL_ROOT_PASSWORD: password
-               MYSQL_DATABASE: test_db
-            ports:
-               - 3306:3306
+  api-performance:
+    runs-on: ubuntu-latest
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: password
+          MYSQL_DATABASE: test_db
+        ports:
+          - 3306:3306
 
-      steps:
-         - uses: actions/checkout@v3
+    steps:
+      - uses: actions/checkout@v3
 
-         - name: Setup PHP
-           uses: shivammathur/setup-php@v2
-           with:
-              php-version: "8.2"
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.2"
 
-         - name: Install dependencies
-           run: composer install --no-dev --optimize-autoloader
+      - name: Install dependencies
+        run: composer install --no-dev --optimize-autoloader
 
-         - name: Start Laravel server
-           run: |
-              php artisan migrate --seed
-              php artisan serve &
-              sleep 5
-           env:
-              DB_CONNECTION: mysql
-              DB_HOST: 127.0.0.1
-              DB_PORT: 3306
-              DB_DATABASE: test_db
-              DB_USERNAME: root
-              DB_PASSWORD: password
+      - name: Start Laravel server
+        run: |
+          php artisan migrate --seed
+          php artisan serve &
+          sleep 5
+        env:
+          DB_CONNECTION: mysql
+          DB_HOST: 127.0.0.1
+          DB_PORT: 3306
+          DB_DATABASE: test_db
+          DB_USERNAME: root
+          DB_PASSWORD: password
 
-         - name: Install Artillery
-           run: npm install -g artillery
+      - name: Install Artillery
+        run: npm install -g artillery
 
-         - name: Run API performance tests
-           run: artillery run tests/performance/api-load-test.yml
+      - name: Run API performance tests
+        run: artillery run tests/performance/api-load-test.yml
 
-         - name: Upload results
-           uses: actions/upload-artifact@v3
-           with:
-              name: performance-results
-              path: artillery-report.json
+      - name: Upload results
+        uses: actions/upload-artifact@v3
+        with:
+          name: performance-results
+          path: artillery-report.json
 
-   frontend-performance:
-      runs-on: ubuntu-latest
-      steps:
-         - uses: actions/checkout@v3
+  frontend-performance:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
 
-         - name: Setup Node.js
-           uses: actions/setup-node@v3
-           with:
-              node-version: "18"
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18"
 
-         - name: Install dependencies
-           run: npm ci
+      - name: Install dependencies
+        run: npm ci
 
-         - name: Build application
-           run: npm run build
+      - name: Build application
+        run: npm run build
 
-         - name: Start server
-           run: |
-              npm run preview &
-              sleep 5
+      - name: Start server
+        run: |
+          npm run preview &
+          sleep 5
 
-         - name: Install Lighthouse
-           run: npm install -g lighthouse
+      - name: Install Lighthouse
+        run: npm install -g lighthouse
 
-         - name: Run Lighthouse audit
-           run: |
-              lighthouse http://localhost:4173 \
-                --output=json \
-                --output-path=./lighthouse-report.json \
-                --chrome-flags="--headless --no-sandbox"
+      - name: Run Lighthouse audit
+        run: |
+          lighthouse http://localhost:4173 \
+            --output=json \
+            --output-path=./lighthouse-report.json \
+            --chrome-flags="--headless --no-sandbox"
 
-         - name: Check performance score
-           run: |
-              SCORE=$(cat lighthouse-report.json | jq '.categories.performance.score * 100')
-              echo "Performance score: $SCORE"
-              if (( $(echo "$SCORE < 90" | bc -l) )); then
-                echo "Performance score below threshold (90)"
-                exit 1
-              fi
+      - name: Check performance score
+        run: |
+          SCORE=$(cat lighthouse-report.json | jq '.categories.performance.score * 100')
+          echo "Performance score: $SCORE"
+          if (( $(echo "$SCORE < 90" | bc -l) )); then
+            echo "Performance score below threshold (90)"
+            exit 1
+          fi
 
-         - name: Upload Lighthouse report
-           uses: actions/upload-artifact@v3
-           with:
-              name: lighthouse-report
-              path: lighthouse-report.json
+      - name: Upload Lighthouse report
+        uses: actions/upload-artifact@v3
+        with:
+          name: lighthouse-report
+          path: lighthouse-report.json
 ```
 
 ## Tips
@@ -697,128 +699,127 @@ const apiResponseTime = new Trend("api_response_time");
 const apiCalls = new Counter("api_calls_total");
 
 export let options = {
-   stages: [
-      // Ramp-up
-      { duration: "2m", target: 20 },
-      // Stay at 20 users
-      { duration: "5m", target: 20 },
-      // Ramp-up to 50 users
-      { duration: "2m", target: 50 },
-      // Stay at 50 users
-      { duration: "5m", target: 50 },
-      // Ramp-up to 100 users
-      { duration: "2m", target: 100 },
-      // Stay at 100 users
-      { duration: "5m", target: 100 },
-      // Ramp-down
-      { duration: "3m", target: 0 },
-   ],
-   thresholds: {
-      // HTTP errors should be less than 1%
-      http_req_failed: ["rate<0.01"],
-      // 95% of requests should be below 200ms
-      http_req_duration: ["p(95)<200"],
-      // 99% of requests should be below 500ms
-      "http_req_duration{expected_response:true}": ["p(99)<500"],
-      // Custom metrics
-      failed_requests: ["rate<0.01"],
-      api_response_time: ["p(95)<150"],
-   },
-   ext: {
-      loadimpact: {
-         distribution: {
-            "amazon:us:ashburn": { loadZone: "amazon:us:ashburn", percent: 50 },
-            "amazon:eu:dublin": { loadZone: "amazon:eu:dublin", percent: 50 },
-         },
+  stages: [
+    // Ramp-up
+    { duration: "2m", target: 20 },
+    // Stay at 20 users
+    { duration: "5m", target: 20 },
+    // Ramp-up to 50 users
+    { duration: "2m", target: 50 },
+    // Stay at 50 users
+    { duration: "5m", target: 50 },
+    // Ramp-up to 100 users
+    { duration: "2m", target: 100 },
+    // Stay at 100 users
+    { duration: "5m", target: 100 },
+    // Ramp-down
+    { duration: "3m", target: 0 },
+  ],
+  thresholds: {
+    // HTTP errors should be less than 1%
+    http_req_failed: ["rate<0.01"],
+    // 95% of requests should be below 200ms
+    http_req_duration: ["p(95)<200"],
+    // 99% of requests should be below 500ms
+    "http_req_duration{expected_response:true}": ["p(99)<500"],
+    // Custom metrics
+    failed_requests: ["rate<0.01"],
+    api_response_time: ["p(95)<150"],
+  },
+  ext: {
+    loadimpact: {
+      distribution: {
+        "amazon:us:ashburn": { loadZone: "amazon:us:ashburn", percent: 50 },
+        "amazon:eu:dublin": { loadZone: "amazon:eu:dublin", percent: 50 },
       },
-   },
+    },
+  },
 };
 
 const BASE_URL = "http://localhost:8000/api/v1";
 
 export function setup() {
-   // Autenticación inicial
-   const loginRes = http.post(`${BASE_URL}/auth/login`, {
-      email: "admin@example.com",
-      password: "password123",
-   });
+  // Autenticación inicial
+  const loginRes = http.post(`${BASE_URL}/auth/login`, {
+    email: "admin@example.com",
+    password: "password123",
+  });
 
-   return {
-      authToken: loginRes.json("token"),
-   };
+  return {
+    authToken: loginRes.json("token"),
+  };
 }
 
 export default function (data) {
-   group("User Management Flow", function () {
-      const headers = {
-         "Authorization": `Bearer ${data.authToken}`,
-         "Content-Type": "application/json",
+  group("User Management Flow", function () {
+    const headers = {
+      Authorization: `Bearer ${data.authToken}`,
+      "Content-Type": "application/json",
+    };
+
+    group("List Users", function () {
+      const response = http.get(`${BASE_URL}/users`, { headers });
+
+      const success = check(response, {
+        "status is 200": (r) => r.status === 200,
+        "has users array": (r) => r.json("data").length >= 0,
+        "response time < 100ms": (r) => r.timings.duration < 100,
+      });
+
+      failureRate.add(!success);
+      apiResponseTime.add(response.timings.duration);
+      apiCalls.add(1);
+    });
+
+    group("Create User", function () {
+      const userData = {
+        name: `User ${__VU}_${__ITER}`,
+        email: `user${__VU}_${__ITER}@example.com`,
+        password: "password123",
       };
 
-      group("List Users", function () {
-         const response = http.get(`${BASE_URL}/users`, { headers });
+      const response = http.post(
+        `${BASE_URL}/users`,
+        JSON.stringify(userData),
+        { headers }
+      );
 
-         const success = check(response, {
-            "status is 200": (r) => r.status === 200,
-            "has users array": (r) => r.json("data").length >= 0,
-            "response time < 100ms": (r) => r.timings.duration < 100,
-         });
-
-         failureRate.add(!success);
-         apiResponseTime.add(response.timings.duration);
-         apiCalls.add(1);
+      const success = check(response, {
+        "status is 201": (r) => r.status === 201,
+        "user created": (r) => r.json("data.id") !== undefined,
+        "response time < 200ms": (r) => r.timings.duration < 200,
       });
 
-      group("Create User", function () {
-         const userData = {
-            name: `User ${__VU}_${__ITER}`,
-            email: `user${__VU}_${__ITER}@example.com`,
-            password: "password123",
-         };
+      failureRate.add(!success);
+      apiResponseTime.add(response.timings.duration);
+      apiCalls.add(1);
 
-         const response = http.post(
-            `${BASE_URL}/users`,
-            JSON.stringify(userData),
-            { headers },
-         );
+      if (success) {
+        const userId = response.json("data.id");
 
-         const success = check(response, {
-            "status is 201": (r) => r.status === 201,
-            "user created": (r) => r.json("data.id") !== undefined,
-            "response time < 200ms": (r) => r.timings.duration < 200,
-         });
+        group("Get User Details", function () {
+          const userResponse = http.get(`${BASE_URL}/users/${userId}`, {
+            headers,
+          });
 
-         failureRate.add(!success);
-         apiResponseTime.add(response.timings.duration);
-         apiCalls.add(1);
+          check(userResponse, {
+            "user details retrieved": (r) => r.status === 200,
+            "correct user data": (r) => r.json("data.email") === userData.email,
+          });
 
-         if (success) {
-            const userId = response.json("data.id");
+          apiCalls.add(1);
+        });
+      }
+    });
+  });
 
-            group("Get User Details", function () {
-               const userResponse = http.get(`${BASE_URL}/users/${userId}`, {
-                  headers,
-               });
-
-               check(userResponse, {
-                  "user details retrieved": (r) => r.status === 200,
-                  "correct user data": (r) =>
-                     r.json("data.email") === userData.email,
-               });
-
-               apiCalls.add(1);
-            });
-         }
-      });
-   });
-
-   // Simular tiempo de thinking del usuario
-   sleep(Math.random() * 3 + 1);
+  // Simular tiempo de thinking del usuario
+  sleep(Math.random() * 3 + 1);
 }
 
 export function teardown(data) {
-   // Limpieza si es necesario
-   console.log("Test completed");
+  // Limpieza si es necesario
+  console.log("Test completed");
 }
 ```
 
@@ -829,7 +830,12 @@ export function teardown(data) {
 **Progreso en Testing y Quality Assurance:**
 
 - ✅ [Testing y QA](./testing-qa.md)
+- ✅ [Tipos de Pruebas](./tipos-pruebas.md)
 - ✅ [Testing Funcional Automatizado](./testing-funcional-automatizado.md)
+- ✅ [Testing de Regresión](./testing-regresion.md)
+- ✅ [Checklists QA](./checklists-qa.md)
+- ✅ [Pruebas de Aceptación del Usuario](./pruebas-aceptacion-usuario.md)
+- ✅ [Gestión de Reportes de Errores](./gestion-reportes-errores.md)
 - ✅ **Testing de Performance y Carga** ← Estás aquí
 - ⏭️ [Testing de Seguridad OWASP](./testing-seguridad-owasp.md)
 - ⏭️ [Testing de Usabilidad](./testing-usabilidad.md)
@@ -842,6 +848,6 @@ export function teardown(data) {
 
 Continúa con [**Testing de Seguridad OWASP**](./testing-seguridad-owasp.md)
 
-[⬅️ Testing Funcional Automatizado](./testing-funcional-automatizado.md) |
+[⬅️ Gestión de Reportes de Errores](./gestion-reportes-errores.md) |
 [🏠 README Principal](../../README.md) |
 [➡️ Testing de Seguridad OWASP](./testing-seguridad-owasp.md)

@@ -139,7 +139,7 @@ class CreateUserUseCaseTest extends TestCase
         // Arrange
         $mockRepository = $this->mock(UserRepository::class);
         $useCase = new CreateUserUseCase($mockRepository);
-        
+
         $userData = [
             'name' => 'Juan Pérez',
             'email' => 'juan@example.com',
@@ -184,35 +184,31 @@ import { store } from "../store/store";
 import LoginForm from "./LoginForm";
 
 describe("LoginForm", () => {
-   const renderWithProvider = (component: React.ReactElement) => {
-      return render(
-         <Provider store={store}>
-            {component}
-         </Provider>,
-      );
-   };
+  const renderWithProvider = (component: React.ReactElement) => {
+    return render(<Provider store={store}>{component}</Provider>);
+  };
 
-   it("should render login form with email and password fields", () => {
-      renderWithProvider(<LoginForm />);
+  it("should render login form with email and password fields", () => {
+    renderWithProvider(<LoginForm />);
 
-      expect(screen.getByLabelText(/email/i)).toBeInTheDocument();
-      expect(screen.getByLabelText(/password/i)).toBeInTheDocument();
-      expect(screen.getByRole("button", { name: /login/i }))
-         .toBeInTheDocument();
-   });
+    expect(screen.getByLabelText(/email/i)).toBeInTheDocument();
+    expect(screen.getByLabelText(/password/i)).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /login/i })).toBeInTheDocument();
+  });
 
-   it("should show validation error for invalid email", async () => {
-      renderWithProvider(<LoginForm />);
+  it("should show validation error for invalid email", async () => {
+    renderWithProvider(<LoginForm />);
 
-      const emailInput = screen.getByLabelText(/email/i);
-      const submitButton = screen.getByRole("button", { name: /login/i });
+    const emailInput = screen.getByLabelText(/email/i);
+    const submitButton = screen.getByRole("button", { name: /login/i });
 
-      fireEvent.change(emailInput, { target: { value: "invalid-email" } });
-      fireEvent.click(submitButton);
+    fireEvent.change(emailInput, { target: { value: "invalid-email" } });
+    fireEvent.click(submitButton);
 
-      expect(await screen.findByText(/email debe ser válido/i))
-         .toBeInTheDocument();
-   });
+    expect(
+      await screen.findByText(/email debe ser válido/i)
+    ).toBeInTheDocument();
+  });
 });
 ```
 
@@ -225,35 +221,35 @@ name: Testing Pipeline
 on: [push, pull_request]
 
 jobs:
-   backend-tests:
-      runs-on: ubuntu-latest
-      steps:
-         - uses: actions/checkout@v3
-         - name: Setup PHP
-           uses: shivammathur/setup-php@v2
-           with:
-              php-version: "8.2"
-         - name: Install dependencies
-           run: composer install
-         - name: Run tests
-           run: ./vendor/bin/phpunit --coverage-clover coverage.xml
-         - name: Upload coverage
-           uses: codecov/codecov-action@v3
+  backend-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.2"
+      - name: Install dependencies
+        run: composer install
+      - name: Run tests
+        run: ./vendor/bin/phpunit --coverage-clover coverage.xml
+      - name: Upload coverage
+        uses: codecov/codecov-action@v3
 
-   frontend-tests:
-      runs-on: ubuntu-latest
-      steps:
-         - uses: actions/checkout@v3
-         - name: Setup Node.js
-           uses: actions/setup-node@v3
-           with:
-              node-version: "18"
-         - name: Install dependencies
-           run: npm ci
-         - name: Run tests
-           run: npm run test:coverage
-         - name: Upload coverage
-           uses: codecov/codecov-action@v3
+  frontend-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18"
+      - name: Install dependencies
+        run: npm ci
+      - name: Run tests
+        run: npm run test:coverage
+      - name: Upload coverage
+        uses: codecov/codecov-action@v3
 ```
 
 ---
@@ -263,7 +259,12 @@ jobs:
 **Progreso en Testing y Quality Assurance:**
 
 - ✅ **Testing y QA** ← Estás aquí
+- ⏭️ [Tipos de Pruebas](./tipos-pruebas.md)
 - ⏭️ [Testing Funcional Automatizado](./testing-funcional-automatizado.md)
+- ⏭️ [Testing de Regresión](./testing-regresion.md)
+- ⏭️ [Checklists QA](./checklists-qa.md)
+- ⏭️ [Pruebas de Aceptación del Usuario](./pruebas-aceptacion-usuario.md)
+- ⏭️ [Gestión de Reportes de Errores](./gestion-reportes-errores.md)
 - ⏭️ [Testing de Performance y Carga](./testing-performance-carga.md)
 - ⏭️ [Testing de Seguridad OWASP](./testing-seguridad-owasp.md)
 - ⏭️ [Testing de Usabilidad](./testing-usabilidad.md)
@@ -275,8 +276,8 @@ jobs:
 ### Siguiente Paso
 
 Continúa con
-[**Testing Funcional Automatizado**](./testing-funcional-automatizado.md)
+[**Tipos de Pruebas**](./tipos-pruebas.md)
 
 [⬅️ Etapa 6: Preparación App Stores](../step_06/preparacion-app-stores.md) |
 [🏠 README Principal](../../README.md) |
-[➡️ Testing Funcional Automatizado](./testing-funcional-automatizado.md)
+[➡️ Tipos de Pruebas](./tipos-pruebas.md)

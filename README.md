@@ -198,8 +198,13 @@ Esta etapa está **completamente documentada** con enfoque en calidad y testing
 integral:
 
 - ✅ [Testing y Quality Assurance](./docs/step_07/testing-qa.md)
+- ✅ [Tipos de Pruebas](./docs/step_07/tipos-pruebas.md)
 - ✅
   [Testing Funcional Automatizado](./docs/step_07/testing-funcional-automatizado.md)
+- ✅ [Testing de Regresión](./docs/step_07/testing-regresion.md)
+- ✅ [Checklists QA](./docs/step_07/checklists-qa.md)
+- ✅ [Pruebas de Aceptación del Usuario](./docs/step_07/pruebas-aceptacion-usuario.md)
+- ✅ [Gestión de Reportes de Errores](./docs/step_07/gestion-reportes-errores.md)
 - ✅
   [Testing de Performance y Carga](./docs/step_07/testing-performance-carga.md)
 - ✅ [Testing de Seguridad OWASP](./docs/step_07/testing-seguridad-owasp.md)
@@ -310,7 +315,12 @@ estandar-proyectos/
 │   │   └── preparacion-app-stores.md
 │   ├── step_07/                   # ✅ Testing y QA (Completado)
 │   │   ├── testing-qa.md
+│   │   ├── tipos-pruebas.md
 │   │   ├── testing-funcional-automatizado.md
+│   │   ├── testing-regresion.md
+│   │   ├── checklists-qa.md
+│   │   ├── pruebas-aceptacion-usuario.md
+│   │   ├── gestion-reportes-errores.md
 │   │   ├── testing-performance-carga.md
 │   │   ├── testing-seguridad-owasp.md
 │   │   ├── testing-usabilidad.md
