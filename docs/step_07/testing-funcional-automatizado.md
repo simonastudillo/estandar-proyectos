@@ -249,145 +249,146 @@ import authSlice from "../../store/slices/authSlice";
 
 // Mock del servicio de API
 jest.mock("../../services/authService", () => ({
-  login: jest.fn(),
+   login: jest.fn(),
 }));
 
 import { login as mockLogin } from "../../services/authService";
 const mockLoginFn = mockLogin as jest.MockedFunction<typeof mockLogin>;
 
 describe("LoginForm", () => {
-  let store: any;
-  let user: any;
+   let store: any;
+   let user: any;
 
-  beforeEach(() => {
-    store = configureStore({
-      reducer: {
-        auth: authSlice,
-      },
-    });
-
-    user = userEvent.setup();
-    jest.clearAllMocks();
-  });
-
-  const renderWithProviders = (component: React.ReactElement) => {
-    return render(
-      <Provider store={store}>
-        <BrowserRouter>{component}</BrowserRouter>
-      </Provider>
-    );
-  };
-
-  it("should render login form fields", () => {
-    renderWithProviders(<LoginForm />);
-
-    expect(screen.getByLabelText(/email/i)).toBeInTheDocument();
-    expect(screen.getByLabelText(/contraseña/i)).toBeInTheDocument();
-    expect(
-      screen.getByRole("button", { name: /iniciar sesión/i })
-    ).toBeInTheDocument();
-  });
-
-  it("should show validation errors for empty fields", async () => {
-    renderWithProviders(<LoginForm />);
-
-    const submitButton = screen.getByRole("button", {
-      name: /iniciar sesión/i,
-    });
-    await user.click(submitButton);
-
-    expect(await screen.findByText(/email es requerido/i)).toBeInTheDocument();
-    expect(
-      await screen.findByText(/contraseña es requerida/i)
-    ).toBeInTheDocument();
-  });
-
-  it("should show error for invalid email format", async () => {
-    renderWithProviders(<LoginForm />);
-
-    const emailInput = screen.getByLabelText(/email/i);
-    await user.type(emailInput, "email-invalido");
-
-    const submitButton = screen.getByRole("button", {
-      name: /iniciar sesión/i,
-    });
-    await user.click(submitButton);
-
-    expect(
-      await screen.findByText(/email debe ser válido/i)
-    ).toBeInTheDocument();
-  });
-
-  it("should submit form with valid credentials", async () => {
-    const mockUser = {
-      id: 1,
-      name: "Juan Pérez",
-      email: "juan@example.com",
-      token: "mock-token",
-    };
-
-    mockLoginFn.mockResolvedValue(mockUser);
-
-    renderWithProviders(<LoginForm />);
-
-    const emailInput = screen.getByLabelText(/email/i);
-    const passwordInput = screen.getByLabelText(/contraseña/i);
-    const submitButton = screen.getByRole("button", {
-      name: /iniciar sesión/i,
-    });
-
-    await user.type(emailInput, "juan@example.com");
-    await user.type(passwordInput, "password123");
-    await user.click(submitButton);
-
-    await waitFor(() => {
-      expect(mockLoginFn).toHaveBeenCalledWith({
-        email: "juan@example.com",
-        password: "password123",
+   beforeEach(() => {
+      store = configureStore({
+         reducer: {
+            auth: authSlice,
+         },
       });
-    });
-  });
 
-  it("should show error message on login failure", async () => {
-    mockLoginFn.mockRejectedValue(new Error("Credenciales inválidas"));
+      user = userEvent.setup();
+      jest.clearAllMocks();
+   });
 
-    renderWithProviders(<LoginForm />);
+   const renderWithProviders = (component: React.ReactElement) => {
+      return render(
+         <Provider store={store}>
+            <BrowserRouter>{component}</BrowserRouter>
+         </Provider>,
+      );
+   };
 
-    const emailInput = screen.getByLabelText(/email/i);
-    const passwordInput = screen.getByLabelText(/contraseña/i);
-    const submitButton = screen.getByRole("button", {
-      name: /iniciar sesión/i,
-    });
+   it("should render login form fields", () => {
+      renderWithProviders(<LoginForm />);
 
-    await user.type(emailInput, "juan@example.com");
-    await user.type(passwordInput, "password-incorrecto");
-    await user.click(submitButton);
+      expect(screen.getByLabelText(/email/i)).toBeInTheDocument();
+      expect(screen.getByLabelText(/contraseña/i)).toBeInTheDocument();
+      expect(
+         screen.getByRole("button", { name: /iniciar sesión/i }),
+      ).toBeInTheDocument();
+   });
 
-    expect(
-      await screen.findByText(/credenciales inválidas/i)
-    ).toBeInTheDocument();
-  });
+   it("should show validation errors for empty fields", async () => {
+      renderWithProviders(<LoginForm />);
 
-  it("should disable submit button while loading", async () => {
-    mockLoginFn.mockImplementation(
-      () => new Promise((resolve) => setTimeout(resolve, 1000))
-    );
+      const submitButton = screen.getByRole("button", {
+         name: /iniciar sesión/i,
+      });
+      await user.click(submitButton);
 
-    renderWithProviders(<LoginForm />);
+      expect(await screen.findByText(/email es requerido/i))
+         .toBeInTheDocument();
+      expect(
+         await screen.findByText(/contraseña es requerida/i),
+      ).toBeInTheDocument();
+   });
 
-    const emailInput = screen.getByLabelText(/email/i);
-    const passwordInput = screen.getByLabelText(/contraseña/i);
-    const submitButton = screen.getByRole("button", {
-      name: /iniciar sesión/i,
-    });
+   it("should show error for invalid email format", async () => {
+      renderWithProviders(<LoginForm />);
 
-    await user.type(emailInput, "juan@example.com");
-    await user.type(passwordInput, "password123");
-    await user.click(submitButton);
+      const emailInput = screen.getByLabelText(/email/i);
+      await user.type(emailInput, "email-invalido");
 
-    expect(submitButton).toBeDisabled();
-    expect(screen.getByText(/iniciando sesión.../i)).toBeInTheDocument();
-  });
+      const submitButton = screen.getByRole("button", {
+         name: /iniciar sesión/i,
+      });
+      await user.click(submitButton);
+
+      expect(
+         await screen.findByText(/email debe ser válido/i),
+      ).toBeInTheDocument();
+   });
+
+   it("should submit form with valid credentials", async () => {
+      const mockUser = {
+         id: 1,
+         name: "Juan Pérez",
+         email: "juan@example.com",
+         token: "mock-token",
+      };
+
+      mockLoginFn.mockResolvedValue(mockUser);
+
+      renderWithProviders(<LoginForm />);
+
+      const emailInput = screen.getByLabelText(/email/i);
+      const passwordInput = screen.getByLabelText(/contraseña/i);
+      const submitButton = screen.getByRole("button", {
+         name: /iniciar sesión/i,
+      });
+
+      await user.type(emailInput, "juan@example.com");
+      await user.type(passwordInput, "password123");
+      await user.click(submitButton);
+
+      await waitFor(() => {
+         expect(mockLoginFn).toHaveBeenCalledWith({
+            email: "juan@example.com",
+            password: "password123",
+         });
+      });
+   });
+
+   it("should show error message on login failure", async () => {
+      mockLoginFn.mockRejectedValue(new Error("Credenciales inválidas"));
+
+      renderWithProviders(<LoginForm />);
+
+      const emailInput = screen.getByLabelText(/email/i);
+      const passwordInput = screen.getByLabelText(/contraseña/i);
+      const submitButton = screen.getByRole("button", {
+         name: /iniciar sesión/i,
+      });
+
+      await user.type(emailInput, "juan@example.com");
+      await user.type(passwordInput, "password-incorrecto");
+      await user.click(submitButton);
+
+      expect(
+         await screen.findByText(/credenciales inválidas/i),
+      ).toBeInTheDocument();
+   });
+
+   it("should disable submit button while loading", async () => {
+      mockLoginFn.mockImplementation(
+         () => new Promise((resolve) => setTimeout(resolve, 1000)),
+      );
+
+      renderWithProviders(<LoginForm />);
+
+      const emailInput = screen.getByLabelText(/email/i);
+      const passwordInput = screen.getByLabelText(/contraseña/i);
+      const submitButton = screen.getByRole("button", {
+         name: /iniciar sesión/i,
+      });
+
+      await user.type(emailInput, "juan@example.com");
+      await user.type(passwordInput, "password123");
+      await user.click(submitButton);
+
+      expect(submitButton).toBeDisabled();
+      expect(screen.getByText(/iniciando sesión.../i)).toBeInTheDocument();
+   });
 });
 ```
 
@@ -533,64 +534,64 @@ npx cypress open
 ```typescript
 // cypress/e2e/user-registration.cy.ts
 describe("User Registration Flow", () => {
-  beforeEach(() => {
-    cy.visit("/register");
-  });
+   beforeEach(() => {
+      cy.visit("/register");
+   });
 
-  it("should complete user registration successfully", () => {
-    // Llenar formulario
-    cy.get("[data-testid=name-input]").type("Juan Pérez");
-    cy.get("[data-testid=email-input]").type("juan@example.com");
-    cy.get("[data-testid=password-input]").type("password123");
-    cy.get("[data-testid=password-confirmation-input]").type("password123");
+   it("should complete user registration successfully", () => {
+      // Llenar formulario
+      cy.get("[data-testid=name-input]").type("Juan Pérez");
+      cy.get("[data-testid=email-input]").type("juan@example.com");
+      cy.get("[data-testid=password-input]").type("password123");
+      cy.get("[data-testid=password-confirmation-input]").type("password123");
 
-    // Enviar formulario
-    cy.get("[data-testid=submit-button]").click();
+      // Enviar formulario
+      cy.get("[data-testid=submit-button]").click();
 
-    // Verificar redirección y mensaje de éxito
-    cy.url().should("include", "/dashboard");
-    cy.get("[data-testid=welcome-message]").should(
-      "contain",
-      "Bienvenido, Juan Pérez"
-    );
-  });
+      // Verificar redirección y mensaje de éxito
+      cy.url().should("include", "/dashboard");
+      cy.get("[data-testid=welcome-message]").should(
+         "contain",
+         "Bienvenido, Juan Pérez",
+      );
+   });
 
-  it("should show validation errors for invalid input", () => {
-    cy.get("[data-testid=email-input]").type("email-invalido");
-    cy.get("[data-testid=password-input]").type("123");
-    cy.get("[data-testid=submit-button]").click();
+   it("should show validation errors for invalid input", () => {
+      cy.get("[data-testid=email-input]").type("email-invalido");
+      cy.get("[data-testid=password-input]").type("123");
+      cy.get("[data-testid=submit-button]").click();
 
-    cy.get("[data-testid=email-error]").should(
-      "contain",
-      "Email debe ser válido"
-    );
-    cy.get("[data-testid=password-error]").should(
-      "contain",
-      "Contraseña debe tener al menos 8 caracteres"
-    );
-  });
+      cy.get("[data-testid=email-error]").should(
+         "contain",
+         "Email debe ser válido",
+      );
+      cy.get("[data-testid=password-error]").should(
+         "contain",
+         "Contraseña debe tener al menos 8 caracteres",
+      );
+   });
 
-  it("should handle server errors gracefully", () => {
-    // Interceptar request y simular error
-    cy.intercept("POST", "/api/v1/users", {
-      statusCode: 500,
-      body: { message: "Error interno del servidor" },
-    }).as("createUser");
+   it("should handle server errors gracefully", () => {
+      // Interceptar request y simular error
+      cy.intercept("POST", "/api/v1/users", {
+         statusCode: 500,
+         body: { message: "Error interno del servidor" },
+      }).as("createUser");
 
-    // Llenar formulario válido
-    cy.get("[data-testid=name-input]").type("Juan Pérez");
-    cy.get("[data-testid=email-input]").type("juan@example.com");
-    cy.get("[data-testid=password-input]").type("password123");
-    cy.get("[data-testid=password-confirmation-input]").type("password123");
-    cy.get("[data-testid=submit-button]").click();
+      // Llenar formulario válido
+      cy.get("[data-testid=name-input]").type("Juan Pérez");
+      cy.get("[data-testid=email-input]").type("juan@example.com");
+      cy.get("[data-testid=password-input]").type("password123");
+      cy.get("[data-testid=password-confirmation-input]").type("password123");
+      cy.get("[data-testid=submit-button]").click();
 
-    // Verificar manejo de error
-    cy.wait("@createUser");
-    cy.get("[data-testid=error-message]").should(
-      "contain",
-      "Error interno del servidor"
-    );
-  });
+      // Verificar manejo de error
+      cy.wait("@createUser");
+      cy.get("[data-testid=error-message]").should(
+         "contain",
+         "Error interno del servidor",
+      );
+   });
 });
 ```
 
@@ -600,31 +601,31 @@ describe("User Registration Flow", () => {
 
 ```json
 {
-  "scripts": {
-    "test": "jest",
-    "test:watch": "jest --watch",
-    "test:coverage": "jest --coverage",
-    "test:e2e": "cypress run",
-    "test:e2e:open": "cypress open"
-  },
-  "jest": {
-    "testEnvironment": "jsdom",
-    "setupFilesAfterEnv": ["<rootDir>/src/__tests__/setupTests.ts"],
-    "collectCoverageFrom": [
-      "src/**/*.{ts,tsx}",
-      "!src/**/*.d.ts",
-      "!src/index.tsx",
-      "!src/reportWebVitals.ts"
-    ],
-    "coverageThreshold": {
-      "global": {
-        "branches": 80,
-        "functions": 80,
-        "lines": 80,
-        "statements": 80
+   "scripts": {
+      "test": "jest",
+      "test:watch": "jest --watch",
+      "test:coverage": "jest --coverage",
+      "test:e2e": "cypress run",
+      "test:e2e:open": "cypress open"
+   },
+   "jest": {
+      "testEnvironment": "jsdom",
+      "setupFilesAfterEnv": ["<rootDir>/src/__tests__/setupTests.ts"],
+      "collectCoverageFrom": [
+         "src/**/*.{ts,tsx}",
+         "!src/**/*.d.ts",
+         "!src/index.tsx",
+         "!src/reportWebVitals.ts"
+      ],
+      "coverageThreshold": {
+         "global": {
+            "branches": 80,
+            "functions": 80,
+            "lines": 80,
+            "statements": 80
+         }
       }
-    }
-  }
+   }
 }
 ```
 
@@ -632,12 +633,12 @@ describe("User Registration Flow", () => {
 
 ```json
 {
-  "scripts": {
-    "test": "phpunit",
-    "test:unit": "phpunit --testsuite=Unit",
-    "test:feature": "phpunit --testsuite=Feature",
-    "test:coverage": "phpunit --coverage-html coverage"
-  }
+   "scripts": {
+      "test": "phpunit",
+      "test:unit": "phpunit --testsuite=Unit",
+      "test:feature": "phpunit --testsuite=Feature",
+      "test:coverage": "phpunit --coverage-html coverage"
+   }
 }
 ```
 
@@ -665,32 +666,32 @@ import { store } from "../store/store";
 import useAuth from "./useAuth";
 
 const wrapper = ({ children }: { children: React.ReactNode }) => (
-  <Provider store={store}>{children}</Provider>
+   <Provider store={store}>{children}</Provider>
 );
 
 describe("useAuth", () => {
-  it("should return initial auth state", () => {
-    const { result } = renderHook(() => useAuth(), { wrapper });
+   it("should return initial auth state", () => {
+      const { result } = renderHook(() => useAuth(), { wrapper });
 
-    expect(result.current.user).toBeNull();
-    expect(result.current.isAuthenticated).toBe(false);
-    expect(result.current.isLoading).toBe(false);
-  });
+      expect(result.current.user).toBeNull();
+      expect(result.current.isAuthenticated).toBe(false);
+      expect(result.current.isLoading).toBe(false);
+   });
 
-  it("should login user successfully", async () => {
-    const { result } = renderHook(() => useAuth(), { wrapper });
+   it("should login user successfully", async () => {
+      const { result } = renderHook(() => useAuth(), { wrapper });
 
-    await act(async () => {
-      await result.current.login("juan@example.com", "password123");
-    });
+      await act(async () => {
+         await result.current.login("juan@example.com", "password123");
+      });
 
-    expect(result.current.isAuthenticated).toBe(true);
-    expect(result.current.user).toEqual(
-      expect.objectContaining({
-        email: "juan@example.com",
-      })
-    );
-  });
+      expect(result.current.isAuthenticated).toBe(true);
+      expect(result.current.user).toEqual(
+         expect.objectContaining({
+            email: "juan@example.com",
+         }),
+      );
+   });
 });
 ```
 
@@ -703,21 +704,21 @@ import { rest } from "msw";
 import { userService } from "./userService";
 
 const server = setupServer(
-  rest.get("/api/v1/users", (req, res, ctx) => {
-    return res(
-      ctx.json({
-        data: [{ id: 1, name: "Juan", email: "juan@example.com" }],
-      })
-    );
-  }),
-  rest.post("/api/v1/users", (req, res, ctx) => {
-    return res(
-      ctx.status(201),
-      ctx.json({
-        data: { id: 2, name: "Maria", email: "maria@example.com" },
-      })
-    );
-  })
+   rest.get("/api/v1/users", (req, res, ctx) => {
+      return res(
+         ctx.json({
+            data: [{ id: 1, name: "Juan", email: "juan@example.com" }],
+         }),
+      );
+   }),
+   rest.post("/api/v1/users", (req, res, ctx) => {
+      return res(
+         ctx.status(201),
+         ctx.json({
+            data: { id: 2, name: "Maria", email: "maria@example.com" },
+         }),
+      );
+   }),
 );
 
 beforeAll(() => server.listen());
@@ -725,35 +726,35 @@ afterEach(() => server.resetHandlers());
 afterAll(() => server.close());
 
 describe("UserService", () => {
-  it("should fetch users successfully", async () => {
-    const users = await userService.getUsers();
+   it("should fetch users successfully", async () => {
+      const users = await userService.getUsers();
 
-    expect(users).toHaveLength(1);
-    expect(users[0]).toEqual(
-      expect.objectContaining({
-        name: "Juan",
-        email: "juan@example.com",
-      })
-    );
-  });
+      expect(users).toHaveLength(1);
+      expect(users[0]).toEqual(
+         expect.objectContaining({
+            name: "Juan",
+            email: "juan@example.com",
+         }),
+      );
+   });
 
-  it("should create user successfully", async () => {
-    const userData = {
-      name: "Maria",
-      email: "maria@example.com",
-      password: "password123",
-    };
+   it("should create user successfully", async () => {
+      const userData = {
+         name: "Maria",
+         email: "maria@example.com",
+         password: "password123",
+      };
 
-    const user = await userService.createUser(userData);
+      const user = await userService.createUser(userData);
 
-    expect(user).toEqual(
-      expect.objectContaining({
-        id: 2,
-        name: "Maria",
-        email: "maria@example.com",
-      })
-    );
-  });
+      expect(user).toEqual(
+         expect.objectContaining({
+            id: 2,
+            name: "Maria",
+            email: "maria@example.com",
+         }),
+      );
+   });
 });
 ```
 
@@ -775,13 +776,14 @@ describe("UserService", () => {
 - ⏭️ [Testing de Usabilidad](./testing-usabilidad.md)
 - ⏭️ [Code Review y Refactoring](./code-review-refactoring.md)
 - ⏭️ [Auditoría de Calidad de Código](./auditoria-calidad-codigo.md)
+- ⏭️ [Checklist Específico de Performance](./checklist-performance.md)
 
 ---
 
 ### Siguiente Paso
 
-Continúa con
-[**Testing de Regresión**](./testing-regresion.md)
+Continúa con [**Testing de Regresión**](./testing-regresion.md)
 
-[⬅️ Tipos de Pruebas](./tipos-pruebas.md) | [🏠 README Principal](../../README.md) |
+[⬅️ Tipos de Pruebas](./tipos-pruebas.md) |
+[🏠 README Principal](../../README.md) |
 [➡️ Testing de Regresión](./testing-regresion.md)

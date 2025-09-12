@@ -203,8 +203,10 @@ integral:
   [Testing Funcional Automatizado](./docs/step_07/testing-funcional-automatizado.md)
 - ✅ [Testing de Regresión](./docs/step_07/testing-regresion.md)
 - ✅ [Checklists QA](./docs/step_07/checklists-qa.md)
-- ✅ [Pruebas de Aceptación del Usuario](./docs/step_07/pruebas-aceptacion-usuario.md)
-- ✅ [Gestión de Reportes de Errores](./docs/step_07/gestion-reportes-errores.md)
+- ✅
+  [Pruebas de Aceptación del Usuario](./docs/step_07/pruebas-aceptacion-usuario.md)
+- ✅
+  [Gestión de Reportes de Errores](./docs/step_07/gestion-reportes-errores.md)
 - ✅
   [Testing de Performance y Carga](./docs/step_07/testing-performance-carga.md)
 - ✅ [Testing de Seguridad OWASP](./docs/step_07/testing-seguridad-owasp.md)
@@ -212,6 +214,7 @@ integral:
 - ✅ [Code Review y Refactoring](./docs/step_07/code-review-refactoring.md)
 - ✅
   [Auditoría de Calidad de Código](./docs/step_07/auditoria-calidad-codigo.md)
+- ✅ [Checklist de Performance](./docs/step_07/checklist-performance.md)
 
 ### [8. Despliegue y DevOps](./docs/step_08/despliegue-devops.md) ✅
 
@@ -256,7 +259,7 @@ estandar-proyectos/
 ├── .github/
 │   └── copilot-instructions.md    # Instrucciones para GitHub Copilot
 ├── docs/
-│   ├── step_01/                   # ✅ Planificación y Análisis
+│   ├── step_01/                   # Planificación y Análisis
 │   │   ├── planificacion-analisis.md
 │   │   ├── requerimientos-funcionales-no-funcionales.md
 │   │   ├── analisis-stakeholders.md
@@ -265,7 +268,7 @@ estandar-proyectos/
 │   │   ├── definicion-alcance.md
 │   │   ├── estimacion-tiempos-recursos.md
 │   │   └── analisis-riesgos.md
-│   ├── step_02/                   # ✅ Diseño y Arquitectura
+│   ├── step_02/                   # Diseño y Arquitectura
 │   │   ├── diseno-arquitectura.md
 │   │   ├── stack-tecnologico.md
 │   │   ├── eleccion-herramientas.md
@@ -280,7 +283,7 @@ estandar-proyectos/
 │   │   ├── casos-uso-user-stories.md
 │   │   ├── prototipos-wireframes.md
 │   │   └── especificaciones-tecnicas.md
-│   ├── step_03/                   # ✅ Configuración del Entorno
+│   ├── step_03/                   # Configuración del Entorno
 │   │   ├── configuracion-entorno-desarrollo.md
 │   │   ├── configuracion-repositorios-git.md
 │   │   ├── setup-entorno-local-docker.md
@@ -289,7 +292,7 @@ estandar-proyectos/
 │   │   ├── configuracion-herramientas-calidad.md
 │   │   ├── setup-laravel-clean-architecture.md
 │   │   └── configuracion-react-typescript-vite.md
-│   ├── step_04/                   # ✅ Desarrollo Backend
+│   ├── step_04/                   # Desarrollo Backend
 │   │   ├── desarrollo-backend.md
 │   │   ├── implementacion-domain-layer.md
 │   │   ├── implementacion-application-layer.md
@@ -297,7 +300,7 @@ estandar-proyectos/
 │   │   ├── apis-restful-versionadas.md
 │   │   ├── autenticacion-laravel-sanctum.md
 │   │   └── testing-tdd-backend.md
-│   ├── step_05/                   # ✅ Desarrollo Frontend (Completado)
+│   ├── step_05/                   # Desarrollo Frontend (Completado)
 │   │   ├── desarrollo-frontend-web.md
 │   │   ├── configuracion-react-typescript-vite.md
 │   │   ├── componentes-reutilizables-tipado.md
@@ -305,7 +308,7 @@ estandar-proyectos/
 │   │   ├── integracion-apis-axios.md
 │   │   ├── react-router-navegacion.md
 │   │   └── testing-componentes-jest.md
-│   ├── step_06/                   # ✅ Desarrollo Móvil (Completado)
+│   ├── step_06/                   # Desarrollo Móvil (Completado)
 │   │   ├── desarrollo-movil.md
 │   │   ├── configuracion-react-native-typescript.md
 │   │   ├── pantallas-react-navigation.md
@@ -313,7 +316,7 @@ estandar-proyectos/
 │   │   ├── integracion-apis-movil.md
 │   │   ├── testing-dispositivos-simuladores.md
 │   │   └── preparacion-app-stores.md
-│   ├── step_07/                   # ✅ Testing y QA (Completado)
+│   ├── step_07/                   # Testing y QA (Completado)
 │   │   ├── testing-qa.md
 │   │   ├── tipos-pruebas.md
 │   │   ├── testing-funcional-automatizado.md
@@ -325,8 +328,9 @@ estandar-proyectos/
 │   │   ├── testing-seguridad-owasp.md
 │   │   ├── testing-usabilidad.md
 │   │   ├── code-review-refactoring.md
-│   │   └── auditoria-calidad-codigo.md
-│   ├── step_08/                   # ✅ Despliegue y DevOps (Completado)
+│   │   ├── auditoria-calidad-codigo.md
+│   │   └── checklist-performance.md
+│   ├── step_08/                   # Despliegue y DevOps (Completado)
 │   │   ├── despliegue-devops.md
 │   │   ├── configuracion-servidores-produccion.md
 │   │   ├── ci-cd-pipelines-github-actions.md
@@ -334,7 +338,7 @@ estandar-proyectos/
 │   │   ├── monitoreo-logging.md
 │   │   ├── backup-recovery-strategies.md
 │   │   └── ssl-configuraciones-seguridad.md
-│   └── step_09/                   # ✅ Mantenimiento y Evolución (Completado)
+│   └── step_09/                   # Mantenimiento y Evolución (Completado)
 │       ├── mantenimiento-evolucion.md
 │       ├── monitoreo-post-deployment.md
 │       ├── bug-fixes-hotfixes.md

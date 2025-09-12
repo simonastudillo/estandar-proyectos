@@ -2,17 +2,26 @@
 
 ## ¿Qué es?
 
-Las Pruebas de Aceptación del Usuario (User Acceptance Testing - UAT) son el proceso final de validación donde los usuarios finales o representantes del negocio verifican que el sistema cumple con sus requerimientos y expectativas. Es la última fase de testing antes del despliegue a producción y determina si el software está listo para ser utilizado en el entorno real.
+Las Pruebas de Aceptación del Usuario (User Acceptance Testing - UAT) son el
+proceso final de validación donde los usuarios finales o representantes del
+negocio verifican que el sistema cumple con sus requerimientos y expectativas.
+Es la última fase de testing antes del despliegue a producción y determina si el
+software está listo para ser utilizado en el entorno real.
 
 ## ¿Por qué es importante?
 
-- **Validación de requerimientos**: Confirma que el sistema cumple con las necesidades del negocio
-- **Perspectiva del usuario**: Evalúa el software desde el punto de vista del usuario final
-- **Detección de gaps**: Identifica discrepancias entre lo esperado y lo desarrollado
-- **Reducción de riesgo**: Minimiza la probabilidad de rechazo después del despliegue
+- **Validación de requerimientos**: Confirma que el sistema cumple con las
+  necesidades del negocio
+- **Perspectiva del usuario**: Evalúa el software desde el punto de vista del
+  usuario final
+- **Detección de gaps**: Identifica discrepancias entre lo esperado y lo
+  desarrollado
+- **Reducción de riesgo**: Minimiza la probabilidad de rechazo después del
+  despliegue
 - **Confianza del stakeholder**: Genera confianza en la calidad del producto
 - **Aprobación formal**: Proporciona la aprobación oficial para el go-live
-- **Feedback valioso**: Obtiene retroalimentación directa de los usuarios finales
+- **Feedback valioso**: Obtiene retroalimentación directa de los usuarios
+  finales
 
 ## ¿Qué debe incluir?
 
@@ -76,90 +85,90 @@ Las Pruebas de Aceptación del Usuario (User Acceptance Testing - UAT) son el pr
 ```typescript
 // src/uat/uat-planning.ts
 export interface UATPlanning {
-  project: {
-    id: string;
-    name: string;
-    version: string;
-    description: string;
-  };
-  objectives: string[];
-  scope: {
-    included: string[];
-    excluded: string[];
-    assumptions: string[];
-    constraints: string[];
-  };
-  timeline: {
-    startDate: Date;
-    endDate: Date;
-    milestones: Milestone[];
-  };
-  resources: {
-    users: UATUser[];
-    environments: UATEnvironment[];
-    tools: string[];
-  };
-  criteria: AcceptanceCriteria[];
+   project: {
+      id: string;
+      name: string;
+      version: string;
+      description: string;
+   };
+   objectives: string[];
+   scope: {
+      included: string[];
+      excluded: string[];
+      assumptions: string[];
+      constraints: string[];
+   };
+   timeline: {
+      startDate: Date;
+      endDate: Date;
+      milestones: Milestone[];
+   };
+   resources: {
+      users: UATUser[];
+      environments: UATEnvironment[];
+      tools: string[];
+   };
+   criteria: AcceptanceCriteria[];
 }
 
 export interface UATUser {
-  id: string;
-  name: string;
-  role: string;
-  department: string;
-  experience: "beginner" | "intermediate" | "expert";
-  availability: string;
-  responsibilities: string[];
+   id: string;
+   name: string;
+   role: string;
+   department: string;
+   experience: "beginner" | "intermediate" | "expert";
+   availability: string;
+   responsibilities: string[];
 }
 
 export interface AcceptanceCriteria {
-  id: string;
-  description: string;
-  priority: "high" | "medium" | "low";
-  testable: boolean;
-  measurable: boolean;
-  assignedTo: string;
+   id: string;
+   description: string;
+   priority: "high" | "medium" | "low";
+   testable: boolean;
+   measurable: boolean;
+   assignedTo: string;
 }
 
 export class UATPlanner {
-  createUATPlan(requirements: any[]): UATPlanning {
-    return {
-      project: this.extractProjectInfo(requirements),
-      objectives: this.defineObjectives(requirements),
-      scope: this.defineScope(requirements),
-      timeline: this.createTimeline(requirements),
-      resources: this.allocateResources(requirements),
-      criteria: this.defineCriteria(requirements),
-    };
-  }
+   createUATPlan(requirements: any[]): UATPlanning {
+      return {
+         project: this.extractProjectInfo(requirements),
+         objectives: this.defineObjectives(requirements),
+         scope: this.defineScope(requirements),
+         timeline: this.createTimeline(requirements),
+         resources: this.allocateResources(requirements),
+         criteria: this.defineCriteria(requirements),
+      };
+   }
 
-  validateUATPlan(plan: UATPlanning): ValidationResult {
-    const issues: string[] = [];
+   validateUATPlan(plan: UATPlanning): ValidationResult {
+      const issues: string[] = [];
 
-    // Validar completitud
-    if (!plan.objectives.length) {
-      issues.push("Objetivos no definidos");
-    }
+      // Validar completitud
+      if (!plan.objectives.length) {
+         issues.push("Objetivos no definidos");
+      }
 
-    if (!plan.resources.users.length) {
-      issues.push("Usuarios de UAT no asignados");
-    }
+      if (!plan.resources.users.length) {
+         issues.push("Usuarios de UAT no asignados");
+      }
 
-    if (!plan.criteria.length) {
-      issues.push("Criterios de aceptación no definidos");
-    }
+      if (!plan.criteria.length) {
+         issues.push("Criterios de aceptación no definidos");
+      }
 
-    // Validar timeline
-    if (plan.timeline.startDate >= plan.timeline.endDate) {
-      issues.push("Timeline inválido");
-    }
+      // Validar timeline
+      if (plan.timeline.startDate >= plan.timeline.endDate) {
+         issues.push("Timeline inválido");
+      }
 
-    return {
-      isValid: issues.length === 0,
-      issues,
-      recommendations: this.generateRecommendations(plan),
-    };
-  }
+      return {
+         isValid: issues.length === 0,
+         issues,
+         recommendations: this.generateRecommendations(plan),
+      };
+   }
 }
 ```
 
@@ -168,77 +177,77 @@ export class UATPlanner {
 ```typescript
 // src/uat/uat-test-cases.ts
 export interface UATTestCase {
-  id: string;
-  title: string;
-  description: string;
-  category: "business" | "usability" | "performance" | "compliance";
-  priority: "critical" | "high" | "medium" | "low";
-  preconditions: string[];
-  steps: TestStep[];
-  expectedResults: string;
-  actualResults?: string;
-  status: "not-started" | "in-progress" | "passed" | "failed" | "blocked";
-  assignedTo: string;
-  executedBy?: string;
-  executionDate?: Date;
-  comments: string[];
-  attachments: string[];
+   id: string;
+   title: string;
+   description: string;
+   category: "business" | "usability" | "performance" | "compliance";
+   priority: "critical" | "high" | "medium" | "low";
+   preconditions: string[];
+   steps: TestStep[];
+   expectedResults: string;
+   actualResults?: string;
+   status: "not-started" | "in-progress" | "passed" | "failed" | "blocked";
+   assignedTo: string;
+   executedBy?: string;
+   executionDate?: Date;
+   comments: string[];
+   attachments: string[];
 }
 
 export interface TestStep {
-  stepNumber: number;
-  action: string;
-  data?: string;
-  expectedResult: string;
+   stepNumber: number;
+   action: string;
+   data?: string;
+   expectedResult: string;
 }
 
 export class UATTestCaseGenerator {
-  generateFromUserStories(userStories: any[]): UATTestCase[] {
-    return userStories.map((story) => this.convertToUATTestCase(story));
-  }
+   generateFromUserStories(userStories: any[]): UATTestCase[] {
+      return userStories.map((story) => this.convertToUATTestCase(story));
+   }
 
-  convertToUATTestCase(userStory: any): UATTestCase {
-    return {
-      id: `UAT-${userStory.id}`,
-      title: `UAT: ${userStory.title}`,
-      description: userStory.description,
-      category: this.determinateCategory(userStory),
-      priority: this.mapPriority(userStory.priority),
-      preconditions: this.extractPreconditions(userStory),
-      steps: this.generateTestSteps(userStory),
-      expectedResults: userStory.acceptanceCriteria.join("; "),
-      status: "not-started",
-      assignedTo: this.assignUser(userStory),
-      comments: [],
-      attachments: [],
-    };
-  }
+   convertToUATTestCase(userStory: any): UATTestCase {
+      return {
+         id: `UAT-${userStory.id}`,
+         title: `UAT: ${userStory.title}`,
+         description: userStory.description,
+         category: this.determinateCategory(userStory),
+         priority: this.mapPriority(userStory.priority),
+         preconditions: this.extractPreconditions(userStory),
+         steps: this.generateTestSteps(userStory),
+         expectedResults: userStory.acceptanceCriteria.join("; "),
+         status: "not-started",
+         assignedTo: this.assignUser(userStory),
+         comments: [],
+         attachments: [],
+      };
+   }
 
-  generateTestSteps(userStory: any): TestStep[] {
-    const steps: TestStep[] = [];
+   generateTestSteps(userStory: any): TestStep[] {
+      const steps: TestStep[] = [];
 
-    // Paso de setup/login si es necesario
-    if (userStory.requiresAuthentication) {
-      steps.push({
-        stepNumber: 1,
-        action: "Iniciar sesión en el sistema",
-        data: "usuario: test@example.com, password: Test123",
-        expectedResult: "Usuario autenticado exitosamente",
+      // Paso de setup/login si es necesario
+      if (userStory.requiresAuthentication) {
+         steps.push({
+            stepNumber: 1,
+            action: "Iniciar sesión en el sistema",
+            data: "usuario: test@example.com, password: Test123",
+            expectedResult: "Usuario autenticado exitosamente",
+         });
+      }
+
+      // Pasos principales basados en el flujo
+      userStory.flow.forEach((flowStep: any, index: number) => {
+         steps.push({
+            stepNumber: steps.length + 1,
+            action: flowStep.action,
+            data: flowStep.testData,
+            expectedResult: flowStep.expectedOutcome,
+         });
       });
-    }
 
-    // Pasos principales basados en el flujo
-    userStory.flow.forEach((flowStep: any, index: number) => {
-      steps.push({
-        stepNumber: steps.length + 1,
-        action: flowStep.action,
-        data: flowStep.testData,
-        expectedResult: flowStep.expectedOutcome,
-      });
-    });
-
-    return steps;
-  }
+      return steps;
+   }
 }
 ```
 
@@ -408,112 +417,114 @@ export interface UATDefect {
 ```typescript
 // src/uat/uat-signoff.ts
 export interface UATSignOff {
-  project: {
-    id: string;
-    name: string;
-    version: string;
-  };
-  summary: {
-    totalTestCases: number;
-    passedTestCases: number;
-    failedTestCases: number;
-    defectsFound: number;
-    criticalDefects: number;
-  };
-  stakeholders: SignOffStakeholder[];
-  approval: {
-    status: "pending" | "approved" | "rejected" | "conditional";
-    conditions?: string[];
-    approvedBy?: string[];
-    rejectedBy?: string[];
-    approvalDate?: Date;
-  };
-  comments: string[];
-  attachments: string[];
+   project: {
+      id: string;
+      name: string;
+      version: string;
+   };
+   summary: {
+      totalTestCases: number;
+      passedTestCases: number;
+      failedTestCases: number;
+      defectsFound: number;
+      criticalDefects: number;
+   };
+   stakeholders: SignOffStakeholder[];
+   approval: {
+      status: "pending" | "approved" | "rejected" | "conditional";
+      conditions?: string[];
+      approvedBy?: string[];
+      rejectedBy?: string[];
+      approvalDate?: Date;
+   };
+   comments: string[];
+   attachments: string[];
 }
 
 export interface SignOffStakeholder {
-  name: string;
-  role: string;
-  email: string;
-  status: "pending" | "approved" | "rejected";
-  comments?: string;
-  signOffDate?: Date;
+   name: string;
+   role: string;
+   email: string;
+   status: "pending" | "approved" | "rejected";
+   comments?: string;
+   signOffDate?: Date;
 }
 
 export class UATSignOffManager {
-  generateSignOffDocument(
-    project: any,
-    testResults: UATProgressReport,
-    stakeholders: SignOffStakeholder[]
-  ): UATSignOff {
-    return {
-      project: {
-        id: project.id,
-        name: project.name,
-        version: project.version,
-      },
-      summary: {
-        totalTestCases: testResults.summary.totalTests,
-        passedTestCases: testResults.summary.passedTests,
-        failedTestCases: testResults.summary.failedTests,
-        defectsFound: testResults.defectSummary.totalDefects,
-        criticalDefects: testResults.defectSummary.criticalDefects,
-      },
-      stakeholders: stakeholders.map((s) => ({
-        ...s,
-        status: "pending",
-      })),
-      approval: {
-        status: "pending",
-      },
-      comments: [],
-      attachments: [],
-    };
-  }
+   generateSignOffDocument(
+      project: any,
+      testResults: UATProgressReport,
+      stakeholders: SignOffStakeholder[],
+   ): UATSignOff {
+      return {
+         project: {
+            id: project.id,
+            name: project.name,
+            version: project.version,
+         },
+         summary: {
+            totalTestCases: testResults.summary.totalTests,
+            passedTestCases: testResults.summary.passedTests,
+            failedTestCases: testResults.summary.failedTests,
+            defectsFound: testResults.defectSummary.totalDefects,
+            criticalDefects: testResults.defectSummary.criticalDefects,
+         },
+         stakeholders: stakeholders.map((s) => ({
+            ...s,
+            status: "pending",
+         })),
+         approval: {
+            status: "pending",
+         },
+         comments: [],
+         attachments: [],
+      };
+   }
 
-  processStakeholderApproval(
-    signOff: UATSignOff,
-    stakeholderEmail: string,
-    approval: boolean,
-    comments?: string
-  ): void {
-    const stakeholder = signOff.stakeholders.find(
-      (s) => s.email === stakeholderEmail
-    );
-    if (!stakeholder) {
-      throw new Error(`Stakeholder ${stakeholderEmail} not found`);
-    }
+   processStakeholderApproval(
+      signOff: UATSignOff,
+      stakeholderEmail: string,
+      approval: boolean,
+      comments?: string,
+   ): void {
+      const stakeholder = signOff.stakeholders.find(
+         (s) => s.email === stakeholderEmail,
+      );
+      if (!stakeholder) {
+         throw new Error(`Stakeholder ${stakeholderEmail} not found`);
+      }
 
-    stakeholder.status = approval ? "approved" : "rejected";
-    stakeholder.comments = comments;
-    stakeholder.signOffDate = new Date();
+      stakeholder.status = approval ? "approved" : "rejected";
+      stakeholder.comments = comments;
+      stakeholder.signOffDate = new Date();
 
-    // Actualizar estado general
-    this.updateOverallStatus(signOff);
-  }
+      // Actualizar estado general
+      this.updateOverallStatus(signOff);
+   }
 
-  private updateOverallStatus(signOff: UATSignOff): void {
-    const approvals = signOff.stakeholders.filter(
-      (s) => s.status === "approved"
-    );
-    const rejections = signOff.stakeholders.filter(
-      (s) => s.status === "rejected"
-    );
-    const pending = signOff.stakeholders.filter((s) => s.status === "pending");
+   private updateOverallStatus(signOff: UATSignOff): void {
+      const approvals = signOff.stakeholders.filter(
+         (s) => s.status === "approved",
+      );
+      const rejections = signOff.stakeholders.filter(
+         (s) => s.status === "rejected",
+      );
+      const pending = signOff.stakeholders.filter((s) =>
+         s.status === "pending"
+      );
 
-    if (rejections.length > 0) {
-      signOff.approval.status = "rejected";
-      signOff.approval.rejectedBy = rejections.map((r) => r.name);
-    } else if (pending.length === 0) {
-      signOff.approval.status = "approved";
-      signOff.approval.approvedBy = approvals.map((a) => a.name);
-      signOff.approval.approvalDate = new Date();
-    }
-  }
+      if (rejections.length > 0) {
+         signOff.approval.status = "rejected";
+         signOff.approval.rejectedBy = rejections.map((r) => r.name);
+      } else if (pending.length === 0) {
+         signOff.approval.status = "approved";
+         signOff.approval.approvedBy = approvals.map((a) => a.name);
+         signOff.approval.approvalDate = new Date();
+      }
+   }
 
-  generateSignOffReport(signOff: UATSignOff): string {
-    return `
+   generateSignOffReport(signOff: UATSignOff): string {
+      return `
 # 📋 UAT Sign-Off Report
 
 ## Project Information
@@ -525,51 +536,59 @@ export class UATSignOffManager {
 - **Total Test Cases**: ${signOff.summary.totalTestCases}
 - **Passed**: ${signOff.summary.passedTestCases}
 - **Failed**: ${signOff.summary.failedTestCases}
-- **Pass Rate**: ${(
-      (signOff.summary.passedTestCases / signOff.summary.totalTestCases) *
-      100
-    ).toFixed(2)}%
+- **Pass Rate**: ${
+         (
+            (signOff.summary.passedTestCases / signOff.summary.totalTestCases) *
+            100
+         ).toFixed(2)
+      }%
 
 ## Defect Summary
 - **Total Defects**: ${signOff.summary.defectsFound}
 - **Critical Defects**: ${signOff.summary.criticalDefects}
 
 ## Stakeholder Approvals
-${signOff.stakeholders
-  .map(
-    (s) => `
+${
+         signOff.stakeholders
+            .map(
+               (s) => `
 - **${s.name}** (${s.role}): ${s.status.toUpperCase()}
   ${s.comments ? `  - Comments: ${s.comments}` : ""}
   ${s.signOffDate ? `  - Date: ${s.signOffDate.toLocaleDateString()}` : ""}
-`
-  )
-  .join("")}
+`,
+            )
+            .join("")
+      }
 
 ## Overall Decision
 **Status**: ${signOff.approval.status.toUpperCase()}
 ${
-  signOff.approval.approvalDate
-    ? `**Approval Date**: ${signOff.approval.approvalDate.toLocaleDateString()}`
-    : ""
-}
+         signOff.approval.approvalDate
+            ? `**Approval Date**: ${signOff.approval.approvalDate.toLocaleDateString()}`
+            : ""
+      }
 
 ## Recommendations
 ${this.generateRecommendations(signOff)}
       `;
-  }
+   }
 }
 ```
 
 ## Tips
 
-- **Involucrar usuarios temprano**: Incluye a los usuarios finales desde la planificación
+- **Involucrar usuarios temprano**: Incluye a los usuarios finales desde la
+  planificación
 - **Criterios claros**: Define criterios de aceptación específicos y medibles
-- **Ambiente representativo**: Usa datos y configuraciones similares a producción
+- **Ambiente representativo**: Usa datos y configuraciones similares a
+  producción
 - **Documentación simple**: Crea instrucciones claras y fáciles de seguir
 - **Soporte continuo**: Proporciona asistencia durante las pruebas
-- **Feedback estructurado**: Usa formularios y herramientas para capturar feedback
+- **Feedback estructurado**: Usa formularios y herramientas para capturar
+  feedback
 - **Timeline realista**: Permite tiempo suficiente para una evaluación completa
-- **Comunicación efectiva**: Mantén a todos los stakeholders informados del progreso
+- **Comunicación efectiva**: Mantén a todos los stakeholders informados del
+  progreso
 
 ## Ejemplos
 
@@ -640,7 +659,8 @@ echo "📁 Reportes en: $REPORT_DIR"
 
 ## Descripción
 
-Verificar que los usuarios pueden autenticarse exitosamente en el sistema usando credenciales válidas.
+Verificar que los usuarios pueden autenticarse exitosamente en el sistema usando
+credenciales válidas.
 
 ## Precondiciones
 
@@ -653,31 +673,29 @@ Verificar que los usuarios pueden autenticarse exitosamente en el sistema usando
 
 ### Paso 1
 
-**Acción**: Navegar a la página de login
-**URL**: https://uat.example.com/login
-**Resultado Esperado**: Se muestra la página de login con campos de email y password
+**Acción**: Navegar a la página de login **URL**: https://uat.example.com/login
+**Resultado Esperado**: Se muestra la página de login con campos de email y
+password
 
 ### Paso 2
 
-**Acción**: Ingresar email válido
-**Datos**: usuario.uat@example.com
-**Resultado Esperado**: Email se ingresa correctamente sin errores
+**Acción**: Ingresar email válido **Datos**: usuario.uat@example.com **Resultado
+Esperado**: Email se ingresa correctamente sin errores
 
 ### Paso 3
 
-**Acción**: Ingresar password válido
-**Datos**: UATPassword123!
-**Resultado Esperado**: Password se oculta con asteriscos
+**Acción**: Ingresar password válido **Datos**: UATPassword123! **Resultado
+Esperado**: Password se oculta con asteriscos
 
 ### Paso 4
 
-**Acción**: Hacer clic en botón "Iniciar Sesión"
-**Resultado Esperado**: Usuario es redirigido al dashboard principal
+**Acción**: Hacer clic en botón "Iniciar Sesión" **Resultado Esperado**: Usuario
+es redirigido al dashboard principal
 
 ### Paso 5
 
-**Acción**: Verificar elementos del dashboard
-**Resultado Esperado**: Se muestra mensaje de bienvenida con nombre del usuario
+**Acción**: Verificar elementos del dashboard **Resultado Esperado**: Se muestra
+mensaje de bienvenida con nombre del usuario
 
 ## Criterios de Aceptación
 
@@ -689,11 +707,9 @@ Verificar que los usuarios pueden autenticarse exitosamente en el sistema usando
 
 ## Resultados de Ejecución
 
-**Ejecutado por**: ********\_********
-**Fecha de ejecución**: ********\_********
-**Estado**: [ ] Pasó [ ] Falló [ ] Bloqueado
-**Resultado actual**: ********\_********
-**Comentarios**: ********\_********
+**Ejecutado por**: ********\_******** **Fecha de ejecución**: ********\_********
+**Estado**: [ ] Pasó [ ] Falló [ ] Bloqueado **Resultado actual**:
+********\_******** **Comentarios**: ********\_********
 
 ## Defectos Encontrados
 
@@ -704,9 +720,8 @@ Verificar que los usuarios pueden autenticarse exitosamente en el sistema usando
 
 ## Aprobación
 
-**Aprobado por**: ********\_********
-**Firma**: ********\_********
-**Fecha**: ********\_********
+**Aprobado por**: ********\_******** **Firma**: ********\_******** **Fecha**:
+********\_********
 ```
 
 ---
@@ -727,6 +742,7 @@ Verificar que los usuarios pueden autenticarse exitosamente en el sistema usando
 - ⏭️ [Testing de Usabilidad](./testing-usabilidad.md)
 - ⏭️ [Code Review y Refactoring](./code-review-refactoring.md)
 - ⏭️ [Auditoría de Calidad de Código](./auditoria-calidad-codigo.md)
+- ⏭️ [Checklist Específico de Performance](./checklist-performance.md)
 
 ---
 
@@ -734,4 +750,5 @@ Verificar que los usuarios pueden autenticarse exitosamente en el sistema usando
 
 Continúa con [**Gestión de Reportes de Errores**](./gestion-reportes-errores.md)
 
-[⬅️ Checklists QA](./checklists-qa.md) | [🏠 README Principal](../../README.md) | [➡️ Gestión de Reportes de Errores](./gestion-reportes-errores.md)
+[⬅️ Checklists QA](./checklists-qa.md) | [🏠 README Principal](../../README.md)
+| [➡️ Gestión de Reportes de Errores](./gestion-reportes-errores.md)

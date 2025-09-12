@@ -2,16 +2,24 @@
 
 ## ¿Qué es?
 
-La clasificación de tipos de pruebas es fundamental para establecer una estrategia integral de testing que cubra todos los aspectos del software. Cada tipo de prueba tiene un propósito específico y se ejecuta en diferentes momentos del ciclo de desarrollo, garantizando que el sistema funcione correctamente desde múltiples perspectivas.
+La clasificación de tipos de pruebas es fundamental para establecer una
+estrategia integral de testing que cubra todos los aspectos del software. Cada
+tipo de prueba tiene un propósito específico y se ejecuta en diferentes momentos
+del ciclo de desarrollo, garantizando que el sistema funcione correctamente
+desde múltiples perspectivas.
 
 ## ¿Por qué es importante?
 
 - **Cobertura completa**: Asegura que se prueben todos los aspectos del sistema
-- **Detección temprana**: Diferentes tipos de pruebas detectan diferentes tipos de problemas
+- **Detección temprana**: Diferentes tipos de pruebas detectan diferentes tipos
+  de problemas
 - **Reducción de riesgos**: Minimiza la probabilidad de errores en producción
-- **Calidad integral**: Garantiza tanto funcionalidad como características no funcionales
-- **Planificación efectiva**: Permite organizar el esfuerzo de testing de manera eficiente
-- **Comunicación clara**: Facilita la coordinación entre equipos de desarrollo y QA
+- **Calidad integral**: Garantiza tanto funcionalidad como características no
+  funcionales
+- **Planificación efectiva**: Permite organizar el esfuerzo de testing de manera
+  eficiente
+- **Comunicación clara**: Facilita la coordinación entre equipos de desarrollo y
+  QA
 
 ## ¿Qué debe incluir?
 
@@ -84,49 +92,49 @@ La clasificación de tipos de pruebas es fundamental para establecer una estrate
 ```typescript
 // src/testing/strategy.ts
 export interface TestingStrategy {
-  unitTests: {
-    coverage: number;
-    tools: string[];
-    frequency: "continuous" | "daily" | "weekly";
-  };
-  integrationTests: {
-    apiTests: boolean;
-    databaseTests: boolean;
-    externalServices: boolean;
-  };
-  e2eTests: {
-    criticalPaths: string[];
-    browsers: string[];
-    devices: string[];
-  };
-  performanceTests: {
-    loadTesting: boolean;
-    stressTesting: boolean;
-    volumeTesting: boolean;
-  };
+   unitTests: {
+      coverage: number;
+      tools: string[];
+      frequency: "continuous" | "daily" | "weekly";
+   };
+   integrationTests: {
+      apiTests: boolean;
+      databaseTests: boolean;
+      externalServices: boolean;
+   };
+   e2eTests: {
+      criticalPaths: string[];
+      browsers: string[];
+      devices: string[];
+   };
+   performanceTests: {
+      loadTesting: boolean;
+      stressTesting: boolean;
+      volumeTesting: boolean;
+   };
 }
 
 export const webAppStrategy: TestingStrategy = {
-  unitTests: {
-    coverage: 80,
-    tools: ["Jest", "React Testing Library"],
-    frequency: "continuous",
-  },
-  integrationTests: {
-    apiTests: true,
-    databaseTests: true,
-    externalServices: true,
-  },
-  e2eTests: {
-    criticalPaths: ["login", "checkout", "user-registration"],
-    browsers: ["Chrome", "Firefox", "Safari"],
-    devices: ["desktop", "tablet", "mobile"],
-  },
-  performanceTests: {
-    loadTesting: true,
-    stressTesting: true,
-    volumeTesting: false,
-  },
+   unitTests: {
+      coverage: 80,
+      tools: ["Jest", "React Testing Library"],
+      frequency: "continuous",
+   },
+   integrationTests: {
+      apiTests: true,
+      databaseTests: true,
+      externalServices: true,
+   },
+   e2eTests: {
+      criticalPaths: ["login", "checkout", "user-registration"],
+      browsers: ["Chrome", "Firefox", "Safari"],
+      devices: ["desktop", "tablet", "mobile"],
+   },
+   performanceTests: {
+      loadTesting: true,
+      stressTesting: true,
+      volumeTesting: false,
+   },
 };
 ```
 
@@ -160,14 +168,14 @@ tests/
 
 ```json
 {
-  "scripts": {
-    "test:unit": "jest --testPathPattern=unit",
-    "test:integration": "jest --testPathPattern=integration",
-    "test:e2e": "cypress run",
-    "test:watch": "jest --watch",
-    "test:coverage": "jest --coverage",
-    "test:ci": "jest --ci --coverage --watchAll=false"
-  }
+   "scripts": {
+      "test:unit": "jest --testPathPattern=unit",
+      "test:integration": "jest --testPathPattern=integration",
+      "test:e2e": "cypress run",
+      "test:watch": "jest --watch",
+      "test:coverage": "jest --coverage",
+      "test:ci": "jest --ci --coverage --watchAll=false"
+   }
 }
 ```
 
@@ -196,20 +204,20 @@ tests/
 ```yaml
 # .github/workflows/test-gates.yml
 test_gates:
-  unit_tests:
-    min_coverage: 80%
-    max_execution_time: 5min
-    required_for: all_commits
+   unit_tests:
+      min_coverage: 80%
+      max_execution_time: 5min
+      required_for: all_commits
 
-  integration_tests:
-    min_coverage: 60%
-    max_execution_time: 15min
-    required_for: pull_requests
+   integration_tests:
+      min_coverage: 60%
+      max_execution_time: 15min
+      required_for: pull_requests
 
-  e2e_tests:
-    critical_paths: required
-    max_execution_time: 30min
-    required_for: releases
+   e2e_tests:
+      critical_paths: required
+      max_execution_time: 30min
+      required_for: releases
 ```
 
 ### 5. Implementar testing continuo
@@ -262,30 +270,30 @@ import { render, screen } from "@testing-library/react";
 import { UserCard } from "../UserCard";
 
 describe("UserCard", () => {
-  const mockUser = {
-    id: 1,
-    name: "Juan Pérez",
-    email: "juan@example.com",
-    avatar: "https://example.com/avatar.jpg",
-  };
+   const mockUser = {
+      id: 1,
+      name: "Juan Pérez",
+      email: "juan@example.com",
+      avatar: "https://example.com/avatar.jpg",
+   };
 
-  it("should render user information correctly", () => {
-    render(<UserCard user={mockUser} />);
+   it("should render user information correctly", () => {
+      render(<UserCard user={mockUser} />);
 
-    expect(screen.getByText("Juan Pérez")).toBeInTheDocument();
-    expect(screen.getByText("juan@example.com")).toBeInTheDocument();
-    expect(screen.getByRole("img")).toHaveAttribute("src", mockUser.avatar);
-  });
+      expect(screen.getByText("Juan Pérez")).toBeInTheDocument();
+      expect(screen.getByText("juan@example.com")).toBeInTheDocument();
+      expect(screen.getByRole("img")).toHaveAttribute("src", mockUser.avatar);
+   });
 
-  it("should handle missing avatar gracefully", () => {
-    const userWithoutAvatar = { ...mockUser, avatar: null };
-    render(<UserCard user={userWithoutAvatar} />);
+   it("should handle missing avatar gracefully", () => {
+      const userWithoutAvatar = { ...mockUser, avatar: null };
+      render(<UserCard user={userWithoutAvatar} />);
 
-    expect(screen.getByRole("img")).toHaveAttribute(
-      "src",
-      "/default-avatar.png"
-    );
-  });
+      expect(screen.getByRole("img")).toHaveAttribute(
+         "src",
+         "/default-avatar.png",
+      );
+   });
 });
 ```
 
@@ -358,49 +366,49 @@ class UserRegistrationTest extends TestCase
 ```typescript
 // cypress/e2e/user-registration.cy.ts
 describe("User Registration Flow", () => {
-  beforeEach(() => {
-    cy.visit("/register");
-  });
+   beforeEach(() => {
+      cy.visit("/register");
+   });
 
-  it("should allow user to register successfully", () => {
-    // Arrange
-    const userData = {
-      name: "Juan Pérez",
-      email: `juan${Date.now()}@example.com`,
-      password: "password123",
-    };
+   it("should allow user to register successfully", () => {
+      // Arrange
+      const userData = {
+         name: "Juan Pérez",
+         email: `juan${Date.now()}@example.com`,
+         password: "password123",
+      };
 
-    // Act
-    cy.get('[data-testid="name-input"]').type(userData.name);
-    cy.get('[data-testid="email-input"]').type(userData.email);
-    cy.get('[data-testid="password-input"]').type(userData.password);
-    cy.get('[data-testid="password-confirmation-input"]').type(
-      userData.password
-    );
-    cy.get('[data-testid="register-button"]').click();
+      // Act
+      cy.get('[data-testid="name-input"]').type(userData.name);
+      cy.get('[data-testid="email-input"]').type(userData.email);
+      cy.get('[data-testid="password-input"]').type(userData.password);
+      cy.get('[data-testid="password-confirmation-input"]').type(
+         userData.password,
+      );
+      cy.get('[data-testid="register-button"]').click();
 
-    // Assert
-    cy.url().should("include", "/dashboard");
-    cy.get('[data-testid="welcome-message"]').should(
-      "contain",
-      `Bienvenido, ${userData.name}`
-    );
-  });
+      // Assert
+      cy.url().should("include", "/dashboard");
+      cy.get('[data-testid="welcome-message"]').should(
+         "contain",
+         `Bienvenido, ${userData.name}`,
+      );
+   });
 
-  it("should show validation errors for invalid data", () => {
-    // Act
-    cy.get('[data-testid="register-button"]').click();
+   it("should show validation errors for invalid data", () => {
+      // Act
+      cy.get('[data-testid="register-button"]').click();
 
-    // Assert
-    cy.get('[data-testid="name-error"]').should(
-      "contain",
-      "El nombre es requerido"
-    );
-    cy.get('[data-testid="email-error"]').should(
-      "contain",
-      "El email es requerido"
-    );
-  });
+      // Assert
+      cy.get('[data-testid="name-error"]').should(
+         "contain",
+         "El nombre es requerido",
+      );
+      cy.get('[data-testid="email-error"]').should(
+         "contain",
+         "El email es requerido",
+      );
+   });
 });
 ```
 
@@ -432,11 +440,14 @@ describe("User Registration Flow", () => {
 - ⏭️ [Testing de Usabilidad](./testing-usabilidad.md)
 - ⏭️ [Code Review y Refactoring](./code-review-refactoring.md)
 - ⏭️ [Auditoría de Calidad de Código](./auditoria-calidad-codigo.md)
+- ⏭️ [Checklist Específico de Performance](./checklist-performance.md)
 
 ---
 
 ### Siguiente Paso
 
-Continúa con [**Testing Funcional Automatizado**](./testing-funcional-automatizado.md)
+Continúa con
+[**Testing Funcional Automatizado**](./testing-funcional-automatizado.md)
 
-[⬅️ Testing y QA](./testing-qa.md) | [🏠 README Principal](../../README.md) | [➡️ Testing Funcional Automatizado](./testing-funcional-automatizado.md)
+[⬅️ Testing y QA](./testing-qa.md) | [🏠 README Principal](../../README.md) |
+[➡️ Testing Funcional Automatizado](./testing-funcional-automatizado.md)

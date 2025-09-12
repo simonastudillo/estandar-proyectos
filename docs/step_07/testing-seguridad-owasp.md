@@ -412,89 +412,89 @@ import UserProfile from "../../components/UserProfile/UserProfile";
 import CommentSection from "../../components/CommentSection/CommentSection";
 
 describe("XSS Protection", () => {
-  const maliciousInputs = [
-    '<script>alert("XSS")</script>',
-    '<img src="x" onerror="alert(\'XSS\')" />',
-    "<svg onload=\"alert('XSS')\" />",
-    'javascript:alert("XSS")',
-    "<iframe src=\"javascript:alert('XSS')\"></iframe>",
-    "<body onload=\"alert('XSS')\">",
-    "<div onclick=\"alert('XSS')\">Click me</div>",
-    '"><script>alert("XSS")</script>',
-    '\';alert("XSS");//',
-  ];
+   const maliciousInputs = [
+      '<script>alert("XSS")</script>',
+      '<img src="x" onerror="alert(\'XSS\')" />',
+      "<svg onload=\"alert('XSS')\" />",
+      'javascript:alert("XSS")',
+      "<iframe src=\"javascript:alert('XSS')\"></iframe>",
+      "<body onload=\"alert('XSS')\">",
+      "<div onclick=\"alert('XSS')\">Click me</div>",
+      '"><script>alert("XSS")</script>',
+      '\';alert("XSS");//',
+   ];
 
-  test("should sanitize user input in profile display", () => {
-    const user = {
-      id: 1,
-      name: '<script>alert("XSS")</script>John Doe',
-      bio: '<img src="x" onerror="alert(\'XSS\')" />Software Developer',
-    };
+   test("should sanitize user input in profile display", () => {
+      const user = {
+         id: 1,
+         name: '<script>alert("XSS")</script>John Doe',
+         bio: '<img src="x" onerror="alert(\'XSS\')" />Software Developer',
+      };
 
-    render(<UserProfile user={user} />);
+      render(<UserProfile user={user} />);
 
-    // El script no debe estar presente en el DOM
-    expect(screen.queryByText(/script/)).not.toBeInTheDocument();
-    expect(screen.getByText(/John Doe/)).toBeInTheDocument();
-    expect(screen.getByText(/Software Developer/)).toBeInTheDocument();
-  });
+      // El script no debe estar presente en el DOM
+      expect(screen.queryByText(/script/)).not.toBeInTheDocument();
+      expect(screen.getByText(/John Doe/)).toBeInTheDocument();
+      expect(screen.getByText(/Software Developer/)).toBeInTheDocument();
+   });
 
-  test("should prevent XSS in comment submission", async () => {
-    const user = userEvent.setup();
-    const onSubmit = jest.fn();
+   test("should prevent XSS in comment submission", async () => {
+      const user = userEvent.setup();
+      const onSubmit = jest.fn();
 
-    render(<CommentSection onSubmit={onSubmit} />);
+      render(<CommentSection onSubmit={onSubmit} />);
 
-    const textarea = screen.getByRole("textbox");
-    const submitButton = screen.getByRole("button", { name: /enviar/i });
+      const textarea = screen.getByRole("textbox");
+      const submitButton = screen.getByRole("button", { name: /enviar/i });
 
-    for (const maliciousInput of maliciousInputs) {
-      await user.clear(textarea);
-      await user.type(textarea, maliciousInput);
-      await user.click(submitButton);
+      for (const maliciousInput of maliciousInputs) {
+         await user.clear(textarea);
+         await user.type(textarea, maliciousInput);
+         await user.click(submitButton);
 
-      // Verificar que el input fue sanitizado
-      const submittedData =
-        onSubmit.mock.calls[onSubmit.mock.calls.length - 1][0];
-      expect(submittedData.comment).not.toContain("<script>");
-      expect(submittedData.comment).not.toContain("javascript:");
-      expect(submittedData.comment).not.toContain("onerror");
-      expect(submittedData.comment).not.toContain("onload");
-    }
-  });
+         // Verificar que el input fue sanitizado
+         const submittedData =
+            onSubmit.mock.calls[onSubmit.mock.calls.length - 1][0];
+         expect(submittedData.comment).not.toContain("<script>");
+         expect(submittedData.comment).not.toContain("javascript:");
+         expect(submittedData.comment).not.toContain("onerror");
+         expect(submittedData.comment).not.toContain("onload");
+      }
+   });
 
-  test("should safely render HTML content with DOMPurify", () => {
-    const dangerousHTML = `
+   test("should safely render HTML content with DOMPurify", () => {
+      const dangerousHTML = `
       <p>Contenido válido</p>
       <script>alert('XSS')</script>
       <img src="x" onerror="alert('XSS')" />
       <a href="javascript:alert('XSS')">Link malicioso</a>
     `;
 
-    const { container } = render(
-      <div
-        dangerouslySetInnerHTML={{
-          __html: require("dompurify").sanitize(dangerousHTML),
-        }}
-      />
-    );
+      const { container } = render(
+         <div
+            dangerouslySetInnerHTML={{
+               __html: require("dompurify").sanitize(dangerousHTML),
+            }}
+         />,
+      );
 
-    // Solo el contenido válido debe estar presente
-    expect(container.innerHTML).toContain("<p>Contenido válido</p>");
-    expect(container.innerHTML).not.toContain("<script>");
-    expect(container.innerHTML).not.toContain("onerror");
-    expect(container.innerHTML).not.toContain("javascript:");
-  });
+      // Solo el contenido válido debe estar presente
+      expect(container.innerHTML).toContain("<p>Contenido válido</p>");
+      expect(container.innerHTML).not.toContain("<script>");
+      expect(container.innerHTML).not.toContain("onerror");
+      expect(container.innerHTML).not.toContain("javascript:");
+   });
 
-  test("should escape content in URLs", () => {
-    const maliciousUrl = 'javascript:alert("XSS")';
+   test("should escape content in URLs", () => {
+      const maliciousUrl = 'javascript:alert("XSS")';
 
-    render(<a href={maliciousUrl}>Link</a>);
+      render(<a href={maliciousUrl}>Link</a>);
 
-    const link = screen.getByRole("link");
-    // React automáticamente sanitiza URLs peligrosas
-    expect(link.getAttribute("href")).not.toBe(maliciousUrl);
-  });
+      const link = screen.getByRole("link");
+      // React automáticamente sanitiza URLs peligrosas
+      expect(link.getAttribute("href")).not.toBe(maliciousUrl);
+   });
 });
 ```
 
@@ -565,38 +565,38 @@ import helmet from "helmet";
 import { Application } from "express";
 
 export function configureSecurityHeaders(app: Application): void {
-  app.use(
-    helmet({
-      contentSecurityPolicy: {
-        directives: {
-          defaultSrc: ["'self'"],
-          scriptSrc: [
-            "'self'",
-            "'unsafe-inline'",
-            "https://cdnjs.cloudflare.com",
-          ],
-          styleSrc: [
-            "'self'",
-            "'unsafe-inline'",
-            "https://fonts.googleapis.com",
-          ],
-          fontSrc: ["'self'", "https://fonts.gstatic.com"],
-          imgSrc: ["'self'", "data:", "https:"],
-          connectSrc: ["'self'", "https://api.example.com"],
-          objectSrc: ["'none'"],
-          upgradeInsecureRequests: [],
-        },
-      },
-      hsts: {
-        maxAge: 31536000,
-        includeSubDomains: true,
-        preload: true,
-      },
-      noSniff: true,
-      xssFilter: true,
-      referrerPolicy: { policy: "strict-origin-when-cross-origin" },
-    })
-  );
+   app.use(
+      helmet({
+         contentSecurityPolicy: {
+            directives: {
+               defaultSrc: ["'self'"],
+               scriptSrc: [
+                  "'self'",
+                  "'unsafe-inline'",
+                  "https://cdnjs.cloudflare.com",
+               ],
+               styleSrc: [
+                  "'self'",
+                  "'unsafe-inline'",
+                  "https://fonts.googleapis.com",
+               ],
+               fontSrc: ["'self'", "https://fonts.gstatic.com"],
+               imgSrc: ["'self'", "data:", "https:"],
+               connectSrc: ["'self'", "https://api.example.com"],
+               objectSrc: ["'none'"],
+               upgradeInsecureRequests: [],
+            },
+         },
+         hsts: {
+            maxAge: 31536000,
+            includeSubDomains: true,
+            preload: true,
+         },
+         noSniff: true,
+         xssFilter: true,
+         referrerPolicy: { policy: "strict-origin-when-cross-origin" },
+      }),
+   );
 }
 ```
 
@@ -785,150 +785,150 @@ return [
 name: Security Tests
 
 on:
-  push:
-    branches: [main, develop]
-  pull_request:
-    branches: [main]
-  schedule:
-    - cron: "0 2 * * 0" # Semanal, domingos a las 2 AM
+   push:
+      branches: [main, develop]
+   pull_request:
+      branches: [main]
+   schedule:
+      - cron: "0 2 * * 0" # Semanal, domingos a las 2 AM
 
 jobs:
-  dependency-check:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
+   dependency-check:
+      runs-on: ubuntu-latest
+      steps:
+         - uses: actions/checkout@v3
 
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: "8.2"
+         - name: Setup PHP
+           uses: shivammathur/setup-php@v2
+           with:
+              php-version: "8.2"
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: "18"
+         - name: Setup Node.js
+           uses: actions/setup-node@v3
+           with:
+              node-version: "18"
 
-      - name: Install PHP dependencies
-        run: composer install --no-dev
+         - name: Install PHP dependencies
+           run: composer install --no-dev
 
-      - name: Install Node dependencies
-        run: npm ci
+         - name: Install Node dependencies
+           run: npm ci
 
-      - name: Run PHP security audit
-        run: composer audit
+         - name: Run PHP security audit
+           run: composer audit
 
-      - name: Run npm audit
-        run: npm audit --audit-level=moderate
+         - name: Run npm audit
+           run: npm audit --audit-level=moderate
 
-      - name: Run OWASP Dependency Check
-        uses: dependency-check/Dependency-Check_Action@main
-        with:
-          project: "mi-proyecto"
-          path: "."
-          format: "JSON"
+         - name: Run OWASP Dependency Check
+           uses: dependency-check/Dependency-Check_Action@main
+           with:
+              project: "mi-proyecto"
+              path: "."
+              format: "JSON"
 
-      - name: Upload dependency check results
-        uses: actions/upload-artifact@v3
-        with:
-          name: dependency-check-report
-          path: reports/dependency-check-report.json
+         - name: Upload dependency check results
+           uses: actions/upload-artifact@v3
+           with:
+              name: dependency-check-report
+              path: reports/dependency-check-report.json
 
-  static-analysis:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
+   static-analysis:
+      runs-on: ubuntu-latest
+      steps:
+         - uses: actions/checkout@v3
 
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: "8.2"
+         - name: Setup PHP
+           uses: shivammathur/setup-php@v2
+           with:
+              php-version: "8.2"
 
-      - name: Install dependencies
-        run: composer install
+         - name: Install dependencies
+           run: composer install
 
-      - name: Run PHPStan security analysis
-        run: ./vendor/bin/phpstan analyse --error-format=github
+         - name: Run PHPStan security analysis
+           run: ./vendor/bin/phpstan analyse --error-format=github
 
-      - name: Run ESLint security rules
-        run: npx eslint src/ --ext .ts,.tsx --format=json --output-file=eslint-security-report.json
+         - name: Run ESLint security rules
+           run: npx eslint src/ --ext .ts,.tsx --format=json --output-file=eslint-security-report.json
 
-      - name: Upload static analysis results
-        uses: actions/upload-artifact@v3
-        with:
-          name: static-analysis-report
-          path: eslint-security-report.json
+         - name: Upload static analysis results
+           uses: actions/upload-artifact@v3
+           with:
+              name: static-analysis-report
+              path: eslint-security-report.json
 
-  penetration-testing:
-    runs-on: ubuntu-latest
-    services:
-      mysql:
-        image: mysql:8.0
-        env:
-          MYSQL_ROOT_PASSWORD: password
-          MYSQL_DATABASE: test_db
-        ports:
-          - 3306:3306
+   penetration-testing:
+      runs-on: ubuntu-latest
+      services:
+         mysql:
+            image: mysql:8.0
+            env:
+               MYSQL_ROOT_PASSWORD: password
+               MYSQL_DATABASE: test_db
+            ports:
+               - 3306:3306
 
-    steps:
-      - uses: actions/checkout@v3
+      steps:
+         - uses: actions/checkout@v3
 
-      - name: Setup application
-        run: |
-          composer install
-          php artisan migrate --seed
-          php artisan serve &
-          sleep 10
+         - name: Setup application
+           run: |
+              composer install
+              php artisan migrate --seed
+              php artisan serve &
+              sleep 10
 
-      - name: Install OWASP ZAP
-        run: |
-          wget -q https://github.com/zaproxy/zaproxy/releases/download/v2.12.0/ZAP_2.12.0_Linux.tar.gz
-          tar -xzf ZAP_2.12.0_Linux.tar.gz
+         - name: Install OWASP ZAP
+           run: |
+              wget -q https://github.com/zaproxy/zaproxy/releases/download/v2.12.0/ZAP_2.12.0_Linux.tar.gz
+              tar -xzf ZAP_2.12.0_Linux.tar.gz
 
-      - name: Run ZAP baseline scan
-        run: |
-          ./ZAP_2.12.0/zap.sh -cmd -quickurl http://localhost:8000 \
-            -quickprogress -quickout zap-baseline-report.html
+         - name: Run ZAP baseline scan
+           run: |
+              ./ZAP_2.12.0/zap.sh -cmd -quickurl http://localhost:8000 \
+                -quickprogress -quickout zap-baseline-report.html
 
-      - name: Run ZAP full scan
-        run: |
-          ./ZAP_2.12.0/zap.sh -cmd -quickurl http://localhost:8000 \
-            -quickattack -quickprogress -quickout zap-full-report.html
+         - name: Run ZAP full scan
+           run: |
+              ./ZAP_2.12.0/zap.sh -cmd -quickurl http://localhost:8000 \
+                -quickattack -quickprogress -quickout zap-full-report.html
 
-      - name: Upload ZAP reports
-        uses: actions/upload-artifact@v3
-        with:
-          name: zap-reports
-          path: zap-*.html
+         - name: Upload ZAP reports
+           uses: actions/upload-artifact@v3
+           with:
+              name: zap-reports
+              path: zap-*.html
 
-  security-tests:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
+   security-tests:
+      runs-on: ubuntu-latest
+      steps:
+         - uses: actions/checkout@v3
 
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: "8.2"
+         - name: Setup PHP
+           uses: shivammathur/setup-php@v2
+           with:
+              php-version: "8.2"
 
-      - name: Install dependencies
-        run: composer install
+         - name: Install dependencies
+           run: composer install
 
-      - name: Run security tests
-        run: ./vendor/bin/phpunit --testsuite=Security
+         - name: Run security tests
+           run: ./vendor/bin/phpunit --testsuite=Security
 
-      - name: Generate security test report
-        run: |
-          ./vendor/bin/phpunit --testsuite=Security \
-            --coverage-html=coverage-security \
-            --log-junit=security-tests.xml
+         - name: Generate security test report
+           run: |
+              ./vendor/bin/phpunit --testsuite=Security \
+                --coverage-html=coverage-security \
+                --log-junit=security-tests.xml
 
-      - name: Upload test results
-        uses: actions/upload-artifact@v3
-        with:
-          name: security-test-results
-          path: |
-            coverage-security/
-            security-tests.xml
+         - name: Upload test results
+           uses: actions/upload-artifact@v3
+           with:
+              name: security-test-results
+              path: |
+                 coverage-security/
+                 security-tests.xml
 ```
 
 ## Tips
@@ -954,72 +954,73 @@ jobs:
 import DOMPurify from "dompurify";
 
 export class SecurityUtils {
-  // Sanitizar HTML para prevenir XSS
-  static sanitizeHtml(dirty: string): string {
-    return DOMPurify.sanitize(dirty, {
-      ALLOWED_TAGS: ["p", "br", "strong", "em", "u", "a"],
-      ALLOWED_ATTR: ["href", "target"],
-      ALLOW_DATA_ATTR: false,
-    });
-  }
+   // Sanitizar HTML para prevenir XSS
+   static sanitizeHtml(dirty: string): string {
+      return DOMPurify.sanitize(dirty, {
+         ALLOWED_TAGS: ["p", "br", "strong", "em", "u", "a"],
+         ALLOWED_ATTR: ["href", "target"],
+         ALLOW_DATA_ATTR: false,
+      });
+   }
 
-  // Validar y sanitizar URLs
-  static sanitizeUrl(url: string): string {
-    try {
-      const parsedUrl = new URL(url);
+   // Validar y sanitizar URLs
+   static sanitizeUrl(url: string): string {
+      try {
+         const parsedUrl = new URL(url);
 
-      // Solo permitir http y https
-      if (!["http:", "https:"].includes(parsedUrl.protocol)) {
-        return "#";
+         // Solo permitir http y https
+         if (!["http:", "https:"].includes(parsedUrl.protocol)) {
+            return "#";
+         }
+
+         return parsedUrl.href;
+      } catch {
+         return "#";
       }
+   }
 
-      return parsedUrl.href;
-    } catch {
-      return "#";
-    }
-  }
+   // Escapar caracteres especiales para prevenir injection
+   static escapeHtml(unsafe: string): string {
+      return unsafe
+         .replace(/&/g, "&amp;")
+         .replace(/</g, "&lt;")
+         .replace(/>/g, "&gt;")
+         .replace(/"/g, "&quot;")
+         .replace(/'/g, "&#039;");
+   }
 
-  // Escapar caracteres especiales para prevenir injection
-  static escapeHtml(unsafe: string): string {
-    return unsafe
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;")
-      .replace(/"/g, "&quot;")
-      .replace(/'/g, "&#039;");
-  }
+   // Validar tokens JWT en el frontend
+   static isValidJwtFormat(token: string): boolean {
+      const parts = token.split(".");
+      return parts.length === 3;
+   }
 
-  // Validar tokens JWT en el frontend
-  static isValidJwtFormat(token: string): boolean {
-    const parts = token.split(".");
-    return parts.length === 3;
-  }
+   // Generar nonce para CSP
+   static generateNonce(): string {
+      const array = new Uint8Array(16);
+      crypto.getRandomValues(array);
+      return Array.from(array, (byte) => byte.toString(16).padStart(2, "0"))
+         .join(
+            "",
+         );
+   }
 
-  // Generar nonce para CSP
-  static generateNonce(): string {
-    const array = new Uint8Array(16);
-    crypto.getRandomValues(array);
-    return Array.from(array, (byte) => byte.toString(16).padStart(2, "0")).join(
-      ""
-    );
-  }
+   // Validar contraseña segura
+   static isStrongPassword(password: string): boolean {
+      const minLength = 8;
+      const hasUpperCase = /[A-Z]/.test(password);
+      const hasLowerCase = /[a-z]/.test(password);
+      const hasNumbers = /\d/.test(password);
+      const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
 
-  // Validar contraseña segura
-  static isStrongPassword(password: string): boolean {
-    const minLength = 8;
-    const hasUpperCase = /[A-Z]/.test(password);
-    const hasLowerCase = /[a-z]/.test(password);
-    const hasNumbers = /\d/.test(password);
-    const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
-
-    return (
-      password.length >= minLength &&
-      hasUpperCase &&
-      hasLowerCase &&
-      hasNumbers &&
-      hasSpecialChar
-    );
-  }
+      return (
+         password.length >= minLength &&
+         hasUpperCase &&
+         hasLowerCase &&
+         hasNumbers &&
+         hasSpecialChar
+      );
+   }
 }
 ```
 
@@ -1137,6 +1138,7 @@ echo "📋 Reporte disponible en: $REPORT_DIR/executive-summary.md"
 - ⏭️ [Testing de Usabilidad](./testing-usabilidad.md)
 - ⏭️ [Code Review y Refactoring](./code-review-refactoring.md)
 - ⏭️ [Auditoría de Calidad de Código](./auditoria-calidad-codigo.md)
+- ⏭️ [Checklist Específico de Performance](./checklist-performance.md)
 
 ---
 

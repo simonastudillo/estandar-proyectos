@@ -171,24 +171,24 @@ enhancement, needs-review
 ```yaml
 # .github/branch-protection.yml
 protection_rules:
-  main:
-    required_status_checks:
-      strict: true
-      contexts:
-        - "ci/tests"
-        - "ci/lint"
-        - "ci/security"
-    enforce_admins: true
-    required_pull_request_reviews:
-      required_approving_review_count: 2
-      dismiss_stale_reviews: true
-      require_code_owner_reviews: true
-      require_review_from_code_owners: true
-    restrictions:
-      users: []
-      teams: ["developers"]
-    allow_force_pushes: false
-    allow_deletions: false
+   main:
+      required_status_checks:
+         strict: true
+         contexts:
+            - "ci/tests"
+            - "ci/lint"
+            - "ci/security"
+      enforce_admins: true
+      required_pull_request_reviews:
+         required_approving_review_count: 2
+         dismiss_stale_reviews: true
+         require_code_owner_reviews: true
+         require_review_from_code_owners: true
+      restrictions:
+         users: []
+         teams: ["developers"]
+      allow_force_pushes: false
+      allow_deletions: false
 ```
 
 #### CODEOWNERS file
@@ -342,53 +342,59 @@ FRONTEND CODE REVIEW CHECKLIST
 ```javascript
 // .eslintrc.js
 module.exports = {
-  extends: [
-    "eslint:recommended",
-    "@typescript-eslint/recommended",
-    "plugin:react/recommended",
-    "plugin:react-hooks/recommended",
-    "plugin:jsx-a11y/recommended",
-  ],
-  plugins: ["@typescript-eslint", "react", "react-hooks", "jsx-a11y", "import"],
-  rules: {
-    // Code quality
-    "no-console": "warn",
-    "no-debugger": "error",
-    "no-unused-vars": "off",
-    "@typescript-eslint/no-unused-vars": "error",
+   extends: [
+      "eslint:recommended",
+      "@typescript-eslint/recommended",
+      "plugin:react/recommended",
+      "plugin:react-hooks/recommended",
+      "plugin:jsx-a11y/recommended",
+   ],
+   plugins: [
+      "@typescript-eslint",
+      "react",
+      "react-hooks",
+      "jsx-a11y",
+      "import",
+   ],
+   rules: {
+      // Code quality
+      "no-console": "warn",
+      "no-debugger": "error",
+      "no-unused-vars": "off",
+      "@typescript-eslint/no-unused-vars": "error",
 
-    // React específico
-    "react/prop-types": "off", // Usamos TypeScript
-    "react/react-in-jsx-scope": "off", // React 17+
-    "react-hooks/rules-of-hooks": "error",
-    "react-hooks/exhaustive-deps": "warn",
+      // React específico
+      "react/prop-types": "off", // Usamos TypeScript
+      "react/react-in-jsx-scope": "off", // React 17+
+      "react-hooks/rules-of-hooks": "error",
+      "react-hooks/exhaustive-deps": "warn",
 
-    // Imports
-    "import/order": [
-      "error",
-      {
-        groups: [
-          "builtin",
-          "external",
-          "internal",
-          "parent",
-          "sibling",
-          "index",
-        ],
-        "newlines-between": "always",
-      },
-    ],
+      // Imports
+      "import/order": [
+         "error",
+         {
+            groups: [
+               "builtin",
+               "external",
+               "internal",
+               "parent",
+               "sibling",
+               "index",
+            ],
+            "newlines-between": "always",
+         },
+      ],
 
-    // Accesibilidad
-    "jsx-a11y/alt-text": "error",
-    "jsx-a11y/anchor-has-content": "error",
-    "jsx-a11y/click-events-have-key-events": "error",
+      // Accesibilidad
+      "jsx-a11y/alt-text": "error",
+      "jsx-a11y/anchor-has-content": "error",
+      "jsx-a11y/click-events-have-key-events": "error",
 
-    // TypeScript
-    "@typescript-eslint/explicit-function-return-type": "warn",
-    "@typescript-eslint/no-explicit-any": "error",
-    "@typescript-eslint/prefer-const": "error",
-  },
+      // TypeScript
+      "@typescript-eslint/explicit-function-return-type": "warn",
+      "@typescript-eslint/no-explicit-any": "error",
+      "@typescript-eslint/prefer-const": "error",
+   },
 };
 ```
 
@@ -460,142 +466,144 @@ sonar.coverage.exclusions=**/*test*/**,**/*spec*/**,**/*mock*/**
 ```typescript
 // src/utils/codeQuality.ts
 export interface CodeSmell {
-  type: string;
-  severity: "low" | "medium" | "high";
-  description: string;
-  location: string;
-  suggestion: string;
+   type: string;
+   severity: "low" | "medium" | "high";
+   description: string;
+   location: string;
+   suggestion: string;
 }
 
 export class CodeQualityAnalyzer {
-  static analyzeComponent(filePath: string, content: string): CodeSmell[] {
-    const smells: CodeSmell[] = [];
+   static analyzeComponent(filePath: string, content: string): CodeSmell[] {
+      const smells: CodeSmell[] = [];
 
-    // 1. Long Parameter List
-    const longParamMatches = content.match(/function\s+\w+\s*\([^)]{50,}\)/g);
-    if (longParamMatches) {
-      smells.push({
-        type: "Long Parameter List",
-        severity: "medium",
-        description: "Función con demasiados parámetros",
-        location: filePath,
-        suggestion: "Considerar usar objeto de configuración o pattern Builder",
-      });
-    }
-
-    // 2. Large Class/Component
-    const lineCount = content.split("\n").length;
-    if (lineCount > 500) {
-      smells.push({
-        type: "Large Component",
-        severity: "high",
-        description: `Componente muy grande (${lineCount} líneas)`,
-        location: filePath,
-        suggestion: "Dividir en componentes más pequeños",
-      });
-    }
-
-    // 3. Duplicate Code
-    const functionBodies = this.extractFunctionBodies(content);
-    const duplicates = this.findDuplicates(functionBodies);
-    if (duplicates.length > 0) {
-      smells.push({
-        type: "Duplicate Code",
-        severity: "medium",
-        description: "Código duplicado detectado",
-        location: filePath,
-        suggestion: "Extraer funcionalidad común a función/hook reutilizable",
-      });
-    }
-
-    // 4. Long Method
-    const longMethods = this.findLongMethods(content);
-    if (longMethods.length > 0) {
-      smells.push({
-        type: "Long Method",
-        severity: "medium",
-        description: "Métodos muy largos detectados",
-        location: filePath,
-        suggestion: "Dividir métodos en funciones más pequeñas",
-      });
-    }
-
-    // 5. Magic Numbers
-    const magicNumbers = content.match(/\b(?<!const\s+\w+\s*=\s*)\d{2,}\b/g);
-    if (magicNumbers && magicNumbers.length > 3) {
-      smells.push({
-        type: "Magic Numbers",
-        severity: "low",
-        description: "Números mágicos encontrados",
-        location: filePath,
-        suggestion: "Definir constantes con nombres descriptivos",
-      });
-    }
-
-    return smells;
-  }
-
-  private static extractFunctionBodies(content: string): string[] {
-    const functionRegex = /function\s+\w+[^{]*{([^{}]*(?:{[^{}]*}[^{}]*)*)}/g;
-    const bodies: string[] = [];
-    let match;
-
-    while ((match = functionRegex.exec(content)) !== null) {
-      bodies.push(match[1].trim());
-    }
-
-    return bodies;
-  }
-
-  private static findDuplicates(items: string[]): string[] {
-    const seen = new Set<string>();
-    const duplicates: string[] = [];
-
-    for (const item of items) {
-      if (item.length > 50 && seen.has(item)) {
-        duplicates.push(item);
-      }
-      seen.add(item);
-    }
-
-    return duplicates;
-  }
-
-  private static findLongMethods(content: string): string[] {
-    const methods: string[] = [];
-    const lines = content.split("\n");
-
-    let inFunction = false;
-    let functionStart = 0;
-    let braceCount = 0;
-
-    for (let i = 0; i < lines.length; i++) {
-      const line = lines[i];
-
-      if (line.includes("function") || line.includes("=>")) {
-        inFunction = true;
-        functionStart = i;
-        braceCount = 0;
+      // 1. Long Parameter List
+      const longParamMatches = content.match(/function\s+\w+\s*\([^)]{50,}\)/g);
+      if (longParamMatches) {
+         smells.push({
+            type: "Long Parameter List",
+            severity: "medium",
+            description: "Función con demasiados parámetros",
+            location: filePath,
+            suggestion:
+               "Considerar usar objeto de configuración o pattern Builder",
+         });
       }
 
-      if (inFunction) {
-        braceCount += (line.match(/{/g) || []).length;
-        braceCount -= (line.match(/}/g) || []).length;
-
-        if (braceCount === 0 && inFunction) {
-          const functionLength = i - functionStart;
-          if (functionLength > 30) {
-            methods.push(
-              `Line ${functionStart}: Function too long (${functionLength} lines)`
-            );
-          }
-          inFunction = false;
-        }
+      // 2. Large Class/Component
+      const lineCount = content.split("\n").length;
+      if (lineCount > 500) {
+         smells.push({
+            type: "Large Component",
+            severity: "high",
+            description: `Componente muy grande (${lineCount} líneas)`,
+            location: filePath,
+            suggestion: "Dividir en componentes más pequeños",
+         });
       }
-    }
 
-    return methods;
-  }
+      // 3. Duplicate Code
+      const functionBodies = this.extractFunctionBodies(content);
+      const duplicates = this.findDuplicates(functionBodies);
+      if (duplicates.length > 0) {
+         smells.push({
+            type: "Duplicate Code",
+            severity: "medium",
+            description: "Código duplicado detectado",
+            location: filePath,
+            suggestion:
+               "Extraer funcionalidad común a función/hook reutilizable",
+         });
+      }
+
+      // 4. Long Method
+      const longMethods = this.findLongMethods(content);
+      if (longMethods.length > 0) {
+         smells.push({
+            type: "Long Method",
+            severity: "medium",
+            description: "Métodos muy largos detectados",
+            location: filePath,
+            suggestion: "Dividir métodos en funciones más pequeñas",
+         });
+      }
+
+      // 5. Magic Numbers
+      const magicNumbers = content.match(/\b(?<!const\s+\w+\s*=\s*)\d{2,}\b/g);
+      if (magicNumbers && magicNumbers.length > 3) {
+         smells.push({
+            type: "Magic Numbers",
+            severity: "low",
+            description: "Números mágicos encontrados",
+            location: filePath,
+            suggestion: "Definir constantes con nombres descriptivos",
+         });
+      }
+
+      return smells;
+   }
+
+   private static extractFunctionBodies(content: string): string[] {
+      const functionRegex = /function\s+\w+[^{]*{([^{}]*(?:{[^{}]*}[^{}]*)*)}/g;
+      const bodies: string[] = [];
+      let match;
+
+      while ((match = functionRegex.exec(content)) !== null) {
+         bodies.push(match[1].trim());
+      }
+
+      return bodies;
+   }
+
+   private static findDuplicates(items: string[]): string[] {
+      const seen = new Set<string>();
+      const duplicates: string[] = [];
+
+      for (const item of items) {
+         if (item.length > 50 && seen.has(item)) {
+            duplicates.push(item);
+         }
+         seen.add(item);
+      }
+
+      return duplicates;
+   }
+
+   private static findLongMethods(content: string): string[] {
+      const methods: string[] = [];
+      const lines = content.split("\n");
+
+      let inFunction = false;
+      let functionStart = 0;
+      let braceCount = 0;
+
+      for (let i = 0; i < lines.length; i++) {
+         const line = lines[i];
+
+         if (line.includes("function") || line.includes("=>")) {
+            inFunction = true;
+            functionStart = i;
+            braceCount = 0;
+         }
+
+         if (inFunction) {
+            braceCount += (line.match(/{/g) || []).length;
+            braceCount -= (line.match(/}/g) || []).length;
+
+            if (braceCount === 0 && inFunction) {
+               const functionLength = i - functionStart;
+               if (functionLength > 30) {
+                  methods.push(
+                     `Line ${functionStart}: Function too long (${functionLength} lines)`,
+                  );
+               }
+               inFunction = false;
+            }
+         }
+      }
+
+      return methods;
+   }
 }
 ```
 
@@ -607,64 +615,65 @@ import * as fs from "fs";
 import * as path from "path";
 
 export class RefactoringTools {
-  // Extract Method refactoring
-  static extractMethod(
-    filePath: string,
-    startLine: number,
-    endLine: number,
-    methodName: string
-  ): void {
-    const content = fs.readFileSync(filePath, "utf8");
-    const lines = content.split("\n");
+   // Extract Method refactoring
+   static extractMethod(
+      filePath: string,
+      startLine: number,
+      endLine: number,
+      methodName: string,
+   ): void {
+      const content = fs.readFileSync(filePath, "utf8");
+      const lines = content.split("\n");
 
-    const extractedCode = lines.slice(startLine - 1, endLine).join("\n");
-    const methodDeclaration = `\n  private ${methodName}(): void {\n${extractedCode}\n  }\n`;
+      const extractedCode = lines.slice(startLine - 1, endLine).join("\n");
+      const methodDeclaration =
+         `\n  private ${methodName}(): void {\n${extractedCode}\n  }\n`;
 
-    // Replace extracted code with method call
-    lines.splice(
-      startLine - 1,
-      endLine - startLine + 1,
-      `    this.${methodName}();`
-    );
+      // Replace extracted code with method call
+      lines.splice(
+         startLine - 1,
+         endLine - startLine + 1,
+         `    this.${methodName}();`,
+      );
 
-    // Add method declaration
-    const classEndIndex = this.findClassEnd(lines);
-    lines.splice(classEndIndex - 1, 0, methodDeclaration);
+      // Add method declaration
+      const classEndIndex = this.findClassEnd(lines);
+      lines.splice(classEndIndex - 1, 0, methodDeclaration);
 
-    fs.writeFileSync(filePath, lines.join("\n"));
-    console.log(`✅ Método ${methodName} extraído exitosamente`);
-  }
+      fs.writeFileSync(filePath, lines.join("\n"));
+      console.log(`✅ Método ${methodName} extraído exitosamente`);
+   }
 
-  // Rename Method refactoring
-  static renameMethod(
-    filePath: string,
-    oldName: string,
-    newName: string
-  ): void {
-    const content = fs.readFileSync(filePath, "utf8");
+   // Rename Method refactoring
+   static renameMethod(
+      filePath: string,
+      oldName: string,
+      newName: string,
+   ): void {
+      const content = fs.readFileSync(filePath, "utf8");
 
-    // Replace method declaration
-    const methodRegex = new RegExp(`(\\b${oldName}\\s*\\()`, "g");
-    const callRegex = new RegExp(`(\\b${oldName}\\s*\\()`, "g");
+      // Replace method declaration
+      const methodRegex = new RegExp(`(\\b${oldName}\\s*\\()`, "g");
+      const callRegex = new RegExp(`(\\b${oldName}\\s*\\()`, "g");
 
-    const updatedContent = content
-      .replace(methodRegex, `${newName}(`)
-      .replace(callRegex, `${newName}(`);
+      const updatedContent = content
+         .replace(methodRegex, `${newName}(`)
+         .replace(callRegex, `${newName}(`);
 
-    fs.writeFileSync(filePath, updatedContent);
-    console.log(`✅ Método ${oldName} renombrado a ${newName}`);
-  }
+      fs.writeFileSync(filePath, updatedContent);
+      console.log(`✅ Método ${oldName} renombrado a ${newName}`);
+   }
 
-  // Extract Component refactoring
-  static extractComponent(
-    filePath: string,
-    componentName: string,
-    jsxCode: string
-  ): void {
-    const dir = path.dirname(filePath);
-    const newComponentPath = path.join(dir, `${componentName}.tsx`);
+   // Extract Component refactoring
+   static extractComponent(
+      filePath: string,
+      componentName: string,
+      jsxCode: string,
+   ): void {
+      const dir = path.dirname(filePath);
+      const newComponentPath = path.join(dir, `${componentName}.tsx`);
 
-    const componentTemplate = `import React from 'react';
+      const componentTemplate = `import React from 'react';
 
 interface ${componentName}Props {
   // Define props here
@@ -677,56 +686,56 @@ ${jsxCode}
 }
 `;
 
-    fs.writeFileSync(newComponentPath, componentTemplate);
-    console.log(
-      `✅ Componente ${componentName} extraído a ${newComponentPath}`
-    );
-  }
+      fs.writeFileSync(newComponentPath, componentTemplate);
+      console.log(
+         `✅ Componente ${componentName} extraído a ${newComponentPath}`,
+      );
+   }
 
-  // Remove Dead Code
-  static removeDeadCode(filePath: string): void {
-    const content = fs.readFileSync(filePath, "utf8");
+   // Remove Dead Code
+   static removeDeadCode(filePath: string): void {
+      const content = fs.readFileSync(filePath, "utf8");
 
-    // Remove unused imports (simplified)
-    const lines = content.split("\n");
-    const filteredLines = lines.filter((line) => {
-      if (line.trim().startsWith("import") && line.includes("from")) {
-        const imported = line.match(/import\s+{([^}]+)}/)?.[1];
-        if (imported) {
-          const items = imported.split(",").map((item) => item.trim());
-          return items.some((item) => content.includes(item));
-        }
+      // Remove unused imports (simplified)
+      const lines = content.split("\n");
+      const filteredLines = lines.filter((line) => {
+         if (line.trim().startsWith("import") && line.includes("from")) {
+            const imported = line.match(/import\s+{([^}]+)}/)?.[1];
+            if (imported) {
+               const items = imported.split(",").map((item) => item.trim());
+               return items.some((item) => content.includes(item));
+            }
+         }
+         return true;
+      });
+
+      fs.writeFileSync(filePath, filteredLines.join("\n"));
+      console.log(`✅ Código muerto removido de ${filePath}`);
+   }
+
+   private static findClassEnd(lines: string[]): number {
+      let braceCount = 0;
+      let inClass = false;
+
+      for (let i = 0; i < lines.length; i++) {
+         const line = lines[i];
+
+         if (line.includes("class ") || line.includes("function ")) {
+            inClass = true;
+         }
+
+         if (inClass) {
+            braceCount += (line.match(/{/g) || []).length;
+            braceCount -= (line.match(/}/g) || []).length;
+
+            if (braceCount === 0) {
+               return i + 1;
+            }
+         }
       }
-      return true;
-    });
 
-    fs.writeFileSync(filePath, filteredLines.join("\n"));
-    console.log(`✅ Código muerto removido de ${filePath}`);
-  }
-
-  private static findClassEnd(lines: string[]): number {
-    let braceCount = 0;
-    let inClass = false;
-
-    for (let i = 0; i < lines.length; i++) {
-      const line = lines[i];
-
-      if (line.includes("class ") || line.includes("function ")) {
-        inClass = true;
-      }
-
-      if (inClass) {
-        braceCount += (line.match(/{/g) || []).length;
-        braceCount -= (line.match(/}/g) || []).length;
-
-        if (braceCount === 0) {
-          return i + 1;
-        }
-      }
-    }
-
-    return lines.length;
-  }
+      return lines.length;
+   }
 }
 ```
 
@@ -737,126 +746,129 @@ ${jsxCode}
 ```typescript
 // scripts/quality-metrics.ts
 export interface QualityMetrics {
-  coverage: number;
-  duplications: number;
-  complexity: number;
-  maintainabilityIndex: number;
-  technicalDebt: number;
-  codeSmells: number;
-  bugs: number;
-  vulnerabilities: number;
+   coverage: number;
+   duplications: number;
+   complexity: number;
+   maintainabilityIndex: number;
+   technicalDebt: number;
+   codeSmells: number;
+   bugs: number;
+   vulnerabilities: number;
 }
 
 export class QualityMetricsCollector {
-  static async collectMetrics(projectPath: string): Promise<QualityMetrics> {
-    const metrics: QualityMetrics = {
-      coverage: await this.getCoverage(projectPath),
-      duplications: await this.getDuplications(projectPath),
-      complexity: await this.getComplexity(projectPath),
-      maintainabilityIndex: await this.getMaintainabilityIndex(projectPath),
-      technicalDebt: await this.getTechnicalDebt(projectPath),
-      codeSmells: await this.getCodeSmells(projectPath),
-      bugs: await this.getBugs(projectPath),
-      vulnerabilities: await this.getVulnerabilities(projectPath),
-    };
+   static async collectMetrics(projectPath: string): Promise<QualityMetrics> {
+      const metrics: QualityMetrics = {
+         coverage: await this.getCoverage(projectPath),
+         duplications: await this.getDuplications(projectPath),
+         complexity: await this.getComplexity(projectPath),
+         maintainabilityIndex: await this.getMaintainabilityIndex(projectPath),
+         technicalDebt: await this.getTechnicalDebt(projectPath),
+         codeSmells: await this.getCodeSmells(projectPath),
+         bugs: await this.getBugs(projectPath),
+         vulnerabilities: await this.getVulnerabilities(projectPath),
+      };
 
-    return metrics;
-  }
+      return metrics;
+   }
 
-  private static async getCoverage(projectPath: string): Promise<number> {
-    // Leer reporte de coverage
-    const coveragePath = path.join(
-      projectPath,
-      "coverage/coverage-summary.json"
-    );
-    if (fs.existsSync(coveragePath)) {
-      const coverage = JSON.parse(fs.readFileSync(coveragePath, "utf8"));
-      return coverage.total.lines.pct;
-    }
-    return 0;
-  }
-
-  private static async getDuplications(projectPath: string): Promise<number> {
-    // Análisis de duplicaciones usando jscpd
-    const { execSync } = require("child_process");
-    try {
-      const result = execSync(`npx jscpd ${projectPath}/src --reporter json`, {
-        encoding: "utf8",
-      });
-      const report = JSON.parse(result);
-      return report.statistics.total.duplications;
-    } catch {
+   private static async getCoverage(projectPath: string): Promise<number> {
+      // Leer reporte de coverage
+      const coveragePath = path.join(
+         projectPath,
+         "coverage/coverage-summary.json",
+      );
+      if (fs.existsSync(coveragePath)) {
+         const coverage = JSON.parse(fs.readFileSync(coveragePath, "utf8"));
+         return coverage.total.lines.pct;
+      }
       return 0;
-    }
-  }
+   }
 
-  private static async getComplexity(projectPath: string): Promise<number> {
-    // Calcular complejidad ciclomática
-    const files = this.getAllTypeScriptFiles(projectPath);
-    let totalComplexity = 0;
-    let fileCount = 0;
-
-    for (const file of files) {
-      const content = fs.readFileSync(file, "utf8");
-      const complexity = this.calculateCyclomaticComplexity(content);
-      totalComplexity += complexity;
-      fileCount++;
-    }
-
-    return fileCount > 0 ? totalComplexity / fileCount : 0;
-  }
-
-  private static calculateCyclomaticComplexity(code: string): number {
-    // Simplified cyclomatic complexity calculation
-    const patterns = [
-      /if\s*\(/g,
-      /else\s+if\s*\(/g,
-      /while\s*\(/g,
-      /for\s*\(/g,
-      /switch\s*\(/g,
-      /case\s+/g,
-      /catch\s*\(/g,
-      /&&/g,
-      /\|\|/g,
-      /\?/g, // ternary operator
-    ];
-
-    let complexity = 1; // Base complexity
-
-    patterns.forEach((pattern) => {
-      const matches = code.match(pattern);
-      if (matches) {
-        complexity += matches.length;
+   private static async getDuplications(projectPath: string): Promise<number> {
+      // Análisis de duplicaciones usando jscpd
+      const { execSync } = require("child_process");
+      try {
+         const result = execSync(
+            `npx jscpd ${projectPath}/src --reporter json`,
+            {
+               encoding: "utf8",
+            },
+         );
+         const report = JSON.parse(result);
+         return report.statistics.total.duplications;
+      } catch {
+         return 0;
       }
-    });
+   }
 
-    return complexity;
-  }
+   private static async getComplexity(projectPath: string): Promise<number> {
+      // Calcular complejidad ciclomática
+      const files = this.getAllTypeScriptFiles(projectPath);
+      let totalComplexity = 0;
+      let fileCount = 0;
 
-  private static getAllTypeScriptFiles(dir: string): string[] {
-    const files: string[] = [];
-
-    function traverse(currentDir: string) {
-      const items = fs.readdirSync(currentDir);
-
-      for (const item of items) {
-        const fullPath = path.join(currentDir, item);
-        const stat = fs.statSync(fullPath);
-
-        if (stat.isDirectory() && !item.includes("node_modules")) {
-          traverse(fullPath);
-        } else if (item.endsWith(".ts") || item.endsWith(".tsx")) {
-          files.push(fullPath);
-        }
+      for (const file of files) {
+         const content = fs.readFileSync(file, "utf8");
+         const complexity = this.calculateCyclomaticComplexity(content);
+         totalComplexity += complexity;
+         fileCount++;
       }
-    }
 
-    traverse(dir);
-    return files;
-  }
+      return fileCount > 0 ? totalComplexity / fileCount : 0;
+   }
 
-  static generateQualityReport(metrics: QualityMetrics): string {
-    const report = `
+   private static calculateCyclomaticComplexity(code: string): number {
+      // Simplified cyclomatic complexity calculation
+      const patterns = [
+         /if\s*\(/g,
+         /else\s+if\s*\(/g,
+         /while\s*\(/g,
+         /for\s*\(/g,
+         /switch\s*\(/g,
+         /case\s+/g,
+         /catch\s*\(/g,
+         /&&/g,
+         /\|\|/g,
+         /\?/g, // ternary operator
+      ];
+
+      let complexity = 1; // Base complexity
+
+      patterns.forEach((pattern) => {
+         const matches = code.match(pattern);
+         if (matches) {
+            complexity += matches.length;
+         }
+      });
+
+      return complexity;
+   }
+
+   private static getAllTypeScriptFiles(dir: string): string[] {
+      const files: string[] = [];
+
+      function traverse(currentDir: string) {
+         const items = fs.readdirSync(currentDir);
+
+         for (const item of items) {
+            const fullPath = path.join(currentDir, item);
+            const stat = fs.statSync(fullPath);
+
+            if (stat.isDirectory() && !item.includes("node_modules")) {
+               traverse(fullPath);
+            } else if (item.endsWith(".ts") || item.endsWith(".tsx")) {
+               files.push(fullPath);
+            }
+         }
+      }
+
+      traverse(dir);
+      return files;
+   }
+
+   static generateQualityReport(metrics: QualityMetrics): string {
+      const report = `
 # Quality Metrics Report
 
 ## Resumen General
@@ -878,52 +890,52 @@ ${this.getQualityGate(metrics)}
 ${this.getRecommendations(metrics)}
     `;
 
-    return report.trim();
-  }
+      return report.trim();
+   }
 
-  private static getQualityGate(metrics: QualityMetrics): string {
-    const issues = [];
+   private static getQualityGate(metrics: QualityMetrics): string {
+      const issues = [];
 
-    if (metrics.coverage < 80) {
-      issues.push("❌ Cobertura de tests insuficiente");
-    }
+      if (metrics.coverage < 80) {
+         issues.push("❌ Cobertura de tests insuficiente");
+      }
 
-    if (metrics.complexity > 10) {
-      issues.push("❌ Complejidad demasiado alta");
-    }
+      if (metrics.complexity > 10) {
+         issues.push("❌ Complejidad demasiado alta");
+      }
 
-    if (metrics.duplications > 3) {
-      issues.push("❌ Demasiadas duplicaciones");
-    }
+      if (metrics.duplications > 3) {
+         issues.push("❌ Demasiadas duplicaciones");
+      }
 
-    if (metrics.vulnerabilities > 0) {
-      issues.push("❌ Vulnerabilidades de seguridad");
-    }
+      if (metrics.vulnerabilities > 0) {
+         issues.push("❌ Vulnerabilidades de seguridad");
+      }
 
-    return issues.length === 0
-      ? "✅ PASSED"
-      : `❌ FAILED\n\n${issues.join("\n")}`;
-  }
+      return issues.length === 0
+         ? "✅ PASSED"
+         : `❌ FAILED\n\n${issues.join("\n")}`;
+   }
 
-  private static getRecommendations(metrics: QualityMetrics): string {
-    const recommendations = [];
+   private static getRecommendations(metrics: QualityMetrics): string {
+      const recommendations = [];
 
-    if (metrics.coverage < 80) {
-      recommendations.push("- Incrementar cobertura de tests");
-    }
+      if (metrics.coverage < 80) {
+         recommendations.push("- Incrementar cobertura de tests");
+      }
 
-    if (metrics.complexity > 10) {
-      recommendations.push("- Refactorizar métodos complejos");
-    }
+      if (metrics.complexity > 10) {
+         recommendations.push("- Refactorizar métodos complejos");
+      }
 
-    if (metrics.duplications > 3) {
-      recommendations.push("- Eliminar código duplicado");
-    }
+      if (metrics.duplications > 3) {
+         recommendations.push("- Eliminar código duplicado");
+      }
 
-    return recommendations.length > 0
-      ? recommendations.join("\n")
-      : "- Mantener la calidad actual";
-  }
+      return recommendations.length > 0
+         ? recommendations.join("\n")
+         : "- Mantener la calidad actual";
+   }
 }
 ```
 
@@ -934,99 +946,99 @@ ${this.getRecommendations(metrics)}
 name: Code Review & Quality Gates
 
 on:
-  pull_request:
-    branches: [main, develop]
+   pull_request:
+      branches: [main, develop]
 
 jobs:
-  code-analysis:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
+   code-analysis:
+      runs-on: ubuntu-latest
+      steps:
+         - uses: actions/checkout@v3
+           with:
+              fetch-depth: 0
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: "18"
+         - name: Setup Node.js
+           uses: actions/setup-node@v3
+           with:
+              node-version: "18"
 
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: "8.2"
+         - name: Setup PHP
+           uses: shivammathur/setup-php@v2
+           with:
+              php-version: "8.2"
 
-      - name: Install dependencies
-        run: |
-          npm ci
-          composer install
+         - name: Install dependencies
+           run: |
+              npm ci
+              composer install
 
-      - name: Run ESLint
-        run: |
-          npx eslint src/ --format=json --output-file=eslint-report.json
-          npx eslint src/ --format=github
+         - name: Run ESLint
+           run: |
+              npx eslint src/ --format=json --output-file=eslint-report.json
+              npx eslint src/ --format=github
 
-      - name: Run PHPStan
-        run: |
-          ./vendor/bin/phpstan analyse --error-format=github
+         - name: Run PHPStan
+           run: |
+              ./vendor/bin/phpstan analyse --error-format=github
 
-      - name: Run tests with coverage
-        run: |
-          npm run test:coverage
-          ./vendor/bin/phpunit --coverage-clover=coverage.xml
+         - name: Run tests with coverage
+           run: |
+              npm run test:coverage
+              ./vendor/bin/phpunit --coverage-clover=coverage.xml
 
-      - name: SonarQube analysis
-        uses: sonarqube-quality-gate-action@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+         - name: SonarQube analysis
+           uses: sonarqube-quality-gate-action@master
+           env:
+              GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+              SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
-      - name: Quality Gate check
-        run: |
-          node scripts/quality-gate-check.js
+         - name: Quality Gate check
+           run: |
+              node scripts/quality-gate-check.js
 
-      - name: Comment PR with results
-        uses: actions/github-script@v6
-        with:
-          script: |
-            const fs = require('fs');
-            const report = fs.readFileSync('quality-report.md', 'utf8');
+         - name: Comment PR with results
+           uses: actions/github-script@v6
+           with:
+              script: |
+                 const fs = require('fs');
+                 const report = fs.readFileSync('quality-report.md', 'utf8');
 
-            github.rest.issues.createComment({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: report
-            });
+                 github.rest.issues.createComment({
+                   issue_number: context.issue.number,
+                   owner: context.repo.owner,
+                   repo: context.repo.repo,
+                   body: report
+                 });
 
-  security-review:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
+   security-review:
+      runs-on: ubuntu-latest
+      steps:
+         - uses: actions/checkout@v3
 
-      - name: Run security audit
-        run: |
-          npm audit --audit-level=moderate
-          composer audit
+         - name: Run security audit
+           run: |
+              npm audit --audit-level=moderate
+              composer audit
 
-      - name: CodeQL Analysis
-        uses: github/codeql-action/analyze@v2
-        with:
-          languages: javascript,php
+         - name: CodeQL Analysis
+           uses: github/codeql-action/analyze@v2
+           with:
+              languages: javascript,php
 
-  dependency-review:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
+   dependency-review:
+      runs-on: ubuntu-latest
+      steps:
+         - uses: actions/checkout@v3
 
-      - name: Dependency Review
-        uses: actions/dependency-review-action@v3
-        with:
-          fail-on-severity: moderate
+         - name: Dependency Review
+           uses: actions/dependency-review-action@v3
+           with:
+              fail-on-severity: moderate
 
-      - name: Check outdated packages
-        run: |
-          npm outdated > outdated-packages.txt || true
-          composer outdated > outdated-composer.txt || true
+         - name: Check outdated packages
+           run: |
+              npm outdated > outdated-packages.txt || true
+              composer outdated > outdated-composer.txt || true
 ```
 
 ## Tips
@@ -1102,7 +1114,7 @@ echo "📋 Ver reporte en: refactoring-report.html"
 
    // Sugerido
    if (validateFormData(formData)) {
-     onSubmit(formData);
+      onSubmit(formData);
    }
    ```
 
@@ -1110,8 +1122,8 @@ echo "📋 Ver reporte en: refactoring-report.html"
    ```typescript
    // Agregar cleanup function
    useEffect(() => {
-     const subscription = api.subscribe(callback);
-     return () => subscription.unsubscribe();
+      const subscription = api.subscribe(callback);
+      return () => subscription.unsubscribe();
    }, []);
    ```
 
@@ -1152,6 +1164,7 @@ echo "📋 Ver reporte en: refactoring-report.html"
 - ✅ [Testing de Usabilidad](./testing-usabilidad.md)
 - ✅ **Code Review y Refactoring** ← Estás aquí
 - ⏭️ [Auditoría de Calidad de Código](./auditoria-calidad-codigo.md)
+- ⏭️ [Checklist Específico de Performance](./checklist-performance.md)
 
 ---
 

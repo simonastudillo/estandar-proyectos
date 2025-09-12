@@ -2,15 +2,24 @@
 
 ## ¿Qué es?
 
-El testing de regresión es un tipo de prueba que se ejecuta para verificar que los cambios recientes en el código (nuevas funcionalidades, correcciones de bugs, o modificaciones) no hayan afectado negativamente las funcionalidades existentes que anteriormente funcionaban correctamente. Es fundamental para mantener la estabilidad del sistema durante el desarrollo continuo.
+El testing de regresión es un tipo de prueba que se ejecuta para verificar que
+los cambios recientes en el código (nuevas funcionalidades, correcciones de
+bugs, o modificaciones) no hayan afectado negativamente las funcionalidades
+existentes que anteriormente funcionaban correctamente. Es fundamental para
+mantener la estabilidad del sistema durante el desarrollo continuo.
 
 ## ¿Por qué es importante?
 
-- **Estabilidad del sistema**: Garantiza que nuevos desarrollos no rompan funcionalidades existentes
-- **Confianza en deployments**: Reduce el riesgo de introducir bugs en producción
-- **Calidad continua**: Mantiene un nivel de calidad constante a lo largo del tiempo
-- **Detección temprana**: Identifica problemas antes de que lleguen a usuarios finales
-- **Reducción de costos**: Es más económico detectar regresiones en desarrollo que en producción
+- **Estabilidad del sistema**: Garantiza que nuevos desarrollos no rompan
+  funcionalidades existentes
+- **Confianza en deployments**: Reduce el riesgo de introducir bugs en
+  producción
+- **Calidad continua**: Mantiene un nivel de calidad constante a lo largo del
+  tiempo
+- **Detección temprana**: Identifica problemas antes de que lleguen a usuarios
+  finales
+- **Reducción de costos**: Es más económico detectar regresiones en desarrollo
+  que en producción
 - **Automatización eficiente**: Permite implementar pipelines de CI/CD robustos
 
 ## ¿Qué debe incluir?
@@ -70,54 +79,54 @@ El testing de regresión es un tipo de prueba que se ejecuta para verificar que 
 name: Regression Testing
 
 on:
-  push:
-    branches: [main, develop]
-  pull_request:
-    branches: [main]
+   push:
+      branches: [main, develop]
+   pull_request:
+      branches: [main]
 
 jobs:
-  smoke-tests:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
+   smoke-tests:
+      runs-on: ubuntu-latest
+      steps:
+         - uses: actions/checkout@v3
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: "18"
+         - name: Setup Node.js
+           uses: actions/setup-node@v3
+           with:
+              node-version: "18"
 
-      - name: Install dependencies
-        run: npm ci
+         - name: Install dependencies
+           run: npm ci
 
-      - name: Run smoke tests
-        run: npm run test:smoke
-        timeout-minutes: 5
+         - name: Run smoke tests
+           run: npm run test:smoke
+           timeout-minutes: 5
 
-  regression-tests:
-    needs: smoke-tests
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        test-suite: [unit, integration, e2e]
+   regression-tests:
+      needs: smoke-tests
+      runs-on: ubuntu-latest
+      strategy:
+         matrix:
+            test-suite: [unit, integration, e2e]
 
-    steps:
-      - uses: actions/checkout@v3
+      steps:
+         - uses: actions/checkout@v3
 
-      - name: Setup environment
-        run: |
-          npm ci
-          npm run build
+         - name: Setup environment
+           run: |
+              npm ci
+              npm run build
 
-      - name: Run regression suite
-        run: npm run test:regression:${{ matrix.test-suite }}
-        timeout-minutes: 30
+         - name: Run regression suite
+           run: npm run test:regression:${{ matrix.test-suite }}
+           timeout-minutes: 30
 
-      - name: Upload test results
-        uses: actions/upload-artifact@v3
-        if: always()
-        with:
-          name: test-results-${{ matrix.test-suite }}
-          path: test-results/
+         - name: Upload test results
+           uses: actions/upload-artifact@v3
+           if: always()
+           with:
+              name: test-results-${{ matrix.test-suite }}
+              path: test-results/
 ```
 
 ### 2. Implementar selección inteligente de pruebas
@@ -125,62 +134,62 @@ jobs:
 ```typescript
 // src/testing/regression-analyzer.ts
 export class RegressionAnalyzer {
-  private changedFiles: string[];
-  private testMapping: Map<string, string[]>;
+   private changedFiles: string[];
+   private testMapping: Map<string, string[]>;
 
-  constructor(changedFiles: string[]) {
-    this.changedFiles = changedFiles;
-    this.testMapping = this.loadTestMapping();
-  }
+   constructor(changedFiles: string[]) {
+      this.changedFiles = changedFiles;
+      this.testMapping = this.loadTestMapping();
+   }
 
-  getAffectedTests(): string[] {
-    const affectedTests = new Set<string>();
+   getAffectedTests(): string[] {
+      const affectedTests = new Set<string>();
 
-    this.changedFiles.forEach((file) => {
-      // Obtener tests directamente relacionados
-      const directTests = this.getDirectTests(file);
-      directTests.forEach((test) => affectedTests.add(test));
+      this.changedFiles.forEach((file) => {
+         // Obtener tests directamente relacionados
+         const directTests = this.getDirectTests(file);
+         directTests.forEach((test) => affectedTests.add(test));
 
-      // Obtener tests que dependen del archivo
-      const dependentTests = this.getDependentTests(file);
-      dependentTests.forEach((test) => affectedTests.add(test));
-    });
+         // Obtener tests que dependen del archivo
+         const dependentTests = this.getDependentTests(file);
+         dependentTests.forEach((test) => affectedTests.add(test));
+      });
 
-    return Array.from(affectedTests);
-  }
+      return Array.from(affectedTests);
+   }
 
-  private getDirectTests(file: string): string[] {
-    const testFile = file.replace(/\.(ts|tsx|js|jsx)$/, ".test.$1");
-    return this.testMapping.get(testFile) || [];
-  }
+   private getDirectTests(file: string): string[] {
+      const testFile = file.replace(/\.(ts|tsx|js|jsx)$/, ".test.$1");
+      return this.testMapping.get(testFile) || [];
+   }
 
-  private getDependentTests(file: string): string[] {
-    const dependents: string[] = [];
+   private getDependentTests(file: string): string[] {
+      const dependents: string[] = [];
 
-    this.testMapping.forEach((tests, testFile) => {
-      if (this.importsDependency(testFile, file)) {
-        dependents.push(...tests);
-      }
-    });
+      this.testMapping.forEach((tests, testFile) => {
+         if (this.importsDependency(testFile, file)) {
+            dependents.push(...tests);
+         }
+      });
 
-    return dependents;
-  }
+      return dependents;
+   }
 
-  generateRegressionSuite(): RegressionSuite {
-    return {
-      smokeTests: this.getSmokeTests(),
-      affectedTests: this.getAffectedTests(),
-      criticalPaths: this.getCriticalPathTests(),
-      estimatedDuration: this.calculateDuration(),
-    };
-  }
+   generateRegressionSuite(): RegressionSuite {
+      return {
+         smokeTests: this.getSmokeTests(),
+         affectedTests: this.getAffectedTests(),
+         criticalPaths: this.getCriticalPathTests(),
+         estimatedDuration: this.calculateDuration(),
+      };
+   }
 }
 
 export interface RegressionSuite {
-  smokeTests: string[];
-  affectedTests: string[];
-  criticalPaths: string[];
-  estimatedDuration: number;
+   smokeTests: string[];
+   affectedTests: string[];
+   criticalPaths: string[];
+   estimatedDuration: number;
 }
 ```
 
@@ -239,77 +248,77 @@ const path = require("path");
 const { execSync } = require("child_process");
 
 class ImpactAnalyzer {
-  constructor() {
-    this.dependencyGraph = this.buildDependencyGraph();
-  }
+   constructor() {
+      this.dependencyGraph = this.buildDependencyGraph();
+   }
 
-  analyzePullRequest(baseBranch = "main") {
-    // Obtener archivos modificados
-    const changedFiles = this.getChangedFiles(baseBranch);
+   analyzePullRequest(baseBranch = "main") {
+      // Obtener archivos modificados
+      const changedFiles = this.getChangedFiles(baseBranch);
 
-    // Analizar impacto
-    const impactAnalysis = {
-      changedFiles,
-      affectedModules: this.getAffectedModules(changedFiles),
-      recommendedTests: this.getRecommendedTests(changedFiles),
-      riskLevel: this.calculateRiskLevel(changedFiles),
-      estimatedTestTime: this.estimateTestTime(changedFiles),
-    };
+      // Analizar impacto
+      const impactAnalysis = {
+         changedFiles,
+         affectedModules: this.getAffectedModules(changedFiles),
+         recommendedTests: this.getRecommendedTests(changedFiles),
+         riskLevel: this.calculateRiskLevel(changedFiles),
+         estimatedTestTime: this.estimateTestTime(changedFiles),
+      };
 
-    this.generateReport(impactAnalysis);
-    return impactAnalysis;
-  }
+      this.generateReport(impactAnalysis);
+      return impactAnalysis;
+   }
 
-  getChangedFiles(baseBranch) {
-    try {
-      const output = execSync(`git diff --name-only ${baseBranch}...HEAD`, {
-        encoding: "utf8",
+   getChangedFiles(baseBranch) {
+      try {
+         const output = execSync(`git diff --name-only ${baseBranch}...HEAD`, {
+            encoding: "utf8",
+         });
+         return output
+            .trim()
+            .split("\n")
+            .filter((file) => file);
+      } catch (error) {
+         console.error("Error obteniendo archivos modificados:", error);
+         return [];
+      }
+   }
+
+   getAffectedModules(changedFiles) {
+      const modules = new Set();
+
+      changedFiles.forEach((file) => {
+         // Determinar módulo basado en path
+         const module = this.fileToModule(file);
+         if (module) modules.add(module);
+
+         // Obtener dependencias
+         const dependencies = this.getDependencies(file);
+         dependencies.forEach((dep) => modules.add(dep));
       });
-      return output
-        .trim()
-        .split("\n")
-        .filter((file) => file);
-    } catch (error) {
-      console.error("Error obteniendo archivos modificados:", error);
-      return [];
-    }
-  }
 
-  getAffectedModules(changedFiles) {
-    const modules = new Set();
+      return Array.from(modules);
+   }
 
-    changedFiles.forEach((file) => {
-      // Determinar módulo basado en path
-      const module = this.fileToModule(file);
-      if (module) modules.add(module);
+   calculateRiskLevel(changedFiles) {
+      let riskScore = 0;
 
-      // Obtener dependencias
-      const dependencies = this.getDependencies(file);
-      dependencies.forEach((dep) => modules.add(dep));
-    });
+      changedFiles.forEach((file) => {
+         // Archivos críticos tienen mayor peso
+         if (this.isCriticalFile(file)) riskScore += 3;
+         // Archivos de configuración
+         else if (this.isConfigFile(file)) riskScore += 2;
+         // Archivos normales
+         else riskScore += 1;
+      });
 
-    return Array.from(modules);
-  }
+      if (riskScore >= 10) return "HIGH";
+      if (riskScore >= 5) return "MEDIUM";
+      return "LOW";
+   }
 
-  calculateRiskLevel(changedFiles) {
-    let riskScore = 0;
-
-    changedFiles.forEach((file) => {
-      // Archivos críticos tienen mayor peso
-      if (this.isCriticalFile(file)) riskScore += 3;
-      // Archivos de configuración
-      else if (this.isConfigFile(file)) riskScore += 2;
-      // Archivos normales
-      else riskScore += 1;
-    });
-
-    if (riskScore >= 10) return "HIGH";
-    if (riskScore >= 5) return "MEDIUM";
-    return "LOW";
-  }
-
-  generateReport(analysis) {
-    const report = `
+   generateReport(analysis) {
+      const report = `
 # Análisis de Impacto de Regresión
 
 ## Resumen
@@ -331,15 +340,15 @@ ${analysis.recommendedTests.map((test) => `- ${test}`).join("\n")}
 ${this.getRecommendations(analysis)}
       `;
 
-    fs.writeFileSync("regression-impact-report.md", report);
-    console.log("📊 Reporte generado: regression-impact-report.md");
-  }
+      fs.writeFileSync("regression-impact-report.md", report);
+      console.log("📊 Reporte generado: regression-impact-report.md");
+   }
 }
 
 // Ejecutar análisis si se llama directamente
 if (require.main === module) {
-  const analyzer = new ImpactAnalyzer();
-  analyzer.analyzePullRequest();
+   const analyzer = new ImpactAnalyzer();
+   analyzer.analyzePullRequest();
 }
 
 module.exports = ImpactAnalyzer;
@@ -350,99 +359,105 @@ module.exports = ImpactAnalyzer;
 ```typescript
 // src/testing/regression-config.ts
 export interface RegressionConfig {
-  triggers: {
-    onCommit: boolean;
-    onPullRequest: boolean;
-    onRelease: boolean;
-    scheduled: string; // cron expression
-  };
-  testSuites: {
-    smoke: {
-      enabled: boolean;
-      timeout: number;
-      failFast: boolean;
-    };
-    unit: {
-      enabled: boolean;
-      coverage: number;
-      parallel: boolean;
-    };
-    integration: {
-      enabled: boolean;
-      databases: string[];
-      services: string[];
-    };
-    e2e: {
-      enabled: boolean;
-      browsers: string[];
-      viewports: string[];
-    };
-  };
-  reporting: {
-    slack: {
-      enabled: boolean;
-      webhook: string;
-      channels: string[];
-    };
-    email: {
-      enabled: boolean;
-      recipients: string[];
-    };
-  };
+   triggers: {
+      onCommit: boolean;
+      onPullRequest: boolean;
+      onRelease: boolean;
+      scheduled: string; // cron expression
+   };
+   testSuites: {
+      smoke: {
+         enabled: boolean;
+         timeout: number;
+         failFast: boolean;
+      };
+      unit: {
+         enabled: boolean;
+         coverage: number;
+         parallel: boolean;
+      };
+      integration: {
+         enabled: boolean;
+         databases: string[];
+         services: string[];
+      };
+      e2e: {
+         enabled: boolean;
+         browsers: string[];
+         viewports: string[];
+      };
+   };
+   reporting: {
+      slack: {
+         enabled: boolean;
+         webhook: string;
+         channels: string[];
+      };
+      email: {
+         enabled: boolean;
+         recipients: string[];
+      };
+   };
 }
 
 export const defaultConfig: RegressionConfig = {
-  triggers: {
-    onCommit: true,
-    onPullRequest: true,
-    onRelease: true,
-    scheduled: "0 2 * * *", // Daily at 2 AM
-  },
-  testSuites: {
-    smoke: {
-      enabled: true,
-      timeout: 300, // 5 minutes
-      failFast: true,
-    },
-    unit: {
-      enabled: true,
-      coverage: 80,
-      parallel: true,
-    },
-    integration: {
-      enabled: true,
-      databases: ["mysql", "redis"],
-      services: ["api", "auth"],
-    },
-    e2e: {
-      enabled: true,
-      browsers: ["chrome", "firefox"],
-      viewports: ["desktop", "mobile"],
-    },
-  },
-  reporting: {
-    slack: {
-      enabled: true,
-      webhook: process.env.SLACK_WEBHOOK!,
-      channels: ["#testing", "#dev-alerts"],
-    },
-    email: {
-      enabled: false,
-      recipients: [],
-    },
-  },
+   triggers: {
+      onCommit: true,
+      onPullRequest: true,
+      onRelease: true,
+      scheduled: "0 2 * * *", // Daily at 2 AM
+   },
+   testSuites: {
+      smoke: {
+         enabled: true,
+         timeout: 300, // 5 minutes
+         failFast: true,
+      },
+      unit: {
+         enabled: true,
+         coverage: 80,
+         parallel: true,
+      },
+      integration: {
+         enabled: true,
+         databases: ["mysql", "redis"],
+         services: ["api", "auth"],
+      },
+      e2e: {
+         enabled: true,
+         browsers: ["chrome", "firefox"],
+         viewports: ["desktop", "mobile"],
+      },
+   },
+   reporting: {
+      slack: {
+         enabled: true,
+         webhook: process.env.SLACK_WEBHOOK!,
+         channels: ["#testing", "#dev-alerts"],
+      },
+      email: {
+         enabled: false,
+         recipients: [],
+      },
+   },
 };
 ```
 
 ## Tips
 
-- **Automatización primero**: Las pruebas de regresión deben estar completamente automatizadas
-- **Priorización inteligente**: Enfócate en funcionalidades críticas y de alto riesgo
-- **Feedback rápido**: Ejecuta smoke tests primero para detectar problemas mayores
-- **Análisis de impacto**: Usa herramientas para determinar qué probar basado en cambios
+- **Automatización primero**: Las pruebas de regresión deben estar completamente
+  automatizadas
+- **Priorización inteligente**: Enfócate en funcionalidades críticas y de alto
+  riesgo
+- **Feedback rápido**: Ejecuta smoke tests primero para detectar problemas
+  mayores
+- **Análisis de impacto**: Usa herramientas para determinar qué probar basado en
+  cambios
 - **Paralelización**: Ejecuta pruebas en paralelo para reducir tiempo total
-- **Historial de resultados**: Mantén un registro de resultados para análisis de tendencias
-- **Mantenimiento continuo**: Actualiza y mantén las pruebas de regresión regularmente
+- **Historial de resultados**: Mantén un registro de resultados para análisis de
+  tendencias
+- **Mantenimiento continuo**: Actualiza y mantén las pruebas de regresión
+  regularmente
 - **Métricas de calidad**: Mide y reporta métricas de efectividad de las pruebas
 
 ## Ejemplos
@@ -539,82 +554,88 @@ exit $EXIT_CODE
 ```typescript
 // tests/smoke/smoke-suite.test.ts
 describe("Smoke Tests - Regresión", () => {
-  const TIMEOUT = 30000;
+   const TIMEOUT = 30000;
 
-  describe("Application Startup", () => {
-    it(
-      "should start application successfully",
-      async () => {
-        const response = await fetch("http://localhost:3000/health");
-        expect(response.status).toBe(200);
-      },
-      TIMEOUT
-    );
+   describe("Application Startup", () => {
+      it(
+         "should start application successfully",
+         async () => {
+            const response = await fetch("http://localhost:3000/health");
+            expect(response.status).toBe(200);
+         },
+         TIMEOUT,
+      );
 
-    it(
-      "should connect to database",
-      async () => {
-        const response = await fetch("http://localhost:3000/api/health/db");
-        expect(response.status).toBe(200);
-      },
-      TIMEOUT
-    );
-  });
+      it(
+         "should connect to database",
+         async () => {
+            const response = await fetch("http://localhost:3000/api/health/db");
+            expect(response.status).toBe(200);
+         },
+         TIMEOUT,
+      );
+   });
 
-  describe("Critical API Endpoints", () => {
-    it(
-      "should authenticate user",
-      async () => {
-        const response = await fetch("http://localhost:3000/api/auth/login", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            email: "test@example.com",
-            password: "password123",
-          }),
-        });
-        expect(response.status).toBe(200);
-      },
-      TIMEOUT
-    );
+   describe("Critical API Endpoints", () => {
+      it(
+         "should authenticate user",
+         async () => {
+            const response = await fetch(
+               "http://localhost:3000/api/auth/login",
+               {
+                  method: "POST",
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify({
+                     email: "test@example.com",
+                     password: "password123",
+                  }),
+               },
+            );
+            expect(response.status).toBe(200);
+         },
+         TIMEOUT,
+      );
 
-    it(
-      "should fetch user data",
-      async () => {
-        // Asumir token válido
-        const token = process.env.TEST_AUTH_TOKEN;
-        const response = await fetch("http://localhost:3000/api/user/profile", {
-          headers: { Authorization: `Bearer ${token}` },
-        });
-        expect(response.status).toBe(200);
-      },
-      TIMEOUT
-    );
-  });
+      it(
+         "should fetch user data",
+         async () => {
+            // Asumir token válido
+            const token = process.env.TEST_AUTH_TOKEN;
+            const response = await fetch(
+               "http://localhost:3000/api/user/profile",
+               {
+                  headers: { Authorization: `Bearer ${token}` },
+               },
+            );
+            expect(response.status).toBe(200);
+         },
+         TIMEOUT,
+      );
+   });
 
-  describe("Critical User Flows", () => {
-    it(
-      "should complete user registration flow",
-      async () => {
-        const userData = {
-          name: `Test User ${Date.now()}`,
-          email: `test${Date.now()}@example.com`,
-          password: "password123",
-        };
+   describe("Critical User Flows", () => {
+      it(
+         "should complete user registration flow",
+         async () => {
+            const userData = {
+               name: `Test User ${Date.now()}`,
+               email: `test${Date.now()}@example.com`,
+               password: "password123",
+            };
 
-        const response = await fetch("http://localhost:3000/api/register", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(userData),
-        });
+            const response = await fetch("http://localhost:3000/api/register", {
+               method: "POST",
+               headers: { "Content-Type": "application/json" },
+               body: JSON.stringify(userData),
+            });
 
-        expect(response.status).toBe(201);
-        const result = await response.json();
-        expect(result.data.email).toBe(userData.email);
-      },
-      TIMEOUT
-    );
-  });
+            expect(response.status).toBe(201);
+            const result = await response.json();
+            expect(result.data.email).toBe(userData.email);
+         },
+         TIMEOUT,
+      );
+   });
 });
 ```
 
@@ -626,53 +647,53 @@ import fs from "fs";
 import path from "path";
 
 interface TestResults {
-  unit: any;
-  integration: any;
-  api: any;
-  e2e: any;
+   unit: any;
+   integration: any;
+   api: any;
+   e2e: any;
 }
 
 export class RegressionReporter {
-  private results: TestResults;
-  private resultsDir: string;
+   private results: TestResults;
+   private resultsDir: string;
 
-  constructor(resultsDir: string) {
-    this.resultsDir = resultsDir;
-    this.results = this.loadResults();
-  }
+   constructor(resultsDir: string) {
+      this.resultsDir = resultsDir;
+      this.results = this.loadResults();
+   }
 
-  generateReport(): void {
-    const report = {
-      summary: this.generateSummary(),
-      coverage: this.analyzeCoverage(),
-      performance: this.analyzePerformance(),
-      failures: this.analyzeFailures(),
-      trends: this.analyzeTrends(),
-      recommendations: this.generateRecommendations(),
-    };
+   generateReport(): void {
+      const report = {
+         summary: this.generateSummary(),
+         coverage: this.analyzeCoverage(),
+         performance: this.analyzePerformance(),
+         failures: this.analyzeFailures(),
+         trends: this.analyzeTrends(),
+         recommendations: this.generateRecommendations(),
+      };
 
-    this.saveHTMLReport(report);
-    this.saveJSONReport(report);
-    this.saveSlackReport(report);
-  }
+      this.saveHTMLReport(report);
+      this.saveJSONReport(report);
+      this.saveSlackReport(report);
+   }
 
-  private generateSummary() {
-    const totalTests = this.getTotalTests();
-    const passedTests = this.getPassedTests();
-    const failedTests = this.getFailedTests();
+   private generateSummary() {
+      const totalTests = this.getTotalTests();
+      const passedTests = this.getPassedTests();
+      const failedTests = this.getFailedTests();
 
-    return {
-      totalTests,
-      passedTests,
-      failedTests,
-      passRate: (passedTests / totalTests) * 100,
-      duration: this.getTotalDuration(),
-      timestamp: new Date().toISOString(),
-    };
-  }
+      return {
+         totalTests,
+         passedTests,
+         failedTests,
+         passRate: (passedTests / totalTests) * 100,
+         duration: this.getTotalDuration(),
+         timestamp: new Date().toISOString(),
+      };
+   }
 
-  private saveHTMLReport(report: any): void {
-    const html = `
+   private saveHTMLReport(report: any): void {
+      const html = `
 <!DOCTYPE html>
 <html>
 <head>
@@ -694,15 +715,13 @@ export class RegressionReporter {
     <div class="summary">
         <h2>Resumen</h2>
         <p><strong>Total de pruebas:</strong> ${report.summary.totalTests}</p>
-        <p><strong>Exitosas:</strong> <span class="pass">${
-          report.summary.passedTests
-        }</span></p>
-        <p><strong>Fallidas:</strong> <span class="fail">${
-          report.summary.failedTests
-        }</span></p>
-        <p><strong>Tasa de éxito:</strong> ${report.summary.passRate.toFixed(
-          2
-        )}%</p>
+        <p><strong>Exitosas:</strong> <span class="pass">${report.summary.passedTests}</span></p>
+        <p><strong>Fallidas:</strong> <span class="fail">${report.summary.failedTests}</span></p>
+        <p><strong>Tasa de éxito:</strong> ${
+         report.summary.passRate.toFixed(
+            2,
+         )
+      }%</p>
         <p><strong>Duración:</strong> ${report.summary.duration}s</p>
     </div>
 
@@ -731,11 +750,11 @@ export class RegressionReporter {
 </body>
 </html>`;
 
-    fs.writeFileSync(
-      path.join(this.resultsDir, "regression-report.html"),
-      html
-    );
-  }
+      fs.writeFileSync(
+         path.join(this.resultsDir, "regression-report.html"),
+         html,
+      );
+   }
 }
 ```
 
@@ -757,6 +776,7 @@ export class RegressionReporter {
 - ⏭️ [Testing de Usabilidad](./testing-usabilidad.md)
 - ⏭️ [Code Review y Refactoring](./code-review-refactoring.md)
 - ⏭️ [Auditoría de Calidad de Código](./auditoria-calidad-codigo.md)
+- ⏭️ [Checklist Específico de Performance](./checklist-performance.md)
 
 ---
 
@@ -764,4 +784,5 @@ export class RegressionReporter {
 
 Continúa con [**Checklists QA**](./checklists-qa.md)
 
-[⬅️ Tipos de Pruebas](./tipos-pruebas.md) | [🏠 README Principal](../../README.md) | [➡️ Checklists QA](./checklists-qa.md)
+[⬅️ Tipos de Pruebas](./tipos-pruebas.md) |
+[🏠 README Principal](../../README.md) | [➡️ Checklists QA](./checklists-qa.md)
