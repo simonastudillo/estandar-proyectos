@@ -340,4 +340,4 @@ Antes de finalizar un diagrama, verificar:
 
 [⬅️ Elección de Herramientas](./eleccion-herramientas.md) |
 [🏠 README Principal](../../README.md) |
-[Patrones de diseño ➡️](./patrones-diseno.md)
+[Buenas Prácticas de Desarrollo ➡️](./buenas-practicas-desarrollo.md)

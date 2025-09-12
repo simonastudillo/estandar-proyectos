@@ -278,6 +278,6 @@ processor.processPayment(50);
 
 ## Navegación
 
-[⬅️ Generación de Diagramas](./generacion-diagramas.md) |
+[⬅️ Buenas prácticas del desarrollo](./buenas-practicas-desarrollo.md) |
 [🏠 README Principal](../../README.md) |
 [Arquitectura del Sistema ➡️](./arquitectura-sistema.md)

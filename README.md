@@ -93,6 +93,7 @@ real, sin embargo el objetivo es utilizar en proyectos futuros.
 - [Stack tecnológico inicial](./docs/step_02/stack-tecnologico.md)
 - [Elección de herramientas](./docs/step_02/eleccion-herramientas.md)
 - [Generación de Diagramas](./generacion-diagramas.md)
+- [Buenas Prácticas de Desarrollo](./docs/step_02/buenas-practicas-desarrollo.md)
 - [Patrones de diseño del proyecto](./docs/step_02/patrones-diseno.md)
 - [Arquitectura del sistema](./docs/step_02/arquitectura-sistema.md)
 - [Diagrama de arquitectura general](./docs/step_02/diagrama-arquitectura-general.md)
