@@ -601,6 +601,7 @@ mysql -e "DROP DATABASE $TEST_DB;"
 - ✅ [CI/CD Pipelines con GitHub Actions](./ci-cd-pipelines-github-actions.md)
 - ✅ [Docker y Contenedores](./docker-contenedores.md)
 - ✅ [Monitoreo y Logging](./monitoreo-logging.md)
+- ✅ [Optimización base de datos](./optimizacion-base-datos.md)
 - ✅ **Backup y Recovery** ← Estás aquí
 - ⏭️ [SSL y Configuraciones de Seguridad](./ssl-configuraciones-seguridad.md)
 
@@ -611,6 +612,6 @@ mysql -e "DROP DATABASE $TEST_DB;"
 Continúa con
 [**SSL y Configuraciones de Seguridad**](./ssl-configuraciones-seguridad.md)
 
-[⬅️ Monitoreo y Logging](./monitoreo-logging.md) |
+[⬅️ Optimización base de datos](./optimizacion-base-datos.md) |
 [🏠 README Principal](../../README.md) |
 [➡️ SSL y Configuraciones de Seguridad](./ssl-configuraciones-seguridad.md)

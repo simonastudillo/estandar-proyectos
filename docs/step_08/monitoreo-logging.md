@@ -782,49 +782,49 @@ setInterval(loadDatabaseMetrics, 30000);
 version: "3.8"
 
 services:
-  prometheus:
-    image: prom/prometheus:latest
-    container_name: prometheus
-    ports:
-      - "9090:9090"
-    volumes:
-      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml
-      - prometheus_data:/prometheus
-    command:
-      - "--config.file=/etc/prometheus/prometheus.yml"
-      - "--storage.tsdb.path=/prometheus"
-      - "--web.console.libraries=/etc/prometheus/console_libraries"
-      - "--web.console.templates=/etc/prometheus/consoles"
+   prometheus:
+      image: prom/prometheus:latest
+      container_name: prometheus
+      ports:
+         - "9090:9090"
+      volumes:
+         - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml
+         - prometheus_data:/prometheus
+      command:
+         - "--config.file=/etc/prometheus/prometheus.yml"
+         - "--storage.tsdb.path=/prometheus"
+         - "--web.console.libraries=/etc/prometheus/console_libraries"
+         - "--web.console.templates=/etc/prometheus/consoles"
 
-  grafana:
-    image: grafana/grafana:latest
-    container_name: grafana
-    ports:
-      - "3001:3000"
-    environment:
-      - GF_SECURITY_ADMIN_PASSWORD=admin123
-    volumes:
-      - grafana_data:/var/lib/grafana
-      - ./monitoring/grafana/dashboards:/etc/grafana/provisioning/dashboards
-      - ./monitoring/grafana/datasources:/etc/grafana/provisioning/datasources
+   grafana:
+      image: grafana/grafana:latest
+      container_name: grafana
+      ports:
+         - "3001:3000"
+      environment:
+         - GF_SECURITY_ADMIN_PASSWORD=admin123
+      volumes:
+         - grafana_data:/var/lib/grafana
+         - ./monitoring/grafana/dashboards:/etc/grafana/provisioning/dashboards
+         - ./monitoring/grafana/datasources:/etc/grafana/provisioning/datasources
 
-  node-exporter:
-    image: prom/node-exporter:latest
-    container_name: node-exporter
-    ports:
-      - "9100:9100"
-    volumes:
-      - /proc:/host/proc:ro
-      - /sys:/host/sys:ro
-      - /:/rootfs:ro
-    command:
-      - "--path.procfs=/host/proc"
-      - "--path.sysfs=/host/sys"
-      - "--collector.filesystem.ignored-mount-points=^/(sys|proc|dev|host|etc)($$|/)"
+   node-exporter:
+      image: prom/node-exporter:latest
+      container_name: node-exporter
+      ports:
+         - "9100:9100"
+      volumes:
+         - /proc:/host/proc:ro
+         - /sys:/host/sys:ro
+         - /:/rootfs:ro
+      command:
+         - "--path.procfs=/host/proc"
+         - "--path.sysfs=/host/sys"
+         - "--collector.filesystem.ignored-mount-points=^/(sys|proc|dev|host|etc)($$|/)"
 
 volumes:
-  prometheus_data:
-  grafana_data:
+   prometheus_data:
+   grafana_data:
 ```
 
 #### Configuración Prometheus
@@ -832,35 +832,35 @@ volumes:
 ```yaml
 # monitoring/prometheus.yml
 global:
-  scrape_interval: 15s
-  evaluation_interval: 15s
+   scrape_interval: 15s
+   evaluation_interval: 15s
 
 rule_files:
-  - "rules/*.yml"
+   - "rules/*.yml"
 
 scrape_configs:
-  # Application health endpoint
-  - job_name: "laravel-app"
-    static_configs:
-      - targets: ["app:80"]
-    metrics_path: /api/metrics
-    scrape_interval: 30s
+   # Application health endpoint
+   - job_name: "laravel-app"
+     static_configs:
+        - targets: ["app:80"]
+     metrics_path: /api/metrics
+     scrape_interval: 30s
 
-  # System metrics
-  - job_name: "node-exporter"
-    static_configs:
-      - targets: ["node-exporter:9100"]
+   # System metrics
+   - job_name: "node-exporter"
+     static_configs:
+        - targets: ["node-exporter:9100"]
 
-  # Nginx metrics
-  - job_name: "nginx"
-    static_configs:
-      - targets: ["nginx-exporter:9113"]
+   # Nginx metrics
+   - job_name: "nginx"
+     static_configs:
+        - targets: ["nginx-exporter:9113"]
 
 alerting:
-  alertmanagers:
-    - static_configs:
-        - targets:
-            - alertmanager:9093
+   alertmanagers:
+      - static_configs:
+           - targets:
+                - alertmanager:9093
 ```
 
 ### 6. Implementar Alerting
@@ -870,43 +870,43 @@ alerting:
 ```yaml
 # monitoring/rules/alerts.yml
 groups:
-  - name: application_alerts
-    rules:
-      - alert: HighErrorRate
-        expr: rate(http_requests_total{status=~"5.."}[5m]) > 0.1
-        for: 5m
-        labels:
-          severity: critical
-        annotations:
-          summary: "High error rate detected"
-          description: "Error rate is {{ $value }} errors per second"
+   - name: application_alerts
+     rules:
+        - alert: HighErrorRate
+          expr: rate(http_requests_total{status=~"5.."}[5m]) > 0.1
+          for: 5m
+          labels:
+             severity: critical
+          annotations:
+             summary: "High error rate detected"
+             description: "Error rate is {{ $value }} errors per second"
 
-      - alert: HighResponseTime
-        expr: histogram_quantile(0.95, rate(http_request_duration_seconds_bucket[5m])) > 1
-        for: 10m
-        labels:
-          severity: warning
-        annotations:
-          summary: "High response time detected"
-          description: "95th percentile response time is {{ $value }} seconds"
+        - alert: HighResponseTime
+          expr: histogram_quantile(0.95, rate(http_request_duration_seconds_bucket[5m])) > 1
+          for: 10m
+          labels:
+             severity: warning
+          annotations:
+             summary: "High response time detected"
+             description: "95th percentile response time is {{ $value }} seconds"
 
-      - alert: DatabaseConnectionFailed
-        expr: up{job="mysql-exporter"} == 0
-        for: 5m
-        labels:
-          severity: critical
-        annotations:
-          summary: "Database connection failed"
-          description: "Cannot connect to MySQL database"
+        - alert: DatabaseConnectionFailed
+          expr: up{job="mysql-exporter"} == 0
+          for: 5m
+          labels:
+             severity: critical
+          annotations:
+             summary: "Database connection failed"
+             description: "Cannot connect to MySQL database"
 
-      - alert: HighMemoryUsage
-        expr: (node_memory_MemTotal_bytes - node_memory_MemAvailable_bytes) / node_memory_MemTotal_bytes * 100 > 80
-        for: 10m
-        labels:
-          severity: warning
-        annotations:
-          summary: "High memory usage"
-          description: "Memory usage is above 80%"
+        - alert: HighMemoryUsage
+          expr: (node_memory_MemTotal_bytes - node_memory_MemAvailable_bytes) / node_memory_MemTotal_bytes * 100 > 80
+          for: 10m
+          labels:
+             severity: warning
+          annotations:
+             summary: "High memory usage"
+             description: "Memory usage is above 80%"
 ```
 
 ## Tips
@@ -1008,77 +1008,77 @@ class MetricsMiddleware
 version: "3.8"
 
 services:
-  elasticsearch:
-    image: docker.elastic.co/elasticsearch/elasticsearch:8.8.0
-    environment:
-      - discovery.type=single-node
-      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
-    ports:
-      - "9200:9200"
-    volumes:
-      - es_data:/usr/share/elasticsearch/data
+   elasticsearch:
+      image: docker.elastic.co/elasticsearch/elasticsearch:8.8.0
+      environment:
+         - discovery.type=single-node
+         - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      ports:
+         - "9200:9200"
+      volumes:
+         - es_data:/usr/share/elasticsearch/data
 
-  logstash:
-    image: docker.elastic.co/logstash/logstash:8.8.0
-    ports:
-      - "5044:5044"
-    volumes:
-      - ./elk/logstash.conf:/usr/share/logstash/pipeline/logstash.conf
-    depends_on:
-      - elasticsearch
+   logstash:
+      image: docker.elastic.co/logstash/logstash:8.8.0
+      ports:
+         - "5044:5044"
+      volumes:
+         - ./elk/logstash.conf:/usr/share/logstash/pipeline/logstash.conf
+      depends_on:
+         - elasticsearch
 
-  kibana:
-    image: docker.elastic.co/kibana/kibana:8.8.0
-    ports:
-      - "5601:5601"
-    environment:
-      - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
-    depends_on:
-      - elasticsearch
+   kibana:
+      image: docker.elastic.co/kibana/kibana:8.8.0
+      ports:
+         - "5601:5601"
+      environment:
+         - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+      depends_on:
+         - elasticsearch
 
 volumes:
-  es_data:
+   es_data:
 ```
 
 ### Grafana Dashboard Configuration
 
 ```json
 {
-  "dashboard": {
-    "title": "Application Metrics",
-    "panels": [
-      {
-        "title": "Request Rate",
-        "type": "graph",
-        "targets": [
-          {
-            "expr": "rate(http_requests_total[5m])",
-            "legendFormat": "{{method}} {{route}}"
-          }
-        ]
-      },
-      {
-        "title": "Response Time (95th percentile)",
-        "type": "graph",
-        "targets": [
-          {
-            "expr": "histogram_quantile(0.95, rate(http_request_duration_seconds_bucket[5m]))",
-            "legendFormat": "95th percentile"
-          }
-        ]
-      },
-      {
-        "title": "Error Rate",
-        "type": "graph",
-        "targets": [
-          {
-            "expr": "rate(http_requests_total{status=~\"5..\"}[5m])",
-            "legendFormat": "5xx errors"
-          }
-        ]
-      }
-    ]
-  }
+   "dashboard": {
+      "title": "Application Metrics",
+      "panels": [
+         {
+            "title": "Request Rate",
+            "type": "graph",
+            "targets": [
+               {
+                  "expr": "rate(http_requests_total[5m])",
+                  "legendFormat": "{{method}} {{route}}"
+               }
+            ]
+         },
+         {
+            "title": "Response Time (95th percentile)",
+            "type": "graph",
+            "targets": [
+               {
+                  "expr": "histogram_quantile(0.95, rate(http_request_duration_seconds_bucket[5m]))",
+                  "legendFormat": "95th percentile"
+               }
+            ]
+         },
+         {
+            "title": "Error Rate",
+            "type": "graph",
+            "targets": [
+               {
+                  "expr": "rate(http_requests_total{status=~\"5..\"}[5m])",
+                  "legendFormat": "5xx errors"
+               }
+            ]
+         }
+      ]
+   }
 }
 ```
 
@@ -1487,6 +1487,7 @@ protected function schedule(Schedule $schedule)
 - ✅ [CI/CD Pipelines con GitHub Actions](./ci-cd-pipelines-github-actions.md)
 - ✅ [Docker y Contenedores](./docker-contenedores.md)
 - ✅ **Monitoreo y Logging** ← Estás aquí
+- ⏭️ [Optimización base de datos](./optimizacion-base-datos.md)
 - ⏭️ [Backup y Recovery](./backup-recovery-strategies.md)
 - ⏭️ [SSL y Configuraciones de Seguridad](./ssl-configuraciones-seguridad.md)
 
@@ -1494,8 +1495,8 @@ protected function schedule(Schedule $schedule)
 
 ### Siguiente Paso
 
-Continúa con [**Backup y Recovery**](./backup-recovery-strategies.md)
+Continúa con [**Optimización base de datos**](./optimizacion-base-datos.md)
 
 [⬅️ Docker y Contenedores](./docker-contenedores.md) |
 [🏠 README Principal](../../README.md) |
-[➡️ Backup y Recovery](./backup-recovery-strategies.md)
+[➡️ Optimización base de datos](./optimizacion-base-datos.md)

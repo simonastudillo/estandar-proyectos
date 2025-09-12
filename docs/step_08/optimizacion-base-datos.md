@@ -5,15 +5,18 @@
 La optimización de base de datos es el proceso sistemático de mejorar el
 rendimiento, eficiencia y escalabilidad de los sistemas de gestión de bases de
 datos (SGBD). Incluye la optimización de queries, índices, configuración del
-servidor, y arquitectura de datos para garantizar tiempos de respuesta óptimos
-y uso eficiente de recursos.
+servidor, y arquitectura de datos para garantizar tiempos de respuesta óptimos y
+uso eficiente de recursos.
 
 ## ¿Por qué es importante?
 
-- **Performance**: Reduce significativamente los tiempos de respuesta de la aplicación
-- **Escalabilidad**: Permite manejar mayor volumen de datos y usuarios concurrentes
+- **Performance**: Reduce significativamente los tiempos de respuesta de la
+  aplicación
+- **Escalabilidad**: Permite manejar mayor volumen de datos y usuarios
+  concurrentes
 - **Eficiencia de recursos**: Optimiza el uso de CPU, memoria y almacenamiento
-- **Experiencia del usuario**: Mejora la velocidad y responsividad de la aplicación
+- **Experiencia del usuario**: Mejora la velocidad y responsividad de la
+  aplicación
 - **Reducción de costos**: Minimiza la necesidad de hardware adicional
 - **Estabilidad**: Previene bloqueos y timeouts bajo alta carga
 - **Mantenibilidad**: Facilita el mantenimiento y evolución del sistema
@@ -1162,14 +1165,19 @@ class IntelligentCacheService
 
 ## Tips
 
-- **Monitoreo continuo**: Implementa métricas y alertas para detectar degradación de performance
-- **Testing de carga**: Realiza pruebas regulares con datos realistas de producción
+- **Monitoreo continuo**: Implementa métricas y alertas para detectar
+  degradación de performance
+- **Testing de carga**: Realiza pruebas regulares con datos realistas de
+  producción
 - **Baseline establecido**: Mantén métricas históricas para comparar mejoras
-- **Indexing estratégico**: No sobre-indexes, cada índice tiene costo de mantenimiento
+- **Indexing estratégico**: No sobre-indexes, cada índice tiene costo de
+  mantenimiento
 - **Particionado inteligente**: Considera particionado para tablas muy grandes
-- **Configuración contextual**: Ajusta configuración según patrones de uso específicos
+- **Configuración contextual**: Ajusta configuración según patrones de uso
+  específicos
 - **Cache warming**: Pre-calentamiento de cache para datos críticos
-- **Cleanup regular**: Limpieza periódica de datos obsoletos y optimización de tablas
+- **Cleanup regular**: Limpieza periódica de datos obsoletos y optimización de
+  tablas
 
 ## Ejemplos
 
@@ -1273,12 +1281,12 @@ class DatabaseDashboardController extends Controller
 **Progreso en Despliegue y DevOps:**
 
 - ✅ [Despliegue y DevOps](./despliegue-devops.md)
-- ✅ [Configuración de Servidores de Producción](./configuracion-servidores-produccion.md)
+- ✅
+  [Configuración de Servidores de Producción](./configuracion-servidores-produccion.md)
 - ✅ [CI/CD Pipelines con GitHub Actions](./ci-cd-pipelines-github-actions.md)
 - ✅ [Docker y Contenedores](./docker-contenedores.md)
 - ✅ [Monitoreo y Logging](./monitoreo-logging.md)
 - ✅ **Optimización de Base de Datos** ← Estás aquí
-- ⏭️ [Optimización de Recursos](./optimizacion-recursos.md)
 - ⏭️ [Backup y Recovery](./backup-recovery-strategies.md)
 - ⏭️ [SSL y Configuraciones de Seguridad](./ssl-configuraciones-seguridad.md)
 
@@ -1286,8 +1294,8 @@ class DatabaseDashboardController extends Controller
 
 ### Siguiente Paso
 
-Continúa con [**Optimización de Recursos**](./optimizacion-recursos.md)
+Continúa con [**Backup y Recovery**](./backup-recovery-strategies.md)
 
 [⬅️ Monitoreo y Logging](./monitoreo-logging.md) |
 [🏠 README Principal](../../README.md) |
-[➡️ Optimización de Recursos](./optimizacion-recursos.md)
+[➡️ Backup y Recovery](./backup-recovery-strategies.md)

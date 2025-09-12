@@ -646,6 +646,7 @@ docker stack deploy -c docker-compose.prod.yml myapp
 - ✅ [CI/CD Pipelines con GitHub Actions](./ci-cd-pipelines-github-actions.md)
 - ✅ **Docker y Contenedores** ← Estás aquí
 - ⏭️ [Monitoreo y Logging](./monitoreo-logging.md)
+- ⏭️ [Optimización base de datos](./optimizacion-base-datos.md)
 - ⏭️ [Backup y Recovery](./backup-recovery-strategies.md)
 - ⏭️ [SSL y Configuraciones de Seguridad](./ssl-configuraciones-seguridad.md)
 

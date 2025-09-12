@@ -515,6 +515,7 @@ jobs:
 - ✅ **CI/CD Pipelines con GitHub Actions** ← Estás aquí
 - ⏭️ [Docker y Contenedores](./docker-contenedores.md)
 - ⏭️ [Monitoreo y Logging](./monitoreo-logging.md)
+- ⏭️ [Optimización base de datos](./optimizacion-base-datos.md)
 - ⏭️ [Backup y Recovery](./backup-recovery-strategies.md)
 - ⏭️ [SSL y Configuraciones de Seguridad](./ssl-configuraciones-seguridad.md)
 
