@@ -1217,4 +1217,4 @@ export const createUserServiceMock = () => ({
 
 [⬅️ Configuración de Herramientas de Testing](./configuracion-herramientas-testing.md)
 | [Inicio](../../README.md) |
-[Testing funcional automatizado ➡️](./testing-funcional-automatizado.md)
+[Cobertura de Pruebas (Coverage) ➡️](./cobertura-pruebas.md)

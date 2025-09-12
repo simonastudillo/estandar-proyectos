@@ -760,6 +760,6 @@ describe("UserService", () => {
 
 ## Navegación
 
-[⬅️ Ejemplos de Testing por Lenguaje](./ejemplos-testing-por-lenguaje.md) |
+[⬅️ Cobertura de Pruebas (Coverage)](./cobertura-pruebas.md) |
 [🏠 README Principal](../../README.md) |
 [Testing de Regresión ➡️](./testing-regresion.md)

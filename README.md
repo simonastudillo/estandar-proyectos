@@ -150,6 +150,7 @@ real, sin embargo el objetivo es utilizar en proyectos futuros.
 - [Tipos de Pruebas](./docs/step_07/tipos-pruebas.md)
 - [Configuración de Herramientas de Testing](./docs/step_07/configuracion-herramientas-testing.md)
 - [Ejemplos de Testing por Lenguaje](./docs/step_07/ejemplos-testing-por-lenguaje.md)
+- [Cobertura de Pruebas (Coverage)](./docs/step_07/cobertura-pruebas.md)
 - [Testing Funcional Automatizado](./docs/step_07/testing-funcional-automatizado.md)
 - [Testing de Regresión](./docs/step_07/testing-regresion.md)
 - [Checklists QA](./docs/step_07/checklists-qa.md)
