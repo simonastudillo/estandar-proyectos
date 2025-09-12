@@ -825,6 +825,7 @@ jobs:
 - ✅ [Bug Fixes y Hotfixes](./bug-fixes-hotfixes.md)
 - ✅ [Actualización de Dependencias](./actualizacion-dependencias.md)
 - ✅ **Gestión de Nuevas Funcionalidades** ← Estás aquí
+- ⏭️ [Mejoras continuas programadas](./mejoras-continuas-programadas.md)
 - ⏭️ [Documentación y Knowledge Transfer](./documentacion-knowledge-transfer.md)
 - ⏭️ [Métricas y Analytics de Uso](./metricas-analytics-uso.md)
 
@@ -833,8 +834,8 @@ jobs:
 ### Siguiente Paso
 
 Continúa con
-[**Documentación y Knowledge Transfer**](./documentacion-knowledge-transfer.md)
+[**Mejoras continuas programadas**](./mejoras-continuas-programadas.md)
 
 [⬅️ Actualización de Dependencias](./actualizacion-dependencias.md) |
 [🏠 README Principal](../../README.md) |
-[➡️ Documentación y Knowledge Transfer](./documentacion-knowledge-transfer.md)
+[➡️ Mejoras continuas programadas](./mejoras-continuas-programadas.md)

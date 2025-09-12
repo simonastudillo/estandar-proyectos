@@ -837,6 +837,7 @@ jobs:
 - ✅ [Bug Fixes y Hotfixes](./bug-fixes-hotfixes.md)
 - ✅ [Actualización de Dependencias](./actualizacion-dependencias.md)
 - ✅ [Gestión de Nuevas Funcionalidades](./gestion-nuevas-funcionalidades.md)
+- ✅ [Mejoras continuas programadas](./mejoras-continuas-programadas.md)
 - ✅ **Documentación y Knowledge Transfer** ← Estás aquí
 - ⏭️ [Métricas y Analytics de Uso](./metricas-analytics-uso.md)
 
@@ -846,6 +847,6 @@ jobs:
 
 Continúa con [**Métricas y Analytics de Uso**](./metricas-analytics-uso.md)
 
-[⬅️ Gestión de Nuevas Funcionalidades](./gestion-nuevas-funcionalidades.md) |
+[⬅️ Mejoras continuas programadas](./mejoras-continuas-programadas.md) |
 [🏠 README Principal](../../README.md) |
 [➡️ Métricas y Analytics de Uso](./metricas-analytics-uso.md)

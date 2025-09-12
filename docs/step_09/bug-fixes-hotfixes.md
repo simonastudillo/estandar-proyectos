@@ -642,6 +642,7 @@ export class ErrorBoundary extends Component<Props, State> {
 - ✅ **Bug Fixes y Hotfixes** ← Estás aquí
 - ⏭️ [Actualización de Dependencias](./actualizacion-dependencias.md)
 - ⏭️ [Gestión de Nuevas Funcionalidades](./gestion-nuevas-funcionalidades.md)
+- ⏭️ [Mejoras continuas programadas](./mejoras-continuas-programadas.md)
 - ⏭️ [Documentación y Knowledge Transfer](./documentacion-knowledge-transfer.md)
 - ⏭️ [Métricas y Analytics de Uso](./metricas-analytics-uso.md)
 

@@ -247,6 +247,8 @@ Esta etapa tiene un enfoque en sostenibilidad y evolución continua:
 - ✅
   [Gestión de Nuevas Funcionalidades](./docs/step_09/gestion-nuevas-funcionalidades.md)
 - ✅
+  [Mejoras Continuas Programadas](./docs/step_09/mejoras-continuas-programadas.md)
+- ✅
   [Documentación y Knowledge Transfer](./docs/step_09/documentacion-knowledge-transfer.md)
 - ✅ [Métricas y Analytics de Uso](./docs/step_09/metricas-analytics-uso.md)
 
@@ -345,6 +347,7 @@ estandar-proyectos/
 │       ├── bug-fixes-hotfixes.md
 │       ├── actualizacion-dependencias.md
 │       ├── gestion-nuevas-funcionalidades.md
+│       ├── mejoras-continuas-programadas.md
 │       ├── documentacion-knowledge-transfer.md
 │       └── metricas-analytics-uso.md
 ├── ignore/                        # Archivos de prueba y borradores

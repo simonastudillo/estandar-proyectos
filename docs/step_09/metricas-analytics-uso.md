@@ -882,6 +882,7 @@ class ABTestingService
 - ✅ [Bug Fixes y Hotfixes](./bug-fixes-hotfixes.md)
 - ✅ [Actualización de Dependencias](./actualizacion-dependencias.md)
 - ✅ [Gestión de Nuevas Funcionalidades](./gestion-nuevas-funcionalidades.md)
+- ✅ [Mejoras continuas programadas](./mejoras-continuas-programadas.md)
 - ✅ [Documentación y Knowledge Transfer](./documentacion-knowledge-transfer.md)
 - ✅ **Métricas y Analytics de Uso** ← Estás aquí
 
