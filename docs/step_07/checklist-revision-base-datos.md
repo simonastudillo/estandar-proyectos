@@ -73,10 +73,10 @@ la infraestructura.
 
 ## 📋 Información General
 
-- [ ] **Número de ticket/issue**: ******\_\_\_******
-- [ ] **Desarrollador responsable**: ******\_\_\_******
-- [ ] **Revisor asignado**: ******\_\_\_******
-- [ ] **Fecha de revisión**: ******\_\_\_******
+- [ ] **Número de ticket/issue**: **\*\***\_\_\_**\*\***
+- [ ] **Desarrollador responsable**: **\*\***\_\_\_**\*\***
+- [ ] **Revisor asignado**: **\*\***\_\_\_**\*\***
+- [ ] **Fecha de revisión**: **\*\***\_\_\_**\*\***
 - [ ] **Entorno objetivo**: [ ] Dev [ ] Staging [ ] Production
 
 ## 🏗️ Diseño y Estructura
@@ -218,16 +218,16 @@ la infraestructura.
 
 ### Revisiones Técnicas
 
-- [ ] **Database Administrator**: **********\_\_\_********** Fecha: **\_\_\_**
-- [ ] **Senior Developer**: **********\_\_\_********** Fecha: **\_\_\_**
-- [ ] **Architecture Review**: **********\_\_\_********** Fecha: **\_\_\_**
-- [ ] **Security Review**: **********\_\_\_********** Fecha: **\_\_\_**
+- [ ] **Database Administrator**: \***\*\*\*\*\***\_\_\_\***\*\*\*\*\*** Fecha: **\_\_\_**
+- [ ] **Senior Developer**: \***\*\*\*\*\***\_\_\_\***\*\*\*\*\*** Fecha: **\_\_\_**
+- [ ] **Architecture Review**: \***\*\*\*\*\***\_\_\_\***\*\*\*\*\*** Fecha: **\_\_\_**
+- [ ] **Security Review**: \***\*\*\*\*\***\_\_\_\***\*\*\*\*\*** Fecha: **\_\_\_**
 
 ### Aprobaciones de Negocio
 
-- [ ] **Product Owner**: **********\_\_\_********** Fecha: **\_\_\_**
-- [ ] **Technical Lead**: **********\_\_\_********** Fecha: **\_\_\_**
-- [ ] **DevOps/SRE**: **********\_\_\_********** Fecha: **\_\_\_**
+- [ ] **Product Owner**: \***\*\*\*\*\***\_\_\_\***\*\*\*\*\*** Fecha: **\_\_\_**
+- [ ] **Technical Lead**: \***\*\*\*\*\***\_\_\_\***\*\*\*\*\*** Fecha: **\_\_\_**
+- [ ] **DevOps/SRE**: \***\*\*\*\*\***\_\_\_\***\*\*\*\*\*** Fecha: **\_\_\_**
 
 ## 📝 Comentarios y Observaciones
 
@@ -263,7 +263,7 @@ la infraestructura.
 - [ ] **Aprobaciones obtenidas**
 - [ ] **Ready for deployment**
 
-**Firma del revisor:** **********\_\_\_********** **Fecha:** **\_\_\_**
+**Firma del revisor:** \***\*\*\*\*\***\_\_\_\***\*\*\*\*\*** **Fecha:** **\_\_\_**
 ```
 
 ### 2. Scripts de Validación Automatizada
@@ -1065,6 +1065,6 @@ fi
 
 ## Navegación
 
-[⬅️ Optimización del Frontend](./docs/step_07/optimizacion-frontend.md) |
+[⬅️ Estrategias de Caché](./estrategias-cache.md) |
 [🏠 README Principal](../../README.md) |
 [Revisión General del Código ➡️](./revision-general-codigo.md)
