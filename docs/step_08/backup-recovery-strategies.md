@@ -595,4 +595,4 @@ mysql -e "DROP DATABASE $TEST_DB;"
 
 [⬅️ Optimización base de datos](./optimizacion-base-datos.md) |
 [🏠 README Principal](../../README.md) |
-[SSL y Configuraciones de Seguridad ➡️](./ssl-configuraciones-seguridad.md)
+[Mantenimiento del File System ➡️](./file-system-maintenance.md)

@@ -657,6 +657,6 @@ fi
 
 ## Navegación
 
-[⬅️ Backup y Recovery](./backup-recovery-strategies.md) |
+[⬅️ Mantenimiento del File System](./file-system-maintenance.md) |
 [🏠 README Principal](../../README.md) |
 [Etapa 9: Mantenimiento y Evolución ➡️](../step_09/mantenimiento-evolucion.md)

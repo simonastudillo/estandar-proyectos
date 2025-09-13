@@ -173,6 +173,7 @@ real, sin embargo el objetivo es utilizar en proyectos futuros.
 - [Code Review y Refactoring](./docs/step_07/code-review-refactoring.md)
 - [Auditoría de Calidad de Código](./docs/step_07/auditoria-calidad-codigo.md)
 - [Checklist de Performance](./docs/step_07/checklist-performance.md)
+- [Checklist de File System](./docs/step_07/checklist-file-system.md)
 - [Optimización del Frontend](./docs/step_07/optimizacion-frontend.md)
 - [Estrategias de Caché](./docs/step_07/estrategias-cache.md)
 - [Checklist de Revisión de Base de Datos](./docs/step_07/checklist-revision-base-datos.md)
@@ -187,6 +188,7 @@ real, sin embargo el objetivo es utilizar en proyectos futuros.
 - [Monitoreo y Logging](./docs/step_08/monitoreo-logging.md)
 - [Optimización base de datos](./docs/step_08/optimizacion-base-datos.md)
 - [Backup y Recovery](./docs/step_08/backup-recovery-strategies.md)
+- [Mantenimiento del File System](./docs/step_08/file-system-maintenance.md)
 - [SSL y Configuraciones de Seguridad](./docs/step_08/ssl-configuraciones-seguridad.md)
 
 ### [9. Mantenimiento y Evolución](./docs/step_09/mantenimiento-evolucion.md)
