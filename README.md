@@ -129,6 +129,7 @@ real, sin embargo el objetivo es utilizar en proyectos futuros.
 - [Implementación Infrastructure Layer](./docs/step_04/implementacion-infrastructure-layer.md)
 - [APIs RESTful Versionadas](./docs/step_04/apis-restful-versionadas.md)
 - [Autenticación Laravel Sanctum](./docs/step_04/autenticacion-laravel-sanctum.md)
+- [Migraciones y Seeders](./docs/step_04/migraciones-seeders.md)
 - [Testing TDD Backend](./docs/step_04/testing-tdd-backend.md)
 
 ### [5. Desarrollo del Frontend Web (React + TypeScript)](./docs/step_05/desarrollo-frontend-web.md)
