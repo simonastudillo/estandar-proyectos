@@ -25,50 +25,65 @@ de desarrollo.
 
 ### Frontend
 
-- **Framework/Librería**: React con TypeScript
-- **Bundler**: Vite o Create React App
-- **Routing**: React Router
-- **Estado global**: Redux Toolkit o Zustand
-- **UI Components**: Material-UI, Ant Design o styled-components
-- **Testing**: Jest, React Testing Library
+- **Framework/Librería**: React 18+ con TypeScript 5+
+- **Bundler**: Vite (estándar único, CRA deprecated)
+- **Routing**: React Router v6+
+- **Estado global**:
+  - **Zustand**: Proyectos pequeños-medianos (<50 componentes conectados)
+  - **Redux Toolkit**: Proyectos grandes, múltiples equipos, debugging complejo
+- **UI Components - Estrategia Progresiva**:
+  - **Fase 1 (Inmediata)**: Shadcn/ui + Tailwind CSS + Radix UI primitives
+  - **Fase 2 (3-6 meses)**: Atomic Design + Storybook + Design System
+- **Testing**: Jest + React Testing Library + Storybook (Fase 2)
 
 ### Backend
 
-- **Framework**: Laravel (PHP)
+- **Framework**: Laravel 10+ (PHP 8.2+)
+- **Architecture**: Clean Architecture basada en DDD
 - **API**: RESTful APIs con Laravel Sanctum para autenticación
 - **Validación**: Form Request Validation
-- **ORM**: Eloquent ORM
-- **Testing**: PHPUnit, Pest
+- **ORM**: Eloquent ORM (solo en Infrastructure layer)
+- **Testing**: PHPUnit (estándar de facto, mejor integración IDE)
 
 ### Base de Datos
 
-- **Principal**: MySQL
-- **Alternativas**: PostgreSQL (según necesidades del proyecto)
+- **Principal**: MySQL 8.0+ (proyectos estándar)
+- **Alternativa**: PostgreSQL 15+ (JSON avanzado, full-text search, análisis
+  complejos)
 - **Migraciones**: Laravel Migrations
 - **Seeders**: Laravel Database Seeders
+- **Convenciones**: Inglés, snake_case, soft deletes, timestamps obligatorios
 
 ### Mobile
 
-- **Framework**: React Native con TypeScript
-- **Navigation**: React Navigation
-- **Estado**: Redux Toolkit o Context API
-- **Testing**: Jest, Detox
+- **Framework**: React Native 0.72+ con TypeScript
+- **CLI**: React Native CLI (mayor control que Expo)
+- **Navigation**: React Navigation 6+
+- **Estado**: Sincronizado con web (Redux Toolkit/Zustand + Redux Persist)
+- **Testing**: Jest + React Native Testing Library + Detox
 
 ### DevOps y Herramientas
 
-- **Control de versiones**: Git
-- **CI/CD**: GitHub Actions
-- **Containerización**: Docker
+- **Control de versiones**: Git (GitHub Flow + protected branches)
+- **CI/CD**: GitHub Actions con templates específicos
+- **Containerización**: Docker + Docker Compose
 - **Servidor web**: Nginx
-- **Deployment**: DigitalOcean, AWS o similar
+- **Cloud Provider**:
+  - **Principal**: DigitalOcean (simplicidad, costo-beneficio)
+  - **Empresarial**: AWS (proyectos >$10k/mes, compliance específico)
+- **Monitoreo**: New Relic Basic + DigitalOcean Monitoring (básico)
 
 ### Desarrollo
 
 - **IDE**: Visual Studio Code
-- **Package Manager**: npm/yarn (Frontend), Composer (Backend)
-- **Linting**: ESLint, PHP CS Fixer
+- **Package Manager**: npm (estándar único, viene con Node.js)
+- **Linting**: ESLint + PHP CS Fixer + configuraciones específicas
 - **Code Formatting**: Prettier
-- **Pre-commit hooks**: Husky
+- **Pre-commit hooks**: Husky + lint-staged
+- **Extensiones VS Code obligatorias**:
+  - ES7+ React/Redux/React-Native snippets
+  - Tailwind CSS IntelliSense
+  - PHP Intelephense
 
 ## ¿Qué debo hacer?
 
@@ -78,12 +93,14 @@ de desarrollo.
    - Considerar la escalabilidad requerida
    - Evaluar el tiempo de desarrollo disponible
 
-2. **Seleccionar tecnologías base**
+2. **Seleccionar tecnologías base (decisiones tomadas)**
 
-   - Frontend: React + TypeScript
-   - Backend: Laravel
-   - Base de datos: MySQL
-   - Mobile: React Native (si aplica)
+   - Frontend: React 18+ + TypeScript 5+ + Vite
+   - UI Components: Shadcn/ui + Tailwind CSS (Fase 1)
+   - Estado: Zustand (proyectos pequeños) / Redux Toolkit (grandes)
+   - Backend: Laravel 10+ + Clean Architecture + DDD
+   - Base de datos: MySQL 8.0+ (default) / PostgreSQL 15+ (casos específicos)
+   - Mobile: React Native 0.72+ (si aplica)
 
 3. **Configurar herramientas de desarrollo**
 
@@ -119,12 +136,12 @@ de desarrollo.
 
 ## Ejemplos
 
-### Stack completo típico:
+### Stack completo específico:
 
 ```
-Frontend: React 18 + TypeScript + Vite + Material-UI
-Backend: Laravel 10 + PHP 8.2 + MySQL 8.0
-Mobile: React Native + TypeScript + Expo
+Frontend: React 18+ + TypeScript 5+ + Vite + Shadcn/ui + Tailwind
+Backend: Laravel 10+ + PHP 8.2+ + MySQL 8.0+ + Clean Architecture
+Mobile: React Native 0.72+ + TypeScript + React Navigation 6+
 DevOps: Docker + GitHub Actions + DigitalOcean
 ```
 
@@ -132,39 +149,108 @@ DevOps: Docker + GitHub Actions + DigitalOcean
 
 ```
 proyecto/
-├── frontend/          # React + TypeScript
-├── backend/           # Laravel
+├── frontend/          # React + TypeScript + Vite
+│   ├── src/
+│   │   ├── components/
+│   │   │   ├── ui/           # Shadcn components (Fase 1)
+│   │   │   ├── atoms/        # Atomic Design (Fase 2)
+│   │   │   ├── molecules/    # Combinaciones simples (Fase 2)
+│   │   │   └── organisms/    # Componentes complejos (Fase 2)
+│   │   └── lib/
+│   │       └── utils.ts      # cn(), etc.
+├── backend/           # Laravel + Clean Architecture
+│   ├── app/
+│   │   ├── Domain/           # Entidades, Value Objects
+│   │   ├── Application/      # Casos de uso, DTOs
+│   │   └── Infrastructure/   # Controllers, Repositories
 ├── mobile/            # React Native (opcional)
 ├── docs/              # Documentación
 ├── docker/            # Configuración Docker
-└── .github/           # GitHub Actions
+└── .github/           # GitHub Actions workflows
 ```
 
-### Configuración de dependencias base:
+### Configuración de dependencias específicas:
 
-**Frontend (package.json)**:
+**Frontend (package.json) - Fase 1:**
 
 ```json
 {
    "dependencies": {
       "react": "^18.0.0",
       "typescript": "^5.0.0",
-      "@mui/material": "^5.0.0",
+      "tailwindcss": "^3.0.0",
+      "@radix-ui/react-slot": "^1.0.0",
+      "@radix-ui/react-dialog": "^1.0.0",
+      "class-variance-authority": "^0.7.0",
+      "clsx": "^2.0.0",
+      "tailwind-merge": "^1.0.0",
       "react-router-dom": "^6.0.0"
+   },
+   "devDependencies": {
+      "@storybook/react-vite": "^7.0.0"
    }
 }
 ```
 
-**Backend (composer.json)**:
+**Backend (composer.json):**
 
 ```json
 {
    "require": {
       "laravel/framework": "^10.0",
-      "laravel/sanctum": "^3.0"
+      "laravel/sanctum": "^3.0",
+      "php": "^8.2"
    }
 }
 ```
+
+## Roadmap de Evolución UI Components
+
+### Q1: Implementación Shadcn/ui (Fase 1)
+
+- ✅ Setup inicial: Vite + React + TypeScript + Tailwind
+- ✅ Instalación de Shadcn/ui con componentes básicos
+- ✅ Configuración de design tokens básicos
+- ✅ Guidelines de uso y patterns documentados
+
+### Q2: Migración a Atomic Design (Fase 2)
+
+- 🔄 Restructuración gradual usando metodología Atomic Design
+- 🔄 Setup completo de Storybook + documentación automática
+- 🔄 Design System consolidado con tokens avanzados
+- 🔄 Visual regression testing con Chromatic
+
+### Q3: Mobile + Advanced Features
+
+- 📋 React Native setup con state synchronization
+- 📋 Advanced monitoring y analytics implementado
+- 📋 Performance optimization completada
+
+## Estándares de Calidad Técnicos
+
+### Performance Requirements
+
+- **Frontend**:
+  - Bundle inicial <500KB
+  - First Contentful Paint <1.5s
+  - Largest Contentful Paint <2.5s
+- **Backend**:
+  - API CRUD <200ms p95
+  - Database queries <100ms p95
+
+### Security Standards
+
+- **TLS**: 1.3 mínimo obligatorio
+- **Headers**: HSTS, CSP, X-Frame-Options configurados
+- **Rate Limiting**: Implementado por endpoint type
+- **Authentication**: Laravel Sanctum + MFA para admin panels
+
+### Testing Coverage Requirements
+
+- **Domain Layer**: 90% mínimo
+- **Application Layer**: 85% mínimo
+- **Infrastructure Layer**: 70% mínimo
+- **Frontend Components**: 80% mínimo
 
 ## Navegación
 

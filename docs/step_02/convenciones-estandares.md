@@ -67,6 +67,42 @@ fundamentales para el trabajo en equipo y la escalabilidad del código.
 - **Archivos de configuración**: kebab-case (ej: `eslint.config.js`)
 - **Assets**: kebab-case (ej: `user-avatar.png`)
 
+#### Convenciones UI Components - Shadcn/ui + Atomic Design
+
+```typescript
+// Fase 1: Shadcn/ui components
+src/components/ui/
+├── button.tsx          // Lowercase, siguiendo convención Shadcn
+├── input.tsx           // Componentes copiables, mantener estructura original
+├── card.tsx            // No modificar nombres internos de Shadcn
+└── modal.tsx
+
+// Fase 2: Atomic Design evolution
+src/components/atoms/
+├── Button/             // PascalCase para carpetas
+│   ├── Button.tsx      // PascalCase para archivos principales
+│   ├── Button.stories.tsx  // .stories.tsx para Storybook
+│   ├── Button.test.tsx     // .test.tsx para unit tests
+│   └── index.ts        // Barrel export
+└── Input/
+
+src/components/molecules/
+├── SearchBox/          // PascalCase para combinaciones
+│   ├── SearchBox.tsx
+│   ├── SearchBox.stories.tsx
+│   └── index.ts
+└── FormField/
+
+src/components/organisms/
+├── DataTable/          // PascalCase para componentes complejos
+└── Navigation/
+
+// Import patterns
+import { Button } from "@/components/ui/button";        // Fase 1
+import { Button } from "@/components/atoms";             // Fase 2 - desde barrel
+import { DataTable } from "@/components/organisms";     // Organisms específicos
+```
+
 #### Variables y Funciones
 
 ```typescript
@@ -130,10 +166,10 @@ POST /api/v1/order-items
 
 ### Reglas por Lenguaje
 
-#### TypeScript/JavaScript
+#### TypeScript/JavaScript + React
 
 ```typescript
-// 1. Tipado estricto
+// 1. Tipado estricto obligatorio
 interface User {
    id: string;
    name: string;
@@ -145,17 +181,143 @@ interface User {
 const users: User[] = []; // ✅ Correcto
 const data: any = []; // ❌ Evitar
 
-// 3. Usar const assertions cuando sea apropiado
+// 3. Componentes React - Convenciones específicas
+// Fase 1: Uso de Shadcn/ui components
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { cn } from "@/lib/utils"; // Utility para class merging
+
+export function LoginForm() {
+  return (
+    <form className="space-y-4">
+      <Input 
+        type="email" 
+        placeholder="Email" 
+        className={cn("w-full", someCondition && "border-red-500")}
+      />
+      <Button type="submit" variant="default" size="lg">
+        Login
+      </Button>
+    </form>
+  );
+}
+
+// Fase 2: Atomic Design patterns
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  variant?: 'primary' | 'secondary' | 'danger';
+  size?: 'sm' | 'md' | 'lg';
+  loading?: boolean;
+}
+
+export const Button: React.FC<ButtonProps> = ({ 
+  variant = 'primary', 
+  size = 'md',
+  loading = false,
+  children,
+  className,
+  ...props 
+}) => {
+  return (
+    <button
+      className={cn(buttonVariants({ variant, size }), className)}
+      disabled={loading || props.disabled}
+      {...props}
+    >
+      {loading ? <Spinner /> : children}
+    </button>
+  );
+};
+
+// 4. Estado Global - Convenciones específicas
+// Zustand (proyectos pequeños-medianos)
+interface AuthStore {
+  user: User | null;
+  login: (credentials: LoginCredentials) => Promise<void>;
+  logout: () => void;
+}
+
+const useAuthStore = create<AuthStore>((set) => ({
+  user: null,
+  login: async (credentials) => {
+    const user = await authService.login(credentials);
+    set({ user });
+  },
+  logout: () => set({ user: null }),
+}));
+
+// Redux Toolkit (proyectos grandes)
+interface AuthState {
+  user: User | null;
+  loading: boolean;
+  error: string | null;
+}
+
+const authSlice = createSlice({
+  name: 'auth',
+  initialState: { user: null, loading: false, error: null } as AuthState,
+  reducers: {
+    loginStart: (state) => {
+      state.loading = true;
+      state.error = null;
+    },
+    loginSuccess: (state, action: PayloadAction<User>) => {
+      state.loading = false;
+      state.user = action.payload;
+    },
+    loginFailure: (state, action: PayloadAction<string>) => {
+      state.loading = false;
+      state.error = action.payload;
+    },
+  },
+});
+
+// 5. Custom Hooks - Convenciones
+function useLocalStorage<T>(key: string, initialValue: T) {
+  const [storedValue, setStoredValue] = useState<T>(() => {
+    try {
+      const item = window.localStorage.getItem(key);
+      return item ? JSON.parse(item) : initialValue;
+    } catch (error) {
+      console.error(`Error reading localStorage key "${key}":`, error);
+      return initialValue;
+    }
+  });
+
+  const setValue = useCallback((value: T | ((val: T) => T)) => {
+    try {
+      const valueToStore = value instanceof Function ? value(storedValue) : value;
+      setStoredValue(valueToStore);
+      window.localStorage.setItem(key, JSON.stringify(valueToStore));
+    } catch (error) {
+      console.error(`Error setting localStorage key "${key}":`, error);
+    }
+  }, [key, storedValue]);
+
+  return [storedValue, setValue] as const;
+}
+
+// 6. Tailwind CSS - Convenciones
+// ✅ Usar cn() utility para conditional classes
+<div className={cn(
+  "base-classes",
+  variant === 'primary' && "bg-blue-500",
+  size === 'lg' && "px-6 py-3"
+)} />
+
+// ❌ Evitar concatenación manual
+<div className={`base-classes ${variant === 'primary' ? 'bg-blue-500' : ''}`} />
+
+// 7. Usar const assertions cuando sea apropiado
 const themes = ["light", "dark"] as const;
 type Theme = typeof themes[number]; // 'light' | 'dark'
 
-// 4. Preferir arrow functions para callbacks
+// 8. Preferir arrow functions para callbacks
 const userNames = users.map((user) => user.name);
 
-// 5. Destructuring cuando mejore la legibilidad
+// 9. Destructuring cuando mejore la legibilidad
 const { name, email } = user;
 
-// 6. Optional chaining y nullish coalescing
+// 10. Optional chaining y nullish coalescing
 const userName = user?.profile?.name ?? "Anonymous";
 ```
 
@@ -223,30 +385,141 @@ ORDER BY registration_date DESC;
 #### Formateo Automático
 
 ```json
-// .prettierrc
+// .prettierrc - Configuración para React + TypeScript + Tailwind
 {
    "semi": true,
    "trailingComma": "es5",
    "singleQuote": true,
    "printWidth": 80,
    "tabWidth": 2,
-   "useTabs": false
+   "useTabs": false,
+   "plugins": ["prettier-plugin-tailwindcss"],
+   "tailwindConfig": "./tailwind.config.js",
+   "tailwindFunctions": ["cn", "clsx"]
 }
 ```
 
-#### ESLint Rules
+#### ESLint Rules - Específicas para el Stack
 
 ```javascript
-// .eslintrc.js
+// .eslintrc.js - Configuración para React + TypeScript + Shadcn/ui
 module.exports = {
+   extends: [
+      "eslint:recommended",
+      "@typescript-eslint/recommended",
+      "plugin:react/recommended",
+      "plugin:react-hooks/recommended",
+      "plugin:jsx-a11y/recommended",
+   ],
+   plugins: ["@typescript-eslint", "react", "react-hooks", "jsx-a11y"],
    rules: {
+      // TypeScript específicas
       "prefer-const": "error",
       "no-var": "error",
-      "no-unused-vars": "error",
+      "no-unused-vars": "off", // Usar la versión de TypeScript
+      "@typescript-eslint/no-unused-vars": "error",
       "@typescript-eslint/no-explicit-any": "error",
       "@typescript-eslint/explicit-function-return-type": "warn",
+      
+      // React específicas
+      "react/react-in-jsx-scope": "off", // No necesario en React 17+
+      "react/prop-types": "off", // Usamos TypeScript
+      "react-hooks/rules-of-hooks": "error",
+      "react-hooks/exhaustive-deps": "warn",
+      
+      // Shadcn/ui y Tailwind específicas
+      "jsx-a11y/click-events-have-key-events": "error",
+      "jsx-a11y/no-static-element-interactions": "error",
+      
+      // Import/Export
+      "import/order": ["error", {
+         "groups": [
+            "builtin", "external", "internal", 
+            "parent", "sibling", "index"
+         ],
+         "pathGroups": [
+            {
+               "pattern": "@/**",
+               "group": "internal",
+               "position": "after"
+            }
+         ],
+         "pathGroupsExcludedImportTypes": ["builtin"]
+      }]
+   },
+   settings: {
+      react: {
+         version: "detect",
+      },
    },
 };
+```
+
+#### Tailwind CSS Configuration
+
+```javascript
+// tailwind.config.js - Configuración específica del design system
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  darkMode: ["class"],
+  content: [
+    './pages/**/*.{ts,tsx}',
+    './components/**/*.{ts,tsx}',
+    './app/**/*.{ts,tsx}',
+    './src/**/*.{ts,tsx}',
+  ],
+  theme: {
+    container: {
+      center: true,
+      padding: "2rem",
+      screens: {
+        "2xl": "1400px",
+      },
+    },
+    extend: {
+      colors: {
+        border: "hsl(var(--border))",
+        input: "hsl(var(--input))",
+        ring: "hsl(var(--ring))",
+        background: "hsl(var(--background))",
+        foreground: "hsl(var(--foreground))",
+        primary: {
+          DEFAULT: "hsl(var(--primary))",
+          foreground: "hsl(var(--primary-foreground))",
+        },
+        secondary: {
+          DEFAULT: "hsl(var(--secondary))",
+          foreground: "hsl(var(--secondary-foreground))",
+        },
+        // ... Design tokens específicos del proyecto
+      },
+      borderRadius: {
+        lg: "var(--radius)",
+        md: "calc(var(--radius) - 2px)",
+        sm: "calc(var(--radius) - 4px)",
+      },
+      keyframes: {
+        "accordion-down": {
+          from: { height: 0 },
+          to: { height: "var(--radix-accordion-content-height)" },
+        },
+        "accordion-up": {
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: 0 },
+        },
+      },
+      animation: {
+        "accordion-down": "accordion-down 0.2s ease-out",
+        "accordion-up": "accordion-up 0.2s ease-out",
+      },
+    },
+  },
+  plugins: [
+    require("tailwindcss-animate"),
+    require("@tailwindcss/typography"),
+    require("@tailwindcss/forms"),
+  ],
+}
 ```
 
 #### PHP CS Fixer
@@ -879,40 +1152,133 @@ Ver documentación específica:
 
 ### Herramientas Recomendadas
 
-#### Para TypeScript/React
+#### Para TypeScript/React + Shadcn/ui
 
-- **ESLint**: Análisis estático de código
-- **Prettier**: Formateo automático
-- **TypeScript**: Tipado estático
-- **Husky**: Git hooks
-- **lint-staged**: Linting incremental
+- **ESLint**: Análisis estático de código + reglas React/TypeScript
+- **Prettier**: Formateo automático + prettier-plugin-tailwindcss
+- **TypeScript**: Tipado estático strict mode
+- **Husky**: Git hooks para calidad de código
+- **lint-staged**: Linting incremental en archivos modificados
+- **Tailwind CSS IntelliSense**: Autocomplete para clases
+- **Shadcn CLI**: `npx shadcn-ui@latest add [component]` para agregar components
+- **Storybook**: Documentación visual de componentes (Fase 2)
 
-#### Para PHP/Laravel
+#### Para PHP/Laravel + Clean Architecture
 
-- **PHP CS Fixer**: Formateo automático
-- **PHPStan**: Análisis estático
-- **Psalm**: Análisis de tipos
+- **PHP CS Fixer**: Formateo automático siguiendo PSR-12
+- **PHPStan**: Análisis estático con reglas strict
+- **Larastan**: PHPStan específico para Laravel
 - **PHPMD**: Detector de code smells
+- **PHP Intelephense**: IntelliSense para PHP en VS Code
 
 #### Para Base de Datos
 
 - **Adminer**: Administración ligera
 - **MySQL Workbench**: Diseño y modelado
 - **Laravel Telescope**: Debugging de queries
+- **Laravel Debugbar**: Performance profiling en desarrollo
+
+#### Herramientas de Estado Global
+
+**Para Zustand (proyectos pequeños-medianos):**
+- **Zustand DevTools**: Debugging de estado
+- **Immer**: Para estado inmutable (si es necesario)
+
+**Para Redux Toolkit (proyectos grandes):**
+- **Redux DevTools**: Debugging avanzado
+- **RTK Query**: Data fetching y caching
+- **Redux Persist**: Persistencia de estado
 
 ### Automatización
 
 ```json
-// package.json scripts
+// package.json scripts - Específicos para el stack
 {
    "scripts": {
+      // Linting y formato
       "lint": "eslint src/ --ext .ts,.tsx",
       "lint:fix": "eslint src/ --ext .ts,.tsx --fix",
       "format": "prettier --write 'src/**/*.{ts,tsx,json,css,md}'",
+      "format:check": "prettier --check 'src/**/*.{ts,tsx,json,css,md}'",
+      
+      // TypeScript
       "type-check": "tsc --noEmit",
-      "validate": "npm run type-check && npm run lint && npm run test"
+      "type-check:watch": "tsc --noEmit --watch",
+      
+      // Testing
+      "test": "jest",
+      "test:watch": "jest --watch",
+      "test:coverage": "jest --coverage",
+      "test:ci": "jest --ci --coverage --watchAll=false",
+      
+      // Shadcn/ui
+      "ui:add": "npx shadcn-ui@latest add",
+      "ui:list": "npx shadcn-ui@latest list",
+      
+      // Storybook (Fase 2)
+      "storybook": "start-storybook -p 6006",
+      "build-storybook": "build-storybook",
+      "chromatic": "npx chromatic --project-token=<project-token>",
+      
+      // Build y dev
+      "dev": "vite",
+      "build": "tsc && vite build",
+      "preview": "vite preview",
+      
+      // Validación completa
+      "validate": "npm run type-check && npm run lint && npm run format:check && npm run test:ci",
+      "prepare": "husky install"
    }
 }
+```
+
+```bash
+# .husky/pre-commit - Git hooks específicos
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# Ejecutar lint-staged para archivos modificados
+npx lint-staged
+
+# Verificar tipos TypeScript
+npm run type-check
+
+# .husky/pre-push - Validación antes de push
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# Ejecutar tests completos
+npm run test:ci
+
+# Verificar build
+npm run build
+```
+
+```json
+// lint-staged.config.js - Configuración para archivos específicos
+module.exports = {
+  // TypeScript/JavaScript files
+  '*.{ts,tsx,js,jsx}': [
+    'eslint --fix',
+    'prettier --write',
+    'jest --bail --findRelatedTests --passWithNoTests',
+  ],
+  
+  // CSS/SCSS files
+  '*.{css,scss}': [
+    'prettier --write',
+  ],
+  
+  // JSON/Markdown files
+  '*.{json,md}': [
+    'prettier --write',
+  ],
+  
+  // Package.json
+  'package.json': [
+    'sort-package-json',
+  ],
+};
 ```
 
 ### Integración con IDE
@@ -920,49 +1286,181 @@ Ver documentación específica:
 #### VS Code Settings
 
 ```json
-// .vscode/settings.json
+// .vscode/settings.json - Configuración específica para el stack
 {
+   // Formateo automático
    "editor.formatOnSave": true,
    "editor.defaultFormatter": "esbenp.prettier-vscode",
    "editor.codeActionsOnSave": {
-      "source.fixAll.eslint": true
+      "source.fixAll.eslint": true,
+      "source.organizeImports": true
    },
-   "typescript.preferences.importModuleSpecifier": "relative"
+   
+   // TypeScript
+   "typescript.preferences.importModuleSpecifier": "relative",
+   "typescript.suggest.autoImports": true,
+   "typescript.updateImportsOnFileMove.enabled": "always",
+   
+   // Tailwind CSS
+   "tailwindCSS.includeLanguages": {
+      "typescript": "typescript",
+      "typescriptreact": "typescriptreact"
+   },
+   "tailwindCSS.experimental.classRegex": [
+      ["cn\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"],
+      ["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"]
+   ],
+   
+   // File associations
+   "files.associations": {
+      "*.css": "tailwindcss"
+   },
+   
+   // Auto-imports
+   "typescript.suggest.includeCompletionsForModuleExports": true,
+   "typescript.preferences.includePackageJsonAutoImports": "auto",
+   
+   // Git
+   "git.enableSmartCommit": true,
+   "git.confirmSync": false,
+   
+   // Emmet
+   "emmet.includeLanguages": {
+      "typescript": "typescriptreact",
+      "typescriptreact": "typescriptreact"
+   }
+}
+```
+
+```json
+// .vscode/extensions.json - Extensiones recomendadas
+{
+   "recommendations": [
+      // React + TypeScript
+      "bradlc.vscode-tailwindcss",
+      "esbenp.prettier-vscode", 
+      "dbaeumer.vscode-eslint",
+      "ms-vscode.vscode-typescript-next",
+      
+      // React específicas
+      "burkeholland.simple-react-snippets",
+      "dsznajder.es7-react-js-snippets",
+      
+      // Git y colaboración
+      "eamodio.gitlens",
+      "github.vscode-pull-request-github",
+      
+      // PHP/Laravel
+      "bmewburn.vscode-intelephense-client",
+      "onecentlin.laravel-blade",
+      "ryannaddy.laravel-artisan",
+      
+      // Utilidades
+      "christian-kohler.path-intellisense",
+      "formulahendry.auto-rename-tag",
+      "bradgashler.htmltagwrap"
+   ]
 }
 ```
 
 ## Ejemplos
 
-### Proyecto Frontend Completo
+### Proyecto Frontend Completo - Shadcn/ui + Atomic Design
 
 ```
 src/
 ├── components/
-│   ├── common/
+│   ├── ui/                 # Fase 1: Shadcn components
+│   │   ├── button.tsx      # Lowercase siguiendo convención Shadcn
+│   │   ├── input.tsx       
+│   │   ├── card.tsx        
+│   │   └── index.ts        # Barrel export
+│   │
+│   ├── atoms/              # Fase 2: Atomic Design  
 │   │   ├── Button/
 │   │   │   ├── Button.tsx
+│   │   │   ├── Button.stories.tsx
 │   │   │   ├── Button.test.tsx
 │   │   │   └── index.ts
+│   │   ├── Input/
+│   │   └── index.ts        # Barrel export para todos los atoms
+│   │
+│   ├── molecules/          # Combinaciones de atoms
+│   │   ├── SearchBox/
+│   │   │   ├── SearchBox.tsx
+│   │   │   ├── SearchBox.stories.tsx
+│   │   │   └── index.ts
+│   │   ├── FormField/
 │   │   └── index.ts
-│   └── features/
-│       └── auth/
-│           ├── LoginForm/
-│           └── index.ts
-├── hooks/
+│   │
+│   ├── organisms/          # Componentes complejos
+│   │   ├── DataTable/
+│   │   ├── Navigation/
+│   │   └── index.ts
+│   │
+│   └── templates/          # Page layouts
+│       ├── PageLayout/
+│       ├── DashboardLayout/
+│       └── index.ts
+│
+├── lib/                    # Utilidades específicas
+│   ├── utils.ts           # cn(), clsx helpers
+│   ├── validations.ts     # Zod schemas
+│   ├── api.ts             # Axios configuration
+│   └── constants.ts       # App constants
+│
+├── hooks/                  # Custom hooks
 │   ├── useAuth.ts
+│   ├── useLocalStorage.ts
 │   └── index.ts
-├── services/
+│
+├── services/               # API services
 │   ├── api/
 │   │   ├── authApi.ts
+│   │   ├── userApi.ts
 │   │   └── index.ts
 │   └── index.ts
-├── types/
+│
+├── store/                  # Estado global
+│   ├── slices/            # Redux Toolkit (proyectos grandes)
+│   │   ├── authSlice.ts
+│   │   └── userSlice.ts
+│   ├── stores/            # Zustand (proyectos pequeños)
+│   │   ├── authStore.ts
+│   │   └── userStore.ts
+│   └── index.ts
+│
+├── types/                  # TypeScript definitions
 │   ├── auth.ts
 │   ├── api.ts
+│   ├── components.ts
 │   └── index.ts
-└── utils/
+│
+├── pages/                  # Páginas principales
+│   ├── LoginPage/
+│   ├── DashboardPage/
+│   └── index.ts
+│
+├── stories/                # Storybook stories (Fase 2)
+│   ├── atoms/
+│   ├── molecules/
+│   └── organisms/
+│
+└── utils/                  # Utilidades generales
     ├── dateHelpers.ts
+    ├── formatters.ts
     └── index.ts
+
+# Archivos de configuración
+├── .eslintrc.js           # ESLint + React + TypeScript + Tailwind
+├── .prettierrc            # Prettier + Tailwind plugin
+├── tailwind.config.js     # Tailwind + design tokens
+├── components.json        # Shadcn/ui configuration
+├── vite.config.ts         # Vite + path aliases
+├── tsconfig.json          # TypeScript strict config
+└── .storybook/            # Storybook config (Fase 2)
+    ├── main.ts
+    └── preview.ts
 ```
 
 ### Estructura Backend Laravel
