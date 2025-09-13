@@ -187,6 +187,7 @@ real, sin embargo el objetivo es utilizar en proyectos futuros.
 - [Monitoreo y Logging](./docs/step_08/monitoreo-logging.md)
 - [Optimización base de datos](./docs/step_08/optimizacion-base-datos.md)
 - [Backup y Recovery](./docs/step_08/backup-recovery-strategies.md)
+- [Mantenimiento del File System](./docs/step_08/file-system-maintenance.md)
 - [SSL y Configuraciones de Seguridad](./docs/step_08/ssl-configuraciones-seguridad.md)
 
 ### [9. Mantenimiento y Evolución](./docs/step_09/mantenimiento-evolucion.md)
