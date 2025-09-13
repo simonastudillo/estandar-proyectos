@@ -1,12 +1,17 @@
-# Stack Tecnológico
+# Stack Tecnológico Estándar
+
+> **IMPORTANTE**: Este documento define decisiones arquitectónicas **NO
+> NEGOCIABLES** para mantener consistencia en todos los proyectos. Las
+> tecnologías aquí especificadas son **estándares únicos** sin alternativas,
+> eliminando ambigüedades en la toma de decisiones.
 
 ## ¿Qué es?
 
 Un stack tecnológico es el conjunto de tecnologías, frameworks, librerías,
 herramientas y lenguajes de programación que se utilizan para desarrollar una
-aplicación o sistema completo. Incluye tanto las tecnologías del frontend (lado
-del cliente) como del backend (lado del servidor), base de datos, y herramientas
-de desarrollo.
+aplicación o sistema completo. Este documento establece las **decisiones
+definitivas** para nuestro stack, eliminando opciones múltiples y garantizando
+consistencia entre proyectos.
 
 ## ¿Por qué es importante?
 
@@ -25,32 +30,52 @@ de desarrollo.
 
 ### Frontend
 
-- **Framework/Librería**: React 18+ con TypeScript 5+
-- **Bundler**: Vite (estándar único, CRA deprecated)
-- **Routing**: React Router v6+
-- **Estado global**: Redux Toolkit (estándar único obligatorio)
-- **UI Components - Estrategia Progresiva**:
+- **Framework/Librería**: React 18+ con TypeScript 5+ (tipado fuerte
+  obligatorio)
+- **Bundler**: **Vite** (estándar único - CRA, Webpack, Parcel PROHIBIDOS)
+- **Routing**: React Router v6+ (única opción permitida)
+- **Estado global**: **Redux Toolkit** (estándar único obligatorio - Zustand,
+  Context API prohibidos para estado global)
+- **HTTP Client**: Axios con interceptors (única opción permitida)
+- **Package Manager**: **npm** (estándar único - Yarn, pnpm prohibidos)
+- **UI Components - Estrategia Progresiva NO OPCIONAL**:
   - **Fase 1 (Inmediata)**: Shadcn/ui + Tailwind CSS + Radix UI primitives
   - **Fase 2 (3-6 meses)**: Atomic Design + Storybook + Design System
-- **Testing**: Jest + React Testing Library + Storybook (Fase 2)
+- **Testing**: Jest + React Testing Library + Storybook (Fase 2) - única
+  configuración permitida
+- **Linting**: ESLint + Prettier + Tailwind plugin (configuración estándar
+  obligatoria)
 
 ### Backend
 
-- **Framework**: Laravel 10+ (PHP 8.2+)
-- **Architecture**: Clean Architecture basada en DDD
-- **API**: RESTful APIs con Laravel Sanctum para autenticación
-- **Validación**: Form Request Validation
-- **ORM**: Eloquent ORM (solo en Infrastructure layer)
-- **Testing**: PHPUnit (estándar de facto, mejor integración IDE)
+- **Framework**: Laravel 10+ (PHP 8.2+ con strict types obligatorio)
+- **Architecture**: Clean Architecture basada en DDD (única arquitectura
+  permitida)
+- **API**: RESTful APIs con versionado URL-based (`/api/v1/`) - único estilo
+  permitido
+- **Autenticación**: Laravel Sanctum + MFA para admin panels (única opción)
+- **Validación**: Form Request Validation (estándar obligatorio)
+- **ORM**: Eloquent ORM (solo en Infrastructure layer - estricto)
+- **Testing**: **PHPUnit** (estándar único - Pest prohibido por simplicidad y
+  compatibilidad IDE)
+- **Code Quality**: PHP CS Fixer + PHPStan + Larastan (configuración estándar
+  obligatoria)
 
 ### Base de Datos
 
-- **Principal**: MySQL 8.0+ (proyectos estándar)
-- **Alternativa**: PostgreSQL 15+ (JSON avanzado, full-text search, análisis
-  complejos)
-- **Migraciones**: Laravel Migrations
-- **Seeders**: Laravel Database Seeders
-- **Convenciones**: Inglés, snake_case, soft deletes, timestamps obligatorios
+- **Principal**: **MySQL 8.0+** (default para proyectos estándar - >80% casos de
+  uso)
+- **Alternativa específica**: **PostgreSQL 15+** (SOLO cuando se requiera):
+  - JSON queries complejos y avanzados
+  - Full-text search nativo robusto
+  - Análisis de datos complejos con window functions
+  - Proyectos >100GB de datos analíticos
+- **Identificadores**: UUID públicos generados en PHP:
+  `bin2hex(random_bytes(16))`
+- **Migraciones**: Laravel Migrations (única herramienta permitida)
+- **Seeders**: Laravel Database Seeders (única herramienta permitida)
+- **Convenciones NO NEGOCIABLES**: Inglés, snake_case, soft deletes, timestamps
+  obligatorios, foreign keys obligatorias
 
 ### Mobile
 
@@ -62,14 +87,21 @@ de desarrollo.
 
 ### DevOps y Herramientas
 
-- **Control de versiones**: Git (GitHub Flow + protected branches)
-- **CI/CD**: GitHub Actions con templates específicos
-- **Containerización**: Docker + Docker Compose
-- **Servidor web**: Nginx
-- **Cloud Provider**:
-  - **Principal**: DigitalOcean (simplicidad, costo-beneficio)
-  - **Empresarial**: AWS (proyectos >$10k/mes, compliance específico)
-- **Monitoreo**: New Relic Basic + DigitalOcean Monitoring (básico)
+- **Control de versiones**: Git con **GitHub Flow + protected branches** (única
+  metodología)
+- **CI/CD**: **GitHub Actions** con templates específicos (única plataforma
+  permitida)
+- **Containerización**: Docker + Docker Compose (estándar obligatorio)
+- **Servidor web**: Nginx (única opción para producción)
+- **Cloud Provider - Criterios Específicos**:
+  - **Principal**: **DigitalOcean** (proyectos <$10k/mes, startups, SMEs)
+  - **Empresarial**: **AWS** (proyectos >$10k/mes, compliance específico,
+    enterprise)
+  - **PROHIBIDOS**: Azure, GCP, Heroku, Vercel para backend (no alineados con
+    estrategia)
+- **Monitoreo Específico**:
+  - **Básico**: New Relic Basic + DigitalOcean Monitoring
+  - **Avanzado**: DataDog + ELK Stack (solo para proyectos enterprise)
 
 ### Desarrollo
 
@@ -83,6 +115,62 @@ de desarrollo.
   - Tailwind CSS IntelliSense
   - PHP Intelephense
 
+## ⚠️ Herramientas y Tecnologías PROHIBIDAS
+
+Para mantener consistencia y evitar fragmentación del conocimiento del equipo:
+
+### ❌ Frontend - Bundlers y Build Tools
+
+- **Create React App (CRA)**: Deprecado por Meta, usar **Vite**
+- **Webpack directo**: Complejidad innecesaria, usar **Vite**
+- **Parcel**: No alineado con stack, usar **Vite**
+- **Next.js**: Para SPA usar React + Vite, no SSR framework
+- **Gatsby**: No compatible con backend separado
+
+### ❌ Estado Global Alternativo
+
+- **Zustand**: Usar **Redux Toolkit** únicamente
+- **Jotai**: Usar **Redux Toolkit** únicamente
+- **Context API**: Solo para datos de UI local, NO para estado global
+- **MobX**: Usar **Redux Toolkit** únicamente
+
+### ❌ Package Managers Alternativos
+
+- **Yarn**: Usar **npm** únicamente
+- **pnpm**: Usar **npm** únicamente
+- **Bun**: Demasiado nuevo, usar **npm**
+
+### ❌ Testing Frameworks Alternativos
+
+- **Vitest**: Usar **Jest** para consistencia
+- **Pest (PHP)**: Usar **PHPUnit** para mejor IDE support
+- **Cypress**: Usar React Testing Library + Jest
+
+### ❌ CSS Frameworks Alternativos
+
+- **Bootstrap**: Usar **Tailwind CSS** únicamente
+- **Material-UI standalone**: Usar **Shadcn/ui + Tailwind**
+- **Chakra UI**: Usar **Shadcn/ui + Tailwind**
+- **Styled Components**: Usar **Tailwind CSS**
+
+### ❌ Backend Frameworks Alternativos
+
+- **Express.js/Node.js**: Usar **Laravel** únicamente
+- **Django/Python**: Usar **Laravel** únicamente
+- **Spring Boot/Java**: Usar **Laravel** únicamente
+
+### ❌ Base de Datos NoSQL (Sin Casos de Uso Específicos)
+
+- **MongoDB**: Usar **MySQL/PostgreSQL**
+- **Redis** como DB principal: Solo para cache/sessions
+- **DynamoDB**: Usar **MySQL/PostgreSQL**
+
+### ✅ Excepciones Permitidas
+
+- **Redis**: SOLO para cache y sessions
+- **Elasticsearch**: SOLO para search avanzado (casos específicos)
+- **S3/Object Storage**: Para archivos y assets
+
 ## ¿Qué debo hacer?
 
 1. **Evaluar requisitos del proyecto**
@@ -93,44 +181,54 @@ de desarrollo.
 
 2. **Seleccionar tecnologías base (decisiones tomadas)**
 
-   - Frontend: React 18+ + TypeScript 5+ + Vite
-   - UI Components: Shadcn/ui + Tailwind CSS (Fase 1)
-   - Estado: Redux Toolkit (estándar único obligatorio)
-   - Backend: Laravel 10+ + Clean Architecture + DDD
-   - Base de datos: MySQL 8.0+ (default) / PostgreSQL 15+ (casos específicos)
-   - Mobile: React Native 0.72+ (si aplica)
+   - ✅ **Frontend**: React 18+ + TypeScript 5+ + **Vite** (único bundler
+     permitido)
+   - ✅ **UI**: Shadcn/ui + Tailwind CSS (Fase 1) → Atomic Design (Fase 2)
+   - ✅ **Estado**: Redux Toolkit (único estándar permitido)
+   - ✅ **Backend**: Laravel 10+ + Clean Architecture + DDD
+   - ✅ **DB**: MySQL 8.0+ (default) / PostgreSQL 15+ (casos específicos
+     documentados)
+   - ✅ **Mobile**: React Native 0.72+ (si aplica)
 
 3. **Configurar herramientas de desarrollo**
 
-   - Instalar y configurar el entorno de desarrollo
-   - Configurar linting y formatting
-   - Establecer estructura de carpetas estándar
+   - Configurar **Vite** con configuración estándar específica
+   - Instalar y configurar ESLint + Prettier con reglas obligatorias
+   - Establecer estructura de carpetas estándar (no negociable)
+   - Configurar **GitHub Actions** con templates específicos
 
-4. **Documentar decisiones**
+4. **Implementar estándares de calidad no negociables**
 
-   - Justificar la elección de cada tecnología
-   - Documentar configuraciones específicas
-   - Mantener un registro de versiones utilizadas
+   - Coverage mínimo: Domain 90%, Application 85%, Infrastructure 70%
+   - Performance: Bundle <500KB, API <200ms p95
+   - Security: TLS 1.3, headers obligatorios, MFA para admin
 
-5. **Establecer estándares de código**
-   - Configurar reglas de ESLint y PHP CS Fixer
-   - Definir convenciones de nomenclatura
-   - Establecer patrones de arquitectura
+5. **Documentar configuraciones específicas (obligatorio)**
 
-## Tips
+   - Configuraciones exactas de Vite, ESLint, PHPUnit
+   - Justificar SOLO si se requiere PostgreSQL sobre MySQL
+   - Mantener registro de versiones específicas utilizadas
 
-- **Mantén la consistencia**: Una vez elegido el stack, mantente fiel a él
-  durante todo el proyecto
-- **Considera el futuro**: Elige tecnologías con buen soporte a largo plazo
-- **Evalúa la curva de aprendizaje**: Considera el conocimiento del equipo
-- **Documenta todo**: Mantén un registro detallado de versiones y
-  configuraciones
-- **Usa herramientas de automatización**: Configura linting, testing y CI/CD
-  desde el inicio
-- **Principios SOLID**: Asegúrate de que el stack elegido permita aplicar estos
-  principios
-- **Clean Architecture**: El stack debe facilitar una arquitectura limpia y
-  mantenible
+6. **Establecer proceso de compliance**
+   - Auditorías de stack compliance regulares
+   - Code reviews verificando adherencia al estándar
+   - CI/CD failfast en caso de tecnologías no permitidas
+
+## Tips para Implementación
+
+- **No hay opciones**: El stack está definido, enfócate en implementar
+  correctamente
+- **Vite es obligatorio**: Toda optimización debe usar herramientas del
+  ecosistema Vite/Rollup
+- **Redux Toolkit únicamente**: No evaluar alternativas de estado global
+- **Consulta antes de desviar**: Cualquier desviación requiere aprobación
+  arquitectónica
+- **Automatiza compliance**: Configura CI/CD para detectar tecnologías no
+  permitidas
+- **Prioriza configuración estándar**: Usa templates y configuraciones
+  predefinidas
+- **Documenta excepciones**: Justifica técnicamente cualquier caso especial
+- **Mantén versiones actualizadas**: Sigue las versiones mínimas especificadas
 
 ## Ejemplos
 

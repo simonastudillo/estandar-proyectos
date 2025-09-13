@@ -1,78 +1,76 @@
-# Configuración de Herramientas de Calidad de Código
+# Configuración de Herramientas de Calidad de Código (Estándar Único)
+
+> **IMPORTANTE**: Esta configuración representa el **estándar único NO NEGOCIABLE** para herramientas de calidad. Las herramientas aquí especificadas son obligatorias y no admiten alternativas, garantizando consistencia total entre proyectos.
 
 ## ¿Qué es?
 
-La configuración de herramientas de calidad de código es el proceso de
-implementar y configurar herramientas automatizadas que analizan, validan y
-mejoran la calidad del código fuente. Estas herramientas incluyen linters,
-formateadores, analizadores estáticos, herramientas de testing y validadores de
-tipos que garantizan que el código siga estándares, buenas prácticas y
-principios de Clean Code.
+La configuración de herramientas de calidad de código es el **proceso estándar obligatorio**
+para implementar herramientas automatizadas específicas que analizan, validan y
+mejoran la calidad del código fuente. Este documento establece las herramientas
+**únicas permitidas** incluyendo linters, formateadores, analizadores estáticos,
+frameworks de testing y validadores de tipos que garantizan adherencia estricta
+a estándares, buenas prácticas y principios de Clean Code.
 
 ## ¿Por qué es importante?
 
-- **Consistencia**: Mantiene un estilo de código uniforme en todo el equipo de
-  desarrollo
-- **Calidad**: Detecta errores potenciales, vulnerabilidades y code smells antes
-  de la producción
-- **Mantenibilidad**: Facilita la lectura, comprensión y modificación del código
-  a largo plazo
-- **Productividad**: Automatiza tareas repetitivas de revisión de código y
-  reduce el tiempo en code reviews
-- **Confiabilidad**: Reduce bugs y problemas en producción mediante análisis
-  temprano
-- **Adherencia a estándares**: Garantiza que el código siga los principios
-  SOLID, DRY y Clean Architecture
+- **Eliminación de ambigüedad**: Herramientas únicas estándar evitan decisiones de configuración
+- **Consistencia total**: Estilo de código idéntico en todos los proyectos del equipo
+- **Calidad garantizada**: Detecta errores, vulnerabilidades y code smells con estándares unificados
+- **Mantenibilidad**: Facilita lectura y modificación con patrones de código predecibles
+- **Productividad máxima**: Automatización total elimina debates sobre configuraciones
+- **Confiabilidad**: Reduce bugs mediante análisis temprano con herramientas probadas
+- **Adherencia estricta**: Garantiza cumplimiento de SOLID, DRY y Clean Architecture
+- **Integración Vite**: Herramientas específicamente optimizadas para nuestro stack Vite + React
 
 ## ¿Qué debe incluir?
 
-### Frontend (React + TypeScript + Vite)
+### Frontend (React + TypeScript + Vite - Configuración Obligatoria)
 
-1. **Linting y Formateo**
+1. **Linting y Formateo (Herramientas Únicas)**
 
-   - ESLint con configuraciones específicas para React y TypeScript
-   - Prettier para formateo automático de código
-   - Integración con el editor (VS Code)
+   - **ESLint** con configuraciones específicas para React y TypeScript (único linter permitido)
+   - **Prettier** para formateo automático (único formateador permitido)
+   - Integración obligatoria con VS Code
 
-2. **Análisis de Tipos**
+2. **Análisis de Tipos (Estándar Único)**
 
-   - TypeScript compiler con configuración estricta
-   - Validación de tipos en tiempo de desarrollo
+   - **TypeScript compiler** con configuración estricta obligatoria
+   - Validación de tipos en tiempo de desarrollo (no negociable)
 
-3. **Testing**
+3. **Testing (Framework Único para Vite)**
 
-   - Jest para pruebas unitarias
-   - React Testing Library para pruebas de componentes
-   - Coverage reports automatizados
+   - **Vitest** para pruebas unitarias (único framework permitido con Vite)
+   - **React Testing Library** para pruebas de componentes (única biblioteca permitida)
+   - **@testing-library/jest-dom** para matchers DOM
+   - Coverage reports automatizados con Vitest
 
-4. **Análisis de Calidad**
-   - SonarJS para análisis estático
-   - Herramientas de detección de dependencias circulares
-   - Análisis de bundle size
+4. **Análisis de Calidad (Herramientas Estándar)**
+   - **SonarJS** para análisis estático
+   - **madge** para detección de dependencias circulares
+   - **rollup-plugin-visualizer** para análisis de bundle size (específico Vite)
 
-### Backend (Laravel + Clean Architecture)
+### Backend (Laravel + Clean Architecture - Configuración Obligatoria)
 
-1. **Análisis Estático PHP**
+1. **Análisis Estático PHP (Herramientas Únicas)**
 
-   - PHPStan para análisis estático
-   - PHP CS Fixer para formateo automático
-   - PHPMD (PHP Mess Detector) para detección de code smells
+   - **PHPStan** para análisis estático (único analizador permitido)
+   - **PHP CS Fixer** para formateo automático (único formateador PHP permitido)
+   - **PHPMD** (PHP Mess Detector) para detección de code smells
 
-2. **Testing**
+2. **Testing (Framework Único)**
 
-   - PHPUnit para pruebas unitarias y de integración
-   - Pest (opcional) para sintaxis más moderna
-   - Coverage reports con Xdebug
+   - **PHPUnit** para pruebas unitarias y de integración (único framework permitido)
+   - Coverage reports con Xdebug (única herramienta de coverage)
 
-3. **Validación de Arquitectura**
+3. **Validación de Arquitectura (Herramientas Estándar)**
 
-   - Deptrac para validar dependencias entre capas
-   - PHP Architecture Tester para reglas de arquitectura
+   - **Deptrac** para validar dependencias entre capas
+   - **PHP Architecture Tester** para reglas de arquitectura
 
-4. **Calidad de Código**
-   - Herramientas de detección de duplicación
-   - Análisis de complejidad ciclomática
-   - Validación de PSR standards
+4. **Calidad de Código (Estándares Únicos)**
+   - **PHPCPD** para detección de duplicación
+   - **PhpMetrics** para análisis de complejidad ciclomática
+   - **PHP_CodeSniffer** para validación de PSR standards
 
 ## ¿Qué debo hacer?
 
@@ -205,37 +203,66 @@ npm install --save-dev prettier eslint-config-prettier eslint-plugin-prettier
 }
 ```
 
-#### Jest Configuration
+#### Vitest Configuration (Estándar Único para Vite)
 
 ```bash
-npm install --save-dev jest @types/jest ts-jest @testing-library/react @testing-library/jest-dom
+# Vitest ya está incluido si usaste la configuración estándar de Vite
+npm install --save-dev vitest @testing-library/react @testing-library/jest-dom jsdom
 ```
 
-**Crear `jest.config.js`:**
+**Configuración en `vite.config.ts` (Método Estándar):**
 
-```javascript
-export default {
-   preset: "ts-jest",
-   testEnvironment: "jsdom",
-   setupFilesAfterEnv: ["<rootDir>/src/setupTests.ts"],
-   moduleNameMapping: {
-      "^@/(.*)$": "<rootDir>/src/$1",
-   },
-   collectCoverageFrom: [
-      "src/**/*.{ts,tsx}",
-      "!src/**/*.d.ts",
-      "!src/main.tsx",
-      "!src/vite-env.d.ts",
-   ],
-   coverageThreshold: {
-      global: {
-         branches: 80,
-         functions: 80,
-         lines: 80,
-         statements: 80,
+```typescript
+// vite.config.ts
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+
+export default defineConfig({
+   plugins: [react()],
+   test: {
+      globals: true,
+      environment: "jsdom",
+      setupFiles: ["./src/test/setup.ts"],
+      css: true,
+      coverage: {
+         provider: "v8",
+         reporter: ["text", "json", "html"],
+         exclude: [
+            "node_modules/",
+            "src/test/",
+            "**/*.d.ts",
+            "src/main.tsx",
+            "src/vite-env.d.ts",
+         ],
+         thresholds: {
+            branches: 80,
+            functions: 80,
+            lines: 80,
+            statements: 80,
+         },
       },
    },
-};
+   resolve: {
+      alias: {
+         "@": path.resolve(__dirname, "./src"),
+      },
+   },
+});
+```
+
+**Archivo de setup para tests (`src/test/setup.ts`):**
+
+```typescript
+// src/test/setup.ts
+import "@testing-library/jest-dom";
+
+// Global test utilities
+global.ResizeObserver = vi.fn().mockImplementation(() => ({
+   observe: vi.fn(),
+   unobserve: vi.fn(),
+   disconnect: vi.fn(),
+}));
+```
 ```
 
 ### 2. Configuración Backend (Laravel + PHP)
@@ -411,9 +438,11 @@ deptrac:
       "lint:fix": "eslint src --ext ts,tsx --fix",
       "format": "prettier --write \"src/**/*.{ts,tsx,js,jsx,json,css,md}\"",
       "format:check": "prettier --check \"src/**/*.{ts,tsx,js,jsx,json,css,md}\"",
-      "test": "jest",
-      "test:watch": "jest --watch",
-      "test:coverage": "jest --coverage",
+      "test": "vitest",
+      "test:ui": "vitest --ui",
+      "test:run": "vitest run",
+      "test:coverage": "vitest run --coverage",
+      "test:watch": "vitest --watch",
       "type-check": "tsc --noEmit",
       "quality": "npm run type-check && npm run lint && npm run format:check && npm run test"
    }
@@ -521,7 +550,7 @@ describe("Button Component", () => {
    });
 
    it("should call onClick when clicked", () => {
-      const handleClick = jest.fn();
+      const handleClick = vi.fn();
       render(<Button onClick={handleClick}>Click me</Button>);
 
       fireEvent.click(screen.getByRole("button"));
@@ -620,6 +649,27 @@ Thumbs.db
 .php-cs-fixer.cache
 .phpstan.cache
 ```
+
+---
+
+## ⚠️ Herramientas PROHIBIDAS
+
+**Frontend:**
+- ❌ **Jest** (usar Vitest con Vite)
+- ❌ **Webpack/Create React App** (usar Vite)
+- ❌ **Yarn/pnpm** (usar npm)
+- ❌ **Standard/JSHint** (usar ESLint)
+
+**Backend:**
+- ❌ **Pest** (usar PHPUnit)
+- ❌ **PSR-12** (usar PSR-2)
+- ❌ **PHPCS** (usar PHP-CS-Fixer)
+
+**Justificación:**
+- Mantener consistencia en herramientas
+- Evitar configuraciones múltiples
+- Reducir complejidad de setup
+- Garantizar compatibilidad entre proyectos
 
 ---
 

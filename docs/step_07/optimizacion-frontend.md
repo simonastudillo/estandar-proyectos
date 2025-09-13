@@ -1,12 +1,17 @@
-# Optimización del Frontend
+# Optimización del Frontend (React + TypeScript + Vite)
+
+> **IMPORTANTE**: Esta guía está específicamente diseñada para proyectos que
+> utilizan **Vite como bundler estándar**. No incluye configuraciones para
+> Webpack, Next.js u otros bundlers, manteniendo consistencia con nuestro stack
+> tecnológico establecido.
 
 ## ¿Qué es?
 
 La optimización del frontend es el conjunto de técnicas y estrategias aplicadas
 para mejorar el rendimiento, velocidad de carga y experiencia del usuario en la
 interfaz de la aplicación web. Incluye optimización de Core Web Vitals, bundle
-splitting, lazy loading, critical rendering path y técnicas específicas de
-frameworks modernos como React, Vue o Angular.
+splitting, lazy loading, critical rendering path y técnicas específicas para
+React con TypeScript usando Vite como herramienta de desarrollo y build.
 
 ## ¿Por qué es importante?
 
@@ -127,23 +132,39 @@ EOF
 lhci autorun
 ```
 
-#### Bundle Analyzer Setup
+#### Bundle Analyzer Setup (Vite)
 
-```javascript
-// webpack-bundle-analyzer.config.js
-const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
+```typescript
+// vite.config.ts - Configuración de análisis de bundles
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+import { visualizer } from "rollup-plugin-visualizer";
 
-module.exports = {
+export default defineConfig({
    plugins: [
-      new BundleAnalyzerPlugin({
-         analyzerMode: "static",
-         openAnalyzer: false,
-         reportFilename: "bundle-report.html",
-         generateStatsFile: true,
-         statsFilename: "bundle-stats.json",
+      react(),
+      // Analizador de bundles para Vite
+      visualizer({
+         filename: "dist/bundle-analysis.html",
+         open: true,
+         gzipSize: true,
+         brotliSize: true,
+         template: "treemap", // treemap, sunburst, network
       }),
    ],
-};
+   build: {
+      // Configuración adicional para análisis
+      rollupOptions: {
+         output: {
+            manualChunks: {
+               vendor: ["react", "react-dom"],
+               router: ["react-router-dom"],
+               ui: ["@radix-ui/react-dialog", "@radix-ui/react-select"],
+            },
+         },
+      },
+   },
+});
 ```
 
 #### Performance Monitoring Hook
@@ -256,7 +277,7 @@ export const usePerformanceMonitoring = () => {
 };
 ```
 
-### 2. Implementar optimizaciones de React/Next.js
+### 2. Implementar optimizaciones de React con Vite
 
 #### Component Optimization
 
@@ -437,13 +458,12 @@ export const VirtualizedList: React.FC<VirtualizedListProps> = ({
 };
 ```
 
-### 3. Optimización de imágenes avanzada
+### 3. Optimización de imágenes con Vite
 
-#### Next.js Image Component con optimizaciones
+#### Componente de Imagen Optimizada (Vite + React)
 
 ```tsx
 // src/components/OptimizedImage.tsx
-import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
 interface OptimizedImageProps {
@@ -452,10 +472,11 @@ interface OptimizedImageProps {
    width?: number;
    height?: number;
    priority?: boolean;
-   placeholder?: "blur" | "empty";
+   placeholder?: string;
    className?: string;
    onLoad?: () => void;
    onError?: () => void;
+   lazy?: boolean;
 }
 
 export const OptimizedImage: React.FC<OptimizedImageProps> = ({
@@ -464,10 +485,11 @@ export const OptimizedImage: React.FC<OptimizedImageProps> = ({
    width,
    height,
    priority = false,
-   placeholder = "blur",
+   placeholder,
    className,
    onLoad,
    onError,
+   lazy = true,
 }) => {
    const [isLoading, setIsLoading] = useState(true);
    const [error, setError] = useState(false);
@@ -476,7 +498,7 @@ export const OptimizedImage: React.FC<OptimizedImageProps> = ({
 
    // Intersection Observer para lazy loading
    useEffect(() => {
-      if (!imgRef.current || priority) {
+      if (!imgRef.current || priority || !lazy) {
          setIsInView(true);
          return;
       }
@@ -494,21 +516,15 @@ export const OptimizedImage: React.FC<OptimizedImageProps> = ({
       observer.observe(imgRef.current);
 
       return () => observer.disconnect();
-   }, [priority]);
+   }, [priority, lazy]);
 
-   // Generar blur placeholder
-   const generateBlurDataURL = (w: number, h: number) => {
-      const canvas = document.createElement("canvas");
-      canvas.width = w;
-      canvas.height = h;
-      const ctx = canvas.getContext("2d");
-
-      if (ctx) {
-         ctx.fillStyle = "#f0f0f0";
-         ctx.fillRect(0, 0, w, h);
+   // Procesar diferentes formatos de imagen con Vite
+   const getOptimizedSrc = (src: string, width?: number) => {
+      // Vite puede procesar imágenes con query params para optimización
+      if (src.startsWith("/") && width) {
+         return `${src}?w=${width}&format=webp`;
       }
-
-      return canvas.toDataURL();
+      return src;
    };
 
    const handleLoad = () => {
@@ -537,28 +553,34 @@ export const OptimizedImage: React.FC<OptimizedImageProps> = ({
       <div ref={imgRef} className={`relative overflow-hidden ${className}`}>
          {isInView && (
             <>
-               <Image
-                  src={src}
+               <img
+                  src={getOptimizedSrc(src, width)}
                   alt={alt}
                   width={width}
                   height={height}
-                  priority={priority}
-                  placeholder={placeholder}
-                  blurDataURL={placeholder === "blur"
-                     ? generateBlurDataURL(width || 400, height || 300)
-                     : undefined}
-                  className={`transition-opacity duration-300 ${
+                  loading={lazy && !priority ? "lazy" : "eager"}
+                  className={`transition-opacity duration-300 object-cover ${
                      isLoading ? "opacity-0" : "opacity-100"
                   }`}
                   onLoad={handleLoad}
                   onError={handleError}
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   style={{
-                     objectFit: "cover",
+                     width: width ? `${width}px` : "100%",
+                     height: height ? `${height}px` : "auto",
                   }}
                />
                {isLoading && (
-                  <div className="absolute inset-0 bg-gray-200 animate-pulse" />
+                  <div
+                     className="absolute inset-0 bg-gray-200 animate-pulse"
+                     style={{
+                        backgroundImage: placeholder
+                           ? `url(${placeholder})`
+                           : undefined,
+                        backgroundSize: "cover",
+                        backgroundPosition: "center",
+                     }}
+                  />
+               )}
                )}
             </>
          )}
@@ -574,59 +596,107 @@ export const OptimizedImage: React.FC<OptimizedImageProps> = ({
 };
 ```
 
-#### Progressive Image Loading
+#### Configuración de Vite para Optimización de Imágenes
+
+```typescript
+// vite.config.ts - Configuración de imágenes
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+
+export default defineConfig({
+   plugins: [react()],
+
+   // Configuración de assets
+   assetsInclude: ["**/*.webp", "**/*.avif"],
+
+   build: {
+      rollupOptions: {
+         output: {
+            assetFileNames: (assetInfo) => {
+               if (
+                  assetInfo.name?.endsWith(".png") ||
+                  assetInfo.name?.endsWith(".jpg") ||
+                  assetInfo.name?.endsWith(".jpeg") ||
+                  assetInfo.name?.endsWith(".webp")
+               ) {
+                  return "images/[name]-[hash][extname]";
+               }
+               return "assets/[name]-[hash][extname]";
+            },
+         },
+      },
+   },
+
+   // Optimización de imports estáticos
+   define: {
+      __IMAGE_OPTIMIZATION__: true,
+   },
+});
+```
+
+#### Hook para Lazy Loading de Imágenes
 
 ```tsx
-// src/components/ProgressiveImage.tsx
-import React, { useEffect, useRef, useState } from "react";
+// src/hooks/useImageLazyLoading.ts
+import { useEffect, useRef, useState } from "react";
 
-interface ProgressiveImageProps {
-   lowQualitySrc: string;
-   highQualitySrc: string;
-   alt: string;
-   className?: string;
+interface UseImageLazyLoadingOptions {
+   rootMargin?: string;
+   threshold?: number;
 }
 
-export const ProgressiveImage: React.FC<ProgressiveImageProps> = ({
-   lowQualitySrc,
-   highQualitySrc,
-   alt,
-   className = "",
-}) => {
-   const [currentSrc, setCurrentSrc] = useState(lowQualitySrc);
-   const [isHighQualityLoaded, setIsHighQualityLoaded] = useState(false);
-   const imgRef = useRef<HTMLImageElement>(null);
+export const useImageLazyLoading = (
+   options: UseImageLazyLoadingOptions = {},
+) => {
+   const { rootMargin = "50px", threshold = 0.1 } = options;
+   const [isInView, setIsInView] = useState(false);
+   const imgRef = useRef<HTMLElement>(null);
 
    useEffect(() => {
-      // Precargar imagen de alta calidad
-      const highQualityImg = new Image();
-      highQualityImg.onload = () => {
-         setCurrentSrc(highQualitySrc);
-         setIsHighQualityLoaded(true);
-      };
-      highQualityImg.src = highQualitySrc;
-   }, [highQualitySrc]);
+      const observer = new IntersectionObserver(
+         ([entry]) => {
+            if (entry.isIntersecting) {
+               setIsInView(true);
+               observer.disconnect();
+            }
+         },
+         { rootMargin, threshold },
+      );
 
-   return (
-      <div className="relative overflow-hidden">
-         <img
-            ref={imgRef}
-            src={currentSrc}
-            alt={alt}
-            className={`transition-all duration-500 ${
-               isHighQualityLoaded ? "filter-none" : "filter blur-sm scale-105"
-            } ${className}`}
-            loading="lazy"
-         />
+      if (imgRef.current) {
+         observer.observe(imgRef.current);
+      }
 
-         {!isHighQualityLoaded && (
-            <div className="absolute inset-0 bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200 animate-pulse" />
-         )}
-      </div>
-   );
+      return () => observer.disconnect();
+   }, [rootMargin, threshold]);
+
+   return { imgRef, isInView };
 };
 ```
 
+       setCurrentSrc(highQualitySrc);
+       setIsHighQualityLoaded(true);
+    };
+    highQualityImg.src = highQualitySrc;
+
+}, [highQualitySrc]);
+
+return (
+<div className="relative overflow-hidden"> <img ref={imgRef} src={currentSrc}
+alt={alt}
+className={`transition-all duration-500 ${
+               isHighQualityLoaded ? "filter-none" : "filter blur-sm scale-105"
+            } ${className}`}
+loading="lazy" />
+
+       {!isHighQualityLoaded && (
+          <div className="absolute inset-0 bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200 animate-pulse" />
+       )}
+    </div>
+
+); };
+
+````
 ### 4. Critical CSS y Font Loading
 
 #### Critical CSS Extraction
@@ -707,7 +777,7 @@ async function extractCriticalCSS() {
 }
 
 extractCriticalCSS();
-```
+````
 
 #### Font Loading Optimization
 
@@ -1295,8 +1365,84 @@ jobs:
           }
 ```
 
+## ⚠️ Herramientas NO Permitidas
+
+Para mantener consistencia con nuestro stack tecnológico establecido, **NO
+utilizar**:
+
+### ❌ Bundlers Alternativos
+
+- **Webpack**: Reemplazado por Vite para mejor DX y performance
+- **Rollup directo**: Vite ya usa Rollup internamente con optimizaciones
+- **Parcel**: No alineado con nuestro stack estándar
+- **ESBuild directo**: Vite ya lo integra para transformaciones
+
+### ❌ Frameworks SSR/SSG
+
+- **Next.js**: Para aplicaciones SPA usar React + Vite
+- **Gatsby**: No alineado con nuestra arquitectura backend-frontend separada
+- **Remix**: Incompatible con nuestro backend Laravel existente
+
+### ❌ Herramientas de Análisis Webpack
+
+- **webpack-bundle-analyzer**: Usar `rollup-plugin-visualizer`
+- **webpack-dashboard**: Vite tiene su propio dashboard
+- **webpack específico plugins**: Buscar equivalentes para Vite/Rollup
+
+### ✅ Herramientas Recomendadas (Vite Ecosystem)
+
+#### Análisis y Optimización
+
+```bash
+# Bundle analyzer para Vite
+npm install --save-dev rollup-plugin-visualizer
+
+# Optimizaciones específicas de Vite
+npm install --save-dev vite-plugin-pwa
+npm install --save-dev @vitejs/plugin-react-swc
+```
+
+#### Performance Monitoring
+
+```bash
+# Lighthouse CI
+npm install --save-dev @lhci/cli
+
+# Web Vitals específicas
+npm install web-vitals
+```
+
+#### Build Optimization
+
+```typescript
+// vite.config.ts - Configuración de producción optimizada
+export default defineConfig({
+   plugins: [
+      react(),
+      visualizer({
+         filename: "dist/bundle-analysis.html",
+         gzipSize: true,
+         brotliSize: true,
+      }),
+   ],
+   build: {
+      target: "es2015",
+      rollupOptions: {
+         output: {
+            manualChunks: {
+               vendor: ["react", "react-dom"],
+               router: ["react-router-dom"],
+            },
+         },
+      },
+   },
+});
+```
+
+```
 ## Navegación
 
 [⬅️ Checklist de File System](./checklist-file-system.md) |
 [🏠 README Principal](../../README.md) |
 [Estrategias de Caché ➡️](./estrategias-cache.md)
+```

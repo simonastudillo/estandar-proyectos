@@ -1,18 +1,17 @@
-# Herramientas por Lenguaje
+# Herramientas por Lenguaje (Estándares NO NEGOCIABLES)
 
 ## ¿Qué es?
 
-Las **herramientas por lenguaje** son conjuntos específicos de utilidades,
-librerías, frameworks y extensiones optimizadas para cada lenguaje de
-programación del stack tecnológico. Esta documentación proporciona una guía
-detallada de las herramientas recomendadas, configuraciones específicas y
-mejores prácticas para maximizar la productividad en cada tecnología utilizada
-en el proyecto.
+Las **herramientas por lenguaje** son conjuntos específicos y **obligatorios** de utilidades,
+librerías, frameworks y extensiones establecidas como estándar para cada lenguaje de
+programación del stack tecnológico. Esta documentación define los **estándares únicos**
+y configuraciones específicas que deben seguirse sin excepciones para maximizar la 
+productividad y mantener consistencia en todos los proyectos.
 
-A diferencia de la elección general de herramientas, este documento se enfoca en
-las **especialidades técnicas** de cada lenguaje, incluyendo gestores de
-dependencias, herramientas de desarrollo, debugging, profiling y ecosistemas
-específicos que complementan el desarrollo en cada tecnología.
+Este documento establece las **especialidades técnicas NO NEGOCIABLES** de cada lenguaje,
+incluyendo gestores de dependencias únicos, herramientas de desarrollo obligatorias,
+debugging, profiling y ecosistemas específicos que son los únicos permitidos en el
+desarrollo de cada tecnología.
 
 ## ¿Por qué es importante?
 
@@ -45,7 +44,7 @@ específicos que complementan el desarrollo en cada tecnología.
 ### Herramientas de Desarrollo
 
 - IDEs y editores especializados
-- Extensiones y plugins recomendados
+- Extensiones y plugins obligatorios
 - Configuraciones de desarrollo optimizadas
 - Herramientas de debugging específicas
 
@@ -145,9 +144,9 @@ Crear archivos de configuración estándar para cada herramienta.
 
 ### 📦 **Gestión de Dependencias**
 
-- **Gestor Principal**: npm / yarn / pnpm
+- **Gestor Principal**: npm (único permitido)
 - **Registry**: npmjs.com
-- **Auditoría**: `npm audit`, `yarn audit`
+- **Auditoría**: `npm audit` (único comando estándar)
 - **Configuración**:
   ```json
   {
@@ -159,39 +158,48 @@ Crear archivos de configuración estándar para cada herramienta.
   }
   ```
 
-### 🧪 **Testing**
+### 🧪 **Testing (Estándar NO NEGOCIABLE)**
 
-- **Framework Principal**: Jest
-- **Testing Library**: React Testing Library
-- **E2E**: Playwright / Cypress
-- **Coverage**: Jest Coverage
-- **Configuración Jest**:
-  ```javascript
-  module.exports = {
-     preset: "ts-jest",
-     testEnvironment: "jsdom",
-     setupFilesAfterEnv: ["<rootDir>/src/setupTests.ts"],
-     collectCoverageFrom: [
-        "src/**/*.{ts,tsx}",
-        "!src/**/*.d.ts",
-     ],
-     coverageThreshold: {
-        global: {
-           branches: 80,
-           functions: 80,
-           lines: 80,
-           statements: 80,
+- **Framework Principal**: Vitest (único permitido con Vite)
+- **Testing Library**: React Testing Library (obligatorio)
+- **E2E**: Playwright (único framework permitido)
+- **Coverage**: Vitest Coverage (integrado)
+- **Configuración Vitest** (en vite.config.ts):
+  ```typescript
+  // vite.config.ts
+  import { defineConfig } from 'vite'
+  import react from '@vitejs/plugin-react'
+  import { resolve } from 'path'
+
+  export default defineConfig({
+     plugins: [react()],
+     test: {
+        globals: true,
+        environment: 'jsdom',
+        setupFiles: ['./src/test/setup.ts'],
+        coverage: {
+           provider: 'v8',
+           reporter: ['text', 'json', 'html'],
+           exclude: ['node_modules/', 'src/test/'],
+           thresholds: {
+              global: {
+                 branches: 80,
+                 functions: 80,
+                 lines: 80,
+                 statements: 80,
+              },
+           },
         },
      },
-  };
+  });
   ```
 
-### 📏 **Calidad de Código**
+### 📏 **Calidad de Código (Estándares Únicos)**
 
-- **Linter**: ESLint con TypeScript
-- **Formatter**: Prettier
-- **Type Checker**: TypeScript Compiler
-- **Configuración ESLint**:
+- **Linter**: ESLint con TypeScript (único permitido)
+- **Formatter**: Prettier (obligatorio)
+- **Type Checker**: TypeScript Compiler (tsc)
+- **Configuración ESLint** (estándar NO NEGOCIABLE):
   ```json
   {
      "extends": [
@@ -407,7 +415,7 @@ Crear archivos de configuración estándar para cada herramienta.
   SET GLOBAL slow_query_log = 'ON';
   SET GLOBAL long_query_time = 2;
 
-  -- Índices recomendados
+  -- Índices obligatorios
   CREATE INDEX idx_users_email ON users(email);
   CREATE INDEX idx_posts_created_at ON posts(created_at);
   ```
@@ -608,22 +616,49 @@ echo "✅ Verificaciones completadas"
       "lint": "eslint src --ext .ts,.tsx",
       "lint:fix": "eslint src --ext .ts,.tsx --fix",
       "type-check": "tsc --noEmit",
-      "test": "jest",
-      "test:watch": "jest --watch",
-      "test:coverage": "jest --coverage"
+      "test": "vitest",
+      "test:watch": "vitest --watch",
+      "test:coverage": "vitest run --coverage"
    },
    "devDependencies": {
       "@typescript-eslint/eslint-plugin": "^6.0.0",
       "@typescript-eslint/parser": "^6.0.0",
       "eslint": "^8.0.0",
       "eslint-config-prettier": "^9.0.0",
-      "jest": "^29.0.0",
+      "vitest": "^1.0.0",
       "prettier": "^3.0.0",
       "typescript": "^5.0.0",
       "vite": "^4.0.0"
    }
 }
 ```
+
+---
+
+## ⚠️ Herramientas PROHIBIDAS por Lenguaje
+
+### Frontend (React + TypeScript)
+- ❌ **Jest** → Usar Vitest (único testing framework)
+- ❌ **Webpack/CRA** → Usar Vite (único bundler)
+- ❌ **Yarn/pnpm** → Usar npm (único gestor de paquetes)
+- ❌ **Cypress** → Usar Playwright (único E2E)
+- ❌ **Standard/JSHint** → Usar ESLint (único linter)
+
+### Backend (PHP/Laravel)
+- ❌ **Pest** → Usar PHPUnit (único testing framework)
+- ❌ **PHPCS** → Usar PHP-CS-Fixer (único formatter)
+- ❌ **Psalm** → Usar PHPStan (único análisis estático)
+- ❌ **Composer v1** → Usar Composer v2+ (obligatorio)
+
+### Base de Datos
+- ❌ **PostgreSQL/SQLite** → Usar MySQL 8+ (único DBMS)
+- ❌ **Migrations manuales** → Usar Laravel Migrations (obligatorio)
+
+### Justificación
+- **Consistencia**: Un solo camino para cada tecnología
+- **Mantenimiento**: Configuraciones estándar únicas
+- **Soporte**: Documentación y troubleshooting unificados
+- **Productividad**: Menos decisiones, más desarrollo
 
 ---
 
