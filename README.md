@@ -16,8 +16,9 @@ siguiendo las instrucciones específicas del repositorio.**
 
 El estándar incluye decisiones específicas y no ambiguas sobre:
 
-- **UI Components**: Estrategia progresiva Shadcn/ui → Atomic Design con roadmap definido
-- **Estado Global**: Criterios específicos para Zustand vs Redux Toolkit
+- **UI Components**: Estrategia progresiva Shadcn/ui → Atomic Design con roadmap
+  definido
+- **Estado Global**: Redux Toolkit como estándar único obligatorio
 - **Base de Datos**: MySQL vs PostgreSQL con criterios técnicos claros
 - **Cloud Provider**: DigitalOcean vs AWS según tamaño y compliance
 - **Testing**: Frameworks específicos y coverage mínimo por layer
@@ -49,9 +50,7 @@ aplicada en proyectos reales siguiendo un roadmap de evolución técnica definid
 - **UI Components**:
   - **Fase 1 (Inmediata)**: Shadcn/ui + Tailwind CSS + Radix UI primitives
   - **Fase 2 (3-6 meses)**: Atomic Design + Storybook + Design System
-- **Estado Global**:
-  - **Zustand**: Proyectos pequeños-medianos (<50 componentes conectados)
-  - **Redux Toolkit**: Proyectos grandes, múltiples equipos, debugging complejo
+- **Estado Global**: Redux Toolkit (estándar único obligatorio)
 - **Routing**: React Router v6+
 - **HTTP Client**: Axios con interceptors
 - **Testing**: Jest + React Testing Library + Storybook (Fase 2)
@@ -70,15 +69,18 @@ aplicada en proyectos reales siguiendo un roadmap de evolución técnica definid
 ### Base de Datos
 
 - **Principal**: MySQL 8.0+ (proyectos estándar)
-- **Alternativa**: PostgreSQL 15+ (JSON avanzado, full-text search, análisis complejos)
-- **Identificadores**: UUID públicos generados en PHP: `bin2hex(random_bytes(16))`
+- **Alternativa**: PostgreSQL 15+ (JSON avanzado, full-text search, análisis
+  complejos)
+- **Identificadores**: UUID públicos generados en PHP:
+  `bin2hex(random_bytes(16))`
 - **Convenciones**: Tablas en inglés, plural, snake_case
 - **Obligatorio**: Soft deletes, timestamps, foreign keys
 
 ### Infraestructura y DevOps
 
 - **Cloud Provider**:
-  - **Principal**: DigitalOcean (simplicidad, costo-beneficio para startups/SMEs)
+  - **Principal**: DigitalOcean (simplicidad, costo-beneficio para
+    startups/SMEs)
   - **Empresarial**: AWS (proyectos >$10k/mes, compliance específico)
 - **CI/CD**: GitHub Actions con templates específicos
 - **Containerización**: Docker + Docker Compose
@@ -89,7 +91,7 @@ aplicada en proyectos reales siguiendo un roadmap de evolución técnica definid
 
 - **Framework**: React Native 0.72+ con TypeScript
 - **CLI**: React Native CLI (mayor control que Expo)
-- **Estado**: Sincronizado con web (Redux Toolkit/Zustand + Redux Persist)
+- **Estado**: Sincronizado con web (Redux Toolkit + Redux Persist)
 - **Navegación**: React Navigation 6+
 - **Testing**: Jest + React Native Testing Library + Detox
 
@@ -99,7 +101,7 @@ aplicada en proyectos reales siguiendo un roadmap de evolución técnica definid
 - **Estimación**: Story Points
 - **Tableros**: GitHub Projects (preferido), Jira, Trello
 - **Git Workflow**: GitHub Flow con protected main + staging branch
-- **Branching**: feature/*, bugfix/*, hotfix/*
+- **Branching**: feature/_, bugfix/_, hotfix/*
 - **Code Review**: Mínimo 1 reviewer, tests passing obligatorio
 
 ### Calidad y Testing

@@ -228,24 +228,8 @@ export const Button: React.FC<ButtonProps> = ({
   );
 };
 
-// 4. Estado Global - Convenciones específicas
-// Zustand (proyectos pequeños-medianos)
-interface AuthStore {
-  user: User | null;
-  login: (credentials: LoginCredentials) => Promise<void>;
-  logout: () => void;
-}
-
-const useAuthStore = create<AuthStore>((set) => ({
-  user: null,
-  login: async (credentials) => {
-    const user = await authService.login(credentials);
-    set({ user });
-  },
-  logout: () => set({ user: null }),
-}));
-
-// Redux Toolkit (proyectos grandes)
+// 4. Estado Global - Redux Toolkit (estándar único)
+// Configuración de store y slices
 interface AuthState {
   user: User | null;
   loading: boolean;
@@ -257,6 +241,25 @@ const authSlice = createSlice({
   initialState: { user: null, loading: false, error: null } as AuthState,
   reducers: {
     loginStart: (state) => {
+      state.loading = true;
+      state.error = null;
+    },
+    loginSuccess: (state, action) => {
+      state.loading = false;
+      state.user = action.payload;
+    },
+    loginFailure: (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+    },
+    logout: (state) => {
+      state.user = null;
+      state.error = null;
+    },
+  },
+});
+
+export const { loginStart, loginSuccess, loginFailure, logout } = authSlice.actions;
       state.loading = true;
       state.error = null;
     },
@@ -420,32 +423,36 @@ module.exports = {
       "@typescript-eslint/no-unused-vars": "error",
       "@typescript-eslint/no-explicit-any": "error",
       "@typescript-eslint/explicit-function-return-type": "warn",
-      
+
       // React específicas
       "react/react-in-jsx-scope": "off", // No necesario en React 17+
       "react/prop-types": "off", // Usamos TypeScript
       "react-hooks/rules-of-hooks": "error",
       "react-hooks/exhaustive-deps": "warn",
-      
+
       // Shadcn/ui y Tailwind específicas
       "jsx-a11y/click-events-have-key-events": "error",
       "jsx-a11y/no-static-element-interactions": "error",
-      
+
       // Import/Export
       "import/order": ["error", {
          "groups": [
-            "builtin", "external", "internal", 
-            "parent", "sibling", "index"
+            "builtin",
+            "external",
+            "internal",
+            "parent",
+            "sibling",
+            "index",
          ],
          "pathGroups": [
             {
                "pattern": "@/**",
                "group": "internal",
-               "position": "after"
-            }
+               "position": "after",
+            },
          ],
-         "pathGroupsExcludedImportTypes": ["builtin"]
-      }]
+         "pathGroupsExcludedImportTypes": ["builtin"],
+      }],
    },
    settings: {
       react: {
@@ -461,65 +468,65 @@ module.exports = {
 // tailwind.config.js - Configuración específica del design system
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  darkMode: ["class"],
-  content: [
-    './pages/**/*.{ts,tsx}',
-    './components/**/*.{ts,tsx}',
-    './app/**/*.{ts,tsx}',
-    './src/**/*.{ts,tsx}',
-  ],
-  theme: {
-    container: {
-      center: true,
-      padding: "2rem",
-      screens: {
-        "2xl": "1400px",
+   darkMode: ["class"],
+   content: [
+      "./pages/**/*.{ts,tsx}",
+      "./components/**/*.{ts,tsx}",
+      "./app/**/*.{ts,tsx}",
+      "./src/**/*.{ts,tsx}",
+   ],
+   theme: {
+      container: {
+         center: true,
+         padding: "2rem",
+         screens: {
+            "2xl": "1400px",
+         },
       },
-    },
-    extend: {
-      colors: {
-        border: "hsl(var(--border))",
-        input: "hsl(var(--input))",
-        ring: "hsl(var(--ring))",
-        background: "hsl(var(--background))",
-        foreground: "hsl(var(--foreground))",
-        primary: {
-          DEFAULT: "hsl(var(--primary))",
-          foreground: "hsl(var(--primary-foreground))",
-        },
-        secondary: {
-          DEFAULT: "hsl(var(--secondary))",
-          foreground: "hsl(var(--secondary-foreground))",
-        },
-        // ... Design tokens específicos del proyecto
+      extend: {
+         colors: {
+            border: "hsl(var(--border))",
+            input: "hsl(var(--input))",
+            ring: "hsl(var(--ring))",
+            background: "hsl(var(--background))",
+            foreground: "hsl(var(--foreground))",
+            primary: {
+               DEFAULT: "hsl(var(--primary))",
+               foreground: "hsl(var(--primary-foreground))",
+            },
+            secondary: {
+               DEFAULT: "hsl(var(--secondary))",
+               foreground: "hsl(var(--secondary-foreground))",
+            },
+            // ... Design tokens específicos del proyecto
+         },
+         borderRadius: {
+            lg: "var(--radius)",
+            md: "calc(var(--radius) - 2px)",
+            sm: "calc(var(--radius) - 4px)",
+         },
+         keyframes: {
+            "accordion-down": {
+               from: { height: 0 },
+               to: { height: "var(--radix-accordion-content-height)" },
+            },
+            "accordion-up": {
+               from: { height: "var(--radix-accordion-content-height)" },
+               to: { height: 0 },
+            },
+         },
+         animation: {
+            "accordion-down": "accordion-down 0.2s ease-out",
+            "accordion-up": "accordion-up 0.2s ease-out",
+         },
       },
-      borderRadius: {
-        lg: "var(--radius)",
-        md: "calc(var(--radius) - 2px)",
-        sm: "calc(var(--radius) - 4px)",
-      },
-      keyframes: {
-        "accordion-down": {
-          from: { height: 0 },
-          to: { height: "var(--radix-accordion-content-height)" },
-        },
-        "accordion-up": {
-          from: { height: "var(--radix-accordion-content-height)" },
-          to: { height: 0 },
-        },
-      },
-      animation: {
-        "accordion-down": "accordion-down 0.2s ease-out",
-        "accordion-up": "accordion-up 0.2s ease-out",
-      },
-    },
-  },
-  plugins: [
-    require("tailwindcss-animate"),
-    require("@tailwindcss/typography"),
-    require("@tailwindcss/forms"),
-  ],
-}
+   },
+   plugins: [
+      require("tailwindcss-animate"),
+      require("@tailwindcss/typography"),
+      require("@tailwindcss/forms"),
+   ],
+};
 ```
 
 #### PHP CS Fixer
@@ -1180,14 +1187,12 @@ Ver documentación específica:
 
 #### Herramientas de Estado Global
 
-**Para Zustand (proyectos pequeños-medianos):**
-- **Zustand DevTools**: Debugging de estado
-- **Immer**: Para estado inmutable (si es necesario)
+**Redux Toolkit (estándar único):**
 
-**Para Redux Toolkit (proyectos grandes):**
-- **Redux DevTools**: Debugging avanzado
-- **RTK Query**: Data fetching y caching
-- **Redux Persist**: Persistencia de estado
+- **Redux DevTools**: Debugging avanzado del estado
+- **RTK Query**: Data fetching y caching automático
+- **Redux Persist**: Persistencia de estado en localStorage/AsyncStorage
+- **Reselect**: Selectores memoizados para optimización
 
 ### Automatización
 
@@ -1200,31 +1205,31 @@ Ver documentación específica:
       "lint:fix": "eslint src/ --ext .ts,.tsx --fix",
       "format": "prettier --write 'src/**/*.{ts,tsx,json,css,md}'",
       "format:check": "prettier --check 'src/**/*.{ts,tsx,json,css,md}'",
-      
+
       // TypeScript
       "type-check": "tsc --noEmit",
       "type-check:watch": "tsc --noEmit --watch",
-      
+
       // Testing
       "test": "jest",
       "test:watch": "jest --watch",
       "test:coverage": "jest --coverage",
       "test:ci": "jest --ci --coverage --watchAll=false",
-      
+
       // Shadcn/ui
       "ui:add": "npx shadcn-ui@latest add",
       "ui:list": "npx shadcn-ui@latest list",
-      
+
       // Storybook (Fase 2)
       "storybook": "start-storybook -p 6006",
       "build-storybook": "build-storybook",
       "chromatic": "npx chromatic --project-token=<project-token>",
-      
+
       // Build y dev
       "dev": "vite",
       "build": "tsc && vite build",
       "preview": "vite preview",
-      
+
       // Validación completa
       "validate": "npm run type-check && npm run lint && npm run format:check && npm run test:ci",
       "prepare": "husky install"
@@ -1295,12 +1300,12 @@ module.exports = {
       "source.fixAll.eslint": true,
       "source.organizeImports": true
    },
-   
+
    // TypeScript
    "typescript.preferences.importModuleSpecifier": "relative",
    "typescript.suggest.autoImports": true,
    "typescript.updateImportsOnFileMove.enabled": "always",
-   
+
    // Tailwind CSS
    "tailwindCSS.includeLanguages": {
       "typescript": "typescript",
@@ -1310,20 +1315,20 @@ module.exports = {
       ["cn\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"],
       ["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"]
    ],
-   
+
    // File associations
    "files.associations": {
       "*.css": "tailwindcss"
    },
-   
+
    // Auto-imports
    "typescript.suggest.includeCompletionsForModuleExports": true,
    "typescript.preferences.includePackageJsonAutoImports": "auto",
-   
+
    // Git
    "git.enableSmartCommit": true,
    "git.confirmSync": false,
-   
+
    // Emmet
    "emmet.includeLanguages": {
       "typescript": "typescriptreact",
@@ -1338,23 +1343,23 @@ module.exports = {
    "recommendations": [
       // React + TypeScript
       "bradlc.vscode-tailwindcss",
-      "esbenp.prettier-vscode", 
+      "esbenp.prettier-vscode",
       "dbaeumer.vscode-eslint",
       "ms-vscode.vscode-typescript-next",
-      
+
       // React específicas
       "burkeholland.simple-react-snippets",
       "dsznajder.es7-react-js-snippets",
-      
+
       // Git y colaboración
       "eamodio.gitlens",
       "github.vscode-pull-request-github",
-      
+
       // PHP/Laravel
       "bmewburn.vscode-intelephense-client",
       "onecentlin.laravel-blade",
       "ryannaddy.laravel-artisan",
-      
+
       // Utilidades
       "christian-kohler.path-intellisense",
       "formulahendry.auto-rename-tag",
@@ -1421,14 +1426,15 @@ src/
 │   │   └── index.ts
 │   └── index.ts
 │
-├── store/                  # Estado global
-│   ├── slices/            # Redux Toolkit (proyectos grandes)
+├── store/                  # Estado global (Redux Toolkit)
+│   ├── slices/            # Redux slices
 │   │   ├── authSlice.ts
-│   │   └── userSlice.ts
-│   ├── stores/            # Zustand (proyectos pequeños)
-│   │   ├── authStore.ts
-│   │   └── userStore.ts
-│   └── index.ts
+│   │   ├── userSlice.ts
+│   │   └── uiSlice.ts
+│   ├── middleware/        # Middleware personalizado
+│   │   └── authMiddleware.ts
+│   ├── hooks.ts          # Hooks tipados
+│   └── index.ts          # Configuración del store
 │
 ├── types/                  # TypeScript definitions
 │   ├── auth.ts

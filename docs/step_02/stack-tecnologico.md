@@ -28,9 +28,7 @@ de desarrollo.
 - **Framework/Librería**: React 18+ con TypeScript 5+
 - **Bundler**: Vite (estándar único, CRA deprecated)
 - **Routing**: React Router v6+
-- **Estado global**:
-  - **Zustand**: Proyectos pequeños-medianos (<50 componentes conectados)
-  - **Redux Toolkit**: Proyectos grandes, múltiples equipos, debugging complejo
+- **Estado global**: Redux Toolkit (estándar único obligatorio)
 - **UI Components - Estrategia Progresiva**:
   - **Fase 1 (Inmediata)**: Shadcn/ui + Tailwind CSS + Radix UI primitives
   - **Fase 2 (3-6 meses)**: Atomic Design + Storybook + Design System
@@ -59,7 +57,7 @@ de desarrollo.
 - **Framework**: React Native 0.72+ con TypeScript
 - **CLI**: React Native CLI (mayor control que Expo)
 - **Navigation**: React Navigation 6+
-- **Estado**: Sincronizado con web (Redux Toolkit/Zustand + Redux Persist)
+- **Estado**: Sincronizado con web (Redux Toolkit + Redux Persist)
 - **Testing**: Jest + React Native Testing Library + Detox
 
 ### DevOps y Herramientas
@@ -97,7 +95,7 @@ de desarrollo.
 
    - Frontend: React 18+ + TypeScript 5+ + Vite
    - UI Components: Shadcn/ui + Tailwind CSS (Fase 1)
-   - Estado: Zustand (proyectos pequeños) / Redux Toolkit (grandes)
+   - Estado: Redux Toolkit (estándar único obligatorio)
    - Backend: Laravel 10+ + Clean Architecture + DDD
    - Base de datos: MySQL 8.0+ (default) / PostgreSQL 15+ (casos específicos)
    - Mobile: React Native 0.72+ (si aplica)
