@@ -102,6 +102,7 @@ real, sin embargo el objetivo es utilizar en proyectos futuros.
 - [Diagrama de arquitectura general](./docs/step_02/diagrama-arquitectura-general.md)
 - [Convenciones y estándares](./docs/step_02/convenciones-estandares.md)
 - [Estructura de carpetas base](./docs/step_02/estructura-carpetas.md)
+- [Manejo de Imágenes](./docs/step_02/manejo-imagenes.md)
 - [Modelado de datos](./docs/step_02/modelado-datos.md)
 - [Buenas prácticas de base de datos](./docs/step_02/buenas-practicas-base-datos.md)
 - [Diseño de base de datos (ERD)](./docs/step_02/diseno-base-datos.md)
