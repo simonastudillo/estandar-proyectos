@@ -12,8 +12,20 @@ despliegue y mantenimiento.
 (Domain-Driven Design) y está diseñada para ser utilizada con GitHub Copilot
 siguiendo las instrucciones específicas del repositorio.**
 
-Actualmente la documentación es solo teórica, no se ha aplicado en un proyecto
-real, sin embargo el objetivo es utilizar en proyectos futuros.
+### Decisiones Arquitectónicas Definidas
+
+El estándar incluye decisiones específicas y no ambiguas sobre:
+
+- **UI Components**: Estrategia progresiva Shadcn/ui → Atomic Design con roadmap
+  definido
+- **Estado Global**: Redux Toolkit como estándar único obligatorio
+- **Base de Datos**: MySQL vs PostgreSQL con criterios técnicos claros
+- **Cloud Provider**: DigitalOcean vs AWS según tamaño y compliance
+- **Testing**: Frameworks específicos y coverage mínimo por layer
+- **Performance**: Métricas específicas y thresholds obligatorios
+
+Actualmente la documentación es teórica pero implementable, diseñada para ser
+aplicada en proyectos reales siguiendo un roadmap de evolución técnica definido.
 
 ## Estado Actual
 
@@ -31,42 +43,77 @@ real, sin embargo el objetivo es utilizar en proyectos futuros.
 
 ## Stack Tecnológico Estándar
 
-### Frontend
+### Frontend - Estrategia Progresiva
 
-- **Framework**: React con TypeScript (tipado fuerte)
-- **Bundler**: Vite
-- **Estado**: Redux Toolkit
-- **Routing**: React Router
-- **Testing**: Jest + React Testing Library
-- **Linting**: ESLint + Prettier
+- **Framework**: React 18+ con TypeScript 5+ (tipado fuerte obligatorio)
+- **Bundler**: Vite (estándar único, CRA deprecated)
+- **UI Components**:
+  - **Fase 1 (Inmediata)**: Shadcn/ui + Tailwind CSS + Radix UI primitives
+  - **Fase 2 (3-6 meses)**: Atomic Design + Storybook + Design System
+- **Estado Global**: Redux Toolkit (estándar único obligatorio)
+- **Routing**: React Router v6+
+- **HTTP Client**: Axios con interceptors
+- **Testing**: Jest + React Testing Library + Storybook (Fase 2)
+- **Linting**: ESLint + Prettier + Tailwind plugin
 
 ### Backend (Clean Architecture + DDD)
 
-- **Framework**: Laravel con Clean Architecture
-- **Lenguaje**: PHP 8.2+
-- **Arquitectura**: Domain-Driven Design (DDD)
-- **API**: RESTful con versionado (v1, v2, etc.)
-- **Autenticación**: Laravel Sanctum
-- **Testing**: PHPUnit
+- **Framework**: Laravel 10+ con Clean Architecture
+- **Lenguaje**: PHP 8.2+ (strict types obligatorio)
+- **Arquitectura**: Domain-Driven Design (DDD) + Clean Architecture
+- **API**: RESTful con versionado URL-based (`/api/v1/`)
+- **Autenticación**: Laravel Sanctum + MFA para admin panels
+- **Testing**: PHPUnit (estándar de facto, mejor integración IDE)
+- **Code Quality**: PHP CS Fixer + PHPStan + Larastan
 
 ### Base de Datos
 
-- **SGBD**: MySQL 8.0+
-- **Identificadores**: UUID públicos generados en PHP
+- **Principal**: MySQL 8.0+ (única base de datos permitida en todos los proyectos)
+- **Identificadores**: UUID públicos generados en PHP:
+  `bin2hex(random_bytes(16))`
 - **Convenciones**: Tablas en inglés, plural, snake_case
-- **Características**: Soft deletes, timestamps obligatorios
+- **Obligatorio**: Soft deletes, timestamps, foreign keys
 
-### Móvil (Futuro)
+### Infraestructura y DevOps
 
-- **Framework**: React Native con TypeScript
-- **Estado**: Redux Toolkit
-- **Navegación**: React Navigation
+- **Cloud Provider**:
+  - **Principal**: DigitalOcean (simplicidad, costo-beneficio para
+    startups/SMEs)
+  - **Empresarial**: AWS (proyectos >$10k/mes, compliance específico)
+- **CI/CD**: GitHub Actions con templates específicos
+- **Containerización**: Docker + Docker Compose
+- **Monitoreo**: New Relic Basic + DigitalOcean Monitoring (básico)
+- **Package Manager**: npm (estándar único, viene con Node.js)
 
-### Metodología
+### Móvil (Fase Futura)
+
+- **Framework**: React Native 0.72+ con TypeScript
+- **CLI**: React Native CLI (mayor control que Expo)
+- **Estado**: Sincronizado con web (Redux Toolkit + Redux Persist)
+- **Navegación**: React Navigation 6+
+- **Testing**: Jest + React Native Testing Library + Detox
+
+### Metodología y Procesos
 
 - **Gestión**: Scrumban (Scrum + Kanban)
 - **Estimación**: Story Points
-- **Tableros**: Jira, Trello o GitHub Projects
+- **Tableros**: GitHub Projects (preferido), Jira, Trello
+- **Git Workflow**: GitHub Flow con protected main + staging branch
+- **Branching**: feature/_, bugfix/_, hotfix/*
+- **Code Review**: Mínimo 1 reviewer, tests passing obligatorio
+
+### Calidad y Testing
+
+- **Coverage Mínimo**:
+  - Domain Layer: 90%
+  - Application Layer: 85%
+  - Infrastructure Layer: 70%
+  - Frontend Components: 80%
+- **Performance**:
+  - Bundle frontend: <500KB inicial
+  - API response time: <200ms p95
+  - First Contentful Paint: <1.5s
+- **Security**: TLS 1.3, headers obligatorios, rate limiting por endpoint
 
 ### Principios Fundamentales
 

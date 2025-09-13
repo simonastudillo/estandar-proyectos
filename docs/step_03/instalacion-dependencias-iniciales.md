@@ -3,20 +3,24 @@
 ## ¿Qué es la Instalación de Dependencias Iniciales?
 
 La **Instalación de Dependencias Iniciales** es el proceso de configurar e
-instalar todas las herramientas fundamentales necesarias para el desarrollo del
-proyecto antes de comenzar con la configuración específica del entorno. Esta
-etapa garantiza que todos los desarrolladores tengan las mismas versiones de
-herramientas base y que el sistema esté preparado para ejecutar Docker, Node.js,
-PHP, y todas las tecnologías del stack definido.
+instalar todas las herramientas fundamentales necesarias para el desarrollo con
+nuestro **stack específico**: **React + TypeScript + Shadcn/ui → Atomic Design**
+en el frontend y **Laravel Clean Architecture + DDD** en el backend. Esta etapa
+garantiza que todos los desarrolladores tengan las mismas versiones de
+herramientas y que el sistema esté preparado para ejecutar Docker, Node.js, PHP,
+y todas las tecnologías del stack definido según nuestras decisiones
+arquitectónicas.
 
 Este proceso incluye la instalación de **herramientas de sistema**, **gestores
-de paquetes**, **runtimes de lenguajes de programación**, y **utilitarios de
-desarrollo** que servirán como base para todas las configuraciones posteriores
-del entorno de desarrollo.
+de paquetes específicos** (npm estándar, no yarn), **runtimes con versiones
+específicas**, y **utilitarios de desarrollo** optimizados para nuestro workflow
+de **Shadcn/ui evolución hacia Atomic Design** y **Clean Architecture con capas
+bien definidas**.
 
 La instalación sigue un orden específico para evitar conflictos de dependencias
-y garantizar que cada herramienta se configure correctamente antes de proceder
-con las siguientes.
+y garantizar que cada herramienta se configure correctamente para soportar
+nuestros **quality gates** por tecnología (TypeScript strict mode, ESLint +
+Prettier, PHPStan Level 9, testing coverage >80%).
 
 ## ¿Por qué es Importante?
 
@@ -41,12 +45,16 @@ con las siguientes.
 - Establece configuraciones seguras desde el inicio
 - Facilita actualizaciones coordinadas del stack
 
-### 🔧 **Soporte para Arquitectura del Proyecto**
+### 🔧 **Soporte para Arquitectura Stack-Específica**
 
-- Instala herramientas específicas para Clean Architecture + DDD
-- Configura entorno para desarrollo con TypeScript y tipado fuerte
-- Prepara sistema para contenedorización con Docker
-- Establece base para CI/CD y automatización
+- Instala herramientas específicas para **Clean Architecture + DDD** (Laravel)
+- Configura entorno para desarrollo con **TypeScript strict mode** y
+  **Shadcn/ui**
+- Prepara sistema para **evolución UI**: Shadcn → Atomic Design con Storybook
+- Establece base para **CI/CD con quality gates** por stack y performance
+  monitoring
+- Configura **testing environment**: Jest + RTL (frontend), PHPUnit (backend),
+  coverage tracking
 
 ## ¿Qué debe incluir?
 
@@ -75,17 +83,21 @@ con las siguientes.
 
 ### 📦 **Runtimes y Gestores de Dependencias**
 
-#### **JavaScript/TypeScript**
+#### **JavaScript/TypeScript Stack-Específico**
 
-- **Node.js**: 18.17.0 LTS o 20.x LTS (recomendado)
-- **npm**: 9.0.0+ (incluido con Node.js)
-- **Yarn**: 3.6.0+ (opcional, como alternativa a npm)
+- **Node.js**: 20.17.0 LTS (strict requirement para compatibilidad stack)
+- **npm**: 10.8.0+ (estándar del proyecto, NO usar yarn)
+- **pnpm**: PROHIBIDO (usar solo npm para consistencia)
+- **Verificación**: `node --version` debe mostrar v20.17.0+
 
-#### **PHP**
+#### **PHP para Laravel Clean Architecture**
 
-- **PHP**: 8.2.0+ o 8.3.x (recomendado)
-- **Composer**: 2.4.0+ para gestión de dependencias PHP
-- **Extensiones PHP**: curl, dom, fileinfo, mbstring, xml, zip, mysql
+- **PHP**: 8.3.0+ (strict requirement para Laravel 11+ y features modernas)
+- **Composer**: 2.6.0+ para gestión de dependencias PHP
+- **Extensiones PHP críticas**: curl, dom, fileinfo, mbstring, xml, zip, mysql,
+  intl, bcmath, gd
+- **Verificación**: `php --version` debe mostrar 8.3.0+ y `composer --version`
+  2.6.0+
 
 ### 🛠️ **Herramientas de Desarrollo**
 

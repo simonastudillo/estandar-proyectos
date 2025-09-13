@@ -1,53 +1,82 @@
-# Testing TDD Backend
+# Testing TDD Backend Laravel Clean Architecture
 
 ## ¿Qué es?
 
-Test-Driven Development (TDD) para backend es una metodología de desarrollo
-donde se escriben las pruebas antes que el código de implementación. En el
-contexto de Laravel con Clean Architecture, esto significa crear tests para cada
-capa (Domain, Application, Infrastructure) antes de implementar la
-funcionalidad, asegurando que el código cumple con los requisitos y mantiene la
-calidad a lo largo del tiempo.
+**Test-Driven Development (TDD)** para backend con **Laravel Clean
+Architecture + DDD** es una metodología de desarrollo donde se escriben las
+pruebas antes que el código de implementación. En nuestro contexto específico de
+**Laravel 11+ con PHP 8.3+**, esto significa crear tests para cada capa
+(**Domain, Application, Infrastructure**) antes de implementar la funcionalidad,
+asegurando **coverage >90%**, **PHPStan Level 9 compliance**, y que el código
+cumple con los requisitos de Clean Architecture a lo largo del tiempo.
 
-## ¿Por qué es importante?
+## ¿Por qué es importante para nuestro Stack?
 
-- **Calidad del código**: Garantiza que cada funcionalidad está correctamente
-  implementada
-- **Refactoring seguro**: Permite cambios en el código con confianza
-- **Documentación viva**: Los tests sirven como documentación del comportamiento
-  esperado
-- **Detección temprana de errores**: Identifica problemas antes de que lleguen a
-  producción
-- **Diseño mejorado**: Fuerza a pensar en el diseño de APIs y interfaces
-- **Cobertura completa**: Asegura que todas las capas están probadas
+- **Clean Architecture compliance**: Garantiza que cada capa respeta las
+  dependency rules y SOLID principles
+- **Domain-driven design validation**: Tests como especificación del
+  comportamiento del dominio
+- **Type safety**: Validación de tipos PHP 8.3+ strict mode + PHPStan Level 9
+- **Refactoring seguro**: Permite evolución arquitectónica sin breaking changes
+- **API contract validation**: Tests como documentación viva para endpoints
+  versionados (/api/v1/, /api/v2/)
+- **Performance regression**: Detection temprana de degradación en response
+  times (<200ms target)
 
 ## ¿Qué debe incluir?
 
-### Tipos de Testing por Capa
+### Tipos de Testing por Capa Clean Architecture
 
 ```
 tests/
-├── Unit/              # Tests unitarios para lógica de negocio
+├── Unit/                          # Tests unitarios para lógica de negocio pura
 │   ├── Domain/
-│   │   ├── Entities/
-│   │   ├── ValueObjects/
-│   │   └── Services/
+│   │   ├── Entities/              # Tests de domain entities (POPOs)
+│   │   │   ├── UserTest.php
+│   │   │   └── OrderTest.php
+│   │   ├── ValueObjects/          # Tests de value objects (Email, Money, RUT)
+│   │   │   ├── EmailTest.php
+│   │   │   └── MoneyTest.php
+│   │   ├── Services/              # Tests de domain services
+│   │   │   └── UserRegistrationServiceTest.php
+│   │   └── Events/                # Tests de domain events
+│   │       └── UserRegisteredTest.php
 │   └── Application/
-│       ├── UseCases/
-│       └── DTOs/
-├── Integration/       # Tests de integración entre capas
-│   ├── Repositories/
-│   ├── Services/
-│   └── UseCases/
-├── Feature/          # Tests de funcionalidades completas
+│       ├── UseCases/              # Tests de casos de uso (business logic)
+│       │   ├── CreateUserUseCaseTest.php
+│       │   └── LoginUserUseCaseTest.php
+│       ├── DTOs/                  # Tests de data transfer objects
+│       │   └── UserDTOTest.php
+│       ├── Commands/              # Tests de commands
+│       └── Queries/               # Tests de queries
+├── Integration/                   # Tests de integración entre capas
+│   ├── Repositories/              # Tests de repositorios Eloquent
+│   │   ├── EloquentUserRepositoryTest.php
+│   │   └── EloquentOrderRepositoryTest.php
+│   ├── Services/                  # Tests de servicios external
+│   │   └── EmailServiceTest.php
+│   └── UseCases/                  # Tests de use cases + repositories
+│       └── CreateUserIntegrationTest.php
+├── Feature/                       # Tests de funcionalidades completas (E2E)
 │   ├── Api/
-│   │   ├── V1/
-│   │   └── V2/
-│   ├── Auth/
-│   └── Commands/
-└── Performance/      # Tests de rendimiento
-    ├── LoadTests/
-    └── StressTests/
+│   │   ├── V1/                    # Tests de API v1 endpoints
+│   │   │   ├── AuthControllerTest.php
+│   │   │   └── UserControllerTest.php
+│   │   └── V2/                    # Tests de API v2 (future)
+│   ├── Auth/                      # Tests de authentication flow
+│   │   ├── LoginTest.php
+│   │   └── JWTAuthTest.php
+│   └── Commands/                  # Tests de artisan commands
+│       └── CreateAdminUserTest.php
+├── Performance/                   # Tests de rendimiento
+│   ├── LoadTests/                 # Response time <200ms validation
+│   │   └── ApiEndpointsLoadTest.php
+│   └── StressTests/               # Concurrency y memory testing
+│       └── DatabaseStressTest.php
+└── Architecture/                  # Tests de compliance arquitectónico
+    ├── DependencyRuleTest.php     # Validación dependency rules
+    ├── NamespaceTest.php          # Validación namespace compliance
+    └── PHPStanComplianceTest.php  # Level 9 validation
 ```
 
 ### Componentes de Testing
@@ -60,9 +89,9 @@ tests/
 6. **Authentication Tests**: Flujos de autenticación
 7. **Performance Tests**: Rendimiento y carga
 
-## ¿Qué debo hacer?
+## ¿Qué debo hacer según Clean Architecture?
 
-### 1. Configurar el Entorno de Testing
+### 1. Configurar el Entorno de Testing con Quality Gates
 
 ```php
 <?php
@@ -72,13 +101,56 @@ tests/
 <phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:noNamespaceSchemaLocation="./vendor/phpunit/phpunit/phpunit.xsd"
          bootstrap="vendor/autoload.php"
-         colors="true">
+         colors="true"
+         failOnRisky="true"
+         failOnEmptyTestSuite="true"
+         failOnIncomplete="true"
+         failOnSkipped="true"
+         failOnWarning="true"
+         stopOnFailure="false">
     <testsuites>
         <testsuite name="Unit">
             <directory suffix="Test.php">./tests/Unit</directory>
         </testsuite>
+        <testsuite name="Integration">
+            <directory suffix="Test.php">./tests/Integration</directory>
+        </testsuite>
         <testsuite name="Feature">
             <directory suffix="Test.php">./tests/Feature</directory>
+        </testsuite>
+        <testsuite name="Performance">
+            <directory suffix="Test.php">./tests/Performance</directory>
+        </testsuite>
+        <testsuite name="Architecture">
+            <directory suffix="Test.php">./tests/Architecture</directory>
+        </testsuite>
+    </testsuites>
+    <coverage>
+        <include>
+            <directory suffix=".php">./app</directory>
+        </include>
+        <exclude>
+            <directory suffix=".php">./app/Infrastructure/Console</directory>
+            <directory suffix=".php">./app/Infrastructure/Providers</directory>
+            <file>./app/Infrastructure/Http/Kernel.php</file>
+        </exclude>
+        <report>
+            <clover outputFile="coverage.xml"/>
+            <html outputDirectory="coverage-html"/>
+            <text outputFile="php://stdout" showUncoveredFiles="true"/>
+        </report>
+    </coverage>
+    <php>
+        <env name="APP_ENV" value="testing"/>
+        <env name="BCRYPT_ROUNDS" value="4"/>
+        <env name="CACHE_DRIVER" value="array"/>
+        <env name="DB_CONNECTION" value="sqlite"/>
+        <env name="DB_DATABASE" value=":memory:"/>
+        <env name="MAIL_MAILER" value="array"/>
+        <env name="QUEUE_CONNECTION" value="sync"/>
+        <env name="SESSION_DRIVER" value="array"/>
+        <env name="TELESCOPE_ENABLED" value="false"/>
+    </php>
         </testsuite>
         <testsuite name="Integration">
             <directory suffix="Test.php">./tests/Integration</directory>
@@ -103,18 +175,26 @@ tests/
 </phpunit>
 ```
 
-### 2. Tests Unitarios para Domain Layer
+### 2. Tests Unitarios para Domain Layer (Clean Architecture)
 
 ```php
 <?php
 // tests/Unit/Domain/Entities/UserTest.php
+
+declare(strict_types=1);
 
 namespace Tests\Unit\Domain\Entities;
 
 use App\Domain\Entities\User;
 use App\Domain\ValueObjects\Email;
 use App\Domain\ValueObjects\UserId;
+use App\Domain\Exceptions\InvalidEmailException;
 use PHPUnit\Framework\TestCase;
+use InvalidArgumentException;
+
+/**
+ * @covers \App\Domain\Entities\User
+ */
 
 class UserTest extends TestCase
 {
@@ -821,29 +901,70 @@ jobs:
          - name: Setup PHP
            uses: shivammathur/setup-php@v2
            with:
-              php-version: "8.2"
-              extensions: mbstring, xml, ctype, iconv, intl, pdo_sqlite
+              php-version: "8.3" # PHP 8.3+ requirement
+              extensions: mbstring, xml, ctype, iconv, intl, pdo_sqlite, bcmath, gd
               coverage: xdebug
 
          - name: Install dependencies
-           run: composer install --prefer-dist --no-progress
+           run: composer install --prefer-dist --no-progress --optimize-autoloader
 
-         - name: Run unit tests
-           run: php artisan test --testsuite=Unit --coverage
+         - name: Run PHPStan Level 9
+           run: composer run phpstan
 
-         - name: Run feature tests
-           run: php artisan test --testsuite=Feature
+         - name: Run unit tests (Domain + Application)
+           run: php artisan test --testsuite=Unit --coverage --min=90
 
          - name: Run integration tests
            run: php artisan test --testsuite=Integration
+
+         - name: Run feature tests (API endpoints)
+           run: php artisan test --testsuite=Feature
+
+         - name: Run performance tests
+           run: php artisan test --testsuite=Performance
+
+         - name: Run architecture compliance tests
+           run: php artisan test --testsuite=Architecture
+
+         - name: Generate coverage report
+           run: php artisan test --coverage-html=coverage-html --coverage-clover=coverage.xml
 ```
 
-### Evitar Estos Errores
+### Quality Gates para nuestro Stack
 
-- ❌ No escribir tests después del código
-- ❌ No separar tests por capas de arquitectura
-- ❌ No usar mocks para dependencias externas
-- ❌ No mantener los tests actualizados
+```bash
+# Comando único para validar todo el stack
+composer run quality-check
+
+# Definido en composer.json:
+{
+    "scripts": {
+        "quality-check": [
+            "php artisan test --coverage --min=90",
+            "vendor/bin/phpstan analyse --level=9",
+            "vendor/bin/phpcs --standard=PSR12",
+            "vendor/bin/phpmd app text cleancode,codesize,design,unusedcode"
+        ],
+        "test-coverage": "php artisan test --coverage-html=coverage --coverage-clover=coverage.xml",
+        "test-performance": "php artisan test --testsuite=Performance",
+        "test-architecture": "php artisan test --testsuite=Architecture"
+    }
+}
+```
+
+### Errores Comunes a Evitar con Clean Architecture
+
+- ❌ **No separar tests por capas**: Domain, Application, Infrastructure deben
+  testear concerns específicos
+- ❌ **Dependencies incorrectas**: Domain tests NO deben usar Laravel features
+  (DB, HTTP)
+- ❌ **Mocking incorrecto**: Mock interfaces, no implementations concretas
+- ❌ **Feature tests sin API versioning**: Todos los endpoints deben testear
+  /api/v1/ paths
+- ❌ **No validar performance**: Response time >200ms debe fallar CI/CD
+- ❌ **Coverage bajo**: <90% coverage en Domain/Application layers es
+  inaceptable
+- ❌ **PHPStan ignorado**: Level 9 compliance es NO negociable
 - ❌ No ejecutar tests antes de commits
 
 ## Navegación

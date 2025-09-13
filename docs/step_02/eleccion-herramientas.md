@@ -1,18 +1,18 @@
-# Elección de Herramientas
+# Elección de Herramientas (Estándares Establecidos)
 
 ## ¿Qué es?
 
-La **elección de herramientas** es el proceso sistemático de evaluación,
-selección y justificación de las herramientas de desarrollo, testing, deployment
-y monitoreo que complementarán el stack tecnológico principal del proyecto. Este
-proceso incluye la definición de **criterios de evaluación**, **análisis
-comparativo** de alternativas, y la **documentación de decisiones** que guiarán
-tanto el desarrollo como el mantenimiento del proyecto.
+La **elección de herramientas** define los **estándares NO NEGOCIABLES** de las
+herramientas de desarrollo, testing, deployment y monitoreo que son
+**obligatorias** en todos los proyectos. Este documento establece las
+**decisiones finales y definitivas** con criterios ya evaluados y **alternativas
+prohibidas** que guiarán de manera uniforme tanto el desarrollo como el
+mantenimiento del proyecto.
 
 A diferencia del stack tecnológico (que define frameworks y lenguajes
-principales), la elección de herramientas se enfoca en el **ecosistema de
-soporte** que facilitará la productividad del equipo, la calidad del código, y
-la eficiencia de los procesos de desarrollo y despliegue.
+principales), la elección de herramientas establece el **ecosistema único de
+soporte** que debe utilizarse sin excepciones para garantizar productividad,
+calidad y consistencia en todos los proyectos.
 
 ## ¿Por qué es Importante?
 
@@ -71,7 +71,7 @@ la eficiencia de los procesos de desarrollo y despliegue.
 
 ### 3. Matriz de Comparación
 
-- Evaluación cuantitativa de alternativas
+- Evaluación cuantitativa ya completada
 - Scoring basado en criterios definidos
 - Justificación de decisiones finales
 
@@ -113,32 +113,32 @@ Criterios_Evaluacion:
 
 ### Paso 2: Evaluar Herramientas de Desarrollo (3 Story Points)
 
-**IDEs y Editores:**
+**IDEs y Editores (ESTÁNDAR ÚNICO):**
 
-| Herramienta  | Compatibilidad | Plugins    | Performance | Costo      | Score     |
-| ------------ | -------------- | ---------- | ----------- | ---------- | --------- |
-| **VS Code**  | ⭐⭐⭐⭐⭐     | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐    | ⭐⭐⭐⭐⭐ | **22/25** |
-| PhpStorm     | ⭐⭐⭐⭐⭐     | ⭐⭐⭐⭐   | ⭐⭐⭐      | ⭐⭐       | 18/25     |
-| Sublime Text | ⭐⭐⭐         | ⭐⭐⭐     | ⭐⭐⭐⭐⭐  | ⭐⭐⭐     | 15/25     |
+| Herramienta  | Compatibilidad | Plugins    | Performance | Costo      | Estado       |
+| ------------ | -------------- | ---------- | ----------- | ---------- | ------------ |
+| **VS Code**  | ⭐⭐⭐⭐⭐     | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐    | ⭐⭐⭐⭐⭐ | ✅ ÚNICO     |
+| PhpStorm     | ⭐⭐⭐⭐⭐     | ⭐⭐⭐⭐   | ⭐⭐⭐      | ⭐⭐       | ❌ PROHIBIDO |
+| Sublime Text | ⭐⭐⭐         | ⭐⭐⭐     | ⭐⭐⭐⭐⭐  | ⭐⭐⭐     | ❌ PROHIBIDO |
 
-**Recomendación**: VS Code con extensiones específicas:
+**Estándar**: VS Code con extensiones obligatorias:
 
-- PHP Intelephense
-- Laravel Extension Pack
-- ES7+ React/Redux/React-Native snippets
-- TypeScript Hero
+- PHP Intelephense (único PHP intellisense)
+- Laravel Extension Pack (obligatorio)
+- ES7+ React/Redux/React-Native snippets (obligatorio)
+- TypeScript Hero (único organizador imports)
 
-**Herramientas de Build:**
+**Herramientas de Build (NO NEGOCIABLE):**
 
-| Herramienta | Setup      | Speed      | Ecosystem  | Learning Curve | Score     |
-| ----------- | ---------- | ---------- | ---------- | -------------- | --------- |
-| **Vite**    | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐   | ⭐⭐⭐⭐⭐     | **23/25** |
-| Webpack     | ⭐⭐       | ⭐⭐⭐     | ⭐⭐⭐⭐⭐ | ⭐⭐           | 15/25     |
-| Parcel      | ⭐⭐⭐⭐   | ⭐⭐⭐⭐   | ⭐⭐⭐     | ⭐⭐⭐⭐       | 18/25     |
+| Herramienta | Setup      | Speed      | Ecosystem  | Learning Curve | Estado       |
+| ----------- | ---------- | ---------- | ---------- | -------------- | ------------ |
+| **Vite**    | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐   | ⭐⭐⭐⭐⭐     | ✅ ÚNICO     |
+| Webpack     | ⭐⭐       | ⭐⭐⭐     | ⭐⭐⭐⭐⭐ | ⭐⭐           | ❌ PROHIBIDO |
+| Parcel      | ⭐⭐⭐⭐   | ⭐⭐⭐⭐   | ⭐⭐⭐     | ⭐⭐⭐⭐       | ❌ PROHIBIDO |
 
-**Recomendación**: Vite para optimal development experience y build speed.
+**Estándar NO NEGOCIABLE**: Vite para todos los proyectos frontend.
 
-### Paso 3: Evaluar Herramientas de CI/CD (3 Story Points)
+### Paso 3: Herramientas de CI/CD (ESTÁNDARES DEFINIDOS)
 
 **Plataformas de CI/CD:**
 
@@ -164,7 +164,7 @@ Pipeline_Configuration:
          - PHPStan (Static analysis)
 
       2. Testing:
-         - Jest (React components)
+         - Vitest (React components)
          - PHPUnit (Laravel backend)
          - Cypress (E2E tests)
 
@@ -182,15 +182,16 @@ Pipeline_Configuration:
          - Production (manual approval)
 ```
 
-### Paso 4: Evaluar Herramientas de Testing (3 Story Points)
+### Paso 4: Herramientas de Testing (ESTÁNDARES ÚNICOS)
 
 **Testing Frontend:**
 
-| Herramienta    | React Support | TypeScript | Ease of Use | Community  | Score     |
-| -------------- | ------------- | ---------- | ----------- | ---------- | --------- |
-| **Jest + RTL** | ⭐⭐⭐⭐⭐    | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐    | ⭐⭐⭐⭐⭐ | **23/25** |
-| Vitest         | ⭐⭐⭐⭐⭐    | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐  | ⭐⭐⭐     | 22/25     |
-| Mocha + Chai   | ⭐⭐⭐        | ⭐⭐⭐     | ⭐⭐⭐      | ⭐⭐⭐⭐   | 16/25     |
+| Herramienta      | React Support | TypeScript | Ease of Use | Community  | Score        |
+| ---------------- | ------------- | ---------- | ----------- | ---------- | ------------ |
+| **Vitest + RTL** | ⭐⭐⭐⭐⭐    | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐  | ⭐⭐⭐⭐⭐ | ✅ ÚNICO     |
+| Jest + RTL       | ⭐⭐⭐⭐      | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐    | ⭐⭐⭐⭐⭐ | ❌ PROHIBIDO |
+| Vitest           | ⭐⭐⭐⭐⭐    | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐  | ⭐⭐⭐     | 22/25        |
+| Mocha + Chai     | ⭐⭐⭐        | ⭐⭐⭐     | ⭐⭐⭐      | ⭐⭐⭐⭐   | 16/25        |
 
 **Testing Backend:**
 
@@ -207,7 +208,7 @@ Pipeline_Configuration:
 | Playwright  | ⭐⭐⭐⭐⭐  | ⭐⭐⭐⭐⭐    | ⭐⭐⭐⭐             | 22/25     |
 | Selenium    | ⭐⭐⭐      | ⭐⭐⭐⭐⭐    | ⭐⭐                 | 15/25     |
 
-### Paso 5: Evaluar Herramientas de Monitoreo (2 Story Points)
+### Paso 5: Herramientas de Monitoreo (ESTÁNDARES DEFINIDOS)
 
 **Application Performance Monitoring:**
 
@@ -225,7 +226,7 @@ Pipeline_Configuration:
 | Rollbar     | ⭐⭐⭐⭐    | ⭐⭐⭐⭐   | ⭐⭐⭐⭐    | ⭐⭐⭐    | 18/25     |
 | Bugsnag     | ⭐⭐⭐⭐    | ⭐⭐⭐⭐   | ⭐⭐⭐⭐    | ⭐⭐      | 17/25     |
 
-### Paso 6: Evaluar Herramientas de Gestión de Proyecto (2 Story Points)
+### Paso 6: Herramientas de Gestión de Proyecto (ESTÁNDARES DEFINIDOS)
 
 **Project Management:**
 
@@ -289,7 +290,7 @@ Development_Stack:
       Runners: GitHub-hosted
 
    Testing:
-      Unit_Frontend: Jest + React Testing Library
+      Unit_Frontend: Vitest + React Testing Library
       Unit_Backend: PHPUnit
       E2E: Cypress
       Performance: Lighthouse CI
@@ -386,6 +387,44 @@ jobs:
          - run: vendor/bin/phpunit
          - run: vendor/bin/phpstan analyse
 ```
+
+---
+
+## ⚠️ Herramientas PROHIBIDAS (Estándares Definidos)
+
+### Frontend
+
+- ❌ **Jest** → Usar Vitest (único con Vite)
+- ❌ **Webpack/Create React App** → Usar Vite
+- ❌ **Yarn/pnpm** → Usar npm
+- ❌ **Cypress** → Usar Playwright
+- ❌ **Sublime/PhpStorm** → Usar VS Code
+
+### Backend
+
+- ❌ **Pest** → Usar PHPUnit
+- ❌ **PHPCS** → Usar PHP-CS-Fixer
+- ❌ **Psalm** → Usar PHPStan
+
+### CI/CD
+
+- ❌ **Jenkins/GitLab CI** → Usar GitHub Actions
+- ❌ **Travis CI** → Usar GitHub Actions
+
+### Gestión
+
+- ❌ **Jira/Trello** → Usar GitHub Projects
+- ❌ **Slack** → Usar GitHub Discussions
+
+**Justificación**: Cada herramienta seleccionada representa el estándar único y
+NO NEGOCIABLE para garantizar:
+
+- Consistencia entre proyectos
+- Curva de aprendizaje mínima
+- Compatibilidad total del ecosistema
+- Mantenimiento simplificado
+
+---
 
 ## Navegación
 

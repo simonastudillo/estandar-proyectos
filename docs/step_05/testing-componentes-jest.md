@@ -1,24 +1,29 @@
-# Testing Componentes con Jest
+# Testing Componentes React + TypeScript con Jest
 
 ## ¿Qué es?
 
-Testing de componentes con Jest es la práctica de escribir pruebas automatizadas
-para validar el comportamiento y la funcionalidad de componentes React
-utilizando Jest como framework de testing y React Testing Library como utilidad
-para interactuar con los componentes. Este enfoque garantiza que los componentes
-funcionen correctamente de forma aislada y en integración.
+Testing de componentes con **Jest + React Testing Library** es la práctica de
+escribir pruebas automatizadas para validar el comportamiento y funcionalidad de
+componentes **React + TypeScript** utilizando **Jest** como framework de testing
+y **React Testing Library** como utilidad para interactuar con los componentes.
+Este enfoque está específicamente optimizado para nuestro stack **Shadcn/ui →
+Atomic Design** y garantiza que los componentes funcionen correctamente de forma
+aislada y en integración con **coverage mínimo del 80%**.
 
-## ¿Por qué es importante?
+## ¿Por qué es importante para nuestro Stack?
 
-- **Confianza en el código**: Las pruebas permiten refactorizar y modificar
-  código con seguridad
-- **Detección temprana de bugs**: Identifica errores antes de que lleguen a
-  producción
-- **Documentación viva**: Los tests sirven como documentación del comportamiento
-  esperado
-- **Integración continua**: Facilita la implementación de pipelines de CI/CD
-- **Mejor diseño**: Escribir tests fuerza a pensar en el diseño de componentes
-- **Regresiones**: Previene que funcionalidades que funcionaban dejen de hacerlo
+- **Confianza en evolución UI**: Las pruebas permiten refactorizar de Shadcn/ui
+  hacia Atomic Design con seguridad
+- **TypeScript safety**: Validación de tipos + behavior testing para máxima
+  seguridad
+- **Component design system**: Tests como documentación viva para atoms,
+  molecules, organisms
+- **Performance regression**: Detección temprana de impacto en bundle size y
+  rendering
+- **Shadcn/ui compliance**: Validación de customización de componentes base sin
+  romper funcionalidad
+- **CI/CD integration**: Quality gates automáticos con coverage >80% y
+  performance thresholds
 
 ## ¿Qué debe incluir?
 
@@ -55,25 +60,32 @@ src/
 
 ### Tipos de Testing
 
-- **Unit Testing**: Pruebas de componentes individuales
-- **Integration Testing**: Pruebas de componentes trabajando juntos
-- **Snapshot Testing**: Comparación de salida renderizada
-- **Accessibility Testing**: Validación de accesibilidad
-- **Performance Testing**: Pruebas de rendimiento básicas
+- **Unit Testing**: Pruebas de componentes individuales con TypeScript strict
+- **Integration Testing**: Pruebas de componentes trabajando juntos (molecules +
+  atoms)
+- **Snapshot Testing**: Comparación de salida renderizada (deprecated en favor
+  de visual regression)
+- **Accessibility Testing**: Validación WCAG compliance automática
+- **Performance Testing**: Bundle size impact y rendering performance
+- **Atomic Design Testing**: Validación de design system evolution (Shadcn →
+  Atomic)
 
-## ¿Qué debo hacer?
+## ¿Qué debo hacer según nuestro Stack?
 
-### 1. Configurar Testing Environment
+### 1. Configurar Testing Environment Stack-Específico
 
 ```bash
-# Instalar dependencias de testing
-npm install --save-dev vitest jsdom
+# Dependencias de testing específicas para nuestro stack
+npm install --save-dev vitest jsdom @types/node
 npm install --save-dev @testing-library/react @testing-library/jest-dom
-npm install --save-dev @testing-library/user-event
+npm install --save-dev @testing-library/user-event @testing-library/react-hooks
 npm install --save-dev @vitest/ui @vitest/coverage-v8
+npm install --save-dev msw                    # API mocking
+npm install --save-dev @storybook/test-runner # Storybook integration
+npm install --save-dev axe-core @axe-core/react # Accessibility testing
 ```
 
-### 2. Configurar Vitest
+### 2. Configurar Vitest con TypeScript Strict
 
 ```typescript
 // vitest.config.ts
@@ -85,6 +97,29 @@ export default defineConfig({
    plugins: [react()],
    test: {
       globals: true,
+      environment: "jsdom",
+      setupFiles: ["./src/__tests__/setup.ts"],
+      coverage: {
+         provider: "v8",
+         reporter: ["text", "json", "html"],
+         exclude: [
+            "node_modules/",
+            "src/__tests__/",
+            "**/*.d.ts",
+            "**/*.config.*",
+            "**/index.ts",
+         ],
+         statements: 80, // Coverage mínimo 80%
+         branches: 80,
+         functions: 80,
+         lines: 80,
+         thresholds: {
+            statements: 80,
+            branches: 80,
+            functions: 80,
+            lines: 80,
+         },
+      },
       environment: "jsdom",
       setupFiles: ["./src/__tests__/setup.ts"],
       css: true,

@@ -1,29 +1,41 @@
-# Configuración React + TypeScript + Vite
+# Configuración React + TypeScript + Vite (Estándar Único)
+
+> **IMPORTANTE**: Esta configuración representa el **estándar único NO
+> NEGOCIABLE** para proyectos frontend. Vite es el único bundler permitido. No
+> se permiten alternativas como Create React App, Webpack, Parcel o Next.js para
+> SPAs.
 
 ## ¿Qué es?
 
-La configuración inicial de React con TypeScript y Vite es el paso fundamental
-para establecer un entorno de desarrollo moderno y eficiente. Vite proporciona
-un bundler rápido con Hot Module Replacement (HMR) instantáneo, mientras que
-TypeScript garantiza un tipado fuerte que previene errores en tiempo de
-compilación.
+La configuración inicial de React con TypeScript y Vite es el **único
+procedimiento autorizado** para establecer proyectos frontend. Vite es nuestro
+bundler estándar que proporciona un entorno de desarrollo ultra-rápido con Hot
+Module Replacement (HMR) instantáneo, mientras que TypeScript garantiza tipado
+fuerte obligatorio que previene errores en tiempo de compilación.
 
 ## ¿Por qué es importante?
 
-- **Desarrollo rápido**: Vite ofrece un tiempo de inicio de servidor muy rápido
-  y HMR instantáneo
-- **Tipado fuerte**: TypeScript previene errores comunes y mejora la experiencia
-  de desarrollo
-- **Herramientas modernas**: Integración nativa con ESM y herramientas modernas
-  de JavaScript
-- **Optimización automática**: Vite optimiza automáticamente el código para
-  producción
-- **Configuración mínima**: Configuración por defecto sensata que requiere pocas
-  modificaciones
+- **Vite como estándar único**: Elimina ambigüedad y garantiza consistencia en
+  todos los proyectos
+- **Desarrollo ultra-rápido**: Vite ofrece el mejor DX con tiempo de inicio
+  <100ms y HMR instantáneo
+- **Tipado fuerte obligatorio**: TypeScript previene errores y mejora la
+  mantenibilidad del código
+- **ESM nativo**: Integración nativa con ES Modules y herramientas modernas de
+  JavaScript
+- **Optimización automática**: Vite optimiza automáticamente para producción con
+  Rollup
+- **Configuración estándar**: Setup predefinido que elimina decisiones de
+  configuración
+- **Ecosystem compatibility**: 100% compatible con React 18+, Redux Toolkit y
+  nuestro stack
 
 ## ¿Qué debe incluir?
 
-### Dependencias Principales
+> **OBLIGATORIO**: Todas las dependencias listadas son **NO NEGOCIABLES** y
+> representan el stack estándar completo.
+
+### Dependencias Principales (Versiones Mínimas Obligatorias)
 
 ```json
 {
@@ -45,6 +57,7 @@ compilación.
       "eslint": "^8.45.0",
       "eslint-plugin-react-hooks": "^4.6.0",
       "eslint-plugin-react-refresh": "^0.4.3",
+      "eslint-config-prettier": "^9.0.0",
       "prettier": "^3.0.0",
       "typescript": "^5.0.2",
       "vite": "^4.4.5",
@@ -57,14 +70,16 @@ compilación.
 }
 ```
 
-### Archivos de Configuración
+### Archivos de Configuración (Estándar Obligatorio)
 
-- `vite.config.ts` - Configuración de Vite
-- `tsconfig.json` - Configuración de TypeScript
-- `tsconfig.node.json` - Configuración de TypeScript para Node
-- `.eslintrc.cjs` - Configuración de ESLint
-- `.prettierrc` - Configuración de Prettier
-- `vitest.config.ts` - Configuración de testing
+- `vite.config.ts` - Configuración de Vite (única herramienta de build
+  permitida)
+- `tsconfig.json` - TypeScript con configuración estricta obligatoria
+- `tsconfig.node.json` - TypeScript para Node.js en Vite
+- `.eslintrc.cjs` - ESLint con reglas estándar no negociables
+- `.prettierrc` - Prettier con formato estándar obligatorio
+- `vitest.config.ts` - Testing con Vitest (único framework permitido para este
+  stack)
 
 ## ¿Qué debo hacer?
 
@@ -295,47 +310,112 @@ export const env: EnvConfig = {
 };
 ```
 
-## Tips
+## ⚠️ Herramientas y Configuraciones PROHIBIDAS
 
-### Optimización de Desarrollo
+Para mantener el estándar de Vite como bundler único:
 
-1. **Hot Module Replacement**: Vite incluye HMR por defecto, mantén los
-   componentes pequeños para aprovechar mejor esta funcionalidad
+### ❌ Bundlers y Build Tools Alternativos
 
-2. **Alias de Path**: Usa los alias configurados para importaciones más limpias:
+- **Create React App (CRA)**: Deprecado por Meta → Usar **Vite únicamente**
+- **Webpack configs manuales**: Complejidad innecesaria → Usar **Vite
+  únicamente**
+- **Parcel**: No alineado con stack → Usar **Vite únicamente**
+- **Snowpack**: Descontinuado → Usar **Vite únicamente**
+- **ESBuild directo**: Vite ya lo incluye → Usar **Vite únicamente**
+
+### ❌ Testing Frameworks Alternativos (Para este Stack)
+
+- **Jest directo**: Para proyectos Vite usar **Vitest** (mejor integración)
+- **Karma**: Obsoleto → Usar **Vitest**
+- **Cypress para unit tests**: Usar **@testing-library/react** + Vitest
+
+### ❌ Package Managers Alternativos
+
+- **Yarn**: Usar **npm únicamente** (viene con Node.js)
+- **pnpm**: Usar **npm únicamente** para consistencia
+- **Bun**: Demasiado nuevo → Usar **npm únicamente**
+
+### ❌ TypeScript Alternativo o Configuraciones Relajadas
+
+- **JavaScript puro**: **TypeScript es obligatorio**
+- **PropTypes**: **TypeScript interfaces son obligatorias**
+- **Tipado laxo**: **Configuración strict obligatoria**
+
+### ❌ Frameworks Meta-Framework para SPAs
+
+- **Next.js**: Para SPAs usar **React + Vite únicamente**
+- **Remix**: Para SPAs usar **React + Vite únicamente**
+- **Gatsby**: Para SPAs usar **React + Vite únicamente**
+
+### ✅ Configuración Correcta (Única Permitida)
+
+```bash
+# Comando estándar obligatorio
+npm create vite@latest frontend -- --template react-ts
+
+# Dependencias estándar obligatorias
+npm install @reduxjs/toolkit react-redux react-router-dom axios
+npm install --save-dev @types/node vitest jsdom @testing-library/react
+```
+
+## Tips para Implementación Estándar
+
+### Optimización de Desarrollo con Vite
+
+1. **Hot Module Replacement**: Vite incluye HMR por defecto optimizado, mantén
+   los componentes pequeños para máximo aprovechamiento
+
+2. **Alias de Path Obligatorios**: Usa únicamente los alias configurados en el
+   estándar:
 
 ```typescript
-// ✅ Bueno
+// ✅ Estándar correcto
 import { Button } from "@components/common/Button";
 import { userService } from "@services/userService";
+import { RootState } from "@store/index";
 
-// ❌ Evitar
+// ❌ Prohibido - imports relativos profundos
 import { Button } from "../../../components/common/Button";
 import { userService } from "../../services/userService";
 ```
 
-3. **TypeScript Estricto**: Aprovecha al máximo las características de
-   TypeScript:
+3. **TypeScript Estricto Obligatorio**: Aprovecha al máximo la configuración
+   estándar:
 
 ```typescript
-// ✅ Bueno: Tipado explícito
+// ✅ Estándar correcto: Tipado explícito obligatorio
 interface User {
    id: string;
    name: string;
    email: string;
+   createdAt: Date;
 }
 
 const getUser = async (id: string): Promise<User> => {
-   // implementación
+   const response = await userService.fetchUser(id);
+   return response.data;
 };
 
-// ❌ Evitar: Tipado implícito
-const getUser = async (id) => {
-   // implementación
+// ❌ Prohibido: Tipado implícito o any
+const getUser = async (id: any) => {
+   const response = await userService.fetchUser(id);
+   return response.data;
 };
 ```
 
-### Scripts de Package.json
+4. **Vite Dev Server Optimization**: Configuración estándar para desarrollo:
+
+```typescript
+// ✅ Configuración estándar en vite.config.ts
+server: {
+   port: 3000,
+   host: true,
+   open: true, // Abre browser automáticamente
+   cors: true,
+},
+```
+
+### Scripts de Package.json (Estándar Obligatorio)
 
 ```json
 {
@@ -350,10 +430,16 @@ const getUser = async (id) => {
       "test": "vitest",
       "test:ui": "vitest --ui",
       "test:coverage": "vitest --coverage",
-      "type-check": "tsc --noEmit"
+      "test:watch": "vitest --watch",
+      "type-check": "tsc --noEmit",
+      "type-check:watch": "tsc --noEmit --watch",
+      "build:analyze": "vite build && npx rollup-plugin-visualizer dist/stats.html"
    }
 }
 ```
+
+> **NOTA**: Estos scripts son **NO NEGOCIABLES** y deben estar presentes en
+> todos los proyectos para mantener consistencia en comandos de desarrollo.
 
 ## Ejemplos
 

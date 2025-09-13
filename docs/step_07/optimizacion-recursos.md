@@ -1,4 +1,6 @@
-# Optimización de Recursos
+# Optimización de Recursos (React + TypeScript + Vite)
+
+> **IMPORTANTE**: Esta guía está específicamente diseñada para proyectos que utilizan **Vite como bundler estándar**. Todas las configuraciones y herramientas están alineadas con el ecosistema Vite/Rollup, sin incluir Webpack, Next.js u otros bundlers.
 
 ## ¿Qué es?
 
@@ -6,7 +8,8 @@ La optimización de recursos es el proceso sistemático de mejorar la eficiencia
 en la carga, transferencia y uso de assets web (imágenes, CSS, JavaScript,
 fuentes, etc.) para reducir los tiempos de carga, minimizar el ancho de banda
 utilizado y mejorar la experiencia del usuario. Incluye técnicas de compresión,
-caching, CDN, lazy loading y optimización de formatos.
+caching, CDN, lazy loading y optimización de formatos, todo integrado con las
+capacidades nativas de Vite para el desarrollo con React y TypeScript.
 
 ## ¿Por qué es importante?
 
@@ -59,14 +62,14 @@ caching, CDN, lazy loading y optimización de formatos.
 - Code splitting por rutas y componentes
 - Tree shaking para eliminar código muerto
 - Dynamic imports para lazy loading
-- Webpack bundle analyzer
+- Rollup plugin visualizer para análisis de bundles
 
 #### Minificación y Compresión
 
-- Terser para minificación
-- Gzip y Brotli compression
-- Module federation para micro-frontends
-- Runtime optimizations
+- Terser integrado en Vite para minificación
+- Gzip y Brotli compression automáticos
+- ESM optimization para mejor tree shaking
+- Runtime optimizations con SWC (opcional)
 
 ### CDN y Caching
 
@@ -88,32 +91,76 @@ caching, CDN, lazy loading y optimización de formatos.
 
 ### 1. Configurar optimización de imágenes automática
 
-#### Next.js Image Optimization
+#### Vite Image Optimization Setup
 
-```javascript
-// next.config.js
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-   images: {
-      formats: ["image/avif", "image/webp"],
-      deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
-      imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
-      domains: ["cdn.example.com", "images.unsplash.com"],
-      loader: "custom",
-      loaderFile: "./src/utils/imageLoader.ts",
-      minimumCacheTTL: 60 * 60 * 24 * 30, // 30 days
-      dangerouslyAllowSVG: true,
-      contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
-   },
-   // Enable static optimization
-   swcMinify: true,
-   experimental: {
-      optimizeCss: true,
-      optimizePackageImports: ["lodash-es", "date-fns"],
-   },
-};
+```typescript
+// vite.config.ts
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
 
-module.exports = nextConfig;
+export default defineConfig({
+   plugins: [
+      react(),
+   ],
+   
+   // Configuración de assets
+   assetsInclude: ["**/*.webp", "**/*.avif"],
+   
+   build: {
+      rollupOptions: {
+         output: {
+            assetFileNames: (assetInfo) => {
+               if (assetInfo.name?.match(/\.(png|jpg|jpeg|webp|avif|svg)$/)) {
+                  return "images/[name]-[hash][extname]";
+               }
+               return "assets/[name]-[hash][extname]";
+            },
+         },
+      },
+   },
+   
+   // Configuración de servidor de desarrollo
+   server: {
+      fs: {
+         allow: [".."],
+      },
+   },
+});
+```
+
+#### Plugin para Optimización de Imágenes
+
+```bash
+# Instalar plugin de optimización de imágenes para Vite
+npm install --save-dev vite-plugin-imagemin
+npm install --save-dev imagemin-webp imagemin-avif
+```
+
+```typescript
+// vite.config.ts - con optimización de imágenes
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+import { ViteImageOptimize } from "vite-plugin-imagemin";
+
+export default defineConfig({
+   plugins: [
+      react(),
+      ViteImageOptimize({
+         gifsicle: { optimizationLevel: 7 },
+         mozjpeg: { quality: 80 },
+         optipng: { optimizationLevel: 7 },
+         pngquant: { quality: [0.65, 0.8] },
+         svgo: {
+            plugins: [
+               { name: "removeViewBox" },
+               { name: "removeEmptyAttrs", active: false },
+            ],
+         },
+         webp: { quality: 80 },
+         avif: { quality: 80 },
+      }),
+   ],
+});
 ```
 
 #### Custom Image Loader
@@ -334,82 +381,74 @@ const extractor = new CriticalCSSExtractor();
 extractor.generateCriticalCSS();
 ```
 
-### 3. Bundle optimization para JavaScript
+### 3. Bundle optimization para JavaScript con Vite
 
-#### Webpack Bundle Analyzer Setup
+#### Rollup Bundle Analyzer Setup
 
-```javascript
-// webpack.config.js
-const BundleAnalyzerPlugin =
-   require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
-const CompressionPlugin = require("compression-webpack-plugin");
+```typescript
+// vite.config.ts
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+import { visualizer } from "rollup-plugin-visualizer";
+import { compression } from "vite-plugin-compression";
 
-module.exports = {
-   // ... other config
-
-   optimization: {
-      splitChunks: {
-         chunks: "all",
-         cacheGroups: {
-            vendor: {
-               test: /[\\/]node_modules[\\/]/,
-               name: "vendors",
-               chunks: "all",
-               enforce: true,
-            },
-            common: {
-               name: "common",
-               minChunks: 2,
-               chunks: "all",
-               enforce: true,
-            },
-            react: {
-               test: /[\\/]node_modules[\\/](react|react-dom)[\\/]/,
-               name: "react",
-               chunks: "all",
-            },
-            lodash: {
-               test: /[\\/]node_modules[\\/]lodash[\\/]/,
-               name: "lodash",
-               chunks: "all",
-            },
-         },
-      },
-      usedExports: true,
-      sideEffects: false,
-   },
-
+export default defineConfig({
    plugins: [
-      // Bundle analysis
-      new BundleAnalyzerPlugin({
-         analyzerMode: "static",
-         openAnalyzer: false,
-         reportFilename: "bundle-report.html",
+      react(),
+      
+      // Bundle analyzer nativo de Vite/Rollup
+      visualizer({
+         filename: "dist/bundle-analysis.html",
+         open: true,
+         gzipSize: true,
+         brotliSize: true,
+         template: "treemap", // treemap, sunburst, network
       }),
 
-      // Gzip compression
-      new CompressionPlugin({
+      // Compresión Gzip
+      compression({
          algorithm: "gzip",
-         test: /\.(js|css|html|svg)$/,
-         threshold: 8192,
-         minRatio: 0.8,
+         ext: ".gz",
       }),
 
-      // Brotli compression
-      new CompressionPlugin({
-         filename: "[path][base].br",
+      // Compresión Brotli
+      compression({
          algorithm: "brotliCompress",
-         test: /\.(js|css|html|svg)$/,
-         compressionOptions: {
-            params: {
-               [zlib.constants.BROTLI_PARAM_QUALITY]: 11,
-            },
-         },
-         threshold: 8192,
-         minRatio: 0.8,
+         ext: ".br",
       }),
    ],
-};
+
+   build: {
+      rollupOptions: {
+         output: {
+           // Manual chunks optimization para Vite
+           manualChunks: {
+             // Vendor chunks
+             vendor: ["react", "react-dom"],
+             router: ["react-router-dom"],
+             ui: ["@radix-ui/react-dialog", "@radix-ui/react-select"],
+             utils: ["lodash-es", "date-fns"],
+           },
+         },
+       },
+       // Configuración de optimización
+       target: "es2015",
+       minify: "terser",
+       terserOptions: {
+         compress: {
+           drop_console: true,
+           drop_debugger: true,
+         },
+       },
+     },
+
+   // Configuración de dependencias optimizadas
+   optimizeDeps: {
+     include: ["react", "react-dom", "react-router-dom"],
+     exclude: ["@vite/client", "@vite/env"],
+   },
+});
+```
 ```
 
 #### Dynamic Import Optimization
@@ -1151,6 +1190,80 @@ jobs:
               body: comment
             });
           }
+```
+
+## ⚠️ Herramientas NO Permitidas para Optimización de Recursos
+
+Para mantener consistencia con nuestro stack tecnológico establecido, **NO utilizar**:
+
+### ❌ Bundlers y Build Tools Alternativos
+- **Webpack + plugins**: Usar herramientas nativas de Vite/Rollup
+- **webpack-bundle-analyzer**: Usar `rollup-plugin-visualizer`
+- **webpack-compression**: Usar `vite-plugin-compression`
+- **Next.js optimizations**: Para SPA usar React + Vite
+
+### ❌ Herramientas de Imagen Obsoletas
+- **imagemin-webpack-plugin**: Usar `vite-plugin-imagemin`
+- **next/image**: Crear componente nativo para React + Vite
+- **gatsby-image**: No compatible con nuestro stack
+
+### ❌ CSS Optimization Tools Incompatibles
+- **webpack css loaders**: Vite maneja CSS nativamente
+- **extract-text-webpack-plugin**: Vite extrae CSS automáticamente
+- **optimize-css-assets-webpack-plugin**: Usar configuración nativa de Vite
+
+### ✅ Herramientas Recomendadas (Vite Ecosystem)
+
+#### Plugins Esenciales
+```bash
+# Análisis y optimización
+npm install --save-dev rollup-plugin-visualizer
+npm install --save-dev vite-plugin-compression
+
+# Optimización de imágenes
+npm install --save-dev vite-plugin-imagemin
+npm install --save-dev imagemin-webp imagemin-avif
+
+# PWA y Service Workers
+npm install --save-dev vite-plugin-pwa
+```
+
+#### Configuración de Producción Optimizada
+```typescript
+// vite.config.ts - Configuración completa
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+import { visualizer } from "rollup-plugin-visualizer";
+import { compression } from "vite-plugin-compression";
+import { VitePWA } from "vite-plugin-pwa";
+
+export default defineConfig({
+  plugins: [
+    react(),
+    visualizer({ filename: "dist/bundle-analysis.html" }),
+    compression({ algorithm: "gzip" }),
+    compression({ algorithm: "brotliCompress", ext: ".br" }),
+    VitePWA({
+      registerType: "autoUpdate",
+      workbox: {
+        globPatterns: ["**/*.{js,css,html,ico,png,svg,woff2}"],
+      },
+    }),
+  ],
+  build: {
+    target: "es2015",
+    minify: "terser",
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ["react", "react-dom"],
+          router: ["react-router-dom"],
+        },
+      },
+    },
+  },
+});
+```
 ```
 
 ## Navegación
