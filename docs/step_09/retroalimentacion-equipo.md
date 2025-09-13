@@ -647,6 +647,6 @@ const OverviewSection: React.FC<{ feedbackData: ConsolidatedFeedback }> = ({
 
 ## Navegación
 
-[⬅️ Organización de la Documentación](./docs/step_09/organizacion-documentacion.md)
+[⬅️ Organización de la Documentación](./organizacion-documentacion.md)
 | [🏠 README Principal](../../README.md) |
 [Evaluación del Cumplimiento del Estándar ➡️](./evaluacion-cumplimiento-estandar.md)
