@@ -604,4 +604,4 @@ class UserApiTest extends TestCase
 
 [⬅️ Implementación Infrastructure Layer](./implementacion-infrastructure-layer.md)
 | [🏠 README Principal](../../README.md) |
-[Autenticación Laravel Sanctum ➡️](./autenticacion-laravel-sanctum.md)
+[Validaciones de Seguridad ➡️](./validaciones-seguridad.md)

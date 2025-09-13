@@ -130,6 +130,7 @@ real, sin embargo el objetivo es utilizar en proyectos futuros.
 - [Implementación Application Layer](./docs/step_04/implementacion-application-layer.md)
 - [Implementación Infrastructure Layer](./docs/step_04/implementacion-infrastructure-layer.md)
 - [APIs RESTful Versionadas](./docs/step_04/apis-restful-versionadas.md)
+- [Validaciones de Seguridad](./docs/step_04/validaciones-seguridad.md)
 - [Autenticación Laravel Sanctum](./docs/step_04/autenticacion-laravel-sanctum.md)
 - [Migraciones y Seeders](./docs/step_04/migraciones-seeders.md)
 - [Testing TDD Backend](./docs/step_04/testing-tdd-backend.md)
