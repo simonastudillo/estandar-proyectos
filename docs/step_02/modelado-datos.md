@@ -708,4 +708,4 @@ erDiagram
 
 [⬅️ Estructura de carpetas base](./estructura-carpetas.md) |
 [🏠 README Principal](../../README.md) |
-[Diseño de Base de Datos ➡️](./diseno-base-datos.md)
+[Buenas prácticas de base de datos ➡️](./buenas-practicas-base-datos.md)
