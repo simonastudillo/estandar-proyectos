@@ -68,9 +68,7 @@ aplicada en proyectos reales siguiendo un roadmap de evolución técnica definid
 
 ### Base de Datos
 
-- **Principal**: MySQL 8.0+ (proyectos estándar)
-- **Alternativa**: PostgreSQL 15+ (JSON avanzado, full-text search, análisis
-  complejos)
+- **Principal**: MySQL 8.0+ (única base de datos permitida en todos los proyectos)
 - **Identificadores**: UUID públicos generados en PHP:
   `bin2hex(random_bytes(16))`
 - **Convenciones**: Tablas en inglés, plural, snake_case

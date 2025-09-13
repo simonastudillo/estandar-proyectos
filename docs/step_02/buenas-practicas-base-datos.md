@@ -750,6 +750,26 @@ case "${1:-}" in
 esac
 ```
 
+### Base de Datos: MySQL como Estándar Único
+
+#### Selección de Base de Datos
+
+- **Única Base de Datos Permitida**: MySQL 8.0+.
+- **Motivo**: Consistencia en el stack, soporte robusto y optimización para la
+  mayoría de casos de uso.
+- **Prohibido**: Uso de PostgreSQL u otras bases de datos en proyectos estándar.
+
+#### Configuraciones Específicas
+
+- **Optimización**: Configurar índices y consultas para alta concurrencia.
+- **Seguridad**: Implementar cifrado en tránsito (TLS) y en reposo.
+- **Auditoría**: Activar logs de consultas y cambios críticos.
+
+#### Herramientas de Gestión
+
+- **Migraciones**: Laravel Migrations.
+- **Seeders**: Laravel Database Seeders.
+
 ## Tips
 
 ### Principios Fundamentales

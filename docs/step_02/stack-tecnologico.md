@@ -63,13 +63,8 @@ consistencia entre proyectos.
 
 ### Base de Datos
 
-- **Principal**: **MySQL 8.0+** (default para proyectos estándar - >80% casos de
-  uso)
-- **Alternativa específica**: **PostgreSQL 15+** (SOLO cuando se requiera):
-  - JSON queries complejos y avanzados
-  - Full-text search nativo robusto
-  - Análisis de datos complejos con window functions
-  - Proyectos >100GB de datos analíticos
+- **Principal**: **MySQL 8.0+** (única base de datos permitida en todos los
+  proyectos)
 - **Identificadores**: UUID públicos generados en PHP:
   `bin2hex(random_bytes(16))`
 - **Migraciones**: Laravel Migrations (única herramienta permitida)

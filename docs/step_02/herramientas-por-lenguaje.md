@@ -2,16 +2,17 @@
 
 ## ¿Qué es?
 
-Las **herramientas por lenguaje** son conjuntos específicos y **obligatorios** de utilidades,
-librerías, frameworks y extensiones establecidas como estándar para cada lenguaje de
-programación del stack tecnológico. Esta documentación define los **estándares únicos**
-y configuraciones específicas que deben seguirse sin excepciones para maximizar la 
-productividad y mantener consistencia en todos los proyectos.
+Las **herramientas por lenguaje** son conjuntos específicos y **obligatorios**
+de utilidades, librerías, frameworks y extensiones establecidas como estándar
+para cada lenguaje de programación del stack tecnológico. Esta documentación
+define los **estándares únicos** y configuraciones específicas que deben
+seguirse sin excepciones para maximizar la productividad y mantener consistencia
+en todos los proyectos.
 
-Este documento establece las **especialidades técnicas NO NEGOCIABLES** de cada lenguaje,
-incluyendo gestores de dependencias únicos, herramientas de desarrollo obligatorias,
-debugging, profiling y ecosistemas específicos que son los únicos permitidos en el
-desarrollo de cada tecnología.
+Este documento establece las **especialidades técnicas NO NEGOCIABLES** de cada
+lenguaje, incluyendo gestores de dependencias únicos, herramientas de desarrollo
+obligatorias, debugging, profiling y ecosistemas específicos que son los únicos
+permitidos en el desarrollo de cada tecnología.
 
 ## ¿Por qué es importante?
 
@@ -167,20 +168,20 @@ Crear archivos de configuración estándar para cada herramienta.
 - **Configuración Vitest** (en vite.config.ts):
   ```typescript
   // vite.config.ts
-  import { defineConfig } from 'vite'
-  import react from '@vitejs/plugin-react'
-  import { resolve } from 'path'
+  import { defineConfig } from "vite";
+  import react from "@vitejs/plugin-react";
+  import { resolve } from "path";
 
   export default defineConfig({
      plugins: [react()],
      test: {
         globals: true,
-        environment: 'jsdom',
-        setupFiles: ['./src/test/setup.ts'],
+        environment: "jsdom",
+        setupFiles: ["./src/test/setup.ts"],
         coverage: {
-           provider: 'v8',
-           reporter: ['text', 'json', 'html'],
-           exclude: ['node_modules/', 'src/test/'],
+           provider: "v8",
+           reporter: ["text", "json", "html"],
+           exclude: ["node_modules/", "src/test/"],
            thresholds: {
               global: {
                  branches: 80,
@@ -638,6 +639,7 @@ echo "✅ Verificaciones completadas"
 ## ⚠️ Herramientas PROHIBIDAS por Lenguaje
 
 ### Frontend (React + TypeScript)
+
 - ❌ **Jest** → Usar Vitest (único testing framework)
 - ❌ **Webpack/CRA** → Usar Vite (único bundler)
 - ❌ **Yarn/pnpm** → Usar npm (único gestor de paquetes)
@@ -645,16 +647,19 @@ echo "✅ Verificaciones completadas"
 - ❌ **Standard/JSHint** → Usar ESLint (único linter)
 
 ### Backend (PHP/Laravel)
+
 - ❌ **Pest** → Usar PHPUnit (único testing framework)
 - ❌ **PHPCS** → Usar PHP-CS-Fixer (único formatter)
 - ❌ **Psalm** → Usar PHPStan (único análisis estático)
 - ❌ **Composer v1** → Usar Composer v2+ (obligatorio)
 
 ### Base de Datos
+
 - ❌ **PostgreSQL/SQLite** → Usar MySQL 8+ (único DBMS)
 - ❌ **Migrations manuales** → Usar Laravel Migrations (obligatorio)
 
 ### Justificación
+
 - **Consistencia**: Un solo camino para cada tecnología
 - **Mantenimiento**: Configuraciones estándar únicas
 - **Soporte**: Documentación y troubleshooting unificados
