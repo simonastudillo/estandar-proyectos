@@ -412,89 +412,89 @@ import UserProfile from "../../components/UserProfile/UserProfile";
 import CommentSection from "../../components/CommentSection/CommentSection";
 
 describe("XSS Protection", () => {
-   const maliciousInputs = [
-      '<script>alert("XSS")</script>',
-      '<img src="x" onerror="alert(\'XSS\')" />',
-      "<svg onload=\"alert('XSS')\" />",
-      'javascript:alert("XSS")',
-      "<iframe src=\"javascript:alert('XSS')\"></iframe>",
-      "<body onload=\"alert('XSS')\">",
-      "<div onclick=\"alert('XSS')\">Click me</div>",
-      '"><script>alert("XSS")</script>',
-      '\';alert("XSS");//',
-   ];
+  const maliciousInputs = [
+    '<script>alert("XSS")</script>',
+    '<img src="x" onerror="alert(\'XSS\')" />',
+    "<svg onload=\"alert('XSS')\" />",
+    'javascript:alert("XSS")',
+    "<iframe src=\"javascript:alert('XSS')\"></iframe>",
+    "<body onload=\"alert('XSS')\">",
+    "<div onclick=\"alert('XSS')\">Click me</div>",
+    '"><script>alert("XSS")</script>',
+    '\';alert("XSS");//',
+  ];
 
-   test("should sanitize user input in profile display", () => {
-      const user = {
-         id: 1,
-         name: '<script>alert("XSS")</script>John Doe',
-         bio: '<img src="x" onerror="alert(\'XSS\')" />Software Developer',
-      };
+  test("should sanitize user input in profile display", () => {
+    const user = {
+      id: 1,
+      name: '<script>alert("XSS")</script>John Doe',
+      bio: '<img src="x" onerror="alert(\'XSS\')" />Software Developer',
+    };
 
-      render(<UserProfile user={user} />);
+    render(<UserProfile user={user} />);
 
-      // El script no debe estar presente en el DOM
-      expect(screen.queryByText(/script/)).not.toBeInTheDocument();
-      expect(screen.getByText(/John Doe/)).toBeInTheDocument();
-      expect(screen.getByText(/Software Developer/)).toBeInTheDocument();
-   });
+    // El script no debe estar presente en el DOM
+    expect(screen.queryByText(/script/)).not.toBeInTheDocument();
+    expect(screen.getByText(/John Doe/)).toBeInTheDocument();
+    expect(screen.getByText(/Software Developer/)).toBeInTheDocument();
+  });
 
-   test("should prevent XSS in comment submission", async () => {
-      const user = userEvent.setup();
-      const onSubmit = jest.fn();
+  test("should prevent XSS in comment submission", async () => {
+    const user = userEvent.setup();
+    const onSubmit = jest.fn();
 
-      render(<CommentSection onSubmit={onSubmit} />);
+    render(<CommentSection onSubmit={onSubmit} />);
 
-      const textarea = screen.getByRole("textbox");
-      const submitButton = screen.getByRole("button", { name: /enviar/i });
+    const textarea = screen.getByRole("textbox");
+    const submitButton = screen.getByRole("button", { name: /enviar/i });
 
-      for (const maliciousInput of maliciousInputs) {
-         await user.clear(textarea);
-         await user.type(textarea, maliciousInput);
-         await user.click(submitButton);
+    for (const maliciousInput of maliciousInputs) {
+      await user.clear(textarea);
+      await user.type(textarea, maliciousInput);
+      await user.click(submitButton);
 
-         // Verificar que el input fue sanitizado
-         const submittedData =
-            onSubmit.mock.calls[onSubmit.mock.calls.length - 1][0];
-         expect(submittedData.comment).not.toContain("<script>");
-         expect(submittedData.comment).not.toContain("javascript:");
-         expect(submittedData.comment).not.toContain("onerror");
-         expect(submittedData.comment).not.toContain("onload");
-      }
-   });
+      // Verificar que el input fue sanitizado
+      const submittedData =
+        onSubmit.mock.calls[onSubmit.mock.calls.length - 1][0];
+      expect(submittedData.comment).not.toContain("<script>");
+      expect(submittedData.comment).not.toContain("javascript:");
+      expect(submittedData.comment).not.toContain("onerror");
+      expect(submittedData.comment).not.toContain("onload");
+    }
+  });
 
-   test("should safely render HTML content with DOMPurify", () => {
-      const dangerousHTML = `
+  test("should safely render HTML content with DOMPurify", () => {
+    const dangerousHTML = `
       <p>Contenido válido</p>
       <script>alert('XSS')</script>
       <img src="x" onerror="alert('XSS')" />
       <a href="javascript:alert('XSS')">Link malicioso</a>
     `;
 
-      const { container } = render(
-         <div
-            dangerouslySetInnerHTML={{
-               __html: require("dompurify").sanitize(dangerousHTML),
-            }}
-         />,
-      );
+    const { container } = render(
+      <div
+        dangerouslySetInnerHTML={{
+          __html: require("dompurify").sanitize(dangerousHTML),
+        }}
+      />
+    );
 
-      // Solo el contenido válido debe estar presente
-      expect(container.innerHTML).toContain("<p>Contenido válido</p>");
-      expect(container.innerHTML).not.toContain("<script>");
-      expect(container.innerHTML).not.toContain("onerror");
-      expect(container.innerHTML).not.toContain("javascript:");
-   });
+    // Solo el contenido válido debe estar presente
+    expect(container.innerHTML).toContain("<p>Contenido válido</p>");
+    expect(container.innerHTML).not.toContain("<script>");
+    expect(container.innerHTML).not.toContain("onerror");
+    expect(container.innerHTML).not.toContain("javascript:");
+  });
 
-   test("should escape content in URLs", () => {
-      const maliciousUrl = 'javascript:alert("XSS")';
+  test("should escape content in URLs", () => {
+    const maliciousUrl = 'javascript:alert("XSS")';
 
-      render(<a href={maliciousUrl}>Link</a>);
+    render(<a href={maliciousUrl}>Link</a>);
 
-      const link = screen.getByRole("link");
-      // React automáticamente sanitiza URLs peligrosas
-      expect(link.getAttribute("href")).not.toBe(maliciousUrl);
-   });
+    const link = screen.getByRole("link");
+    // React automáticamente sanitiza URLs peligrosas
+    expect(link.getAttribute("href")).not.toBe(maliciousUrl);
+  });
 });
 ```
 
@@ -565,38 +565,38 @@ import helmet from "helmet";
 import { Application } from "express";
 
 export function configureSecurityHeaders(app: Application): void {
-   app.use(
-      helmet({
-         contentSecurityPolicy: {
-            directives: {
-               defaultSrc: ["'self'"],
-               scriptSrc: [
-                  "'self'",
-                  "'unsafe-inline'",
-                  "https://cdnjs.cloudflare.com",
-               ],
-               styleSrc: [
-                  "'self'",
-                  "'unsafe-inline'",
-                  "https://fonts.googleapis.com",
-               ],
-               fontSrc: ["'self'", "https://fonts.gstatic.com"],
-               imgSrc: ["'self'", "data:", "https:"],
-               connectSrc: ["'self'", "https://api.example.com"],
-               objectSrc: ["'none'"],
-               upgradeInsecureRequests: [],
-            },
-         },
-         hsts: {
-            maxAge: 31536000,
-            includeSubDomains: true,
-            preload: true,
-         },
-         noSniff: true,
-         xssFilter: true,
-         referrerPolicy: { policy: "strict-origin-when-cross-origin" },
-      }),
-   );
+  app.use(
+    helmet({
+      contentSecurityPolicy: {
+        directives: {
+          defaultSrc: ["'self'"],
+          scriptSrc: [
+            "'self'",
+            "'unsafe-inline'",
+            "https://cdnjs.cloudflare.com",
+          ],
+          styleSrc: [
+            "'self'",
+            "'unsafe-inline'",
+            "https://fonts.googleapis.com",
+          ],
+          fontSrc: ["'self'", "https://fonts.gstatic.com"],
+          imgSrc: ["'self'", "data:", "https:"],
+          connectSrc: ["'self'", "https://api.example.com"],
+          objectSrc: ["'none'"],
+          upgradeInsecureRequests: [],
+        },
+      },
+      hsts: {
+        maxAge: 31536000,
+        includeSubDomains: true,
+        preload: true,
+      },
+      noSniff: true,
+      xssFilter: true,
+      referrerPolicy: { policy: "strict-origin-when-cross-origin" },
+    })
+  );
 }
 ```
 
@@ -785,150 +785,543 @@ return [
 name: Security Tests
 
 on:
-   push:
-      branches: [main, develop]
-   pull_request:
-      branches: [main]
-   schedule:
-      - cron: "0 2 * * 0" # Semanal, domingos a las 2 AM
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+  schedule:
+    - cron: "0 2 * * 0" # Semanal, domingos a las 2 AM
 
 jobs:
-   dependency-check:
-      runs-on: ubuntu-latest
-      steps:
-         - uses: actions/checkout@v3
+  dependency-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
 
-         - name: Setup PHP
-           uses: shivammathur/setup-php@v2
-           with:
-              php-version: "8.2"
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.2"
 
-         - name: Setup Node.js
-           uses: actions/setup-node@v3
-           with:
-              node-version: "18"
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18"
 
-         - name: Install PHP dependencies
-           run: composer install --no-dev
+      - name: Install PHP dependencies
+        run: composer install --no-dev
 
-         - name: Install Node dependencies
-           run: npm ci
+      - name: Install Node dependencies
+        run: npm ci
 
-         - name: Run PHP security audit
-           run: composer audit
+      - name: Run PHP security audit
+        run: composer audit
 
-         - name: Run npm audit
-           run: npm audit --audit-level=moderate
+      - name: Run npm audit
+        run: npm audit --audit-level=moderate
 
-         - name: Run OWASP Dependency Check
-           uses: dependency-check/Dependency-Check_Action@main
-           with:
-              project: "mi-proyecto"
-              path: "."
-              format: "JSON"
+      - name: Run OWASP Dependency Check
+        uses: dependency-check/Dependency-Check_Action@main
+        with:
+          project: "mi-proyecto"
+          path: "."
+          format: "JSON"
 
-         - name: Upload dependency check results
-           uses: actions/upload-artifact@v3
-           with:
-              name: dependency-check-report
-              path: reports/dependency-check-report.json
+      - name: Upload dependency check results
+        uses: actions/upload-artifact@v3
+        with:
+          name: dependency-check-report
+          path: reports/dependency-check-report.json
 
-   static-analysis:
-      runs-on: ubuntu-latest
-      steps:
-         - uses: actions/checkout@v3
+  static-analysis:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
 
-         - name: Setup PHP
-           uses: shivammathur/setup-php@v2
-           with:
-              php-version: "8.2"
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.2"
 
-         - name: Install dependencies
-           run: composer install
+      - name: Install dependencies
+        run: composer install
 
-         - name: Run PHPStan security analysis
-           run: ./vendor/bin/phpstan analyse --error-format=github
+      - name: Run PHPStan security analysis
+        run: ./vendor/bin/phpstan analyse --error-format=github
 
-         - name: Run ESLint security rules
-           run: npx eslint src/ --ext .ts,.tsx --format=json --output-file=eslint-security-report.json
+      - name: Run ESLint security rules
+        run: npx eslint src/ --ext .ts,.tsx --format=json --output-file=eslint-security-report.json
 
-         - name: Upload static analysis results
-           uses: actions/upload-artifact@v3
-           with:
-              name: static-analysis-report
-              path: eslint-security-report.json
+      - name: Upload static analysis results
+        uses: actions/upload-artifact@v3
+        with:
+          name: static-analysis-report
+          path: eslint-security-report.json
 
-   penetration-testing:
-      runs-on: ubuntu-latest
-      services:
-         mysql:
-            image: mysql:8.0
-            env:
-               MYSQL_ROOT_PASSWORD: password
-               MYSQL_DATABASE: test_db
-            ports:
-               - 3306:3306
+  penetration-testing:
+    runs-on: ubuntu-latest
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: password
+          MYSQL_DATABASE: test_db
+        ports:
+          - 3306:3306
 
-      steps:
-         - uses: actions/checkout@v3
+    steps:
+      - uses: actions/checkout@v3
 
-         - name: Setup application
-           run: |
-              composer install
-              php artisan migrate --seed
-              php artisan serve &
-              sleep 10
+      - name: Setup application
+        run: |
+          composer install
+          php artisan migrate --seed
+          php artisan serve &
+          sleep 10
 
-         - name: Install OWASP ZAP
-           run: |
-              wget -q https://github.com/zaproxy/zaproxy/releases/download/v2.12.0/ZAP_2.12.0_Linux.tar.gz
-              tar -xzf ZAP_2.12.0_Linux.tar.gz
+      - name: Install OWASP ZAP
+        run: |
+          wget -q https://github.com/zaproxy/zaproxy/releases/download/v2.12.0/ZAP_2.12.0_Linux.tar.gz
+          tar -xzf ZAP_2.12.0_Linux.tar.gz
 
-         - name: Run ZAP baseline scan
-           run: |
-              ./ZAP_2.12.0/zap.sh -cmd -quickurl http://localhost:8000 \
-                -quickprogress -quickout zap-baseline-report.html
+      - name: Run ZAP baseline scan
+        run: |
+          ./ZAP_2.12.0/zap.sh -cmd -quickurl http://localhost:8000 \
+            -quickprogress -quickout zap-baseline-report.html
 
-         - name: Run ZAP full scan
-           run: |
-              ./ZAP_2.12.0/zap.sh -cmd -quickurl http://localhost:8000 \
-                -quickattack -quickprogress -quickout zap-full-report.html
+      - name: Run ZAP full scan
+        run: |
+          ./ZAP_2.12.0/zap.sh -cmd -quickurl http://localhost:8000 \
+            -quickattack -quickprogress -quickout zap-full-report.html
 
-         - name: Upload ZAP reports
-           uses: actions/upload-artifact@v3
-           with:
-              name: zap-reports
-              path: zap-*.html
+      - name: Upload ZAP reports
+        uses: actions/upload-artifact@v3
+        with:
+          name: zap-reports
+          path: zap-*.html
 
-   security-tests:
-      runs-on: ubuntu-latest
-      steps:
-         - uses: actions/checkout@v3
+  security-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
 
-         - name: Setup PHP
-           uses: shivammathur/setup-php@v2
-           with:
-              php-version: "8.2"
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.2"
 
-         - name: Install dependencies
-           run: composer install
+      - name: Install dependencies
+        run: composer install
 
-         - name: Run security tests
-           run: ./vendor/bin/phpunit --testsuite=Security
+      - name: Run security tests
+        run: ./vendor/bin/phpunit --testsuite=Security
 
-         - name: Generate security test report
-           run: |
-              ./vendor/bin/phpunit --testsuite=Security \
-                --coverage-html=coverage-security \
-                --log-junit=security-tests.xml
+      - name: Generate security test report
+        run: |
+          ./vendor/bin/phpunit --testsuite=Security \
+            --coverage-html=coverage-security \
+            --log-junit=security-tests.xml
 
-         - name: Upload test results
-           uses: actions/upload-artifact@v3
-           with:
-              name: security-test-results
-              path: |
-                 coverage-security/
-                 security-tests.xml
+      - name: Upload test results
+        uses: actions/upload-artifact@v3
+        with:
+          name: security-test-results
+          path: |
+            coverage-security/
+            security-tests.xml
+```
+
+### 8. Prácticas Inseguras Comunes
+
+#### Errores Críticos de Seguridad a Evitar
+
+##### Backend - Laravel
+
+```php
+<?php
+// ❌ NUNCA HAGAS ESTO - Query directo sin sanitizar
+$userId = $_GET['user_id']; // Sin validación
+$user = DB::select("SELECT * FROM users WHERE id = $userId"); // SQL Injection
+
+// ❌ NUNCA HAGAS ESTO - Passwords en texto plano
+$user->password = request('password'); // Sin hash
+
+// ❌ NUNCA HAGAS ESTO - Datos sensibles en logs
+Log::info('User login', ['password' => request('password')]);
+
+// ❌ NUNCA HAGAS ESTO - Exposición de errores en producción
+if (!$user) {
+    throw new Exception('Database connection failed: ' . $dbError);
+}
+
+// ❌ NUNCA HAGAS ESTO - Mass assignment sin protección
+$user = User::create(request()->all()); // Permite asignar cualquier campo
+
+// ✅ FORMA CORRECTA
+$validatedData = request()->validate([
+    'name' => 'required|string|max:255',
+    'email' => 'required|email|unique:users',
+    'password' => 'required|string|min:8|confirmed'
+]);
+
+$user = User::create([
+    'name' => $validatedData['name'],
+    'email' => $validatedData['email'],
+    'password' => Hash::make($validatedData['password'])
+]);
+```
+
+##### Frontend - React/TypeScript
+
+```typescript
+// ❌ NUNCA HAGAS ESTO - Almacenar tokens en localStorage sin cifrar
+localStorage.setItem("auth_token", token); // Vulnerable a XSS
+
+// ❌ NUNCA HAGAS ESTO - Inyección directa de HTML
+function UserProfile({ userName }: { userName: string }) {
+  return <div dangerouslySetInnerHTML={{ __html: userName }} />;
+}
+
+// ❌ NUNCA HAGAS ESTO - Exposición de datos sensibles en cliente
+const API_SECRET = "secret123"; // Visible en bundle
+const config = {
+  apiUrl: "https://api.example.com",
+  secretKey: API_SECRET, // Nunca en frontend
+};
+
+// ❌ NUNCA HAGAS ESTO - Validación solo en frontend
+function submitForm(data: FormData) {
+  if (data.email.includes("@")) {
+    // Validación insuficiente
+    api.post("/users", data); // Sin validación backend
+  }
+}
+
+// ✅ FORMA CORRECTA
+import DOMPurify from "dompurify";
+
+function UserProfile({ userName }: { userName: string }) {
+  const sanitizedName = DOMPurify.sanitize(userName);
+  return <div>{sanitizedName}</div>; // Usar como texto, no HTML
+}
+
+// Token en httpOnly cookie (manejado por backend)
+// Validación tanto en frontend como backend
+function submitForm(data: FormData) {
+  const validatedData = validateFormData(data); // Frontend validation
+  api.post("/users", validatedData); // Backend también valida
+}
+```
+
+#### Configuraciones Inseguras Típicas
+
+##### Variables de Entorno Expuestas
+
+```bash
+# ❌ NUNCA EN .env.example o commits
+APP_KEY=base64:real-secret-key
+DB_PASSWORD=real-database-password
+JWT_SECRET=actual-jwt-secret
+
+# ✅ CORRECTO en .env.example
+APP_KEY=
+DB_PASSWORD=
+JWT_SECRET=
+```
+
+##### Headers de Seguridad Faltantes
+
+```nginx
+# ❌ Configuración insegura de Nginx
+server {
+    listen 80;
+    server_name example.com;
+
+    location / {
+        # Sin headers de seguridad
+        proxy_pass http://localhost:8000;
+    }
+}
+
+# ✅ Configuración segura de Nginx
+server {
+    listen 443 ssl http2;
+    server_name example.com;
+
+    # SSL/TLS Configuration
+    ssl_certificate /path/to/cert.pem;
+    ssl_certificate_key /path/to/key.pem;
+    ssl_protocols TLSv1.2 TLSv1.3;
+
+    # Security Headers
+    add_header X-Frame-Options "SAMEORIGIN" always;
+    add_header X-Content-Type-Options "nosniff" always;
+    add_header X-XSS-Protection "1; mode=block" always;
+    add_header Referrer-Policy "strict-origin-when-cross-origin" always;
+    add_header Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline';" always;
+    add_header Strict-Transport-Security "max-age=31536000; includeSubDomains; preload" always;
+
+    location / {
+        proxy_pass http://localhost:8000;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+}
+```
+
+#### Code Review Checklist de Seguridad
+
+##### Backend Security Checklist
+
+```php
+<?php
+/**
+ * Checklist de Revisión de Código - Backend
+ */
+
+// ✅ Validación de Entrada
+class SecurityChecklist
+{
+    // 1. ¿Se validan TODOS los inputs del usuario?
+    public function validateInput($request) {
+        return $request->validate([
+            'email' => 'required|email|max:255',
+            'name' => 'required|string|max:100|regex:/^[a-zA-Z\s]+$/',
+            'age' => 'required|integer|min:18|max:120'
+        ]);
+    }
+
+    // 2. ¿Se usa prepared statements para queries?
+    public function getUserById($id) {
+        // ✅ Correcto
+        return DB::table('users')->where('id', $id)->first();
+
+        // ❌ Incorrecto
+        // return DB::select("SELECT * FROM users WHERE id = $id");
+    }
+
+    // 3. ¿Se hasean las contraseñas?
+    public function createUser($data) {
+        return User::create([
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']) // ✅ Hasheada
+        ]);
+    }
+
+    // 4. ¿Se implementa autorización granular?
+    public function updateUser(Request $request, $userId) {
+        $this->authorize('update', User::find($userId)); // ✅ Autorización
+
+        // Lógica de actualización
+    }
+
+    // 5. ¿Se protegen rutas sensibles?
+    // En routes/api.php
+    // Route::middleware(['auth:sanctum', 'throttle:60,1'])->group(function () {
+    //     Route::apiResource('users', UserController::class);
+    // });
+}
+```
+
+##### Frontend Security Checklist
+
+```typescript
+/**
+ * Checklist de Revisión de Código - Frontend
+ */
+
+class FrontendSecurityChecklist {
+  // 1. ¿Se sanitiza contenido HTML?
+  static renderUserContent(content: string): string {
+    return DOMPurify.sanitize(content, {
+      ALLOWED_TAGS: ["p", "br", "strong", "em"],
+      ALLOWED_ATTR: [],
+    });
+  }
+
+  // 2. ¿Se validan URLs antes de usar?
+  static isValidUrl(url: string): boolean {
+    try {
+      const parsed = new URL(url);
+      return ["http:", "https:"].includes(parsed.protocol);
+    } catch {
+      return false;
+    }
+  }
+
+  // 3. ¿Se manejan errores sin exponer información sensible?
+  static handleApiError(error: any): string {
+    // ❌ Incorrecto - expone información técnica
+    // return error.response?.data?.message || error.message;
+
+    // ✅ Correcto - mensaje genérico para el usuario
+    if (error.response?.status === 401) {
+      return "Sesión expirada. Por favor, inicia sesión nuevamente.";
+    }
+    if (error.response?.status >= 500) {
+      return "Error del servidor. Intenta nuevamente más tarde.";
+    }
+    return "Ha ocurrido un error. Verifica los datos e intenta nuevamente.";
+  }
+
+  // 4. ¿Se implementa CSP correctamente?
+  static generateNonce(): string {
+    const array = new Uint8Array(16);
+    crypto.getRandomValues(array);
+    return Array.from(array, (byte) => byte.toString(16).padStart(2, "0")).join(
+      ""
+    );
+  }
+
+  // 5. ¿Se validan archivos antes de subir?
+  static validateFile(file: File): { valid: boolean; error?: string } {
+    const allowedTypes = ["image/jpeg", "image/png", "image/gif"];
+    const maxSize = 5 * 1024 * 1024; // 5MB
+
+    if (!allowedTypes.includes(file.type)) {
+      return { valid: false, error: "Tipo de archivo no permitido" };
+    }
+
+    if (file.size > maxSize) {
+      return { valid: false, error: "Archivo demasiado grande" };
+    }
+
+    return { valid: true };
+  }
+}
+```
+
+#### Antipatrones de Seguridad
+
+##### Gestión de Sesiones Insegura
+
+```php
+<?php
+// ❌ ANTIPATRÓN: Sesiones inseguras
+class InsecureSessionManagement
+{
+    public function login($email, $password) {
+        $user = User::where('email', $email)->first();
+
+        if ($user && $user->password === $password) { // Sin hash
+            session(['user_id' => $user->id]); // Sin regenerar session ID
+            session(['is_admin' => $user->is_admin]); // Datos críticos en sesión
+            return redirect('/dashboard');
+        }
+    }
+
+    public function isAdmin() {
+        return session('is_admin') === true; // Confía en datos de sesión
+    }
+}
+
+// ✅ PATRÓN CORRECTO: Sesiones seguras
+class SecureSessionManagement
+{
+    public function login($email, $password) {
+        $user = User::where('email', $email)->first();
+
+        if ($user && Hash::check($password, $user->password)) {
+            session()->regenerate(); // Regenerar session ID
+            session(['user_id' => $user->id]); // Solo ID en sesión
+
+            // Log de auditoría
+            Log::info('User login', [
+                'user_id' => $user->id,
+                'ip' => request()->ip(),
+                'user_agent' => request()->userAgent()
+            ]);
+
+            return redirect('/dashboard');
+        }
+    }
+
+    public function isAdmin() {
+        $user = Auth::user();
+        return $user && $user->hasRole('admin'); // Verificar en BD
+    }
+}
+```
+
+##### Manejo Inseguro de Archivos
+
+```php
+<?php
+// ❌ ANTIPATRÓN: Subida de archivos insegura
+class InsecureFileUpload
+{
+    public function upload(Request $request) {
+        $file = $request->file('upload');
+        $filename = $file->getClientOriginalName(); // Nombre del cliente
+
+        // Sin validación de tipo o tamaño
+        $file->move(public_path('uploads'), $filename); // Directorio público
+
+        return response()->json(['url' => asset("uploads/$filename")]);
+    }
+}
+
+// ✅ PATRÓN CORRECTO: Subida de archivos segura
+class SecureFileUpload
+{
+    private const ALLOWED_TYPES = ['jpg', 'jpeg', 'png', 'gif', 'pdf'];
+    private const MAX_SIZE = 5 * 1024 * 1024; // 5MB
+
+    public function upload(Request $request) {
+        $request->validate([
+            'upload' => [
+                'required',
+                'file',
+                'max:5120', // 5MB
+                'mimes:jpg,jpeg,png,gif,pdf'
+            ]
+        ]);
+
+        $file = $request->file('upload');
+
+        // Validaciones adicionales
+        if (!$this->isValidFileType($file)) {
+            throw new ValidationException('Tipo de archivo no permitido');
+        }
+
+        if (!$this->isValidFileSize($file)) {
+            throw new ValidationException('Archivo demasiado grande');
+        }
+
+        // Generar nombre seguro
+        $extension = $file->getClientOriginalExtension();
+        $filename = Str::uuid() . '.' . $extension;
+
+        // Almacenar en directorio privado
+        $path = $file->storeAs('private/uploads', $filename);
+
+        // Registrar en BD para control de acceso
+        $fileRecord = FileUpload::create([
+            'original_name' => $file->getClientOriginalName(),
+            'stored_name' => $filename,
+            'path' => $path,
+            'size' => $file->getSize(),
+            'mime_type' => $file->getMimeType(),
+            'user_id' => auth()->id()
+        ]);
+
+        return response()->json([
+            'id' => $fileRecord->id,
+            'name' => $fileRecord->original_name
+        ]);
+    }
+
+    private function isValidFileType($file): bool {
+        $extension = strtolower($file->getClientOriginalExtension());
+        return in_array($extension, self::ALLOWED_TYPES);
+    }
+
+    private function isValidFileSize($file): bool {
+        return $file->getSize() <= self::MAX_SIZE;
+    }
+}
 ```
 
 ## Tips
@@ -954,73 +1347,72 @@ jobs:
 import DOMPurify from "dompurify";
 
 export class SecurityUtils {
-   // Sanitizar HTML para prevenir XSS
-   static sanitizeHtml(dirty: string): string {
-      return DOMPurify.sanitize(dirty, {
-         ALLOWED_TAGS: ["p", "br", "strong", "em", "u", "a"],
-         ALLOWED_ATTR: ["href", "target"],
-         ALLOW_DATA_ATTR: false,
-      });
-   }
+  // Sanitizar HTML para prevenir XSS
+  static sanitizeHtml(dirty: string): string {
+    return DOMPurify.sanitize(dirty, {
+      ALLOWED_TAGS: ["p", "br", "strong", "em", "u", "a"],
+      ALLOWED_ATTR: ["href", "target"],
+      ALLOW_DATA_ATTR: false,
+    });
+  }
 
-   // Validar y sanitizar URLs
-   static sanitizeUrl(url: string): string {
-      try {
-         const parsedUrl = new URL(url);
+  // Validar y sanitizar URLs
+  static sanitizeUrl(url: string): string {
+    try {
+      const parsedUrl = new URL(url);
 
-         // Solo permitir http y https
-         if (!["http:", "https:"].includes(parsedUrl.protocol)) {
-            return "#";
-         }
-
-         return parsedUrl.href;
-      } catch {
-         return "#";
+      // Solo permitir http y https
+      if (!["http:", "https:"].includes(parsedUrl.protocol)) {
+        return "#";
       }
-   }
 
-   // Escapar caracteres especiales para prevenir injection
-   static escapeHtml(unsafe: string): string {
-      return unsafe
-         .replace(/&/g, "&amp;")
-         .replace(/</g, "&lt;")
-         .replace(/>/g, "&gt;")
-         .replace(/"/g, "&quot;")
-         .replace(/'/g, "&#039;");
-   }
+      return parsedUrl.href;
+    } catch {
+      return "#";
+    }
+  }
 
-   // Validar tokens JWT en el frontend
-   static isValidJwtFormat(token: string): boolean {
-      const parts = token.split(".");
-      return parts.length === 3;
-   }
+  // Escapar caracteres especiales para prevenir injection
+  static escapeHtml(unsafe: string): string {
+    return unsafe
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+  }
 
-   // Generar nonce para CSP
-   static generateNonce(): string {
-      const array = new Uint8Array(16);
-      crypto.getRandomValues(array);
-      return Array.from(array, (byte) => byte.toString(16).padStart(2, "0"))
-         .join(
-            "",
-         );
-   }
+  // Validar tokens JWT en el frontend
+  static isValidJwtFormat(token: string): boolean {
+    const parts = token.split(".");
+    return parts.length === 3;
+  }
 
-   // Validar contraseña segura
-   static isStrongPassword(password: string): boolean {
-      const minLength = 8;
-      const hasUpperCase = /[A-Z]/.test(password);
-      const hasLowerCase = /[a-z]/.test(password);
-      const hasNumbers = /\d/.test(password);
-      const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+  // Generar nonce para CSP
+  static generateNonce(): string {
+    const array = new Uint8Array(16);
+    crypto.getRandomValues(array);
+    return Array.from(array, (byte) => byte.toString(16).padStart(2, "0")).join(
+      ""
+    );
+  }
 
-      return (
-         password.length >= minLength &&
-         hasUpperCase &&
-         hasLowerCase &&
-         hasNumbers &&
-         hasSpecialChar
-      );
-   }
+  // Validar contraseña segura
+  static isStrongPassword(password: string): boolean {
+    const minLength = 8;
+    const hasUpperCase = /[A-Z]/.test(password);
+    const hasLowerCase = /[a-z]/.test(password);
+    const hasNumbers = /\d/.test(password);
+    const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+
+    return (
+      password.length >= minLength &&
+      hasUpperCase &&
+      hasLowerCase &&
+      hasNumbers &&
+      hasSpecialChar
+    );
+  }
 }
 ```
 
