@@ -73,10 +73,10 @@ la infraestructura.
 
 ## 📋 Información General
 
-- [ ] **Número de ticket/issue**: _______________
-- [ ] **Desarrollador responsable**: _______________
-- [ ] **Revisor asignado**: _______________
-- [ ] **Fecha de revisión**: _______________
+- [ ] **Número de ticket/issue**: **\*\***\_\_\_**\*\***
+- [ ] **Desarrollador responsable**: **\*\***\_\_\_**\*\***
+- [ ] **Revisor asignado**: **\*\***\_\_\_**\*\***
+- [ ] **Fecha de revisión**: **\*\***\_\_\_**\*\***
 - [ ] **Entorno objetivo**: [ ] Dev [ ] Staging [ ] Production
 
 ## 🏗️ Diseño y Estructura
@@ -218,16 +218,16 @@ la infraestructura.
 
 ### Revisiones Técnicas
 
-- [ ] **Database Administrator**: _______________________ Fecha: _______
-- [ ] **Senior Developer**: _______________________ Fecha: _______
-- [ ] **Architecture Review**: _______________________ Fecha: _______
-- [ ] **Security Review**: _______________________ Fecha: _______
+- [ ] **Database Administrator**: \***\*\*\*\*\***\_\_\_\***\*\*\*\*\*** Fecha: **\_\_\_**
+- [ ] **Senior Developer**: \***\*\*\*\*\***\_\_\_\***\*\*\*\*\*** Fecha: **\_\_\_**
+- [ ] **Architecture Review**: \***\*\*\*\*\***\_\_\_\***\*\*\*\*\*** Fecha: **\_\_\_**
+- [ ] **Security Review**: \***\*\*\*\*\***\_\_\_\***\*\*\*\*\*** Fecha: **\_\_\_**
 
 ### Aprobaciones de Negocio
 
-- [ ] **Product Owner**: _______________________ Fecha: _______
-- [ ] **Technical Lead**: _______________________ Fecha: _______
-- [ ] **DevOps/SRE**: _______________________ Fecha: _______
+- [ ] **Product Owner**: \***\*\*\*\*\***\_\_\_\***\*\*\*\*\*** Fecha: **\_\_\_**
+- [ ] **Technical Lead**: \***\*\*\*\*\***\_\_\_\***\*\*\*\*\*** Fecha: **\_\_\_**
+- [ ] **DevOps/SRE**: \***\*\*\*\*\***\_\_\_\***\*\*\*\*\*** Fecha: **\_\_\_**
 
 ## 📝 Comentarios y Observaciones
 
@@ -263,7 +263,7 @@ la infraestructura.
 - [ ] **Aprobaciones obtenidas**
 - [ ] **Ready for deployment**
 
-**Firma del revisor:** _______________________ **Fecha:** _______
+**Firma del revisor:** \***\*\*\*\*\***\_\_\_\***\*\*\*\*\*** **Fecha:** **\_\_\_**
 ```
 
 ### 2. Scripts de Validación Automatizada
@@ -291,7 +291,7 @@ class SchemaValidator
         $this->validateConstraints();
         $this->validateDataTypes();
         $this->validateSecuritySettings();
-        
+
         return [
             'violations' => $this->violations,
             'warnings' => $this->warnings,
@@ -302,13 +302,13 @@ class SchemaValidator
     private function validateNamingConventions(): void
     {
         $tables = $this->getAllTables();
-        
+
         foreach ($tables as $table) {
             // Validar nombre de tabla
             if (!$this->isValidTableName($table)) {
                 $this->violations[] = "Table '{$table}' doesn't follow naming convention (should be plural, snake_case)";
             }
-            
+
             // Validar nombres de columnas
             $columns = Schema::getColumnListing($table);
             foreach ($columns as $column) {
@@ -316,7 +316,7 @@ class SchemaValidator
                     $this->violations[] = "Column '{$table}.{$column}' doesn't follow naming convention (should be snake_case)";
                 }
             }
-            
+
             // Validar nombres de índices
             $indexes = $this->getTableIndexes($table);
             foreach ($indexes as $index) {
@@ -330,7 +330,7 @@ class SchemaValidator
     private function validateIndexStrategy(): void
     {
         $tables = $this->getAllTables();
-        
+
         foreach ($tables as $table) {
             // Verificar que todas las FK tienen índices
             $foreignKeys = $this->getForeignKeys($table);
@@ -339,13 +339,13 @@ class SchemaValidator
                     $this->violations[] = "Foreign key '{$table}.{$fk['column']}' should have an index";
                 }
             }
-            
+
             // Verificar índices redundantes
             $redundantIndexes = $this->findRedundantIndexes($table);
             foreach ($redundantIndexes as $redundant) {
                 $this->warnings[] = "Potentially redundant index '{$redundant}' on table '{$table}'";
             }
-            
+
             // Verificar índices no utilizados
             $unusedIndexes = $this->findUnusedIndexes($table);
             foreach ($unusedIndexes as $unused) {
@@ -357,16 +357,16 @@ class SchemaValidator
     private function validateConstraints(): void
     {
         $tables = $this->getAllTables();
-        
+
         foreach ($tables as $table) {
             // Verificar que tablas principales tienen PK
             if (!$this->hasPrimaryKey($table)) {
                 $this->violations[] = "Table '{$table}' must have a primary key";
             }
-            
+
             // Verificar constraints de validación
             $this->validateBusinessConstraints($table);
-            
+
             // Verificar integridad referencial
             $this->validateReferentialIntegrity($table);
         }
@@ -375,17 +375,17 @@ class SchemaValidator
     private function validateDataTypes(): void
     {
         $tables = $this->getAllTables();
-        
+
         foreach ($tables as $table) {
             $columns = $this->getColumnDetails($table);
-            
+
             foreach ($columns as $column) {
                 // Validar tipos de datos apropiados
                 $this->validateColumnDataType($table, $column);
-                
+
                 // Verificar campos NOT NULL apropiados
                 $this->validateNullability($table, $column);
-                
+
                 // Verificar valores por defecto
                 $this->validateDefaultValues($table, $column);
             }
@@ -396,13 +396,13 @@ class SchemaValidator
     {
         // Verificar usuarios y permisos
         $this->validateDatabaseUsers();
-        
+
         // Verificar configuración SSL
         $this->validateSSLConfiguration();
-        
+
         // Verificar logging de auditoría
         $this->validateAuditLogging();
-        
+
         // Verificar configuración de backup
         $this->validateBackupConfiguration();
     }
@@ -428,13 +428,13 @@ class SchemaValidator
             '/^idx_' . $table . '_.*$/',      // Regular index
             '/^fk_' . $table . '_.*$/',       // Foreign key
         ];
-        
+
         foreach ($patterns as $pattern) {
             if (preg_match($pattern, $indexName)) {
                 return true;
             }
         }
-        
+
         return false;
     }
 
@@ -448,7 +448,7 @@ class SchemaValidator
     private function getTableIndexes(string $table): array
     {
         $indexes = DB::select("SHOW INDEX FROM {$table}");
-        
+
         return array_map(function($index) {
             return [
                 'name' => $index->Key_name,
@@ -467,7 +467,7 @@ class SchemaValidator
                 $this->warnings[] = "Table '{$table}' should have email format validation constraint";
             }
         }
-        
+
         // Verificar campos monetarios son positivos
         $moneyColumns = ['price', 'cost', 'amount', 'salary'];
         foreach ($moneyColumns as $column) {
@@ -483,12 +483,12 @@ class SchemaValidator
     private function hasCheckConstraint(string $table, string $column): bool
     {
         $constraints = DB::select("
-            SELECT CONSTRAINT_NAME 
-            FROM INFORMATION_SCHEMA.CHECK_CONSTRAINTS 
-            WHERE CONSTRAINT_SCHEMA = DATABASE() 
+            SELECT CONSTRAINT_NAME
+            FROM INFORMATION_SCHEMA.CHECK_CONSTRAINTS
+            WHERE CONSTRAINT_SCHEMA = DATABASE()
             AND CONSTRAINT_NAME LIKE '%{$table}%{$column}%'
         ");
-        
+
         return !empty($constraints);
     }
 
@@ -519,16 +519,16 @@ class ValidateSchemaCommand extends Command
     public function handle(): int
     {
         $this->info('🔍 Validating database schema...');
-        
+
         $validator = new SchemaValidator();
         $results = $validator->validateSchema();
-        
+
         $this->displayResults($results);
-        
+
         if ($this->option('report')) {
             $this->generateReport($results);
         }
-        
+
         return $results['status'] === 'PASS' ? 0 : 1;
     }
 
@@ -558,7 +558,7 @@ class ValidateSchemaCommand extends Command
     {
         $reportPath = $this->option('report');
         $report = $this->buildHtmlReport($results);
-        
+
         file_put_contents($reportPath, $report);
         $this->info("📄 Report generated: {$reportPath}");
     }
@@ -597,7 +597,7 @@ class PerformanceChecker
     private function analyzeSlowQueries(): array
     {
         $slowQueries = DB::select("
-            SELECT 
+            SELECT
                 sql_text,
                 exec_count,
                 avg_timer_wait/1000000000 as avg_time_seconds,
@@ -606,10 +606,10 @@ class PerformanceChecker
                 sum_rows_sent,
                 first_seen,
                 last_seen
-            FROM performance_schema.events_statements_summary_by_digest 
+            FROM performance_schema.events_statements_summary_by_digest
             WHERE schema_name = DATABASE()
             AND avg_timer_wait > 1000000000  -- > 1 second
-            ORDER BY avg_timer_wait DESC 
+            ORDER BY avg_timer_wait DESC
             LIMIT 20
         ");
 
@@ -621,7 +621,7 @@ class PerformanceChecker
                 'executions' => $query->exec_count,
                 'rows_examined' => $query->sum_rows_examined,
                 'rows_sent' => $query->sum_rows_sent,
-                'efficiency' => $query->sum_rows_sent > 0 ? 
+                'efficiency' => $query->sum_rows_sent > 0 ?
                     round($query->sum_rows_examined / $query->sum_rows_sent, 2) : 0,
                 'priority' => $this->calculatePriority($query)
             ];
@@ -632,7 +632,7 @@ class PerformanceChecker
     {
         // Analizar índices no utilizados
         $unusedIndexes = DB::select("
-            SELECT 
+            SELECT
                 object_schema,
                 object_name,
                 index_name
@@ -646,7 +646,7 @@ class PerformanceChecker
 
         // Analizar índices más utilizados
         $mostUsedIndexes = DB::select("
-            SELECT 
+            SELECT
                 object_name,
                 index_name,
                 count_star as usage_count,
@@ -668,7 +668,7 @@ class PerformanceChecker
     private function analyzeTableSizes(): array
     {
         $tableSizes = DB::select("
-            SELECT 
+            SELECT
                 table_name,
                 table_rows,
                 ROUND(((data_length + index_length) / 1024 / 1024), 2) AS size_mb,
@@ -706,7 +706,7 @@ class PerformanceChecker
     private function calculatePriority(object $query): string
     {
         $impact = $query->avg_time_seconds * $query->exec_count;
-        
+
         if ($impact > 100) return 'CRITICAL';
         if ($impact > 10) return 'HIGH';
         if ($impact > 1) return 'MEDIUM';
@@ -751,7 +751,7 @@ class SecurityAuditor
     {
         // Verificar usuarios con permisos excesivos
         $users = DB::select("
-            SELECT 
+            SELECT
                 User,
                 Host,
                 Select_priv,
@@ -795,11 +795,11 @@ class SecurityAuditor
 
         foreach ($tables as $table) {
             $columns = Schema::getColumnListing($table);
-            
+
             foreach ($columns as $column) {
                 if ($this->isSensitiveColumn($column, $sensitiveColumns)) {
                     $protection = $this->checkColumnProtection($table, $column);
-                    
+
                     if (!$protection['encrypted'] && !$protection['hashed']) {
                         $findings[] = [
                             'table' => $table,
@@ -825,7 +825,7 @@ class SecurityAuditor
         // Verificar configuración de encriptación
         $sslStatus = DB::select("SHOW STATUS LIKE 'Ssl_cipher'");
         $tlsVersion = DB::select("SHOW STATUS LIKE 'Tls_version'");
-        
+
         return [
             'connection_encryption' => !empty($sslStatus[0]->Value),
             'tls_version' => $tlsVersion[0]->Value ?? 'Not configured',
@@ -924,7 +924,7 @@ class SecurityAuditor
     {
         $personalDataColumns = ['email', 'name', 'phone', 'address', 'birth_date'];
         $columns = Schema::getColumnListing($table);
-        
+
         foreach ($personalDataColumns as $personalColumn) {
             foreach ($columns as $column) {
                 if (strpos(strtolower($column), $personalColumn) !== false) {
@@ -932,7 +932,7 @@ class SecurityAuditor
                 }
             }
         }
-        
+
         return false;
     }
 
@@ -940,13 +940,13 @@ class SecurityAuditor
     {
         $consentColumns = ['consent_given', 'privacy_accepted', 'terms_accepted'];
         $columns = Schema::getColumnListing($table);
-        
+
         foreach ($consentColumns as $consentColumn) {
             if (in_array($consentColumn, $columns)) {
                 return true;
             }
         }
-        
+
         return false;
     }
 }
@@ -1065,6 +1065,6 @@ fi
 
 ## Navegación
 
-[⬅️ Checklist de Performance](./checklist-performance.md) |
+[⬅️ Estrategias de Caché](./estrategias-cache.md) |
 [🏠 README Principal](../../README.md) |
 [Revisión General del Código ➡️](./revision-general-codigo.md)

@@ -104,7 +104,7 @@ class DomainModelingWorkshop
     {
         echo "🎯 Domain Modeling Workshop: {$domain}\n";
         echo "================================\n\n";
-        
+
         $this->identifyEntities();
         $this->defineAttributes();
         $this->establishRelationships();
@@ -116,7 +116,7 @@ class DomainModelingWorkshop
     {
         echo "📋 Step 1: Entity Identification\n";
         echo "Identify nouns from business requirements:\n\n";
-        
+
         // Plantilla para identificación de entidades
         $template = [
             'core_entities' => [
@@ -143,7 +143,7 @@ class DomainModelingWorkshop
     {
         echo "🏷️  Step 2: Attribute Definition\n";
         echo "For each entity, define:\n\n";
-        
+
         $attributeTypes = [
             'identifier' => 'Unique identifier (UUID, ID)',
             'required' => 'Mandatory business attributes',
@@ -162,7 +162,7 @@ class DomainModelingWorkshop
     {
         echo "🔗 Step 3: Relationship Establishment\n";
         echo "Define how entities connect:\n\n";
-        
+
         $relationships = [
             'association' => 'Simple relationship between entities',
             'aggregation' => 'Whole-part relationship (weak ownership)',
@@ -180,7 +180,7 @@ class DomainModelingWorkshop
     {
         echo "✅ Step 4: Business Rules Validation\n";
         echo "Ensure model supports all business rules:\n\n";
-        
+
         $ruleCategories = [
             'constraints' => 'Data validation rules',
             'invariants' => 'Rules that must always be true',
@@ -198,7 +198,7 @@ class DomainModelingWorkshop
     {
         echo "📄 Step 5: Documentation Generation\n";
         echo "Create comprehensive documentation:\n\n";
-        
+
         echo "  - Entity-Relationship Diagram (ERD)\n";
         echo "  - Data Dictionary\n";
         echo "  - Business Rules Documentation\n";
@@ -228,7 +228,7 @@ erDiagram
         datetime updated_at
         datetime deleted_at
     }
-    
+
     ROLE {
         uuid id PK
         string name UK
@@ -236,7 +236,7 @@ erDiagram
         datetime created_at
         datetime updated_at
     }
-    
+
     PERMISSION {
         uuid id PK
         string name UK
@@ -246,20 +246,20 @@ erDiagram
         datetime created_at
         datetime updated_at
     }
-    
+
     USER_ROLE {
         uuid user_id FK
         uuid role_id FK
         datetime assigned_at
         uuid assigned_by FK
     }
-    
+
     ROLE_PERMISSION {
         uuid role_id FK
         uuid permission_id FK
         datetime created_at
     }
-    
+
     USER ||--o{ USER_ROLE : "has"
     ROLE ||--o{ USER_ROLE : "assigned_to"
     ROLE ||--o{ ROLE_PERMISSION : "grants"
@@ -329,7 +329,7 @@ class ModelValidationChecklist
         $this->validateRelationships($relationships);
         $this->validateBusinessRules();
         $this->validateNormalization();
-        
+
         return $this->validationResults;
     }
 
@@ -338,13 +338,13 @@ class ModelValidationChecklist
         foreach ($entities as $entity) {
             // Validar nomenclatura
             $this->checkNaming($entity);
-            
+
             // Validar atributos obligatorios
             $this->checkRequiredAttributes($entity);
-            
+
             // Validar tipos de datos
             $this->checkDataTypes($entity);
-            
+
             // Validar reglas de negocio
             $this->checkBusinessRules($entity);
         }
@@ -353,22 +353,22 @@ class ModelValidationChecklist
     private function checkNaming(array $entity): void
     {
         $issues = [];
-        
+
         // Verificar convenciones de nomenclatura
         if (!$this->isPascalCase($entity['name'])) {
             $issues[] = "Entity name should be PascalCase";
         }
-        
+
         if ($this->isPlural($entity['name'])) {
             $issues[] = "Entity name should be singular";
         }
-        
+
         foreach ($entity['attributes'] as $attr) {
             if (!$this->isSnakeCase($attr['name'])) {
                 $issues[] = "Attribute '{$attr['name']}' should be snake_case";
             }
         }
-        
+
         if (!empty($issues)) {
             $this->validationResults[$entity['name']]['naming'] = $issues;
         }
@@ -378,9 +378,9 @@ class ModelValidationChecklist
     {
         $requiredAttributes = ['id', 'created_at', 'updated_at'];
         $entityAttributes = array_column($entity['attributes'], 'name');
-        
+
         $missing = array_diff($requiredAttributes, $entityAttributes);
-        
+
         if (!empty($missing)) {
             $this->validationResults[$entity['name']]['missing_attributes'] = $missing;
         }
@@ -434,13 +434,13 @@ class DataDictionaryGenerator
     {
         $output = "# Data Dictionary\n\n";
         $output .= "Generated on: " . date('Y-m-d H:i:s') . "\n\n";
-        
+
         foreach ($model['entities'] as $entity) {
             $output .= $this->generateEntitySection($entity);
         }
-        
+
         $output .= $this->generateRelationshipsSummary($model['relationships']);
-        
+
         return $output;
     }
 
@@ -448,10 +448,10 @@ class DataDictionaryGenerator
     {
         $section = "## Entity: {$entity['name']}\n\n";
         $section .= "**Business Description**: {$entity['description']}\n\n";
-        
+
         $section .= "| Attribute | Type | Nullable | Default | Description | Business Rules |\n";
         $section .= "|-----------|------|----------|---------|-------------|----------------|\n";
-        
+
         foreach ($entity['attributes'] as $attr) {
             $section .= sprintf(
                 "| %s | %s | %s | %s | %s | %s |\n",
@@ -463,9 +463,9 @@ class DataDictionaryGenerator
                 $attr['business_rules'] ?? 'None'
             );
         }
-        
+
         $section .= "\n";
-        
+
         if (!empty($entity['indexes'])) {
             $section .= "### Indexes\n\n";
             foreach ($entity['indexes'] as $index) {
@@ -473,7 +473,7 @@ class DataDictionaryGenerator
             }
             $section .= "\n";
         }
-        
+
         return $section;
     }
 
@@ -482,7 +482,7 @@ class DataDictionaryGenerator
         $section = "## Relationships Summary\n\n";
         $section .= "| From Entity | To Entity | Type | Description |\n";
         $section .= "|-------------|-----------|------|-------------|\n";
-        
+
         foreach ($relationships as $rel) {
             $section .= sprintf(
                 "| %s | %s | %s | %s |\n",
@@ -492,7 +492,7 @@ class DataDictionaryGenerator
                 $rel['description']
             );
         }
-        
+
         return $section;
     }
 }
@@ -590,7 +590,7 @@ erDiagram
         datetime updated_at
         datetime deleted_at
     }
-    
+
     PRODUCT {
         uuid id PK
         string sku UK
@@ -603,7 +603,7 @@ erDiagram
         datetime updated_at
         datetime deleted_at
     }
-    
+
     ORDER {
         uuid id PK
         uuid customer_id FK
@@ -615,7 +615,7 @@ erDiagram
         datetime created_at
         datetime updated_at
     }
-    
+
     ORDER_ITEM {
         uuid id PK
         uuid order_id FK
@@ -625,7 +625,7 @@ erDiagram
         decimal line_total
         datetime created_at
     }
-    
+
     CUSTOMER ||--o{ ORDER : "places"
     ORDER ||--o{ ORDER_ITEM : "contains"
     PRODUCT ||--o{ ORDER_ITEM : "ordered_as"
@@ -644,7 +644,7 @@ erDiagram
         datetime created_at
         datetime updated_at
     }
-    
+
     CATEGORY {
         uuid id PK
         string name UK
@@ -654,7 +654,7 @@ erDiagram
         datetime created_at
         datetime updated_at
     }
-    
+
     POST {
         uuid id PK
         uuid author_id FK
@@ -669,7 +669,7 @@ erDiagram
         datetime updated_at
         datetime deleted_at
     }
-    
+
     TAG {
         uuid id PK
         string name UK
@@ -677,13 +677,13 @@ erDiagram
         datetime created_at
         datetime updated_at
     }
-    
+
     POST_TAG {
         uuid post_id FK
         uuid tag_id FK
         datetime created_at
     }
-    
+
     COMMENT {
         uuid id PK
         uuid post_id FK
@@ -695,7 +695,7 @@ erDiagram
         datetime created_at
         datetime updated_at
     }
-    
+
     AUTHOR ||--o{ POST : "writes"
     CATEGORY ||--o{ POST : "categorizes"
     POST ||--o{ POST_TAG : "tagged_with"
@@ -706,6 +706,6 @@ erDiagram
 
 ## Navegación
 
-[⬅️ Estructura de carpetas base](./estructura-carpetas.md) |
+[⬅️ Manejo de Imágenes](./manejo-imagenes.md) |
 [🏠 README Principal](../../README.md) |
 [Buenas prácticas de base de datos ➡️](./buenas-practicas-base-datos.md)

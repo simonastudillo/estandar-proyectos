@@ -725,6 +725,6 @@ class AuthTest extends TestCase
 
 ## Navegación
 
-[⬅️ APIs RESTful Versionadas](./apis-restful-versionadas.md) |
+[⬅️ Manejo Seguro de Archivos](./manejo-archivos-seguro.md) |
 [🏠 README Principal](../../README.md) |
 [Migraciones y Seeders ➡️](./migraciones-seeders.md)
