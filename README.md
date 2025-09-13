@@ -171,6 +171,7 @@ real, sin embargo el objetivo es utilizar en proyectos futuros.
 - [Code Review y Refactoring](./docs/step_07/code-review-refactoring.md)
 - [Auditoría de Calidad de Código](./docs/step_07/auditoria-calidad-codigo.md)
 - [Checklist de Performance](./docs/step_07/checklist-performance.md)
+- [Optimización del Frontend](./docs/step_07/optimizacion-frontend.md)
 - [Checklist de Revisión de Base de Datos](./docs/step_07/checklist-revision-base-datos.md)
 - [Revisión General del Código](./docs/step_07/revision-general-codigo.md)
 - [Optimización de Recursos](./docs/step_07/optimizacion-recursos.md)
