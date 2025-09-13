@@ -832,4 +832,4 @@ jobs:
 
 [⬅️ Mejoras continuas programadas](./mejoras-continuas-programadas.md) |
 [🏠 README Principal](../../README.md) |
-[Retroalimentación del equipo ➡️](./retroalimentacion-equipo.md)
+[Cómo Documentar Procesos ➡️](./como-documentar-procesos.md)

@@ -391,4 +391,4 @@ jobs:
 
 [⬅️ Stack Tecnológico](./stack-tecnologico.md) |
 [🏠 README Principal](../../README.md) |
-[Generación de Diagramas ➡️](./generacion-diagramas.md)
+[Herramientas por Lenguaje ➡️](./herramientas-por-lenguaje.md)
