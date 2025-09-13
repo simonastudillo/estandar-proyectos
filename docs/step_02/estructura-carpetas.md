@@ -216,4 +216,4 @@ src/features/auth/
 
 [⬅️ Convenciones y Estándares](./convenciones-estandares.md) |
 [🏠 README Principal](../../README.md) |
-[Diseño de Base de Datos ➡️](./diseno-base-datos.md)
+[Modelado de datos ➡️](./modelado-datos.md)

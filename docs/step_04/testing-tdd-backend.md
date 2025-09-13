@@ -848,6 +848,6 @@ jobs:
 
 ## Navegación
 
-[⬅️ Autenticación Laravel Sanctum](./autenticacion-laravel-sanctum.md) |
+[⬅️ Migraciones y Seeders](./migraciones-seeders.md) |
 [🏠 README Principal](../../README.md) |
 [Etapa 5: Desarrollo del frontend-web ➡️](../step_05/desarrollo-frontend-web.md)

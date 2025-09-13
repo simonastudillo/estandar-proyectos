@@ -498,5 +498,5 @@ FLUSH PRIVILEGES;
 
 ## Navegación
 
-[⬅️ Estructura de Carpetas](./estructura-carpetas.md) |
+[⬅️ Buenas prácticas de base de datos](./buenas-practicas-base-datos.md) |
 [🏠 README Principal](../../README.md) | [Diseño de APIs ➡️](./diseno-apis.md)

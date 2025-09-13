@@ -391,4 +391,4 @@ jobs:
 
 [⬅️ Stack Tecnológico](./stack-tecnologico.md) |
 [🏠 README Principal](../../README.md) |
-[Patrones de Diseño ➡️](./patrones-diseno.md)
+[Herramientas por Lenguaje ➡️](./herramientas-por-lenguaje.md)

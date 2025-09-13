@@ -1237,6 +1237,338 @@ jobs:
               LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
 ```
 
+## 🛠️ Resolución de Conflictos Git
+
+### ¿Qué son los Conflictos?
+
+Los **conflictos de Git** ocurren cuando dos o más desarrolladores modifican las
+mismas líneas de código en diferentes ramas, y Git no puede resolver
+automáticamente qué cambios mantener durante un merge o rebase.
+
+### Tipos de Conflictos Comunes
+
+#### **1. Conflictos de Merge**
+
+```bash
+# Situación típica
+git checkout develop
+git pull origin develop
+git checkout feature/nueva-funcionalidad
+git merge develop
+
+# Git muestra:
+Auto-merging src/utils/helpers.js
+CONFLICT (content): Merge conflict in src/utils/helpers.js
+Automatic merge failed; fix conflicts and then commit the result.
+```
+
+#### **2. Conflictos de Rebase**
+
+```bash
+# Durante un rebase interactivo
+git rebase -i develop
+
+# Git muestra:
+CONFLICT (content): Merge conflict in backend/app/Services/UserService.php
+error: could not apply abc1234... feat(user): add validation
+```
+
+#### **3. Conflictos en Pull Requests**
+
+GitHub/GitLab detecta conflictos antes del merge y requiere resolución manual.
+
+### 🔧 Proceso de Resolución
+
+#### **Paso 1: Identificar Archivos en Conflicto**
+
+```bash
+# Ver estado actual
+git status
+
+# Output típico:
+You have unmerged paths.
+  (fix conflicts and run "git commit")
+  (use "git merge --abort" to abort the merge)
+
+Unmerged paths:
+  (use "git add <file>..." to mark resolution)
+    both modified:   src/components/UserForm.tsx
+    both modified:   backend/app/Models/User.php
+```
+
+#### **Paso 2: Examinar el Conflicto**
+
+```typescript
+// Ejemplo en UserForm.tsx
+<<<<<<< HEAD
+const validateUser = (user: User): boolean => {
+  return user.email && user.name && user.age >= 18;
+};
+=======
+const validateUser = (user: UserData): boolean => {
+  return user.email && user.name && user.phone;
+};
+>>>>>>> feature/user-validation
+```
+
+**Explicación de marcadores**:
+
+- `<<<<<<< HEAD`: Cambios en la rama actual
+- `=======`: Separador entre versiones
+- `>>>>>>> branch-name`: Cambios de la rama que se está mergeando
+
+#### **Paso 3: Resolver Manualmente**
+
+```typescript
+// Resolución combinando ambas versiones
+const validateUser = (user: UserData): boolean => {
+   return user.email && user.name && user.phone && user.age >= 18;
+};
+```
+
+#### **Paso 4: Marcar como Resuelto**
+
+```bash
+# Agregar archivo resuelto
+git add src/components/UserForm.tsx
+
+# Verificar estado
+git status
+# Output: All conflicts fixed but you are still merging.
+```
+
+#### **Paso 5: Completar el Merge**
+
+```bash
+# Commit de resolución
+git commit -m "resolve: merge conflict in UserForm validation"
+
+# O si es durante rebase
+git rebase --continue
+```
+
+### 🛠️ Herramientas para Resolución
+
+#### **1. VS Code (Recomendado)**
+
+VS Code detecta automáticamente conflictos y ofrece opciones:
+
+- **Accept Current Change**: Mantener versión actual
+- **Accept Incoming Change**: Usar versión entrante
+- **Accept Both Changes**: Combinar ambas
+- **Compare Changes**: Ver diff lado a lado
+
+#### **2. Git Mergetool**
+
+```bash
+# Configurar herramienta por defecto
+git config --global merge.tool vscode
+git config --global mergetool.vscode.cmd 'code --wait $MERGED'
+
+# Usar mergetool
+git mergetool
+```
+
+#### **3. GitKraken / SourceTree**
+
+Herramientas gráficas que simplifican la resolución visual de conflictos.
+
+### 🚨 Prevención de Conflictos
+
+#### **1. Comunicación en Equipo**
+
+```bash
+# Antes de empezar feature
+git checkout develop
+git pull origin develop
+git checkout -b feature/nueva-funcionalidad
+
+# Comunicar en Slack/Teams:
+# "Trabajando en UserService.php - evitar cambios por 2 horas"
+```
+
+#### **2. Merge Frecuente**
+
+```bash
+# Diariamente, mergear develop a feature
+git checkout feature/mi-rama
+git merge develop
+
+# O rebase para mantener historia limpia
+git rebase develop
+```
+
+#### **3. Archivos Pequeños y Focused**
+
+- Evitar archivos gigantes que tocan múltiples desarrolladores
+- Usar dependency injection para reducir acoplamiento
+- Separar concerns en archivos distintos
+
+### 📋 Comandos de Emergencia
+
+#### **Abortar Merge/Rebase**
+
+```bash
+# Si el conflicto es muy complejo, abortar
+git merge --abort
+git rebase --abort
+
+# Vuelta al estado anterior
+```
+
+#### **Reset a Estado Anterior**
+
+```bash
+# Ver historial
+git reflog
+
+# Resetear a commit específico
+git reset --hard HEAD~1
+```
+
+#### **Stash Temporal**
+
+```bash
+# Guardar trabajo en progreso
+git stash
+
+# Aplicar después de resolver
+git stash pop
+```
+
+---
+
+## 📖 Glosario de Comandos Git Comunes
+
+### 🚀 Comandos Básicos
+
+| Comando                   | Descripción                             | Ejemplo                                      |
+| ------------------------- | --------------------------------------- | -------------------------------------------- |
+| `git init`                | Inicializar repositorio local           | `git init mi-proyecto`                       |
+| `git clone <url>`         | Clonar repositorio remoto               | `git clone https://github.com/user/repo.git` |
+| `git status`              | Ver estado actual del working directory | `git status`                                 |
+| `git add <archivos>`      | Agregar archivos al staging area        | `git add src/ package.json`                  |
+| `git commit -m "mensaje"` | Crear commit con mensaje                | `git commit -m "feat: add user validation"`  |
+| `git log`                 | Ver historial de commits                | `git log --oneline --graph`                  |
+| `git diff`                | Ver diferencias no commiteadas          | `git diff HEAD~1..HEAD`                      |
+
+### 🌿 Manejo de Ramas
+
+| Comando                           | Descripción                   | Ejemplo                                |
+| --------------------------------- | ----------------------------- | -------------------------------------- |
+| `git branch`                      | Listar ramas locales          | `git branch -a` (incluye remotas)      |
+| `git checkout <rama>`             | Cambiar a rama existente      | `git checkout develop`                 |
+| `git checkout -b <rama>`          | Crear y cambiar a nueva rama  | `git checkout -b feature/user-auth`    |
+| `git merge <rama>`                | Mergear rama a la actual      | `git merge feature/user-auth`          |
+| `git rebase <rama>`               | Rebase rama actual sobre otra | `git rebase develop`                   |
+| `git branch -d <rama>`            | Eliminar rama local           | `git branch -d feature/completed`      |
+| `git push origin --delete <rama>` | Eliminar rama remota          | `git push origin --delete feature/old` |
+
+### 🌐 Comandos de Remoto
+
+| Comando                         | Descripción              | Ejemplo                                                        |
+| ------------------------------- | ------------------------ | -------------------------------------------------------------- |
+| `git remote -v`                 | Ver remotos configurados | `git remote -v`                                                |
+| `git remote add <nombre> <url>` | Agregar remoto           | `git remote add upstream https://github.com/original/repo.git` |
+| `git fetch`                     | Traer cambios sin merge  | `git fetch origin`                                             |
+| `git pull`                      | Traer y mergear cambios  | `git pull origin develop`                                      |
+| `git push`                      | Subir cambios al remoto  | `git push origin feature/my-branch`                            |
+| `git push -u origin <rama>`     | Subir y trackear rama    | `git push -u origin feature/new-feature`                       |
+
+### 🔧 Comandos de Configuración
+
+| Comando                          | Descripción              | Ejemplo                                           |
+| -------------------------------- | ------------------------ | ------------------------------------------------- |
+| `git config --global user.name`  | Configurar nombre        | `git config --global user.name "Juan Pérez"`      |
+| `git config --global user.email` | Configurar email         | `git config --global user.email "juan@email.com"` |
+| `git config --list`              | Ver configuración actual | `git config --list --global`                      |
+| `git config core.editor`         | Configurar editor        | `git config --global core.editor "code --wait"`   |
+
+### 📚 Comandos de Historial y Navegación
+
+| Comando               | Descripción                   | Ejemplo                            |
+| --------------------- | ----------------------------- | ---------------------------------- |
+| `git log --oneline`   | Historial compacto            | `git log --oneline -10`            |
+| `git log --graph`     | Historial con gráfico         | `git log --graph --all --decorate` |
+| `git show <commit>`   | Ver detalles de commit        | `git show abc1234`                 |
+| `git reflog`          | Ver historial de referencias  | `git reflog`                       |
+| `git blame <archivo>` | Ver quién modificó cada línea | `git blame src/utils/helpers.js`   |
+
+### 🔄 Comandos de Modificación de Historial
+
+| Comando                   | Descripción                               | Ejemplo                                 |
+| ------------------------- | ----------------------------------------- | --------------------------------------- |
+| `git reset --soft HEAD~1` | Deshacer último commit (mantener cambios) | `git reset --soft HEAD~1`               |
+| `git reset --hard HEAD~1` | Deshacer último commit (eliminar cambios) | `git reset --hard HEAD~1`               |
+| `git revert <commit>`     | Crear commit que revierte cambios         | `git revert abc1234`                    |
+| `git commit --amend`      | Modificar último commit                   | `git commit --amend -m "nuevo mensaje"` |
+| `git rebase -i HEAD~3`    | Rebase interactivo últimos 3 commits      | `git rebase -i HEAD~3`                  |
+
+### 💾 Comandos de Stash
+
+| Comando                     | Descripción                     | Ejemplo                                      |
+| --------------------------- | ------------------------------- | -------------------------------------------- |
+| `git stash`                 | Guardar trabajo temporal        | `git stash`                                  |
+| `git stash save "mensaje"`  | Guardar con mensaje             | `git stash save "WIP: working on user form"` |
+| `git stash list`            | Ver lista de stashes            | `git stash list`                             |
+| `git stash pop`             | Aplicar y eliminar último stash | `git stash pop`                              |
+| `git stash apply stash@{1}` | Aplicar stash específico        | `git stash apply stash@{1}`                  |
+| `git stash drop stash@{1}`  | Eliminar stash específico       | `git stash drop stash@{1}`                   |
+
+### 🏷️ Comandos de Tags
+
+| Comando                                 | Descripción          | Ejemplo                                 |
+| --------------------------------------- | -------------------- | --------------------------------------- |
+| `git tag`                               | Listar tags          | `git tag -l`                            |
+| `git tag v1.0.0`                        | Crear tag ligero     | `git tag v1.0.0`                        |
+| `git tag -a v1.0.0 -m "Release v1.0.0"` | Crear tag anotado    | `git tag -a v1.0.0 -m "Release v1.0.0"` |
+| `git push origin v1.0.0`                | Subir tag específico | `git push origin v1.0.0`                |
+| `git push origin --tags`                | Subir todos los tags | `git push origin --tags`                |
+
+### 🧹 Comandos de Limpieza
+
+| Comando         | Descripción                       | Ejemplo               |
+| --------------- | --------------------------------- | --------------------- |
+| `git clean -n`  | Ver qué archivos se eliminarían   | `git clean -n`        |
+| `git clean -f`  | Eliminar archivos no trackeados   | `git clean -f`        |
+| `git clean -fd` | Eliminar archivos y directorios   | `git clean -fd`       |
+| `git gc`        | Garbage collection                | `git gc --aggressive` |
+| `git prune`     | Eliminar objetos no referenciados | `git prune`           |
+
+### 🔍 Comandos de Búsqueda
+
+| Comando                     | Descripción                                   | Ejemplo                              |
+| --------------------------- | --------------------------------------------- | ------------------------------------ |
+| `git grep "texto"`          | Buscar texto en repositorio                   | `git grep "validateUser"`            |
+| `git log --grep="texto"`    | Buscar en mensajes de commit                  | `git log --grep="fix"`               |
+| `git log -S "texto"`        | Buscar cambios que agregaron/eliminaron texto | `git log -S "function validateUser"` |
+| `git log --author="nombre"` | Filtrar commits por autor                     | `git log --author="Juan Pérez"`      |
+
+### ⚡ Aliases Útiles
+
+```bash
+# Configurar aliases útiles
+git config --global alias.st status
+git config --global alias.co checkout
+git config --global alias.br branch
+git config --global alias.ci commit
+git config --global alias.unstage 'reset HEAD --'
+git config --global alias.last 'log -1 HEAD'
+git config --global alias.visual '!gitk'
+git config --global alias.lg 'log --oneline --graph --all --decorate'
+```
+
+### 🆘 Comandos de Emergencia
+
+| Situación                      | Comando                                                      | Descripción                       |
+| ------------------------------ | ------------------------------------------------------------ | --------------------------------- |
+| **Commit mal mensaje**         | `git commit --amend -m "nuevo mensaje"`                      | Cambiar mensaje del último commit |
+| **Agregué archivo equivocado** | `git reset HEAD archivo.txt`                                 | Quitar archivo del staging        |
+| **Quiero deshacer cambios**    | `git checkout -- archivo.txt`                                | Descartar cambios no commiteados  |
+| **Merge fue un error**         | `git reset --hard HEAD~1`                                    | Deshacer último merge             |
+| **Perdí commits**              | `git reflog` → `git reset --hard abc1234`                    | Recuperar commits "perdidos"      |
+| **Branch incorrecto**          | `git stash` → `git checkout rama-correcta` → `git stash pop` | Mover trabajo a otra rama         |
+
 ---
 
 ## Navegación

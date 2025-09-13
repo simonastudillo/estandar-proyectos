@@ -929,6 +929,6 @@ echo "🌐 Open: $REPORT_DIR/index.html"
 
 ## Navegación
 
-[⬅️ Checklist de Performance](./checklist-performance.md) |
-[🏠 README Principal](../../README.md) |
+[⬅️ Checklist de Revisión de Base de Datos](./checklist-revision-base-datos.md)
+| [🏠 README Principal](../../README.md) |
 [Optimización de Recursos ➡️](./optimizacion-recursos.md)

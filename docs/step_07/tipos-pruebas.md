@@ -425,4 +425,4 @@ describe("User Registration Flow", () => {
 ## Navegación
 
 [⬅️ Testing y QA](./testing-qa.md) | [🏠 README Principal](../../README.md) |
-[Testing Funcional Automatizado ➡️](./testing-funcional-automatizado.md)
+[Configuración de Herramientas de Testing ➡️](./configuracion-herramientas-testing.md)

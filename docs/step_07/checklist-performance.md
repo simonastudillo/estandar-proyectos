@@ -1096,4 +1096,4 @@ jobs:
 
 [⬅️ Auditoría de Calidad de Código](./auditoria-calidad-codigo.md) |
 [🏠 README Principal](../../README.md) |
-[Revisión General del Código ➡️](./revision-general-codigo.md)
+[Checklist de Revisión de Base de Datos ➡️](./checklist-revision-base-datos.md)

@@ -278,6 +278,6 @@ processor.processPayment(50);
 
 ## Navegación
 
-[⬅️ Elección de Herramientas](./eleccion-herramientas.md) |
+[⬅️ Buenas prácticas del desarrollo](./buenas-practicas-desarrollo.md) |
 [🏠 README Principal](../../README.md) |
 [Arquitectura del Sistema ➡️](./arquitectura-sistema.md)
