@@ -101,8 +101,10 @@ desarrollo y testing del proyecto.
 #### **Runtime de JavaScript**
 
 - **Node.js**: 18.17.0 LTS o superior (**20.x LTS recomendado**)
-- **npm**: 9.0.0 o superior (incluido con Node.js)
-- **Yarn** (opcional): 3.6.0 o superior
+- **npm**: 10.8.0+ (estándar del proyecto, incluido con Node.js)
+
+> Nota: Este repositorio utiliza **npm** como único gestor de paquetes. No
+> usar Yarn ni pnpm en nuevos proyectos; migrar lockfiles si existen.
 
 #### **Runtime de PHP**
 
