@@ -88,15 +88,23 @@ consistencia entre proyectos.
   permitida)
 - **Containerización**: Docker + Docker Compose (estándar obligatorio)
 - **Servidor web**: Nginx (única opción para producción)
-- **Cloud Provider - Criterios Específicos**:
-  - **Principal**: **DigitalOcean** (proyectos <$10k/mes, startups, SMEs)
-  - **Empresarial**: **AWS** (proyectos >$10k/mes, compliance específico,
-    enterprise)
-  - **PROHIBIDOS**: Azure, GCP, Heroku, Vercel para backend (no alineados con
-    estrategia)
+- **Cloud Provider - Política**:
+  - **Estándar (obligatorio)**: **DigitalOcean** — todos los proyectos se
+    desplegarán por defecto en DigitalOcean. Esta decisión reduce la
+    complejidad operativa y permite plantillas y scripts reutilizables.
+  - **Excepción (AWS)**: Uso de **AWS** sólo mediante aprobación
+    arquitectónica documentada cuando existan requisitos empresariales o de
+    compliance que DigitalOcean no soporte (p.ej. servicios gestionados
+    específicos, requisitos regulatorios o cargas extremas). La excepción debe
+    incluir justificación técnica, estimación de coste y plan operativo.
+  - **PROHIBIDOS**: Azure, GCP, Heroku, Vercel para backend (salvo
+    excepciones extraordinarias con aprobación explícita).
 - **Monitoreo Específico**:
-  - **Básico**: New Relic Basic + DigitalOcean Monitoring
-  - **Avanzado**: DataDog + ELK Stack (solo para proyectos enterprise)
+  - **Básico**: **DigitalOcean Monitoring** (obligatorio) — integrar métricas
+    de infraestructura y alertas básicas. New Relic puede usarse como
+    complemento si el proyecto lo requiere.
+  - **Avanzado**: DataDog + ELK Stack (solo mediante aprobación para
+    proyectos enterprise con requerimientos de observabilidad avanzados)
 
 ### Desarrollo
 

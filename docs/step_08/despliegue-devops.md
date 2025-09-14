@@ -24,10 +24,20 @@ estrategias de mantenimiento.
 
 ### Infraestructura y Servidores
 
-- Configuración de servidores de producción (DigitalOcean, AWS, Azure)
-- Gestión de dominios y DNS
-- Configuración de Load Balancers
-- Implementación de CDN para assets estáticos
+- Proveedor cloud estándar: **DigitalOcean** (obligatorio por defecto). Todas
+   las instrucciones y ejemplos en este documento asumen DigitalOcean como
+   destino. Para backups y object storage usar **DigitalOcean Spaces** (S3-
+   compatible).
+
+- Nota de excepciones: El uso de **AWS** solo se permite mediante aprobación
+   arquitectónica por requisitos empresariales o de compliance no cubiertos por
+   DigitalOcean.
+
+- Gestión de dominios y DNS (DigitalOcean DNS o proveedor externo apuntando a
+   recursos de DigitalOcean)
+- Configuración de Load Balancers (DigitalOcean Load Balancers o DO-managed)
+- Implementación de CDN para assets estáticos (Cloudflare u otros; assets en
+   Spaces)
 
 ### Automatización CI/CD
 

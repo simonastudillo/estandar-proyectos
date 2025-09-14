@@ -20,7 +20,9 @@ El estándar incluye decisiones específicas y no ambiguas sobre:
   definido
 - **Estado Global**: Redux Toolkit como estándar único obligatorio
 - **Base de Datos**: MySQL vs PostgreSQL con criterios técnicos claros
-- **Cloud Provider**: DigitalOcean vs AWS según tamaño y compliance
+- - **Cloud Provider**: DigitalOcean (proveedor estándar). Para proyectos
+    empresariales con requisitos de compliance o gasto mensual estimado > $10k/mes,
+    se puede contemplar AWS como excepción justificada y documentada en un ADR.
 - **Testing**: Frameworks específicos y coverage mínimo por layer
 - **Performance**: Métricas específicas y thresholds obligatorios
 
@@ -76,10 +78,17 @@ aplicada en proyectos reales siguiendo un roadmap de evolución técnica definid
 
 ### Infraestructura y DevOps
 
-- **Cloud Provider**:
-  - **Principal**: DigitalOcean (simplicidad, costo-beneficio para
-    startups/SMEs)
-  - **Empresarial**: AWS (proyectos >$10k/mes, compliance específico)
+- **Cloud Provider**: DigitalOcean (estandarizado)
+
+- - **Principal**: DigitalOcean (simplicidad, costo-beneficio para
+    startups/SMEs). Este repositorio y sus plantillas, scripts y ejemplos se
+    orientan a DigitalOcean (doctl, Spaces, DigitalOcean Monitoring).
+
+- - **Excepción empresarial**: AWS puede utilizarse solo cuando exista una
+    justificación formal (compliance, disponibilidad de servicio o requerimiento
+    contractual). Las excepciones deben registrarse mediante un ADR que detalle
+    el criterio y los cambios necesarios en scripts/CI/CD (p. ej. uso de S3,
+    CloudWatch, etc.).
 - **CI/CD**: GitHub Actions con templates específicos
 - **Containerización**: Docker + Docker Compose
 - **Monitoreo**: New Relic Basic + DigitalOcean Monitoring (básico)
@@ -99,7 +108,7 @@ aplicada en proyectos reales siguiendo un roadmap de evolución técnica definid
 - **Estimación**: Story Points
 - **Tableros**: GitHub Projects (preferido), Jira, Trello
 - **Git Workflow**: GitHub Flow con protected main + staging branch
-- **Branching**: feature/_, bugfix/_, hotfix/*
+- **Branching**: feature/_, bugfix/_, hotfix/\*
 - **Code Review**: Mínimo 1 reviewer, tests passing obligatorio
 
 ### Calidad y Testing

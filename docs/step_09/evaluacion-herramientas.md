@@ -1442,7 +1442,7 @@ total**: $2,400/mes **ROI promedio**: 342%
 ### Decisiones Clave Recomendadas
 
 - ✅ **Mantener**: VS Code, GitHub Actions, Slack, Jest (alta satisfacción)
-- 🔄 **Reemplazar**: Heroku → AWS (costo/beneficio)
+- 🔄 **Reemplazar**: Heroku → DigitalOcean (costo/beneficio). Usar AWS sólo si es requerido por integraciones empresariales y cuenta con aprobación.
 - 🔧 **Optimizar**: Jira (subutilizado), Figma (licencias extra)
 - ➕ **Agregar**: Playwright (testing E2E), Datadog (monitoreo)
 
@@ -1471,7 +1471,7 @@ total**: $2,400/mes **ROI promedio**: 342%
 ### Optimizaciones Identificadas
 
 - **Ahorro potencial**: $800/mes
-  - Heroku → AWS: -$400/mes
+   - Heroku → DigitalOcean: -$400/mes (estimado; comparar con oferta de Droplets/Managed Databases). Usar AWS sólo si está aprobado.
   - Optimización licencias Figma: -$200/mes
   - Eliminar herramientas duplicadas: -$200/mes
 
@@ -1493,7 +1493,7 @@ total**: $2,400/mes **ROI promedio**: 342%
 
 ### Fase 2 (Mes 2-3): Reemplazos Críticos
 
-- Migrar de Heroku a AWS
+- Migrar de Heroku a DigitalOcean (o AWS si está aprobado)
 - Implementar Playwright para E2E testing
 - Setup inicial de Datadog
 
