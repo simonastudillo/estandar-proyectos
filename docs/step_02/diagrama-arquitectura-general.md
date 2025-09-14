@@ -365,7 +365,7 @@ proyecto/
 │                SERVICIOS EXTERNOS                      │
 │                                                         │
 │  📧 Email Service    💳 Payment       📁 File Storage   │
-│  (SendGrid/SES)      (Stripe/PayPal)  (AWS S3/Local)    │
+│  (SendGrid/SES)      (Stripe/PayPal)  (DigitalOcean Spaces/Local)    │
 │                                                         │
 │  📊 Analytics        🔐 OAuth         📱 Push Notifs    │
 │  (Google Analytics)  (Google/GitHub)  (Firebase/Pusher) │

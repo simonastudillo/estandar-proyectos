@@ -103,12 +103,34 @@ else
     exit 1
 fi
 
-# Upload to S3 (optional)
-if command -v aws &> /dev/null; then
-    log "Uploading backup to S3..."
-    aws s3 cp "${BACKUP_FILE}" "s3://${S3_BUCKET}/mysql/" \
-        --storage-class STANDARD_IA
-    log "Backup uploaded to S3 successfully"
+# Upload to object storage (DigitalOcean Spaces by default)
+# Use the following environment variables to configure behavior:
+#  OBJECT_STORAGE_CLI (default: aws)
+#  OBJECT_STORAGE_BUCKET (default: value of S3_BUCKET)
+#  OBJECT_STORAGE_ENDPOINT (example: https://nyc3.digitaloceanspaces.com)
+#  OBJECT_STORAGE_PROFILE (optional AWS CLI profile)
+
+OBJECT_STORAGE_CLI="${OBJECT_STORAGE_CLI:-aws}"
+OBJECT_STORAGE_BUCKET="${OBJECT_STORAGE_BUCKET:-${S3_BUCKET}}"
+OBJECT_STORAGE_ENDPOINT="${OBJECT_STORAGE_ENDPOINT:-}" # if empty, assumes real AWS S3
+OBJECT_STORAGE_PROFILE_ARG=""
+if [ -n "${OBJECT_STORAGE_PROFILE:-}" ]; then
+    OBJECT_STORAGE_PROFILE_ARG="--profile ${OBJECT_STORAGE_PROFILE}"
+fi
+
+if command -v ${OBJECT_STORAGE_CLI} &> /dev/null; then
+    log "Uploading backup to object storage..."
+    if [ -n "${OBJECT_STORAGE_ENDPOINT}" ]; then
+        # Example: DigitalOcean Spaces (S3-compatible)
+        ${OBJECT_STORAGE_CLI} s3 cp "${BACKUP_FILE}" "s3://${OBJECT_STORAGE_BUCKET}/mysql/" \
+            --endpoint-url "${OBJECT_STORAGE_ENDPOINT}" ${OBJECT_STORAGE_PROFILE_ARG} \
+            --storage-class STANDARD_IA
+    else
+        # Fallback to AWS S3
+        ${OBJECT_STORAGE_CLI} s3 cp "${BACKUP_FILE}" "s3://${OBJECT_STORAGE_BUCKET}/mysql/" \
+            ${OBJECT_STORAGE_PROFILE_ARG} --storage-class STANDARD_IA
+    fi
+    log "Backup uploaded to object storage successfully"
 fi
 
 # Clean old local backups
@@ -195,9 +217,14 @@ else
 fi
 
 # Upload to cloud storage
-if command -v aws &> /dev/null; then
-    aws s3 cp "${BACKUP_FILE}" "s3://${S3_BUCKET}/files/"
-    log "Files backup uploaded to S3"
+if command -v ${OBJECT_STORAGE_CLI} &> /dev/null; then
+    if [ -n "${OBJECT_STORAGE_ENDPOINT}" ]; then
+        ${OBJECT_STORAGE_CLI} s3 cp "${BACKUP_FILE}" "s3://${OBJECT_STORAGE_BUCKET}/files/" \
+            --endpoint-url "${OBJECT_STORAGE_ENDPOINT}" ${OBJECT_STORAGE_PROFILE_ARG}
+    else
+        ${OBJECT_STORAGE_CLI} s3 cp "${BACKUP_FILE}" "s3://${OBJECT_STORAGE_BUCKET}/files/" ${OBJECT_STORAGE_PROFILE_ARG}
+    fi
+    log "Files backup uploaded to object storage"
 fi
 
 # Cleanup old backups

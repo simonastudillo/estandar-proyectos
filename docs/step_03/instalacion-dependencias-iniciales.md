@@ -377,20 +377,6 @@ npm install -g npm@latest
 npm config list
 ```
 
-#### **5.3 Instalar Yarn (Opcional)**
-
-```bash
-# Instalar Yarn globalmente
-npm install -g yarn
-
-# Verificar versión
-yarn --version
-
-# Configurar Yarn
-yarn config set init-author-name "Tu Nombre"
-yarn config set init-author-email "tu.email@ejemplo.com"
-```
-
 ### 6. **Instalar PHP y Composer**
 
 #### **6.1 Instalación de PHP**
@@ -534,17 +520,17 @@ fi
 # Verificar PHP
 if command -v php &> /dev/null; then
     echo "✅ PHP: $(php --version | head -n 1)"
-    
+
     # Verificar extensiones críticas
     REQUIRED_EXTENSIONS=("curl" "dom" "fileinfo" "mbstring" "mysql" "xml" "zip")
     MISSING_EXTENSIONS=()
-    
+
     for ext in "${REQUIRED_EXTENSIONS[@]}"; do
         if ! php -m | grep -q "$ext"; then
             MISSING_EXTENSIONS+=("$ext")
         fi
     done
-    
+
     if [ ${#MISSING_EXTENSIONS[@]} -eq 0 ]; then
         echo "✅ Extensiones PHP: Todas las extensiones requeridas están instaladas"
     else
@@ -778,15 +764,15 @@ echo "✅ Instalación completada! Reinicia la sesión para aplicar cambios de g
 # Script de configuración de Git
 configure_git() {
     echo "🔧 Configurando Git..."
-    
+
     read -p "Ingresa tu nombre completo: " name
     read -p "Ingresa tu email: " email
-    
+
     git config --global user.name "$name"
     git config --global user.email "$email"
     git config --global init.defaultBranch main
     git config --global pull.rebase false
-    
+
     echo "✅ Git configurado correctamente"
 }
 ```
@@ -797,19 +783,19 @@ configure_git() {
 # Script de configuración de Docker
 configure_docker() {
     echo "🐳 Configurando Docker..."
-    
+
     # Verificar que Docker esté ejecutándose
     if ! docker system info &> /dev/null; then
         echo "❌ Docker no está ejecutándose. Inicia Docker Desktop."
         return 1
     fi
-    
+
     # Configurar recursos (ejemplo para Linux)
     echo "Configurando recursos de Docker..."
-    
+
     # Verificar instalación con hello-world
     docker run --rm hello-world
-    
+
     echo "✅ Docker configurado correctamente"
 }
 ```

@@ -213,8 +213,7 @@ Thumbs.db
 
 # React/Node specific
 npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
+# Nota: este estándar utiliza npm como único gestor de paquetes. No incluir entradas relacionadas con Yarn o pnpm.
 
 # Testing
 /coverage

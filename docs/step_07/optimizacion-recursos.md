@@ -1,5 +1,7 @@
 # Optimización de Recursos (React + TypeScript + Vite)
 
+> **POLÍTICA DE CLOUD**: En este repositorio el proveedor cloud por defecto es **DigitalOcean**. Para object storage y assets estáticos se recomienda **DigitalOcean Spaces** (S3-compatible). Si necesita usar AWS S3, debe existir una excepción documentada y aprobada.
+
 > **IMPORTANTE**: Esta guía está específicamente diseñada para proyectos que utilizan **Vite como bundler estándar**. Todas las configuraciones y herramientas están alineadas con el ecosistema Vite/Rollup, sin incluir Webpack, Next.js u otros bundlers.
 
 ## ¿Qué es?
@@ -183,8 +185,23 @@ export default function customImageLoader(
    params.set("auto", "format");
    params.set("fit", "crop");
 
-   // Use CDN transformation service
+   // Use CDN / object storage transformation service
+   // By default we recommend DigitalOcean Spaces (optionally behind Cloudflare).
+   const CDN_URL = process.env.OBJECT_STORAGE_CDN_URL || "https://cdn.example.com";
+   const OBJECT_STORAGE_ENDPOINT = process.env.OBJECT_STORAGE_ENDPOINT || ""; // e.g. https://nyc3.digitaloceanspaces.com
+
    if (src.startsWith("/")) {
+      // If using Spaces + Cloudflare, set OBJECT_STORAGE_CDN_URL to the CDN domain.
+      // If using direct Spaces endpoint, you can construct the URL with the endpoint and bucket.
+      if (CDN_URL && CDN_URL !== "https://cdn.example.com") {
+         return `${CDN_URL}${src}?${params.toString()}`;
+      }
+
+      if (OBJECT_STORAGE_ENDPOINT) {
+         // Example: https://{bucket}.{region}.digitaloceanspaces.com/path
+         return `${OBJECT_STORAGE_ENDPOINT}${src}?${params.toString()}`;
+      }
+
       return `https://cdn.example.com${src}?${params.toString()}`;
    }
 
@@ -629,6 +646,11 @@ async function handleStaticRequest(request) {
 ```
 
 #### CDN Configuration (Cloudflare Workers)
+
+> Nota: Para assets y object storage usamos DigitalOcean Spaces por defecto. Las siguientes configuraciones muestran dos patrones comunes:
+
+- Opción A (recomendada): DigitalOcean Spaces + Cloudflare (Cloudflare en front, Spaces como origen). Configure `OBJECT_STORAGE_CDN_URL` con el dominio CDN (ej. `https://assets.example.com`) y `OBJECT_STORAGE_ENDPOINT` con el endpoint de Spaces.
+- Opción B: Usar solo DigitalOcean Spaces (endpoint directo). Configure `OBJECT_STORAGE_ENDPOINT` con `https://{bucket}.{region}.digitaloceanspaces.com`.
 
 ```typescript
 // cloudflare-worker.ts

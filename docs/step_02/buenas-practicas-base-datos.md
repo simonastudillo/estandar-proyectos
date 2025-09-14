@@ -605,21 +605,36 @@ incremental_backup() {
     log "Incremental backup completed: $backup_file"
 }
 
-# Función para subir a S3
-upload_to_s3() {
+# Función para subir a object storage (DigitalOcean Spaces por defecto)
+upload_to_object_storage() {
     local file="$1"
     local s3_key="database-backups/$(basename "$file")"
-    
-    log "Uploading to S3: s3://$S3_BUCKET/$s3_key"
-    
-    aws s3 cp "$file" "s3://$S3_BUCKET/$s3_key" \
-        --storage-class GLACIER \
-        --metadata "database=$DB_NAME,backup-type=full,created-at=$(date -Iseconds)"
-    
-    if [ $? -eq 0 ]; then
-        log "S3 upload completed successfully"
+
+    OBJECT_STORAGE_CLI="${OBJECT_STORAGE_CLI:-aws}"
+    OBJECT_STORAGE_BUCKET="${OBJECT_STORAGE_BUCKET:-${S3_BUCKET}}"
+    OBJECT_STORAGE_ENDPOINT="${OBJECT_STORAGE_ENDPOINT:-}"
+    OBJECT_STORAGE_PROFILE_ARG=""
+    if [ -n "${OBJECT_STORAGE_PROFILE:-}" ]; then
+        OBJECT_STORAGE_PROFILE_ARG="--profile ${OBJECT_STORAGE_PROFILE}"
+    fi
+
+    log "Uploading to object storage: s3://${OBJECT_STORAGE_BUCKET}/${s3_key}"
+
+    if [ -n "${OBJECT_STORAGE_ENDPOINT}" ]; then
+        ${OBJECT_STORAGE_CLI} s3 cp "$file" "s3://${OBJECT_STORAGE_BUCKET}/${s3_key}" \
+            --endpoint-url "${OBJECT_STORAGE_ENDPOINT}" ${OBJECT_STORAGE_PROFILE_ARG} \
+            --storage-class GLACIER \
+            --metadata "database=$DB_NAME,backup-type=full,created-at=$(date -Iseconds)"
     else
-        log "ERROR: S3 upload failed"
+        ${OBJECT_STORAGE_CLI} s3 cp "$file" "s3://${OBJECT_STORAGE_BUCKET}/${s3_key}" \
+            ${OBJECT_STORAGE_PROFILE_ARG} --storage-class GLACIER \
+            --metadata "database=$DB_NAME,backup-type=full,created-at=$(date -Iseconds)"
+    fi
+
+    if [ $? -eq 0 ]; then
+        log "Object storage upload completed successfully"
+    else
+        log "ERROR: Object storage upload failed"
         return 1
     fi
 }
@@ -703,15 +718,26 @@ restore_database() {
 }
 
 # Función para restaurar desde S3
-restore_from_s3() {
+restore_from_object_storage() {
     local s3_path="$1"
     local temp_file="/tmp/restore_$(date +%s).sql.gz"
-    
-    echo "Downloading from S3: $s3_path"
-    aws s3 cp "$s3_path" "$temp_file"
-    
+
+    OBJECT_STORAGE_CLI="${OBJECT_STORAGE_CLI:-aws}"
+    OBJECT_STORAGE_ENDPOINT="${OBJECT_STORAGE_ENDPOINT:-}"
+    OBJECT_STORAGE_PROFILE_ARG=""
+    if [ -n "${OBJECT_STORAGE_PROFILE:-}" ]; then
+        OBJECT_STORAGE_PROFILE_ARG="--profile ${OBJECT_STORAGE_PROFILE}"
+    fi
+
+    echo "Downloading from object storage: $s3_path"
+    if [ -n "${OBJECT_STORAGE_ENDPOINT}" ]; then
+        ${OBJECT_STORAGE_CLI} s3 cp "$s3_path" "$temp_file" --endpoint-url "${OBJECT_STORAGE_ENDPOINT}" ${OBJECT_STORAGE_PROFILE_ARG}
+    else
+        ${OBJECT_STORAGE_CLI} s3 cp "$s3_path" "$temp_file" ${OBJECT_STORAGE_PROFILE_ARG}
+    fi
+
     restore_database "$temp_file"
-    
+
     rm -f "$temp_file"
 }
 
@@ -720,9 +746,16 @@ list_backups() {
     echo "Available local backups:"
     find "$BACKUP_DIR" -name "*.sql.gz" -printf '%TY-%Tm-%Td %TH:%TM %s bytes %p\n' | sort -r
     
-    if [ -n "${BACKUP_S3_BUCKET:-}" ]; then
-        echo -e "\nAvailable S3 backups:"
-        aws s3 ls "s3://$BACKUP_S3_BUCKET/database-backups/" --human-readable
+    if [ -n "${BACKUP_S3_BUCKET:-}" ] || [ -n "${OBJECT_STORAGE_BUCKET:-}" ]; then
+        echo -e "\nAvailable object storage backups:"
+        OBJECT_STORAGE_CLI="${OBJECT_STORAGE_CLI:-aws}"
+        OBJECT_STORAGE_ENDPOINT="${OBJECT_STORAGE_ENDPOINT:-}"
+        BUCKET_TO_USE="${OBJECT_STORAGE_BUCKET:-${BACKUP_S3_BUCKET}}"
+        if [ -n "${OBJECT_STORAGE_ENDPOINT}" ]; then
+            ${OBJECT_STORAGE_CLI} s3 ls "s3://${BUCKET_TO_USE}/database-backups/" --human-readable --endpoint-url "${OBJECT_STORAGE_ENDPOINT}"
+        else
+            ${OBJECT_STORAGE_CLI} s3 ls "s3://${BUCKET_TO_USE}/database-backups/" --human-readable
+        fi
     fi
 }
 

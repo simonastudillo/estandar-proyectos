@@ -19,11 +19,26 @@ rendimiento, seguridad y estabilidad.
 - **Mantenibilidad**: Configuraciones documentadas facilitan el mantenimiento
 - **Compliance**: Cumplimiento de estándares de seguridad e industria
 
+## Política de Proveedor Cloud
+
+- Proveedor cloud estándar (obligatorio por defecto): **DigitalOcean**.
+- Excepciones: Solo se permitirá el uso de **AWS** en proyectos con
+  requerimientos empresariales muy específicos (costes esperados > $10k/mes,
+  requisitos regulatorios/compliance, o condiciones técnicas no cubiertas por
+  DigitalOcean). Cualquier excepción debe estar documentada y aprobada por el
+  equipo de arquitectura.
+- No se recomienda usar Azure, GCP, Heroku o Vercel para la infraestructura
+  backend sin una justificación y aprobación formales.
+
+> Razonamiento: Un proveedor único reduce la complejidad operativa, facilita
+> plantillas y scripts reutilizables, y acelera la transferencia de know-how
+> dentro del equipo.
+
 ## ¿Qué debe incluir?
 
 ### Infraestructura Base
 
-- Selección de proveedor cloud (DigitalOcean, AWS, Azure, Google Cloud)
+- Proveedor cloud estándar: **DigitalOcean** (obligatorio por defecto)
 - Dimensionamiento de recursos (CPU, RAM, almacenamiento)
 - Configuración de red y firewall
 - Configuración de dominios y DNS
@@ -39,9 +54,9 @@ rendimiento, seguridad y estabilidad.
 ### Servicios Adicionales
 
 - **SSL/TLS**: Certificados automáticos con Let's Encrypt
-- **Monitoreo**: Agentes de monitoreo instalados
+- **Monitoreo**: DigitalOcean Monitoring (agentes o integración)
 - **Logging**: Configuración centralizada de logs
-- **Backup**: Automatización de respaldos
+- **Backup**: Automatización de respaldos (DigitalOcean Spaces por defecto)
 
 ### Seguridad
 
@@ -56,9 +71,11 @@ rendimiento, seguridad y estabilidad.
 
 #### Seleccionar Proveedor y Recursos
 
+Este estándar usa DigitalOcean como proveedor por defecto. A continuación se
+muestran ejemplos y recomendaciones específicas para DigitalOcean.
+
 ```bash
-# Ejemplo para DigitalOcean Droplet
-# Mínimo recomendado:
+# Droplet sizing (recomendado):
 # - 2 vCPU, 4GB RAM para aplicaciones pequeñas
 # - 4 vCPU, 8GB RAM para aplicaciones medianas
 # - 8+ vCPU, 16+ GB RAM para aplicaciones grandes
@@ -68,9 +85,13 @@ rendimiento, seguridad y estabilidad.
 
 #### Configurar DNS
 
+Para dominios gestionados en DigitalOcean, utiliza el panel de DNS de
+DigitalOcean o tu proveedor DNS y apunta los registros al IP o Load Balancer
+proporcionado por DigitalOcean.
+
 ```bash
 # Registros DNS necesarios:
-# A record: example.com -> IP_SERVIDOR
+# A record: example.com -> IP_SERVIDOR (Droplet o Load Balancer)
 # A record: www.example.com -> IP_SERVIDOR
 # A record: api.example.com -> IP_SERVIDOR (opcional)
 ```
@@ -264,7 +285,7 @@ ufw status verbose
 
 - **Programar mysqldump**: Para backups de base de datos
 - **rsync**: Para sincronización de archivos
-- **Almacenamiento externo**: No mantener backups solo en el servidor
+- **Almacenamiento externo**: Mantener backups en **DigitalOcean Spaces** (o storage S3-compatible configurado con endpoint de DigitalOcean)
 - **Testing regular**: Verificar que los backups funcionen
 
 ## Ejemplos
@@ -288,7 +309,7 @@ server {
     # SSL Configuration
     ssl_certificate /etc/letsencrypt/live/example.com/fullchain.pem;
     ssl_certificate_key /etc/letsencrypt/live/example.com/privkey.pem;
-    
+
     # Security headers
     add_header X-Frame-Options "SAMEORIGIN" always;
     add_header X-XSS-Protection "1; mode=block" always;
