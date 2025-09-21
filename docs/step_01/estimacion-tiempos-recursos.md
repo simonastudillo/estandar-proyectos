@@ -1,5 +1,14 @@
 # Estimación de Tiempos y Recursos
 
+## Conocimientos Involucrados
+
+- Estimación de recursos
+- Planificación temporal
+
+## Responsable
+
+- Equipo de Gestión de Proyectos
+
 ## ¿Qué es?
 
 La **estimación de tiempos y recursos** es el proceso de calcular de manera

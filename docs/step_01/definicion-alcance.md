@@ -1,5 +1,14 @@
 # Definición del Alcance del Proyecto
 
+## Conocimientos Involucrados
+
+- Gestión de proyectos
+- Definición de alcance
+
+## Responsable
+
+- Equipo de Gestión de Proyectos
+
 ## ¿Qué es?
 
 La **definición del alcance del proyecto** es el proceso de establecer y

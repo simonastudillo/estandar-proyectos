@@ -1,5 +1,18 @@
 # Análisis de Riesgos
 
+## Conocimientos Involucrados
+
+- Gestión de riesgos
+- Análisis técnico y de gestión
+
+## Responsable
+
+- Equipo de Gestión de Proyectos
+
+## Responsable
+
+- Equipo de Gestión de Proyectos
+
 ## ¿Qué es?
 
 El **análisis de riesgos** es el proceso sistemático de identificación,

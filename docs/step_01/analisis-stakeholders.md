@@ -1,5 +1,14 @@
 # Análisis de Stakeholders
 
+## Conocimientos Involucrados
+
+- Gestión de stakeholders
+- Comunicación efectiva
+
+## Responsable
+
+- Equipo de Gestión de Proyectos
+
 ## ¿Qué es?
 
 El **análisis de stakeholders** es el proceso sistemático de identificación,
