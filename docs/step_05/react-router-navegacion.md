@@ -1,5 +1,14 @@
 # React Router - Navegación
 
+## Conocimientos involucrados
+- React Router
+- Navegación SPA
+- Protección de rutas
+- Tipado en TypeScript
+
+## Responsable
+- Equipo de desarrollo frontend
+
 ## ¿Qué es?
 
 React Router es la biblioteca estándar para manejo de rutas en aplicaciones
