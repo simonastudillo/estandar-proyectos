@@ -1,5 +1,13 @@
 # Evaluación de Herramientas
 
+## Conocimientos Involucrados
+- Análisis de herramientas tecnológicas
+- Evaluación de ROI y productividad
+- Identificación de gaps tecnológicos
+
+## Responsable
+- Equipo de tecnología
+
 ## ¿Qué es?
 
 La evaluación de herramientas es un proceso sistemático para analizar la

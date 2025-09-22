@@ -1,5 +1,13 @@
 # Gestión de Nuevas Funcionalidades
 
+## Conocimientos Involucrados
+- Análisis de requerimientos
+- Diseño de arquitectura extensible
+- Testing e integración continua
+
+## Responsable
+- Equipo de desarrollo
+
 ## ¿Qué es?
 
 La gestión de nuevas funcionalidades es el proceso estructurado de planificar,

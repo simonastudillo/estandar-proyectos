@@ -1,5 +1,13 @@
 # Mantenimiento y Evolución
 
+## Conocimientos Involucrados
+- Monitoreo y observabilidad
+- Gestión de incidentes
+- Optimización de performance
+
+## Responsable
+- Equipo de soporte y mantenimiento
+
 ## ¿Qué es?
 
 El mantenimiento y evolución es la etapa final del ciclo de vida del desarrollo
