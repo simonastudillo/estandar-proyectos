@@ -187,6 +187,7 @@ class AnalyticsService
             'customer_satisfaction' => $this->businessMetrics->getCustomerSatisfaction($startDate, $endDate)
         ];
     }
+}
 ```
 
 ### 2. Configurar Google Analytics 4
