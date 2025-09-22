@@ -1,5 +1,15 @@
 # Testing Funcional Automatizado
 
+## Conocimientos involucrados
+- Estrategias de testing automatizado
+- Herramientas como Jest, PHPUnit, Cypress
+- Buenas prácticas de QA
+
+## Responsable
+- Equipo de QA y desarrollo
+
+# Testing Funcional Automatizado
+
 ## ¿Qué es?
 
 El testing funcional automatizado es el proceso de verificar que el software

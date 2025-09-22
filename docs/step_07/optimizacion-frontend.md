@@ -1,5 +1,15 @@
 # Optimización del Frontend (React + TypeScript + Vite)
 
+## Conocimientos involucrados
+- Core Web Vitals y métricas de rendimiento
+- Herramientas como Lighthouse, Webpack Bundle Analyzer
+- Técnicas de optimización específicas para React
+
+## Responsable
+- Equipo de desarrollo
+
+# Optimización del Frontend (React + TypeScript + Vite)
+
 > **IMPORTANTE**: Esta guía está específicamente diseñada para proyectos que
 > utilizan **Vite como bundler estándar**. No incluye configuraciones para
 > Webpack, Next.js u otros bundlers, manteniendo consistencia con nuestro stack
@@ -1439,10 +1449,8 @@ export default defineConfig({
 });
 ```
 
-```
 ## Navegación
 
 [⬅️ Checklist de File System](./checklist-file-system.md) |
 [🏠 README Principal](../../README.md) |
 [Estrategias de Caché ➡️](./estrategias-cache.md)
-```

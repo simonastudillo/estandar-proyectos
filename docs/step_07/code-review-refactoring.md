@@ -1,5 +1,15 @@
 # Code Review y Refactoring
 
+## Conocimientos involucrados
+- Buenas prácticas de desarrollo
+- Herramientas de análisis estático
+- Patrones de diseño y refactorización
+
+## Responsable
+- Equipo de desarrollo
+
+# Code Review y Refactoring
+
 ## ¿Qué es?
 
 Code Review y Refactoring son procesos fundamentales para mantener la calidad

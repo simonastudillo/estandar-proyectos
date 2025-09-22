@@ -1,5 +1,15 @@
 # Revisión General del Código
 
+## Conocimientos involucrados
+- Análisis de complejidad y calidad de código
+- Herramientas como SonarQube, ESLint, PHPStan
+- Principios de diseño como SOLID y Clean Code
+
+## Responsable
+- Equipo de desarrollo
+
+# Revisión General del Código
+
 ## ¿Qué es?
 
 La revisión general del código es un proceso sistemático de análisis y

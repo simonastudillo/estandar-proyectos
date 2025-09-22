@@ -1,5 +1,15 @@
 # Estrategias de Caché
 
+## Conocimientos involucrados
+- Técnicas de almacenamiento en caché
+- Herramientas como Redis, Memcached, CDNs
+- Estrategias de invalidación y optimización
+
+## Responsable
+- Equipo de DevOps
+
+# Estrategias de Caché
+
 ## ¿Qué es?
 
 Las estrategias de caché son metodologías y técnicas sistemáticas para

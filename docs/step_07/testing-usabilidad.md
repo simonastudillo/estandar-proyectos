@@ -1,5 +1,15 @@
 # Testing de Usabilidad
 
+## Conocimientos involucrados
+- Principios de diseño centrado en el usuario (UX)
+- Herramientas como Hotjar, Google Analytics
+- Métodos de evaluación de usabilidad
+
+## Responsable
+- Equipo de diseño y QA
+
+# Testing de Usabilidad
+
 ## ¿Qué es?
 
 El testing de usabilidad es el proceso de evaluación de la experiencia del
@@ -1188,7 +1198,7 @@ mkdir -p $RESULTS_DIR
 echo "♿ Ejecutando tests de accesibilidad..."
 npm run test:a11y -- --outputFile=$RESULTS_DIR/a11y-results.json
 
-# 2. Análisis de cognitive load
+# 2. Análisis de carga cognitiva
 echo "🧠 Analizando carga cognitiva..."
 npm run test:cognitive-load -- --output=$RESULTS_DIR/cognitive-load.json
 

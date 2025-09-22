@@ -1,5 +1,15 @@
 # Configuración de Herramientas de Testing
 
+## Conocimientos involucrados
+- Configuración de frameworks de testing
+- Integración continua y pipelines de CI/CD
+- Herramientas como Jest, Cypress, Selenium
+
+## Responsable
+- Equipo de QA y DevOps
+
+# Configuración de Herramientas de Testing
+
 ## ¿Qué es?
 
 La configuración de herramientas de testing establece la infraestructura

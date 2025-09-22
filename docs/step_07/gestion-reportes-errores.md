@@ -1,5 +1,15 @@
 # Gestión de Reportes de Errores
 
+## Conocimientos involucrados
+- Herramientas de seguimiento de errores (Jira, Bugzilla)
+- Análisis de causa raíz
+- Estrategias de priorización y resolución
+
+## Responsable
+- Equipo de QA y desarrollo
+
+# Gestión de Reportes de Errores
+
 ## ¿Qué es?
 
 La gestión de reportes de errores es el proceso sistemático de captura,

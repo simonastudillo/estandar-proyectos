@@ -1,5 +1,15 @@
 # Checklist de Testing por Tipo de Proyecto
 
+## Conocimientos involucrados
+- Estrategias de testing automatizado
+- Herramientas como Jest, Cypress, Selenium
+- Buenas prácticas de QA
+
+## Responsable
+- Equipo de QA y desarrollo
+
+# Checklist de Testing por Tipo de Proyecto
+
 ## ¿Qué es?
 
 Un checklist de testing por tipo de proyecto es una guía verificable y

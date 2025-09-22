@@ -1,5 +1,15 @@
 # Checklist de Revisión de Base de Datos
 
+## Conocimientos involucrados
+- Diseño y modelado de bases de datos
+- Optimización de consultas SQL
+- Herramientas de monitoreo y análisis de rendimiento
+
+## Responsable
+- Equipo de desarrollo y DBA
+
+# Checklist de Revisión de Base de Datos
+
 ## ¿Qué es?
 
 El checklist de revisión de base de datos es una herramienta sistemática de

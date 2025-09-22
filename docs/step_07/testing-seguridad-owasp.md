@@ -1,5 +1,15 @@
 # Testing de Seguridad OWASP
 
+## Conocimientos involucrados
+- OWASP Top 10 y estándares de seguridad
+- Herramientas como OWASP ZAP, Nikto, Dependency Check
+- Estrategias de mitigación de vulnerabilidades
+
+## Responsable
+- Equipo de seguridad y desarrollo
+
+# Testing de Seguridad OWASP
+
 ## ¿Qué es?
 
 El testing de seguridad OWASP es el proceso de evaluación de vulnerabilidades de
@@ -1138,6 +1148,7 @@ class FrontendSecurityChecklist {
     return DOMPurify.sanitize(content, {
       ALLOWED_TAGS: ["p", "br", "strong", "em"],
       ALLOWED_ATTR: [],
+      ALLOW_DATA_ATTR: false,
     });
   }
 

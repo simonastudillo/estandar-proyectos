@@ -1,5 +1,15 @@
 # Checklist Específico de Performance
 
+## Conocimientos involucrados
+- Optimización de rendimiento web y backend
+- Métricas y herramientas como Lighthouse, New Relic
+- Análisis de Core Web Vitals
+
+## Responsable
+- Equipo de desarrollo y DevOps
+
+# Checklist Específico de Performance
+
 ## ¿Qué es?
 
 El checklist específico de performance es una guía estructurada y sistemática

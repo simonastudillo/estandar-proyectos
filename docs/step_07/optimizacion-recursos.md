@@ -1,5 +1,15 @@
 # Optimización de Recursos (React + TypeScript + Vite)
 
+## Conocimientos involucrados
+- Técnicas de compresión y optimización de assets
+- Herramientas como Vite, Rollup, y CDNs
+- Estrategias de carga diferida y minimización
+
+## Responsable
+- Equipo de DevOps y desarrollo
+
+# Optimización de Recursos (React + TypeScript + Vite)
+
 > **POLÍTICA DE CLOUD**: En este repositorio el proveedor cloud por defecto es **DigitalOcean**. Para object storage y assets estáticos se recomienda **DigitalOcean Spaces** (S3-compatible). Si necesita usar AWS S3, debe existir una excepción documentada y aprobada.
 
 > **IMPORTANTE**: Esta guía está específicamente diseñada para proyectos que utilizan **Vite como bundler estándar**. Todas las configuraciones y herramientas están alineadas con el ecosistema Vite/Rollup, sin incluir Webpack, Next.js u otros bundlers.
