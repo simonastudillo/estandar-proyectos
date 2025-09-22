@@ -1,5 +1,14 @@
 # Manejo Seguro de Archivos
 
+## Conocimientos involucrados
+- Seguridad en aplicaciones web
+- Validación y sanitización de archivos
+- Prevención de vulnerabilidades
+- Gestión de almacenamiento
+
+## Responsable
+- Equipo de seguridad y desarrollo backend
+
 ## ¿Qué es?
 
 El manejo seguro de archivos es el conjunto de prácticas, técnicas y controles de
@@ -972,7 +981,7 @@ return [
             'throw' => false,
         ]
     ]
-];
+};
 ```
 
 ### 7. Job para Escaneo de Virus

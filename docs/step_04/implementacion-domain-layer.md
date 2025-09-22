@@ -1,5 +1,14 @@
 # Implementación Domain Layer (Capa de Dominio)
 
+## Conocimientos involucrados
+- Reglas de negocio
+- Entidades y objetos de valor
+- Interfaces de persistencia
+- Domain-Driven Design (DDD)
+
+## Responsable
+- Equipo de desarrollo backend
+
 ## ¿Qué es?
 
 La capa de dominio es el núcleo de la aplicación que contiene las reglas de

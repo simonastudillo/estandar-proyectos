@@ -1,5 +1,14 @@
 # APIs RESTful Versionadas
 
+## Conocimientos involucrados
+- Diseño de APIs
+- Principios REST
+- Versionado de software
+- Documentación técnica
+
+## Responsable
+- Equipo de desarrollo backend
+
 ## ¿Qué es?
 
 Las APIs RESTful versionadas son interfaces de programación de aplicaciones que

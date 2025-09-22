@@ -1,5 +1,14 @@
 # Implementación Infrastructure Layer (Capa de Infraestructura)
 
+## Conocimientos involucrados
+- Integración con bases de datos
+- APIs externas
+- Laravel
+- Configuración de entornos
+
+## Responsable
+- Equipo de desarrollo backend
+
 ## ¿Qué es?
 
 La capa de infraestructura es la capa más externa que implementa todos los
