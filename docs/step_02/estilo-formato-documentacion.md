@@ -1,5 +1,13 @@
 # Estilo y Formato de Documentación
 
+## Conocimientos involucrados
+- Normas de documentación
+- Herramientas de edición y formateo
+- Consistencia visual y estructural
+
+## Responsable
+- Equipo de desarrollo
+
 ## ¿Qué es?
 
 El **estilo y formato de documentación** define las convenciones visuales,
@@ -927,3 +935,4 @@ sed -i 's/3000:3000/3001:3000/' docker-compose.yml
 [⬅️ Checklist Mínima por Proyecto](./checklist-minima-proyecto.md) |
 [🏠 README Principal](../../README.md) |
 [Generación de Diagramas ➡️](./generacion-diagramas.md)
+````

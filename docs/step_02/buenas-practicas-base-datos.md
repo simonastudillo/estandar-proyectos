@@ -1,5 +1,14 @@
 # Buenas Prácticas de Base de Datos
 
+## Conocimientos involucrados
+- Diseño y modelado de bases de datos
+- Optimización de consultas SQL
+- Seguridad en bases de datos
+- Administración de sistemas de gestión de bases de datos (DBMS)
+
+## Responsable
+- Equipo de desarrollo
+
 ## ¿Qué es?
 
 Las buenas prácticas de base de datos son un conjunto de reglas, convenciones y

@@ -1,5 +1,13 @@
 # Patrones de Diseño
 
+## Conocimientos involucrados
+- Principios de diseño de software
+- Implementación de patrones creacionales, estructurales y de comportamiento
+- Herramientas de diseño y documentación
+
+## Responsable
+- Equipo de desarrollo
+
 ## ¿Qué es?
 
 Los patrones de diseño son soluciones reutilizables y probadas para problemas

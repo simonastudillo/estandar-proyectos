@@ -1,5 +1,14 @@
 # Diseño de Base de Datos
 
+## Conocimientos involucrados
+- Modelado de datos
+- Normalización y optimización
+- Seguridad en bases de datos
+- Herramientas de diseño de esquemas
+
+## Responsable
+- Equipo de desarrollo
+
 ## ¿Qué es?
 
 El diseño de base de datos es el proceso de crear una estructura lógica y física

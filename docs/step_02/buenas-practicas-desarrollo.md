@@ -1,5 +1,14 @@
 # Buenas Prácticas de Desarrollo
 
+## Conocimientos involucrados
+- Principios SOLID
+- Patrones de diseño
+- Herramientas de linting y formateo
+- Testing y calidad de código
+
+## Responsable
+- Equipo de desarrollo
+
 ## ¿Qué es?
 
 Las buenas prácticas de desarrollo son un conjunto de principios, metodologías y

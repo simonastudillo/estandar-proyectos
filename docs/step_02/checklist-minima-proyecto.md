@@ -1,5 +1,13 @@
 # Checklist Mínima por Proyecto
 
+## Conocimientos involucrados
+- Estándares de calidad de software
+- Clean Architecture y DDD
+- Validación y auditoría de proyectos
+
+## Responsable
+- Equipo de desarrollo
+
 ## ¿Qué es?
 
 El **Checklist Mínima por Proyecto** es una lista de verificación esencial que

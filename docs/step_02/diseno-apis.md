@@ -1,5 +1,14 @@
 # Diseño de APIs
 
+## Conocimientos involucrados
+- RESTful APIs
+- Protocolos HTTP
+- Seguridad en APIs
+- Herramientas de documentación (Swagger, Postman)
+
+## Responsable
+- Equipo de desarrollo
+
 ## ¿Qué es?
 
 El diseño de APIs (Application Programming Interface) es el proceso de definir y

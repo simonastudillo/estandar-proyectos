@@ -1,5 +1,13 @@
 # 2. Diseño y Arquitectura
 
+## Conocimientos involucrados
+- Principios de diseño de software
+- Patrones de arquitectura
+- Herramientas de modelado
+
+## Responsable
+- Equipo de desarrollo
+
 ## ¿Qué es el Diseño y Arquitectura?
 
 El **Diseño y Arquitectura** es la segunda etapa del desarrollo de software

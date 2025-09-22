@@ -1,5 +1,14 @@
 # Casos de Uso y User Stories
 
+## Conocimientos involucrados
+- Análisis de requisitos
+- Redacción de casos de uso
+- Metodologías ágiles (User Stories)
+- Comunicación con stakeholders
+
+## Responsable
+- Equipo de desarrollo
+
 ## ¿Qué es?
 
 Los casos de uso y user stories son técnicas complementarias para capturar y

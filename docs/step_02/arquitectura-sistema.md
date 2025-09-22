@@ -1,5 +1,14 @@
 # Arquitectura del Sistema
 
+## Conocimientos involucrados
+- Diseño de software
+- Arquitectura de sistemas
+- Patrones de diseño (Clean Architecture, Layered Architecture)
+- Herramientas de desarrollo frontend y backend
+
+## Responsable
+- Equipo de desarrollo
+
 ## ¿Qué es?
 
 La arquitectura del sistema es el diseño estructural de alto nivel que define
