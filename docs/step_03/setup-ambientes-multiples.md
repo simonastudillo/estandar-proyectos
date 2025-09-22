@@ -1,5 +1,13 @@
 # Setup de Ambientes (Desarrollo, Testing, Staging, Producción)
 
+## Conocimientos involucrados
+- Configuración de múltiples entornos
+- Gestión de variables de entorno
+- Seguridad en ambientes de desarrollo y producción
+
+## Responsable de la etapa
+- Equipo de DevOps
+
 ## ¿Qué es?
 
 El setup de ambientes múltiples es la configuración y gestión de diferentes

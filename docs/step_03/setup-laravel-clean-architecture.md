@@ -1,5 +1,14 @@
 # Setup de Laravel con Clean Architecture
 
+## Conocimientos involucrados
+- Principios de Clean Architecture
+- Domain-Driven Design (DDD)
+- Configuración de Laravel
+- Inyección de dependencias
+
+## Responsable de la etapa
+- Equipo de Backend
+
 ## ¿Qué es?
 
 El setup de Laravel con Clean Architecture es la configuración e implementación

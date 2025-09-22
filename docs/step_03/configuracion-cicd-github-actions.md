@@ -1,5 +1,15 @@
 # Configuración de Herramientas de CI/CD con GitHub Actions
 
+## Conocimientos involucrados
+- Automatización de procesos
+- Integración continua (CI)
+- Despliegue continuo (CD)
+- Uso de GitHub Actions
+- Testing automatizado
+
+## Responsable de la etapa
+- Equipo de DevOps
+
 ## ¿Qué es?
 
 CI/CD (Continuous Integration/Continuous Deployment) es una metodología de

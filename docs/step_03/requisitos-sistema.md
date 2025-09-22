@@ -1,5 +1,13 @@
 # Requisitos Mínimos del Sistema
 
+## Conocimientos involucrados
+- Especificaciones de hardware y software
+- Configuración de entornos locales
+- Compatibilidad de herramientas y versiones
+
+## Responsable de la etapa
+- Equipo de Desarrollo
+
 ## ¿Qué son los Requisitos Mínimos del Sistema?
 
 Los **Requisitos Mínimos del Sistema** son las especificaciones técnicas y de

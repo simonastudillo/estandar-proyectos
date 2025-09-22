@@ -1,5 +1,14 @@
 # Configuración de Herramientas de Calidad de Código (Estándar Único)
 
+## Conocimientos involucrados
+- Uso de linters y formateadores
+- Análisis estático de código
+- Testing automatizado
+- Principios de Clean Code
+
+## Responsable de la etapa
+- Equipo de Desarrollo
+
 > **IMPORTANTE**: Esta configuración representa el **estándar único NO NEGOCIABLE** para herramientas de calidad. Las herramientas aquí especificadas son obligatorias y no admiten alternativas, garantizando consistencia total entre proyectos.
 
 ## ¿Qué es?
@@ -262,7 +271,6 @@ global.ResizeObserver = vi.fn().mockImplementation(() => ({
    unobserve: vi.fn(),
    disconnect: vi.fn(),
 }));
-```
 ```
 
 ### 2. Configuración Backend (Laravel + PHP)
