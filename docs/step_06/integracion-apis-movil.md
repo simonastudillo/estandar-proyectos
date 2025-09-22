@@ -1,5 +1,13 @@
 # Integración APIs Móvil
 
+## Conocimientos Involucrados
+- Manejo de APIs RESTful
+- Optimización de conectividad y rendimiento
+- Implementación de estrategias de cache y persistencia
+
+## Responsable
+- Equipo de Desarrollo
+
 ## ¿Qué es?
 
 Es la implementación de servicios para consumir APIs RESTful en la aplicación

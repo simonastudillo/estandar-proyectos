@@ -1,5 +1,13 @@
 # Pantallas y React Navigation
 
+## Conocimientos Involucrados
+- Configuración de React Navigation
+- Implementación de patrones de navegación móvil
+- Manejo de estado de navegación
+
+## Responsable
+- Equipo de Desarrollo
+
 ## ¿Qué es?
 
 Es la implementación del sistema de navegación en React Native usando React

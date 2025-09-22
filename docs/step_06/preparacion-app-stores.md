@@ -1,5 +1,13 @@
 # Preparación App Stores
 
+## Conocimientos Involucrados
+- Generación de builds de producción
+- Configuración de App Store Connect y Google Play Console
+- Cumplimiento de políticas de distribución
+
+## Responsable
+- Equipo de DevOps
+
 ## ¿Qué es?
 
 Es el proceso de preparación, configuración y publicación de la aplicación móvil

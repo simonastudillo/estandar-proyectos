@@ -1,5 +1,13 @@
 # Step 6: Desarrollo de Aplicación Móvil (React Native)
 
+## Conocimientos Involucrados
+- Desarrollo con React Native y TypeScript
+- Integración de herramientas de debugging
+- Adaptación de patrones de diseño para móvil
+
+## Responsable
+- Equipo de Desarrollo
+
 ## ¿Qué es?
 
 Es la etapa de desarrollo de la aplicación móvil usando React Native con
