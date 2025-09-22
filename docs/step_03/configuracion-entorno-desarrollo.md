@@ -1,5 +1,14 @@
 # 3. Configuración del Entorno de Desarrollo
 
+## Conocimientos involucrados
+- Configuración de herramientas de desarrollo
+- Gestión de entornos locales y remotos
+- Uso de herramientas de calidad de código
+- Automatización de tareas
+
+## Responsable de la etapa
+- Equipo de Desarrollo
+
 ## ¿Qué es la Configuración del Entorno de Desarrollo?
 
 La **Configuración del Entorno de Desarrollo** es la tercera etapa del proceso

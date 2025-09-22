@@ -1,5 +1,13 @@
 # Elección de Herramientas (Estándares Establecidos)
 
+## Conocimientos involucrados
+- Evaluación de herramientas tecnológicas
+- Integración de herramientas en el flujo de trabajo
+- Automatización de procesos
+
+## Responsable
+- Equipo de desarrollo
+
 ## ¿Qué es?
 
 La **elección de herramientas** define los **estándares NO NEGOCIABLES** de las

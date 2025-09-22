@@ -1,5 +1,13 @@
 # Modelado de Datos
 
+## Conocimientos involucrados
+- Análisis de dominio
+- Diseño de entidades y relaciones
+- Herramientas de modelado
+
+## Responsable
+- Equipo de desarrollo
+
 ## ¿Qué es?
 
 El modelado de datos es el proceso sistemático de crear una representación

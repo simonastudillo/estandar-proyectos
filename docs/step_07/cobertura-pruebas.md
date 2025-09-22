@@ -1,5 +1,15 @@
 # Cobertura de Pruebas (Coverage)
 
+## Conocimientos involucrados
+- Métricas de cobertura de código
+- Herramientas como Jest, Istanbul, SonarQube
+- Estrategias de testing automatizado
+
+## Responsable
+- Equipo de QA y desarrollo
+
+# Cobertura de Pruebas (Coverage)
+
 ## ¿Qué es?
 
 La cobertura de pruebas es una métrica que indica qué porcentaje del código

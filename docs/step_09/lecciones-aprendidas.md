@@ -1,5 +1,13 @@
 # Lecciones Aprendidas
 
+## Conocimientos Involucrados
+- Análisis retrospectivo
+- Documentación de experiencias
+- Identificación de mejoras
+
+## Responsable
+- Equipo de gestión de proyectos
+
 ## ¿Qué es?
 
 Las lecciones aprendidas son un registro estructurado de conocimientos,

@@ -1,5 +1,14 @@
 # 1. Planificación y Análisis
 
+## Conocimientos Involucrados
+
+- Análisis de requisitos
+- Planificación estratégica
+
+## Responsable
+
+- Equipo de Gestión de Proyectos
+
 ## ¿Qué es la Planificación y Análisis?
 
 La **Planificación y Análisis** es la primera y más crítica etapa en el

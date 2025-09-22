@@ -1,5 +1,13 @@
 # Diagrama de Arquitectura General
 
+## Conocimientos involucrados
+- Diseño de sistemas
+- Herramientas de diagramación
+- Patrones de arquitectura
+
+## Responsable
+- Equipo de desarrollo
+
 ## ¿Qué es?
 
 El diagrama de arquitectura general es una representación visual de alto nivel

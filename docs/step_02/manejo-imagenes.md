@@ -1,5 +1,13 @@
 # Manejo de Imágenes
 
+## Conocimientos involucrados
+- Optimización de recursos gráficos
+- Herramientas de compresión y formatos
+- Accesibilidad y SEO
+
+## Responsable
+- Equipo de desarrollo
+
 ## ¿Qué es?
 
 El manejo de imágenes es un conjunto de estándares, convenciones y técnicas para organizar, optimizar y gestionar todos los recursos gráficos en un proyecto de software. Incluye la estructura de carpetas, formatos recomendados, convenciones de nomenclatura, estrategias de optimización y buenas prácticas para garantizar performance, accesibilidad y mantenibilidad.
@@ -1347,9 +1355,3 @@ module.exports = {
   ],
 };
 ```
-
-## Navegación
-
-[⬅️ Estructura de Carpetas](./estructura-carpetas.md) |
-[🏠 README Principal](../../README.md) |
-[Modelado de datos ➡️](./modelado-datos.md)

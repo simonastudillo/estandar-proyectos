@@ -1,5 +1,13 @@
 # Diagramas de Flujo
 
+## Conocimientos involucrados
+- Análisis de procesos
+- Herramientas de diagramación
+- Identificación de flujos de trabajo
+
+## Responsable
+- Equipo de desarrollo
+
 ## ¿Qué es?
 
 Los diagramas de flujo son representaciones gráficas que muestran la secuencia

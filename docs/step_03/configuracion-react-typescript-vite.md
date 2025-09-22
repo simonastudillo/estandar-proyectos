@@ -1,5 +1,14 @@
 # Configuración de React + TypeScript + Vite
 
+## Conocimientos involucrados
+- Desarrollo frontend con React
+- Configuración de TypeScript
+- Uso de Vite como bundler
+- Integración de herramientas de calidad
+
+## Responsable de la etapa
+- Equipo de Desarrollo
+
 ## ¿Qué es?
 
 La configuración de React + TypeScript + Vite es el proceso de establecer un

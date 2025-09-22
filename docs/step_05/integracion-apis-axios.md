@@ -1,5 +1,14 @@
 # Integración APIs con Axios
 
+## Conocimientos involucrados
+- Axios
+- Integración frontend-backend
+- Manejo de errores HTTP
+- Autenticación y seguridad
+
+## Responsable
+- Equipo de desarrollo frontend
+
 ## ¿Qué es?
 
 La integración de APIs con Axios es el proceso de configurar y utilizar Axios

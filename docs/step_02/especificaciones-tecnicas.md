@@ -1,5 +1,13 @@
 # Especificaciones Técnicas
 
+## Conocimientos involucrados
+- Requisitos técnicos
+- Métricas de rendimiento
+- Seguridad y escalabilidad
+
+## Responsable
+- Equipo de desarrollo
+
 ## ¿Qué es?
 
 Las especificaciones técnicas son documentos detallados que definen los

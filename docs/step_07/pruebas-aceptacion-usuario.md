@@ -1,5 +1,15 @@
 # Pruebas de Aceptación del Usuario (UAT)
 
+## Conocimientos involucrados
+- Estrategias de validación de requerimientos
+- Herramientas de gestión de pruebas UAT
+- Técnicas de planificación y ejecución de pruebas
+
+## Responsable
+- Equipo de QA y stakeholders
+
+# Pruebas de Aceptación del Usuario (UAT)
+
 ## ¿Qué es?
 
 Las Pruebas de Aceptación del Usuario (User Acceptance Testing - UAT) son el

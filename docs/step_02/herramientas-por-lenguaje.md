@@ -1,4 +1,12 @@
-# Herramientas por Lenguaje (Estándares NO NEGOCIABLES)
+# Herramientas por Lenguaje
+
+## Conocimientos involucrados
+- Ecosistemas de lenguajes de programación
+- Configuración de herramientas específicas
+- Automatización y optimización de flujos
+
+## Responsable
+- Equipo de desarrollo
 
 ## ¿Qué es?
 

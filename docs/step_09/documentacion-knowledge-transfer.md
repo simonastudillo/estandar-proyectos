@@ -1,5 +1,13 @@
 # Documentación y Knowledge Transfer
 
+## Conocimientos Involucrados
+- Documentación técnica y de dominio
+- Transferencia de conocimiento
+- Herramientas de colaboración
+
+## Responsable
+- Equipo de desarrollo y gestión de conocimiento
+
 ## ¿Qué es?
 
 La documentación y knowledge transfer es el proceso sistemático de capturar,

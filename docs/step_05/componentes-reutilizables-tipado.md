@@ -1,5 +1,14 @@
 # Componentes Reutilizables con Tipado
 
+## Conocimientos involucrados
+- React
+- TypeScript
+- Diseño modular
+- Principios de reutilización
+
+## Responsable
+- Equipo de desarrollo frontend
+
 ## ¿Qué es?
 
 Los componentes reutilizables con tipado son piezas de interfaz de usuario

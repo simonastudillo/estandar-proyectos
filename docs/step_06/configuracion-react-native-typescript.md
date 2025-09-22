@@ -1,5 +1,13 @@
 # Configuración React Native + TypeScript
 
+## Conocimientos Involucrados
+- Configuración de entornos de desarrollo
+- Uso de TypeScript y React Native CLI
+- Herramientas de calidad de código (ESLint, Prettier)
+
+## Responsable
+- Equipo de Desarrollo
+
 ## ¿Qué es?
 
 Es el proceso de configuración inicial de un proyecto React Native con

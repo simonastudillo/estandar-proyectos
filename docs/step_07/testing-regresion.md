@@ -1,5 +1,15 @@
 # Testing de Regresión
 
+## Conocimientos involucrados
+- Estrategias de pruebas de regresión
+- Herramientas como Selenium, Cypress, Jest
+- Automatización de pipelines CI/CD
+
+## Responsable
+- Equipo de QA y desarrollo
+
+# Testing de Regresión
+
 ## ¿Qué es?
 
 El testing de regresión es un tipo de prueba que se ejecuta para verificar que

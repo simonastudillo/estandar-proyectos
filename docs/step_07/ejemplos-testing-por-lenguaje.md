@@ -1,5 +1,15 @@
 # Ejemplos de Testing por Lenguaje
 
+## Conocimientos involucrados
+- Estrategias de testing específicas por lenguaje
+- Herramientas y frameworks de testing
+- Mejores prácticas de QA
+
+## Responsable
+- Equipo de QA y desarrollo
+
+# Ejemplos de Testing por Lenguaje
+
 ## ¿Qué es?
 
 Esta documentación proporciona ejemplos prácticos y específicos de

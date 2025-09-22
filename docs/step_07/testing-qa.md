@@ -1,5 +1,15 @@
 # Testing y Quality Assurance
 
+## Conocimientos involucrados
+- Estrategias de QA y testing
+- Herramientas como Jest, Selenium, SonarQube
+- Normas y estándares de calidad
+
+## Responsable
+- Equipo de QA
+
+# Testing y Quality Assurance
+
 ## ¿Qué es?
 
 Testing y Quality Assurance (QA) es el proceso sistemático de verificación y

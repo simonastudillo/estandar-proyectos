@@ -1,5 +1,13 @@
 # Sincronización Estado Redux
 
+## Conocimientos Involucrados
+- Configuración de Redux Toolkit
+- Implementación de Redux Persist
+- Manejo de estado compartido entre web y móvil
+
+## Responsable
+- Equipo de Desarrollo
+
 ## ¿Qué es?
 
 Es la implementación de Redux Toolkit en la aplicación móvil, compartiendo la

@@ -1,5 +1,14 @@
 # Autenticación Laravel Sanctum
 
+## Conocimientos involucrados
+- Autenticación y autorización
+- Laravel Sanctum
+- Seguridad en APIs
+- Gestión de tokens
+
+## Responsable
+- Equipo de desarrollo backend
+
 ## ¿Qué es?
 
 Laravel Sanctum es el sistema de autenticación oficial de Laravel para APIs, que

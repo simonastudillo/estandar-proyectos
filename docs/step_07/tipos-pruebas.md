@@ -1,5 +1,15 @@
 # Tipos de Pruebas
 
+## Conocimientos involucrados
+- Clasificación y estrategias de testing
+- Herramientas como Jest, Selenium, JMeter
+- Planificación y ejecución de pruebas
+
+## Responsable
+- Equipo de QA
+
+# Tipos de Pruebas
+
 ## ¿Qué es?
 
 La clasificación de tipos de pruebas es fundamental para establecer una

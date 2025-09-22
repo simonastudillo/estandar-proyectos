@@ -1,5 +1,14 @@
 # Instalación de Dependencias Iniciales
 
+## Conocimientos involucrados
+- Gestión de dependencias con npm y Composer
+- Configuración de entornos de desarrollo
+- Uso de herramientas de calidad de código
+- Resolución de conflictos de dependencias
+
+## Responsable de la etapa
+- Equipo de Desarrollo
+
 ## ¿Qué es la Instalación de Dependencias Iniciales?
 
 La **Instalación de Dependencias Iniciales** es el proceso de configurar e

@@ -1,5 +1,13 @@
 # Monitoreo Post-Deployment
 
+## Conocimientos Involucrados
+- Observabilidad y monitoreo
+- Gestión de incidentes
+- Análisis de logs y métricas
+
+## Responsable
+- Equipo de DevOps
+
 ## ¿Qué es?
 
 El monitoreo post-deployment es el proceso de observación continua del sistema

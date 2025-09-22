@@ -1,5 +1,13 @@
 # Estructura de Carpetas
 
+## Conocimientos involucrados
+- Organización de proyectos
+- Separación de responsabilidades
+- Estándares de estructura
+
+## Responsable
+- Equipo de desarrollo
+
 ## ¿Qué es?
 
 La estructura de carpetas es la organización jerárquica de directorios y

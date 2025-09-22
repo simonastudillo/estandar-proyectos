@@ -1,5 +1,14 @@
 # Redux Toolkit - Estado Global
 
+## Conocimientos involucrados
+- Redux Toolkit
+- Gestión de estado global
+- Integración con TypeScript
+- Debugging avanzado
+
+## Responsable
+- Equipo de desarrollo frontend
+
 ## ¿Qué es?
 
 Redux Toolkit es la forma oficial y recomendada de trabajar con Redux en

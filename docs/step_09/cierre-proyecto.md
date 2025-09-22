@@ -1,5 +1,13 @@
 # Cierre de Proyecto
 
+## Conocimientos Involucrados
+- Gestión de proyectos
+- Documentación técnica y de procesos
+- Evaluación y análisis de resultados
+
+## Responsable
+- Equipo de gestión de proyectos
+
 ## ¿Qué es?
 
 El cierre de proyecto es la fase final del ciclo de vida del proyecto, donde se
@@ -1001,7 +1009,7 @@ jobs:
          - name: Generate final code metrics
            if: inputs.generate_reports == true
            run: |
-              echo "📊 Generating final code metrics..."
+              echo "📊 Generando métricas finales de código..."
 
               # Frontend metrics
               if [ -d "frontend" ]; then
@@ -1033,7 +1041,7 @@ jobs:
 
          - name: Generate Git analysis
            run: |
-              echo "📈 Generating Git analysis..."
+              echo "📈 Generando análisis de repositorio..."
 
               # Contributors analysis
               git log --format='%aN <%aE>' | sort -u > project-closure/reports/contributors.txt
@@ -1049,7 +1057,7 @@ jobs:
 
          - name: Package final deliverables
            run: |
-              echo "📦 Creating final delivery package..."
+              echo "📦 Creando paquete de entrega final..."
 
               # Create source code archive
               tar -czf project-closure/archive/source-code-final.tar.gz \
@@ -1074,7 +1082,7 @@ jobs:
 
          - name: Generate closure documentation
            run: |
-              echo "📝 Generating closure documentation..."
+              echo "📝 Generando documentación de cierre..."
 
               # Project statistics
               cat > project-closure/documentation/project-statistics.md << 'EOF'
@@ -1107,7 +1115,7 @@ jobs:
 
          - name: Create handover package
            run: |
-              echo "🤝 Creating handover package..."
+              echo "🤝 Creando paquete de handover..."
 
               # Handover checklist
               cat > project-closure/handover/handover-checklist.md << 'EOF'
@@ -1164,7 +1172,7 @@ jobs:
          - name: Generate final reports
            if: inputs.generate_reports == true
            run: |
-              echo "📋 Generating comprehensive final reports..."
+              echo "📋 Generando reportes finales..."
 
               # Create executive summary
               cat > project-closure/reports/executive-summary.md << 'EOF'

@@ -1,5 +1,13 @@
 # Organización de la Documentación
 
+## Conocimientos Involucrados
+- Gestión de información
+- Herramientas de documentación
+- Estructuración de contenido
+
+## Responsable
+- Equipo de gestión de conocimiento
+
 ## ¿Qué es?
 
 La **organización de la documentación** es el sistema estructurado para

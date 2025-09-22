@@ -1,5 +1,13 @@
 # Monitoreo y Logging
 
+## Conocimientos involucrados
+- Análisis de métricas
+- Configuración de herramientas de monitoreo
+- Gestión de logs
+
+## Responsable
+- Equipo de DevOps
+
 ## ¿Qué es?
 
 El monitoreo y logging es la práctica de recopilar, analizar y visualizar

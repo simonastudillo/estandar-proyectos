@@ -1,5 +1,14 @@
 # Metodología de Trabajo
 
+## Conocimientos Involucrados
+
+- Metodologías ágiles
+- Gestión de proyectos
+
+## Responsable
+
+- Equipo de Gestión de Proyectos
+
 ## ¿Qué es?
 
 **Scrumban** es una metodología híbrida específicamente adaptada para proyectos

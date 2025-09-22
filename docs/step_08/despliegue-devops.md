@@ -1,5 +1,13 @@
 # Step 8: Despliegue y DevOps
 
+## Conocimientos involucrados
+- Automatización de despliegues
+- Configuración de infraestructura
+- Monitoreo y mantenimiento
+
+## Responsable
+- Equipo de DevOps
+
 ## ¿Qué es?
 
 El despliegue y DevOps es la etapa donde se implementan las prácticas y

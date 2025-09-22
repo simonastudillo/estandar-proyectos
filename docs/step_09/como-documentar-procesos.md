@@ -1,5 +1,13 @@
 # Cómo Documentar Procesos
 
+## Conocimientos Involucrados
+- Metodologías de documentación
+- Herramientas de gestión de conocimiento
+- Estandarización de procesos
+
+## Responsable
+- Equipo de gestión de conocimiento
+
 ## ¿Qué es?
 
 **Cómo documentar procesos** es una metodología sistemática para capturar,

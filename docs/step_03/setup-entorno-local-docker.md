@@ -1,5 +1,14 @@
 # Setup de Entorno Local con Docker
 
+## Conocimientos involucrados
+- Uso de Docker y Docker Compose
+- Configuración de contenedores
+- Orquestación de servicios
+- Resolución de problemas de entorno
+
+## Responsable de la etapa
+- Equipo de DevOps
+
 ## ¿Qué es el Setup de Entorno Local con Docker?
 
 El **Setup de Entorno Local con Docker** es la configuración de un entorno de

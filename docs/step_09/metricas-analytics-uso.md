@@ -1,5 +1,13 @@
 # Métricas y Analytics de Uso
 
+## Conocimientos Involucrados
+- Análisis de datos y métricas
+- Herramientas de analytics
+- Optimización de experiencia de usuario
+
+## Responsable
+- Equipo de producto y análisis
+
 ## ¿Qué es?
 
 Las métricas y analytics de uso son sistemas de medición y análisis que

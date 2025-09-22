@@ -1,5 +1,14 @@
 # Configuración React + TypeScript + Vite (Estándar Único)
 
+## Conocimientos involucrados
+- Configuración de herramientas
+- React
+- TypeScript
+- Vite
+
+## Responsable
+- Equipo de desarrollo frontend
+
 > **IMPORTANTE**: Esta configuración representa el **estándar único NO
 > NEGOCIABLE** para proyectos frontend. Vite es el único bundler permitido. No
 > se permiten alternativas como Create React App, Webpack, Parcel o Next.js para

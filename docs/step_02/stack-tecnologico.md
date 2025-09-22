@@ -1,5 +1,13 @@
 # Stack Tecnológico Estándar
 
+## Conocimientos involucrados
+- Evaluación de tecnologías
+- Integración de herramientas y frameworks
+- Mantenimiento de consistencia tecnológica
+
+## Responsable
+- Equipo de desarrollo
+
 > **IMPORTANTE**: Este documento define decisiones arquitectónicas **NO
 > NEGOCIABLES** para mantener consistencia en todos los proyectos. Las
 > tecnologías aquí especificadas son **estándares únicos** sin alternativas,

@@ -1,5 +1,14 @@
 # Implementación Application Layer (Capa de Aplicación)
 
+## Conocimientos involucrados
+- Casos de uso
+- DTOs (Data Transfer Objects)
+- Orquestación de servicios
+- Laravel
+
+## Responsable
+- Equipo de desarrollo backend
+
 ## ¿Qué es?
 
 La capa de aplicación es responsable de orquestar los casos de uso del sistema,

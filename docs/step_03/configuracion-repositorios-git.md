@@ -1,5 +1,14 @@
 # Configuración de Repositorios Git y GitHub
 
+## Conocimientos involucrados
+- Uso de Git y GitHub
+- Estrategias de branching
+- Integración con CI/CD
+- Gestión de repositorios colaborativos
+
+## Responsable de la etapa
+- Equipo de DevOps
+
 ## ¿Qué es la Configuración de Repositorios Git y GitHub?
 
 La **Configuración de Repositorios Git y GitHub** es el proceso de establecer y
@@ -918,7 +927,7 @@ if ! grep -qE "$commit_regex" "$1"; then
     echo ""
     echo "Ejemplos válidos:"
     echo "  feat(auth): agregar login con OAuth"
-    echo "  fix(database): corregir conexión en staging"
+    echo "  fix(database): corregir validación de email"
     echo "  docs(readme): actualizar instrucciones"
     exit 1
 fi
@@ -1111,7 +1120,7 @@ cat > .github/pull_request_template.md << EOF
 - [ ] Bug fix
 - [ ] Nueva funcionalidad
 - [ ] Breaking change
-- [ ] Documentación
+- [ ] Actualización de documentación
 
 ## Checklist
 - [ ] Código revisado

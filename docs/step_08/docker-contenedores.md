@@ -1,5 +1,13 @@
 # Docker y Contenedores
 
+## Conocimientos involucrados
+- Contenerización de aplicaciones
+- Orquestación con Docker Compose
+- Optimización de imágenes Docker
+
+## Responsable
+- Equipo de DevOps
+
 ## ¿Qué es?
 
 Docker y la contenedorización es una tecnología que permite empaquetar

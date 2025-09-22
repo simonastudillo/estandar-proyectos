@@ -1,5 +1,13 @@
 # Bug Fixes y Hotfixes
 
+## Conocimientos Involucrados
+- Diagnóstico y resolución de errores
+- Gestión de versiones y despliegues
+- Pruebas rápidas y automatizadas
+
+## Responsable
+- Equipo de desarrollo
+
 ## ¿Qué es?
 
 Los bug fixes y hotfixes son procesos críticos de mantenimiento que permiten

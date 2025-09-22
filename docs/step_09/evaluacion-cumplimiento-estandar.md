@@ -1,5 +1,13 @@
 # Evaluación del Cumplimiento del Estándar
 
+## Conocimientos Involucrados
+- Auditoría de estándares
+- Evaluación de arquitectura y código
+- Principios de diseño y mejores prácticas
+
+## Responsable
+- Equipo de calidad y auditoría
+
 ## ¿Qué es?
 
 La evaluación del cumplimiento del estándar es un proceso sistemático para

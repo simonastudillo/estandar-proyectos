@@ -1,5 +1,15 @@
 # Checklist de File System
 
+## Conocimientos involucrados
+- Administración de sistemas de archivos
+- Seguridad y permisos en sistemas operativos
+- Herramientas de monitoreo y mantenimiento
+
+## Responsable
+- Equipo de DevOps
+
+# Checklist de File System
+
 ## ¿Qué es?
 
 Un checklist integral para verificar y mantener la salud del sistema de archivos

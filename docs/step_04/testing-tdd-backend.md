@@ -1,5 +1,14 @@
 # Testing TDD Backend Laravel Clean Architecture
 
+## Conocimientos involucrados
+- Test-Driven Development (TDD)
+- Laravel
+- PHPStan
+- Testing unitario e integración
+
+## Responsable
+- Equipo de QA y desarrollo backend
+
 ## ¿Qué es?
 
 **Test-Driven Development (TDD)** para backend con **Laravel Clean

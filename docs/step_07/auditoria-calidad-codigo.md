@@ -1,5 +1,15 @@
 # Auditoría de Calidad de Código
 
+## Conocimientos involucrados
+- Análisis estático de código
+- Métricas de calidad de software
+- Herramientas como SonarQube, ESLint, Prettier
+
+## Responsable
+- Equipo de desarrollo
+
+# Auditoría de Calidad de Código
+
 ## ¿Qué es?
 
 La auditoría de calidad de código es un proceso sistemático de evaluación del

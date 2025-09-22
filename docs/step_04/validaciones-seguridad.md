@@ -1,5 +1,14 @@
 # Validaciones de Seguridad
 
+## Conocimientos involucrados
+- Seguridad en aplicaciones web
+- Validación y sanitización de datos
+- Laravel
+- Prevención de vulnerabilidades
+
+## Responsable
+- Equipo de seguridad y desarrollo backend
+
 ## ¿Qué es?
 
 Las validaciones de seguridad son el conjunto de técnicas y controles que se

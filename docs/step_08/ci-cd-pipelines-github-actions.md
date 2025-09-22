@@ -1,5 +1,13 @@
 # CI/CD Pipelines con GitHub Actions
 
+## Conocimientos involucrados
+- Integración y despliegue continuo
+- Automatización de flujos de trabajo
+- Seguridad en pipelines
+
+## Responsable
+- Equipo de DevOps
+
 ## ¿Qué es?
 
 Los pipelines de CI/CD (Continuous Integration/Continuous Deployment) con GitHub

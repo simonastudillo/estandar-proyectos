@@ -1,5 +1,13 @@
 # Testing Dispositivos y Simuladores
 
+## Conocimientos Involucrados
+- Estrategias de testing automatizado
+- Configuración de simuladores y dispositivos reales
+- Validación de funcionalidades nativas
+
+## Responsable
+- Equipo de QA
+
 ## ¿Qué es?
 
 Es la implementación de estrategias de testing específicas para aplicaciones

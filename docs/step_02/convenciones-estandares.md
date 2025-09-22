@@ -1,5 +1,13 @@
 # Convenciones y Estándares
 
+## Conocimientos involucrados
+- Normas de codificación
+- Herramientas de linting y formateo
+- Estándares de documentación
+
+## Responsable
+- Equipo de desarrollo
+
 ## ¿Qué es?
 
 Las convenciones y estándares definen un conjunto unificado de reglas para
@@ -244,17 +252,13 @@ const authSlice = createSlice({
       state.loading = true;
       state.error = null;
     },
-    loginSuccess: (state, action) => {
+    loginSuccess: (state, action: PayloadAction<User>) => {
       state.loading = false;
       state.user = action.payload;
     },
-    loginFailure: (state, action) => {
+    loginFailure: (state, action: PayloadAction<string>) => {
       state.loading = false;
       state.error = action.payload;
-    },
-    logout: (state) => {
-      state.user = null;
-      state.error = null;
     },
   },
 });

@@ -1,5 +1,15 @@
 # Testing por Entorno
 
+## Conocimientos involucrados
+- Configuración de entornos de testing
+- Herramientas como Jest, Cypress, PHPUnit
+- Estrategias específicas para cada ambiente
+
+## Responsable
+- Equipo de QA y DevOps
+
+# Testing por Entorno
+
 ## ¿Qué es?
 
 El testing por entorno es la práctica de adaptar las estrategias,

@@ -1,5 +1,15 @@
 # Testing de Performance y Carga
 
+## Conocimientos involucrados
+- Estrategias de pruebas de rendimiento y carga
+- Herramientas como JMeter, Gatling, k6
+- Análisis de métricas de rendimiento
+
+## Responsable
+- Equipo de QA y DevOps
+
+# Testing de Performance y Carga
+
 ## ¿Qué es?
 
 El testing de performance y carga es el proceso de evaluación del comportamiento

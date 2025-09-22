@@ -1,5 +1,13 @@
 # Optimización de Base de Datos
 
+## Conocimientos involucrados
+- Diseño y optimización de queries
+- Estrategias de indexación
+- Configuración de servidores de bases de datos
+
+## Responsable
+- Equipo de Base de Datos
+
 ## ¿Qué es?
 
 La optimización de base de datos es el proceso sistemático de mejorar el

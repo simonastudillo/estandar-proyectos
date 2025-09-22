@@ -1,5 +1,14 @@
 # Migraciones y Seeders
 
+## Conocimientos involucrados
+- Gestión de bases de datos
+- Laravel migrations y seeders
+- Control de versiones de esquemas
+- Automatización de despliegues
+
+## Responsable
+- Equipo de desarrollo backend
+
 ## ¿Qué es?
 
 Las migraciones y seeders son herramientas fundamentales para el control de

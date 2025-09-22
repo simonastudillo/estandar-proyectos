@@ -1,5 +1,14 @@
 # Roadmap del Proyecto
 
+## Conocimientos Involucrados
+
+- Planificación estratégica
+- Gestión de proyectos
+
+## Responsable
+
+- Equipo de Gestión de Proyectos
+
 ## ¿Qué es?
 
 El **roadmap del proyecto** es la visión estratégica a largo plazo que define la

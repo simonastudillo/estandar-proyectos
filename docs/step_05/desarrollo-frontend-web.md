@@ -1,5 +1,14 @@
 # Desarrollo del Frontend Web (React + TypeScript)
 
+## Conocimientos involucrados
+- React
+- TypeScript
+- Clean Architecture
+- Testing de interfaces
+
+## Responsable
+- Equipo de desarrollo frontend
+
 ## ¿Qué es?
 
 El desarrollo del frontend web es la fase donde implementamos la interfaz de

@@ -1,5 +1,15 @@
 # Checklists QA
 
+## Conocimientos involucrados
+- Estrategias de aseguramiento de calidad
+- Herramientas de gestión de pruebas
+- Normas y estándares de QA
+
+## Responsable
+- Equipo de QA
+
+# Checklists QA
+
 ## ¿Qué es?
 
 Los checklists de Quality Assurance son listas de verificación sistemáticas que

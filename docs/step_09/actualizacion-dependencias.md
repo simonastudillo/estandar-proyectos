@@ -1,5 +1,13 @@
 # Actualización de Dependencias
 
+## Conocimientos Involucrados
+- Gestión de dependencias (Composer, npm, etc.)
+- Seguridad y auditoría de librerías
+- Evaluación de compatibilidad y pruebas
+
+## Responsable
+- Equipo de desarrollo
+
 ## ¿Qué es?
 
 La actualización de dependencias es el proceso sistemático de mantener

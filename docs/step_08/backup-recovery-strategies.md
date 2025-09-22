@@ -1,5 +1,13 @@
 # Backup y Recovery Strategies
 
+## Conocimientos involucrados
+- Administración de bases de datos
+- Gestión de almacenamiento y backups
+- Seguridad informática
+
+## Responsable
+- Equipo de DevOps
+
 ## ¿Qué es?
 
 Las estrategias de backup y recovery son procedimientos sistemáticos para crear,

@@ -1,5 +1,13 @@
 # Retroalimentación del Equipo
 
+## Conocimientos Involucrados
+- Dinámicas de equipo
+- Evaluación de procesos
+- Comunicación efectiva
+
+## Responsable
+- Equipo de gestión de proyectos
+
 ## ¿Qué es?
 
 La retroalimentación del equipo es un proceso estructurado para recopilar

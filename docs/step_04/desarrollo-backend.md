@@ -1,5 +1,14 @@
 # Desarrollo del Backend (Laravel + Clean Architecture)
 
+## Conocimientos involucrados
+- Laravel
+- Clean Architecture
+- Domain-Driven Design (DDD)
+- Testing y mantenimiento
+
+## Responsable
+- Equipo de desarrollo backend
+
 ## ¿Qué es?
 
 El desarrollo del backend es la fase donde implementamos toda la lógica de

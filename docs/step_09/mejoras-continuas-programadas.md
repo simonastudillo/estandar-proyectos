@@ -1,5 +1,13 @@
 # Mejoras Continuas Programadas
 
+## Conocimientos Involucrados
+- Refactorización y optimización
+- Gestión de deuda técnica
+- Evaluación de calidad de código
+
+## Responsable
+- Equipo de desarrollo
+
 ## ¿Qué es?
 
 Las mejoras continuas programadas son un proceso sistemático y planificado para

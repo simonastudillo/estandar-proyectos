@@ -1,5 +1,13 @@
 # Generación de Diagramas
 
+## Conocimientos involucrados
+- Herramientas de diagramación
+- Representación visual de sistemas
+- Documentación técnica
+
+## Responsable
+- Equipo de desarrollo
+
 ## ¿Qué es?
 
 La generación de diagramas es el proceso de crear representaciones visuales del

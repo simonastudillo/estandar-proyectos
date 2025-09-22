@@ -1,5 +1,14 @@
 # Definición de Requerimientos Funcionales y No Funcionales
 
+## Conocimientos Involucrados
+
+- Análisis de requisitos
+- Diseño de sistemas
+
+## Responsable
+
+- Equipo de Desarrollo
+
 ## ¿Qué es?
 
 Los **requerimientos funcionales** definen **qué** debe hacer el sistema - las
