@@ -1,5 +1,13 @@
 # Mantenimiento del File System
 
+## Conocimientos involucrados
+- Administración de sistemas
+- Monitoreo de almacenamiento
+- Seguridad de datos
+
+## Responsable
+- Equipo de DevOps
+
 ## ¿Qué es?
 
 El mantenimiento del file system es un conjunto de procedimientos automatizados

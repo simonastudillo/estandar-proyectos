@@ -1,5 +1,13 @@
 # Configuración de Servidores de Producción
 
+## Conocimientos involucrados
+- Administración de sistemas
+- Seguridad en servidores
+- Optimización de infraestructura
+
+## Responsable
+- Equipo de DevOps
+
 ## ¿Qué es?
 
 La configuración de servidores de producción es el proceso de preparar y

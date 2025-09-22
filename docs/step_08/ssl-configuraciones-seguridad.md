@@ -1,5 +1,13 @@
 # SSL y Configuraciones de Seguridad
 
+## Conocimientos involucrados
+- Configuración de certificados SSL/TLS
+- Seguridad en redes
+- Hardening de servidores
+
+## Responsable
+- Equipo de Seguridad
+
 ## ¿Qué es?
 
 SSL/TLS (Secure Sockets Layer/Transport Layer Security) y las configuraciones de
